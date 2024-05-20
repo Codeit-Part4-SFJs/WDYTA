@@ -14,27 +14,26 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "main-gradation": "linear-gradient(91deg, #5097FA 0%, #5363FF 100%)",
       },
-      colors : {
-        'black-17' : '#17171C',
-        'black-21' : '#21212A',
-        'black-2E' : '#2E2E3A',
-    
-        'gray-6E' : '#6E6E82',
-        'gray-9F' : '#9FA6B2',
-        'gray-F1' : '#F1F1F5',
-    
-        'main-blue' : '#5097FA',
-        'main-indigo' : '#5363FF',
+      colors: {
+        "black-17": "#17171C",
+        "black-21": "#21212A",
+        "black-2E": "#2E2E3A",
 
-        'yellow' : '#FFC83C',
-        'green' : '#05D58B',
-        'pink' : '#FF2F9F',
-        'red' : '#FF0000',
+        "gray-6E": "#6E6E82",
+        "gray-9F": "#9FA6B2",
+        "gray-F1": "#F1F1F5",
+        disabled: "#353542",
+
+        "main-blue": "#5097FA",
+        "main-indigo": "#5363FF",
+
+        yellow: "#FFC83C",
+        green: "#05D58B",
+        pink: "#FF2F9F",
+        red: "#FF0000",
       },
-      backgroundGradientColors : {
-        'main-gradation' : 'linear-gradient(91deg, #5097FA 0%, #5363FF 100%)',
-      }
     },
   },
   plugins: [],

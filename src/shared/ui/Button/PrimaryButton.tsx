@@ -12,13 +12,13 @@ const PrimaryButton = ({size, onClick, disabled = false, children} : PropsWithCh
 
   switch (size) {
     case 'L' : 
-      buttonClass += ' w-[640px] h-[65px]';
+      buttonClass += ' w-[640px] h-[65px] text-lg';
       break;
     case 'M' :
-      buttonClass += ' w-[440px] h-[55px]';
+      buttonClass += ' w-[440px] h-[55px] text-base';
       break;
     case 'S' :
-      buttonClass += ' w-[335px] h-[50px]';
+      buttonClass += ' w-[335px] h-[50px] text-base';
       break;
   }
 

@@ -6,7 +6,7 @@ interface ButtonProps extends React.ComponentProps<'button'> {
   disabled?: boolean;
 }
 
-const PrimaryButton = ({size, onClick, disabled = false, children} : PropsWithChildren<ButtonProps>) => {
+const TertiaryButton = ({size, onClick, disabled = false, children} : PropsWithChildren<ButtonProps>) => {
 
   let buttonClass = `flex py-6  justify-center items-center gap-[10px] flex-shrink-0 rounded-lg whitespace-nowrap`;
   let pClass = '';
@@ -27,11 +27,11 @@ const PrimaryButton = ({size, onClick, disabled = false, children} : PropsWithCh
   }
 
   if (disabled) {
-    buttonClass += ' bg-disabled';
+    buttonClass += ' bg-transparent border-gray-35 border border-solid ';
     pClass += ' text-gray-6E';
   } else {
-    buttonClass += ' bg-main-gradation';
-    pClass += ' text-white';
+    buttonClass += ' bg-transparent border-gray-9F border border-solid';
+    pClass += ' text-gray-9F';
   }
 
 
@@ -50,13 +50,4 @@ const PrimaryButton = ({size, onClick, disabled = false, children} : PropsWithCh
   );
 };
 
-/* 사용법 
-크기를 L, M, S로 두고, disabled의 경우에는 boolean 값으로 disabled를 설정하시면 됩니다.
-onClick Prop을 활용하여 다음 동작을 결정하시면 됩니다.
-      <PrimaryButton size="S" disabled={true}>
-        스몰 비활성화
-      </PrimaryButton>
-  와 같이 사용하시면 children props로 값이 전달됩니다. 
-*/
-
-export default PrimaryButton;
+export default TertiaryButton;

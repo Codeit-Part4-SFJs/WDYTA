@@ -20,11 +20,12 @@ const config: Config = {
         "black-17": "#17171C",
         "black-21": "#21212A",
         "black-2E": "#2E2E3A",
+        "black-25": "#252530",
 
         "gray-6E": "#6E6E82",
         "gray-9F": "#9FA6B2",
         "gray-F1": "#F1F1F5",
-        disabled: "#353542",
+        "gray-35": "#353542",
 
         "main-blue": "#5097FA",
         "main-indigo": "#5363FF",
@@ -36,6 +37,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };
 export default config;

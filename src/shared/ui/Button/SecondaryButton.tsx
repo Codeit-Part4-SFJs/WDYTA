@@ -27,7 +27,7 @@ const SecondaryButton = ({size, onClick, disabled = false, children} : PropsWith
   }
 
   if (disabled) {
-    buttonClass += ' border border-solid border-disabled text-gray-6E';
+    buttonClass += ' border border-solid border-gray-35 text-gray-6E';
     pClass += ' text-gray-6E';
   } else {
     buttonClass += ' border border-solid border-linear-gradients border-transparent';

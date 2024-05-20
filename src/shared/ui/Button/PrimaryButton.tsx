@@ -27,7 +27,7 @@ const PrimaryButton = ({size, onClick, disabled = false, children} : PropsWithCh
   }
 
   if (disabled) {
-    buttonClass += ' bg-disabled';
+    buttonClass += ' bg-gray-35';
     pClass += ' text-gray-6E';
   } else {
     buttonClass += ' bg-main-gradation';

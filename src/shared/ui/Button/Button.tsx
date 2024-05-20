@@ -2,11 +2,12 @@ import { PropsWithChildren } from "react";
 
 interface ButtonProps extends React.ComponentProps<'button'> {
   size : string;
+  kind : string;
   onClick?: () => void;
   disabled?: boolean;
 }
 
-const SecondaryButton = ({size, onClick, disabled = false, children} : PropsWithChildren<ButtonProps>) => {
+const Button = ({size, kind, onClick, disabled = false, children} : PropsWithChildren<ButtonProps>) => {
 
   let buttonClass = `flex justify-center items-center gap-[10px] flex-shrink-0 rounded-lg whitespace-nowrap`;
   let pClass = '';
@@ -26,14 +27,42 @@ const SecondaryButton = ({size, onClick, disabled = false, children} : PropsWith
       break;
   }
 
-  if (disabled) {
-    buttonClass += ' border border-solid border-gray-35 text-gray-6E';
-    pClass += ' text-gray-6E';
-  } else {
-    buttonClass += ' border border-solid border-linear-gradients border-transparent';
-    pClass += ' text-transparent bg-clip-text bg-main-gradation';
+  switch (kind) {
+    case 'primary' :
+      if (disabled) {
+        buttonClass += ' bg-gray-35';
+        pClass += ' text-gray-6E';
+      } else {
+        buttonClass += ' bg-main-gradation';
+        pClass += ' text-white';
+      }
+      break;
+
+    case 'secondary' :
+      if (disabled) {
+        buttonClass += ' border border-solid border-gray-35 text-gray-6E';
+        pClass += ' text-gray-6E';
+      } else {
+        buttonClass += ' border border-solid border-linear-gradients border-transparent';
+        pClass += ' text-transparent bg-clip-text bg-main-gradation';
+      }
+      break;
+    
+    case 'tertiary' :
+      if (disabled) {
+        buttonClass += ' bg-transparent border-gray-35 border border-solid ';
+        pClass += ' text-gray-6E';
+      } else {
+        buttonClass += ' bg-transparent border-gray-9F border border-solid';
+        pClass += ' text-gray-9F';
+      }
+      break;
   }
 
+
+
+
+  
 
   return (
     <button
@@ -57,4 +86,4 @@ onClick Prop을 활용하여 다음 동작을 결정하시면 됩니다.
   와 같이 사용하시면 children props로 값이 전달됩니다. 
 */
 
-export default SecondaryButton;
+export default Button;

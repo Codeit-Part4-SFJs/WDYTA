@@ -32,10 +32,7 @@ const TertiaryButton = ({size, onClick, disabled = false, children} : PropsWithC
   } else {
     buttonClass += ' bg-transparent border-gray-9F border border-solid';
     pClass += ' text-gray-9F';
-  }
-
-
-  
+  }  
 
   return (
     <button

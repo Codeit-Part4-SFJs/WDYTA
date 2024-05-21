@@ -20,7 +20,9 @@ const Profile = () => {
       />
 
       {/* <Logo size="L" onClick={onClick} />  */}
-      <Loading size="L">첫 리뷰를 작성해 보세요!</Loading>
+      <Loading size="L" color="gray">
+        첫 리뷰를 작성해 보세요!
+      </Loading>
     </div>
   );
 };

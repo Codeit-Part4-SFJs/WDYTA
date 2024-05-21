@@ -1,78 +1,73 @@
 import { PropsWithChildren } from "react";
 
-interface ButtonProps extends React.ComponentProps<'button'> {
-  size : string;
-  kind : string;
+interface ButtonProps extends React.ComponentProps<"button"> {
+  size: string;
+  kind: string;
   onClick?: () => void;
   disabled?: boolean;
 }
 
-const Button = ({size, kind, onClick, disabled = false, children} : PropsWithChildren<ButtonProps>) => {
-
+const Button = ({
+  size,
+  kind,
+  onClick,
+  disabled = false,
+  children,
+}: PropsWithChildren<ButtonProps>) => {
   let buttonClass = `flex justify-center items-center gap-[10px] flex-shrink-0 rounded-lg whitespace-nowrap`;
-  let pClass = '';
+  let pClass = "";
 
   switch (size) {
-    case 'L' : 
-      buttonClass += ' w-[640px] h-[65px]';
-      pClass += 'text-lg';
+    case "L":
+      buttonClass += " w-[640px] h-[65px]";
+      pClass += "text-lg";
       break;
-    case 'M' :
-      buttonClass += ' w-[440px] h-[55px]';
-      pClass += 'text-base';
+    case "M":
+      buttonClass += " w-[440px] h-[55px]";
+      pClass += "text-base";
       break;
-    case 'S' :
-      buttonClass += ' w-[335px] h-[50px]';
-      pClass += 'text-base';
+    case "S":
+      buttonClass += " w-[335px] h-[50px]";
+      pClass += "text-base";
       break;
   }
 
   switch (kind) {
-    case 'primary' :
+    case "primary":
       if (disabled) {
-        buttonClass += ' bg-gray-35';
-        pClass += ' text-gray-6E';
+        buttonClass += " bg-gray-35";
+        pClass += " text-gray-6E";
       } else {
-        buttonClass += ' bg-main-gradation';
-        pClass += ' text-white';
+        buttonClass += " bg-main-gradation";
+        pClass += " text-white";
       }
       break;
 
-    case 'secondary' :
+    case "secondary":
       if (disabled) {
-        buttonClass += ' border border-solid border-gray-35 text-gray-6E';
-        pClass += ' text-gray-6E';
+        buttonClass += " border border-solid border-gray-35 text-gray-6E";
+        pClass += " text-gray-6E";
       } else {
-        buttonClass += ' border border-solid border-linear-gradients border-transparent';
-        pClass += ' text-transparent bg-clip-text bg-main-gradation';
+        buttonClass +=
+          " border border-solid border-linear-gradients border-transparent";
+        pClass += " text-transparent bg-clip-text bg-main-gradation";
       }
       break;
-    
-    case 'tertiary' :
+
+    case "tertiary":
       if (disabled) {
-        buttonClass += ' bg-transparent border-gray-35 border border-solid ';
-        pClass += ' text-gray-6E';
+        buttonClass += " bg-transparent border-gray-35 border border-solid ";
+        pClass += " text-gray-6E";
       } else {
-        buttonClass += ' bg-transparent border-gray-9F border border-solid';
-        pClass += ' text-gray-9F';
+        buttonClass += " bg-transparent border-gray-9F border border-solid";
+        pClass += " text-gray-9F";
       }
       break;
   }
 
-
-
-
-  
-
   return (
-    <button
-      className={buttonClass}
-      onClick={onClick}
-      disabled={disabled}  
-    >
-      <p className={pClass}>
-        {children}
-      </p>
+    <button className={buttonClass} onClick={onClick} disabled={disabled}>
+      <p className={pClass}>{children}</p>
     </button>
   );
 };

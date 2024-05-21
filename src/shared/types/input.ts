@@ -5,15 +5,24 @@ export interface FormValues {
   nickname: string;
   password: string;
   passwordCheck: string;
+  text: string;
 }
 
-export interface InputProps {
+interface BaseInputProps {
   id: keyof FormValues;
-  label: string;
-  type: string;
   placeholder: string;
   register: UseFormRegister<FormValues>;
+  validation?: object | undefined;
+}
+
+export interface InputProps extends BaseInputProps {
+  label: string;
+  type: string;
   errors: FieldErrors<FormValues>;
-  validation: object;
-  helperText?: string;
+  helperText?: string | undefined;
+}
+
+export interface TextFieldProps extends BaseInputProps {
+  size?: "large" | "small";
+  maxLength?: number | undefined;
 }

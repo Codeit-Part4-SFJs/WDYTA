@@ -1,25 +1,21 @@
 "use client";
 import Logo from "@/shared/ui/Icon/Logo";
 import Icon from "../../shared/ui/Icon/Icon";
+import Loading from "@/shared/ui/Icon/Loading";
 
 //테스트
 const Profile = () => {
   const onClick = () => {
     console.log("a");
   };
-  return (
-    <>
-      <Icon
-        name="StarIcon"
-        width="300"
-        height="300"
-        color="#F2F3F7"
-        onClick={onClick}
-      />
-      <span>4.9</span>
 
-      <Logo size="L" onClick={onClick} />
-    </>
+  return (
+    <div className="flex flex-col items-center">
+      <Icon name="BubbleIcon" width="300" height="300" onClick={onClick} />
+
+      {/* <Logo size="L" onClick={onClick} />  */}
+      <Loading size="L">첫 리뷰를 작성해 보세요!</Loading>
+    </div>
   );
 };
 

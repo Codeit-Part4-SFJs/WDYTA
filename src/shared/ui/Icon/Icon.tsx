@@ -20,9 +20,33 @@ import UpIcon from "../../../../public/icon/up.svg";
 import VisibilityIcon from "../../../../public/icon/visibility.svg";
 import VisibilityOffIcon from "../../../../public/icon/visibility-off.svg";
 
-const iconTypes: {
-  [key: string]: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-} = {
+type IconType =
+  | "StarIcon"
+  | "BubbleIcon"
+  | "AddIcon"
+  | "CategoryIcon"
+  | "CloseIcon"
+  | "DropDownIcon"
+  | "DropUpIcon"
+  | "GoogleIcon"
+  | "KakaoIcon"
+  | "KakaoTalkIcon"
+  | "MenuIcon"
+  | "MyPropfileIcon"
+  | "PhotoIcon"
+  | "SaveIcon"
+  | "SearchIcon"
+  | "ShareIcon"
+  | "UnSaveIcon"
+  | "UpNoColorIcon"
+  | "UpIcon"
+  | "VisibilityIcon"
+  | "VisibilityOffIcon";
+
+const iconTypes: Record<
+  IconType,
+  React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
   StarIcon,
   BubbleIcon,
   AddIcon,
@@ -47,10 +71,10 @@ const iconTypes: {
 };
 
 interface IconProps {
-  name: keyof typeof iconTypes;
+  name: IconType;
   width: string;
   height: string;
-  color?: string;
+  color: string;
   onClick?: () => void;
 }
 const IconComponent = ({ name, width, height, color, onClick }: IconProps) => {

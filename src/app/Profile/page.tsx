@@ -1,4 +1,5 @@
 "use client";
+import Logo from "@/shared/ui/Icon/Logo";
 import Icon from "../../shared/ui/Icon/Icon";
 
 //테스트
@@ -16,6 +17,8 @@ const Profile = () => {
         onClick={onClick}
       />
       <span>4.9</span>
+
+      <Logo size="L" onClick={onClick} />
     </>
   );
 };

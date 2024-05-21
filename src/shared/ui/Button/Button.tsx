@@ -1,73 +1,63 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, ButtonHTMLAttributes } from "react";
 
-interface ButtonProps extends React.ComponentProps<"button"> {
-  size: string;
-  kind: string;
-  onClick?: () => void;
-  disabled?: boolean;
+export enum ButtonSizeEnum {
+  S = "w-[335px] h-[50px] text-base",
+  M = "w-[440px] h-[55px] text-base",
+  L = "w-[640px] h-[65px] text-lg",
 }
 
+export enum ButtonKind {
+  primary = "primary",
+  secondary = "secondary",
+  tertiary = "tertiary",
+}
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  kind: ButtonKind;
+  size?: ButtonSizeEnum;
+  customSize?: string;
+}
+
+const buttonBase =
+  "flex justify-center items-center gap-[10px] flex-shrink-0 rounded-lg whitespace-nowrap";
+const ButtonStyleByKind = {
+  [ButtonKind.primary]: {
+    button: "bg-main-gradation disabled:bg-none disabled:bg-gray-35",
+    p: "text-white",
+    disabledP: "text-gray-6E",
+  },
+  [ButtonKind.secondary]: {
+    button:
+      "border border-solid border-linear-gradients border-transparent disabled:border-gray-35 disabled:text-gray-6E",
+    p: "disabled:text-gray-6E text-transparent bg-clip-text bg-main-gradation",
+    disabledP: "text-gray-6E",
+  },
+  [ButtonKind.tertiary]: {
+    button:
+      "bg-transparent border border-solid border-gray-9F disabled:border-gray-35",
+    p: "text-gray-9F disabled:text-gray-6E",
+    disabledP: "text-gray-6E",
+  },
+};
+
 const Button = ({
-  size,
-  kind,
-  onClick,
-  disabled = false,
   children,
+  kind,
+  size,
+  customSize,
+  disabled,
+  ...props
 }: PropsWithChildren<ButtonProps>) => {
-  let buttonClass = `flex justify-center items-center gap-[10px] flex-shrink-0 rounded-lg whitespace-nowrap`;
-  let pClass = "";
-
-  switch (size) {
-    case "L":
-      buttonClass += " w-[640px] h-[65px]";
-      pClass += "text-lg";
-      break;
-    case "M":
-      buttonClass += " w-[440px] h-[55px]";
-      pClass += "text-base";
-      break;
-    case "S":
-      buttonClass += " w-[335px] h-[50px]";
-      pClass += "text-base";
-      break;
-  }
-
-  switch (kind) {
-    case "primary":
-      if (disabled) {
-        buttonClass += " bg-gray-35";
-        pClass += " text-gray-6E";
-      } else {
-        buttonClass += " bg-main-gradation";
-        pClass += " text-white";
-      }
-      break;
-
-    case "secondary":
-      if (disabled) {
-        buttonClass += " border border-solid border-gray-35 text-gray-6E";
-        pClass += " text-gray-6E";
-      } else {
-        buttonClass +=
-          " border border-solid border-linear-gradients border-transparent";
-        pClass += " text-transparent bg-clip-text bg-main-gradation";
-      }
-      break;
-
-    case "tertiary":
-      if (disabled) {
-        buttonClass += " bg-transparent border-gray-35 border border-solid ";
-        pClass += " text-gray-6E";
-      } else {
-        buttonClass += " bg-transparent border-gray-9F border border-solid";
-        pClass += " text-gray-9F";
-      }
-      break;
-  }
-
+  const sizeClass = customSize || size || "";
+  const pStyle = disabled
+    ? ButtonStyleByKind[kind].disabledP
+    : ButtonStyleByKind[kind].p;
   return (
-    <button className={buttonClass} onClick={onClick} disabled={disabled}>
-      <p className={pClass}>{children}</p>
+    <button
+      className={`${buttonBase} ${ButtonStyleByKind[kind].button} ${sizeClass}`}
+      disabled={disabled}
+      {...props}
+    >
+      <p className={pStyle}>{children}</p>
     </button>
   );
 };

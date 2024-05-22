@@ -5,7 +5,6 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/*.{js,ts,jsx,tsx,mdx}",
     "./src/shared/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -24,7 +23,7 @@ const config: Config = {
         "gray-6E": "#6E6E82",
         "gray-9F": "#9FA6B2",
         "gray-F1": "#F1F1F5",
-        disabled: "#353542",
+        "gray-35": "#353542",
 
         "main-blue": "#5097FA",
         "main-indigo": "#5363FF",
@@ -36,6 +35,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+  ],
 };
 export default config;

@@ -1,4 +1,5 @@
 export enum ProductCategoryEnum {
+  "카테고리" = 0,
   "음악" = 1,
   "영화/드라마",
   "강의/책",

@@ -20,7 +20,7 @@ const AuthInput = ({
       </label>
       <input
         id={id}
-        className={`w-[335px] md:w-[440px] lg:w-[640px] h-[55px] lg:h-[70px] px-[20px] py-[23px] rounded-lg border border-solid bg-black-25 text-gray-F1 text-sm lg:text-base font-normal placeholder-gray-6E focus:outline-none ${errors[id] ? "border-red focus:border-red" : "border-gray-35 focus:border-main-blue"}`}
+        className={`w-[335px] md:w-[440px] lg:w-[640px] h-[55px] lg:h-[70px] px-5 py-[23px] rounded-lg border border-solid bg-black-25 text-gray-F1 text-sm lg:text-base font-normal placeholder-gray-6E focus:outline-none ${errors[id] ? "border-red focus:border-red" : "border-gray-35 focus:border-main-blue"}`}
         type={type}
         placeholder={placeholder}
         {...register(id, validation)}

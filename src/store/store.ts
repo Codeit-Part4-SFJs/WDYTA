@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { CurrentCategorySlice } from "./storeType";
-import createCurrentCategorySlice from "./slices/createCurrentCategorySlice";
+import { CurrentCategorySlice } from "@/store/storeType";
+import createCurrentCategorySlice from "@/store/slices/createCurrentCategorySlice";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 type MyState = CurrentCategorySlice;

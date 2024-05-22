@@ -1,5 +1,5 @@
 import { StateCreator } from "zustand";
-import { CurrentCategorySlice } from "../storeType";
+import { CurrentCategorySlice } from "@/store/storeType";
 
 const createCurrentCategorySlice: StateCreator<
   CurrentCategorySlice,

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import LogoIcon from "../../../../public/icon/logo.svg";
 
 interface Logo {

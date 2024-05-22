@@ -1,4 +1,3 @@
-import Image from "next/image";
 import LoadingIcon from "../../../../public/icon/loading.svg";
 
 interface Loading {

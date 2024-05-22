@@ -44,7 +44,7 @@ const CategoryChip = ({ categoryID }: Props) => {
 
   return (
     <div
-      className={`inline-flex items-center justify-center w-fit h-fit px-[8px] md:px-[10px] py-[4px] rounded-md md:rounded-lg text-[12px] md:text-[18px] ${categoryClassName}`}
+      className={`inline-flex items-center justify-center w-fit h-fit px-[8px] md:px-[10px] py-[4px] rounded-md md:rounded-lg text-[12px] md:text-[18px] font-medium ${categoryClassName}`}
     >
       {ProductCategoryEnum[categoryID]}
     </div>

@@ -9,6 +9,7 @@ const CategoryFilterChip = ({ categoryID }: Props) => {
   if (categoryID) {
     categoryClassName = "text-[#9FA6B2]";
   } else {
+    //카테고리 선택 안하면 id가 없을 것이므로 "카테고리"로 표시
     categoryClassName = "text-[#6E6E82]";
   }
 

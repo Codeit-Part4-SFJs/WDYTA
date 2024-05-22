@@ -1,7 +1,6 @@
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { PropsWithChildren } from "react";
-import IconComponent from "../Icon/Icon";
+import Icon from "../Icon/Icon";
 
 export enum DropdownSize {
   L = "L",
@@ -154,7 +153,7 @@ const Dropdown = ({
           <button className=" w-full flex ">
             {selectedOption?.label ?? defaultValue}
           </button>
-          <IconComponent
+          <Icon
             name={toggled ? "DropDownIcon" : "DropUpIcon"}
             iconSizeClass={`${iconClass}`}
           />

@@ -47,13 +47,13 @@ const Button = ({
   disabled,
   ...props
 }: PropsWithChildren<ButtonProps>) => {
-  const sizeClass = customSize || size || "";
+  const sizeClass = customSize ? customSize : size;
   const pStyle = disabled
     ? ButtonStyleByKind[kind].disabledP
     : ButtonStyleByKind[kind].p;
   return (
     <button
-      className={`${buttonBase} ${ButtonStyleByKind[kind].button} ${sizeClass}`}
+      className={`${sizeClass} ${buttonBase} ${ButtonStyleByKind[kind].button} `}
       disabled={disabled}
       {...props}
     >

@@ -1,6 +1,13 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { PropsWithChildren } from "react";
+import IconComponent from "../Icon/Icon";
+
+export enum DropdownSize {
+  L = "L",
+  M = "M",
+  S = "S",
+}
 
 export enum DropdownWidthEnum {
   L = "w-[400px]",
@@ -20,6 +27,12 @@ export enum DropdownHeightEnum {
   S = "h-[55px]",
 }
 
+export enum DropdownIconEnum {
+  L = "w-6",
+  M = "w-[22px]",
+  S = "w-5",
+}
+
 interface Option {
   value: string;
   label: string;
@@ -27,7 +40,7 @@ interface Option {
 
 export interface DropdownProps {
   size?: keyof typeof DropdownWidthEnum;
-  customSize?: string;
+  customSize?: { width: string; padding: string; height: string; icon: string };
   options: Option[];
   defaultValue?: string;
   onSelect: (value: string) => void;
@@ -46,16 +59,41 @@ const getWidthClass = (
   return "";
 };
 
-const getPaddingClass = (size?: keyof typeof DropdownWidthEnum): string => {
+const getPaddingClass = (
+  size?: keyof typeof DropdownWidthEnum,
+  customSize?: string
+): string => {
+  if (customSize) {
+    return customSize;
+  }
   if (size) {
     return DropdownPaddingEnum[size];
   }
   return "";
 };
 
-const getHeightClass = (size?: keyof typeof DropdownWidthEnum): string => {
+const getHeightClass = (
+  size?: keyof typeof DropdownWidthEnum,
+  customSize?: string
+): string => {
+  if (customSize) {
+    return customSize;
+  }
   if (size) {
     return DropdownHeightEnum[size];
+  }
+  return "";
+};
+
+const getIconClass = (
+  size?: keyof typeof DropdownWidthEnum,
+  customSize?: string
+): string => {
+  if (customSize) {
+    return customSize;
+  }
+  if (size) {
+    return DropdownIconEnum[size];
   }
   return "";
 };
@@ -100,9 +138,10 @@ const Dropdown = ({
     };
   }, []);
 
-  const widthClass = getWidthClass(size, customSize);
-  const paddingClass = getPaddingClass(size);
-  const heightClass = getHeightClass(size);
+  const widthClass = getWidthClass(size, customSize?.width);
+  const paddingClass = getPaddingClass(size, customSize?.padding);
+  const heightClass = getHeightClass(size, customSize?.height);
+  const iconClass = getIconClass(size, customSize?.icon);
 
   return (
     <div className="relative">
@@ -115,13 +154,9 @@ const Dropdown = ({
           <button className=" w-full flex ">
             {selectedOption?.label ?? defaultValue}
           </button>
-          <Image
-            width={24}
-            height={24}
-            src={
-              toggled ? "/images/dropdownUp.svg" : "/images/dropdownDown.svg"
-            }
-            alt="드롭다운"
+          <IconComponent
+            name={toggled ? "DropDownIcon" : "DropUpIcon"}
+            iconSizeClass={`${iconClass}`}
           />
         </div>
       </div>

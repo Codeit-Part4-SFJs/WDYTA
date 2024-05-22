@@ -9,8 +9,8 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      mobile: { max: "480px" },
-      tablet: { min: "481px", max: "767px" },
+      mobile: { max: "767px" },
+      md: { min: "768px", max: "1024px" },
     },
     extend: {
       backgroundImage: {
@@ -23,6 +23,7 @@ const config: Config = {
         "black-17": "#17171C",
         "black-21": "#21212A",
         "black-2E": "#2E2E3A",
+        "black-25": "#252530",
 
         "gray-6E": "#6E6E82",
         "gray-9F": "#9FA6B2",
@@ -36,6 +37,10 @@ const config: Config = {
         green: "#05D58B",
         pink: "#FF2F9F",
         red: "#FF0000",
+      },
+      dropShadow: {
+        "linear-gradient":
+          "10px 10px 10px linear-gradient(91deg, #5097FA 100%, #5363FF 100%)",
       },
     },
   },

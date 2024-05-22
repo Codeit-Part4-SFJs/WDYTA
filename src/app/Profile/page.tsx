@@ -13,7 +13,7 @@ const Profile = () => {
     <div className="flex flex-col items-center">
       <Icon
         name={"GoogleIcon"}
-        iconSizeClass={"w-3 h-3 md:w-3.75 md:h-3.75 lg:w-4 lg:h-4"}
+        iconSizeClass="w-3 h-3 md:w-3.75 md:h-3.75 lg:w-4 lg:h-4"
         color="red"
         onClick={onClick}
       />
@@ -24,7 +24,7 @@ const Profile = () => {
       />
       <Loading
         iconSizeClass="w-20 h-20 md:w-20 md:h-20 lg:w-24 lg:h-20"
-        fontSizeClass="text-lg md:text-lg lg:text-xl"
+        fontSizeClass="text-lg md:text-lg lg:text-xl  text-gray-6E"
         color="gray"
       >
         첫 리뷰를 작성해 보세요!

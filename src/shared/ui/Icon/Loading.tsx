@@ -13,9 +13,9 @@ const Loading = ({
   children,
 }: Loading) => {
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-3">
       <LoadingIcon className={`${iconSizeClass}`} color={color} />
-      <p className={`${fontSizeClass} text-gray-6E`}>{children}</p>
+      <p className={`${fontSizeClass}`}>{children}</p>
     </div>
   );
 };

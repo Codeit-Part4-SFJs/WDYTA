@@ -72,14 +72,15 @@ const iconTypes: Record<
 
 interface IconProps {
   name: IconType;
-  width: string;
-  height: string;
+  iconSizeClass: string;
   color: string;
   onClick?: () => void;
 }
-const IconComponent = ({ name, width, height, color, onClick }: IconProps) => {
+const IconComponent = ({ name, iconSizeClass, color, onClick }: IconProps) => {
   const Icon = iconTypes[name];
-  return <Icon width={width} color={color} height={height} onClick={onClick} />;
+  return (
+    <Icon className={`${iconSizeClass}`} color={color} onClick={onClick} />
+  );
 };
 
 export default IconComponent;

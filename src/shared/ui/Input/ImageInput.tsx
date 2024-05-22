@@ -1,4 +1,3 @@
-import { useImageStore } from "@/app/test/page";
 import Icon from "../Icon/Icon";
 
 interface ImageInputProps {

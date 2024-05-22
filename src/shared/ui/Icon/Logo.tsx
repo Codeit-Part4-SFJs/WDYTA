@@ -1,21 +1,14 @@
 import Image from "next/image";
-import logo from "../../../../public/logo.png";
+import LogoIcon from "../../../../public/icon/logo.svg";
 
 interface Logo {
-  size: string;
+  iconSizeClass: string;
   onClick: () => void;
 }
-const Logo = ({ size = "L", onClick }: Logo) => {
-  const sizeClass = size === "S" ? "w-28 h-5" : "";
-
+const Logo = ({ iconSizeClass, onClick }: Logo) => {
   return (
     <div>
-      <Image
-        src={logo}
-        className={`${sizeClass}`}
-        onClick={onClick}
-        alt="로고 이미지"
-      />
+      <LogoIcon className={`${iconSizeClass}`} onClick={onClick} />
     </div>
   );
 };

@@ -2,7 +2,7 @@ interface Props {
   ranking: number;
 }
 
-export default function RankingChip({ ranking }: Props) {
+const RankingChip = ({ ranking }: Props) => {
   let rankingClassName = "";
   if (ranking === 1) {
     rankingClassName = "text-pink bg-pink bg-opacity-10";
@@ -20,4 +20,6 @@ export default function RankingChip({ ranking }: Props) {
       <span>등</span>
     </div>
   );
-}
+};
+
+export default RankingChip;

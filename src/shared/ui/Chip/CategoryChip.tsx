@@ -4,7 +4,7 @@ interface Props {
   categoryID: ProductCategoryEnum;
 }
 
-export default function CategoryChip({ categoryID }: Props) {
+const CategoryChip = ({ categoryID }: Props) => {
   let categoryClassName = "";
   switch (categoryID) {
     case 1: // "음악"
@@ -49,4 +49,6 @@ export default function CategoryChip({ categoryID }: Props) {
       {ProductCategoryEnum[categoryID]}
     </div>
   );
-}
+};
+
+export default CategoryChip;

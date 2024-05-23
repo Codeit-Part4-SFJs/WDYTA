@@ -2,26 +2,15 @@ import Icon from "../Icon/Icon";
 
 interface ImageInputProps {
   image: string;
-  setImage: (url: string) => void;
   handleDeleteButton: () => void;
+  handleImageUpload: () => void;
 }
 
 const ImageInput = ({
   image,
-  setImage,
   handleDeleteButton,
+  handleImageUpload,
 }: ImageInputProps) => {
-  const handleUploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectFile = event.target.files;
-
-    if (selectFile && selectFile[0]) {
-      const formData = new FormData();
-      formData.append("image", selectFile[0]);
-
-      //@TODO : API 연동 POST 요청
-    }
-  };
-
   const containerStyle =
     "relative w-[140px] md:w-[135px] lg:w-[160px] h-[140px] md:h-[135px] lg:h-[160px] rounded-lg";
 
@@ -52,7 +41,7 @@ const ImageInput = ({
           <input
             className="absolute w-full h-full opacity-0"
             type="file"
-            onChange={handleUploadImage}
+            onChange={handleImageUpload}
           />
           <Icon
             name="PhotoIcon"
@@ -66,3 +55,5 @@ const ImageInput = ({
 };
 
 export default ImageInput;
+
+//이미지 업로드 함수 위로 분리

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 interface ImageProps {
   src: string;
-  alt: "상품이미지" | "프로필이미지" | "리뷰이미지";
+  alt: string;
   type: "product" | "profile" | "review";
 }
 

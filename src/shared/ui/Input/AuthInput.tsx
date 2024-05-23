@@ -14,6 +14,10 @@ const AuthInput = ({
 }: InputProps) => {
   const [showPasswordIcon, setShowPasswordIcon] = useState(false);
 
+  const hasErrorStyle = errors[id]
+    ? "border-red focus:border-red"
+    : "border-gray-35 focus:border-main-blue";
+
   const toggleIcon = () => {
     setShowPasswordIcon(!showPasswordIcon);
   };
@@ -29,7 +33,7 @@ const AuthInput = ({
       <div className="relative w-[335px] md:w-[440px] lg:w-[640px] h-[55px] lg:h-[70px]">
         <input
           id={id}
-          className={`w-full h-full px-5 py-[23px] rounded-lg border border-solid bg-black-25 text-gray-F1 text-sm lg:text-base font-normal placeholder-gray-6E focus:outline-none ${errors[id] ? "border-red focus:border-red" : "border-gray-35 focus:border-main-blue"}`}
+          className={`w-full h-full px-5 py-[23px] rounded-lg border border-solid bg-black-25 text-gray-F1 text-sm lg:text-base font-normal placeholder-gray-6E focus:outline-none ${hasErrorStyle}`}
           type={showPasswordIcon ? "text" : type}
           placeholder={placeholder}
           {...register(id, validation)}
@@ -43,15 +47,16 @@ const AuthInput = ({
           />
         )}
       </div>
-      {errors[id] && (
+      {errors[id] ? (
         <span className="text-red text-xs lg:text-sm font-normal">
           {errors[id]?.message}
         </span>
-      )}
-      {!errors[id] && helperText && (
-        <span className="text-gray-6E text-xs lg:text-sm font-normal">
-          {helperText}
-        </span>
+      ) : (
+        helperText && (
+          <span className="text-gray-6E text-xs lg:text-sm font-normal">
+            {helperText}
+          </span>
+        )
       )}
     </div>
   );

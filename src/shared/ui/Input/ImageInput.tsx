@@ -55,5 +55,3 @@ const ImageInput = ({
 };
 
 export default ImageInput;
-
-//이미지 업로드 함수 위로 분리

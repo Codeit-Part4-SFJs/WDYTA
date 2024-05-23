@@ -70,7 +70,7 @@ const Sort = ({
       </div>
       {toggled && (
         <div
-          className={`absolute top-[100%] flex w-[400px] md:w-[360px] mobile:w-[335px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25`}
+          className={`absolute z-10 top-[100%] flex w-[160px] md:w-[140px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25`}
         >
           {options.map((option) => (
             <div

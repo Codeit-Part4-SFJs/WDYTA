@@ -8,7 +8,7 @@ const SideMenu = async () => {
 
   return (
     <div className="hidden md:block py-[25px] px-[10px] shrink-0 h-full bg-black-1C md:w-[180px] lg:w-[220px]">
-      <div className="p-[20px] font-['Pretendard'] not-italic font-normal text-gray-F1 md:text-sm lg:text-base">
+      <div className="p-[20px] not-italic font-normal text-gray-F1 md:text-sm lg:text-base">
         카테고리
       </div>
       <ul className="flex flex-col items-start shrink-0 gap-1 bg-black-1C">

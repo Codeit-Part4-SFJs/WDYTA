@@ -1,18 +1,45 @@
-import getCategories from "@/shared/ui/Menu/SideMenu/api/getCategories";
-import DEFAULT_CATEGORIES from "@/shared/ui/Menu/SideMenu/constant/DEFAULT_CATEGORIES";
-import { Categories } from "@/shared/ui/Menu/SideMenu/type/categoryType";
-import SideMenuTab from "@/shared/ui/Menu/SideMenu/SideMenuTab";
+"use client";
 
-const SideMenu = async () => {
-  const categories: Categories = (await getCategories()) ?? DEFAULT_CATEGORIES;
+import { useRef } from "react";
+import DEFAULT_CATEGORIES from "@/shared/ui/Menu/SideMenu/constant/DEFAULT_CATEGORIES";
+import {
+  Categories,
+  SideMenuProps,
+} from "@/shared/ui/Menu/SideMenu/type/categoryType";
+import SideMenuTab from "@/shared/ui/Menu/SideMenu/SideMenuTab";
+import useSideMenuStore from "@/stores/useSideMenuStore";
+import useCloseSideMenu from "@/shared/ui/Menu/SideMenu/hooks/useCloseSideMenu";
+
+/**
+ * 메인 페이지의 layout.tsx에서 API 요청해서 카테고리 데이터 받아오고 layout.tsx에서 사용하면됨
+ *
+ * @param categories '/categories'로 GET 요청해서 받은 데이터
+ */
+
+const SideMenu = ({ categories }: SideMenuProps) => {
+  const categoryList: Categories = categories ?? DEFAULT_CATEGORIES;
+
+  const isOpenSideMenu = useSideMenuStore((state) => state.isOpenSideMenu);
+  const setIsOpenSideMenu = useSideMenuStore(
+    (state) => state.setIsOpenSideMenu
+  );
+
+  // SideMenu 영역 지정
+  const sideMenuRef = useRef<HTMLDivElement>(null);
+  // SideMenu 닫힘 버튼 구현 대신 외부영역 및 ESC로 닫는 훅 호출
+  useCloseSideMenu(isOpenSideMenu, setIsOpenSideMenu, sideMenuRef);
+
+  const commonClass = "py-[25px] px-[10px] h-full bg-black-1C";
+  const openClass = `${commonClass} mobile:relative mobile:z-10 mobile:w-[180px] md:w-[180px] lg:w-[220px]`;
+  const closeClass = `${commonClass} hidden md:block lg:block md:w-[180px] lg:w-[220px]`;
 
   return (
-    <div className="hidden md:block py-[25px] px-[10px] shrink-0 h-full bg-black-1C md:w-[180px] lg:w-[220px]">
-      <div className="p-[20px] not-italic font-normal text-gray-F1 md:text-sm lg:text-base">
+    <div ref={sideMenuRef} className={isOpenSideMenu ? openClass : closeClass}>
+      <div className="p-[20px] not-italic font-normal text-gray-F1 mobile:text-sm md:text-sm lg:text-base">
         카테고리
       </div>
       <ul className="flex flex-col items-start shrink-0 gap-1 bg-black-1C">
-        {categories.map((item) => {
+        {categoryList.map((item) => {
           return <SideMenuTab key={item.id} category={item.name} />;
         })}
       </ul>

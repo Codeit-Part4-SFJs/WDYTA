@@ -4,7 +4,9 @@ export interface ExempleState {
   setExemple: (newExemple: string) => void;
 }
 
-export interface CategoryState {
+export interface SideMenuState {
   currentCategory: string;
+  isOpenSideMenu: boolean;
   setCurrentCategory: (category: string) => void;
+  setIsOpenSideMenu: () => void;
 }

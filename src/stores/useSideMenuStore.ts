@@ -1,13 +1,16 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
-import { CategoryState } from "@/stores/storeType";
+import { SideMenuState } from "@/stores/storeType";
 
-const useCategoryStore = create<CategoryState>()(
+const useSideMenuStore = create<SideMenuState>()(
   devtools(
     persist(
       (set) => ({
         currentCategory: "idle",
+        isOpenSideMenu: false,
         setCurrentCategory: (category) => set({ currentCategory: category }),
+        setIsOpenSideMenu: () =>
+          set((state) => ({ isOpenSideMenu: !state.isOpenSideMenu })),
       }),
       {
         name: "currentCategory",
@@ -15,8 +18,8 @@ const useCategoryStore = create<CategoryState>()(
         partialize: (state) => ({ currentCategory: state.currentCategory }),
       }
     ),
-    { name: "CategoryStore" }
+    { name: "SideMenuStore" }
   )
 );
 
-export default useCategoryStore;
+export default useSideMenuStore;

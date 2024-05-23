@@ -6,23 +6,10 @@ export interface FormValues {
   password: string;
   passwordCheck: string;
   text: string;
+  textarea: string;
 }
 
-interface BaseInputProps {
-  id: keyof FormValues;
-  placeholder: string;
+export interface AuthInputProps {
   register: UseFormRegister<FormValues>;
-  validation?: object | undefined;
-}
-
-export interface InputProps extends BaseInputProps {
-  label: string;
-  type: string;
   errors: FieldErrors<FormValues>;
-  helperText?: string | undefined;
-}
-
-export interface TextFieldProps extends BaseInputProps {
-  size?: "large" | "small";
-  maxLength?: number | undefined;
 }

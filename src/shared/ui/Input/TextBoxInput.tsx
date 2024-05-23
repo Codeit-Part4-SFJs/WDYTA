@@ -1,6 +1,12 @@
 "use client";
-import { TextBoxInputProps } from "@/shared/types/input";
+import { FormValues } from "@/shared/types/input";
 import { useState } from "react";
+import { UseFormRegister } from "react-hook-form";
+
+export interface TextBoxInputProps {
+  register: UseFormRegister<FormValues>;
+  text: string;
+}
 
 const TextBoxInput = ({ register, text }: TextBoxInputProps) => {
   const [isFocused, setIsFocused] = useState(false);

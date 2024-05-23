@@ -8,6 +8,10 @@ const config: Config = {
     "./src/shared/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      mobile: { max: "767px" },
+      md: { min: "768px", max: "1024px" },
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -19,6 +23,7 @@ const config: Config = {
         "black-17": "#17171C",
         "black-21": "#21212A",
         "black-2E": "#2E2E3A",
+        "black-25": "#252530",
 
         "gray-6E": "#6E6E82",
         "gray-9F": "#9FA6B2",
@@ -33,9 +38,12 @@ const config: Config = {
         pink: "#FF2F9F",
         red: "#FF0000",
       },
+      dropShadow: {
+        "linear-gradient":
+          "10px 10px 10px linear-gradient(91deg, #5097FA 100%, #5363FF 100%)",
+      },
     },
   },
-  plugins: [
-  ],
+  plugins: [],
 };
 export default config;

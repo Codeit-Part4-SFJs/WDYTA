@@ -45,54 +45,16 @@ export interface DropdownProps {
   onSelect: (value: string) => void;
 }
 
-const getWidthClass = (
+const getClass = (
   size?: keyof typeof DropdownWidthEnum,
-  customSize?: string
+  customSize?: string,
+  enumObject?: Record<string, string>
 ): string => {
   if (customSize) {
     return customSize;
   }
-  if (size) {
-    return DropdownWidthEnum[size];
-  }
-  return "";
-};
-
-const getPaddingClass = (
-  size?: keyof typeof DropdownWidthEnum,
-  customSize?: string
-): string => {
-  if (customSize) {
-    return customSize;
-  }
-  if (size) {
-    return DropdownPaddingEnum[size];
-  }
-  return "";
-};
-
-const getHeightClass = (
-  size?: keyof typeof DropdownWidthEnum,
-  customSize?: string
-): string => {
-  if (customSize) {
-    return customSize;
-  }
-  if (size) {
-    return DropdownHeightEnum[size];
-  }
-  return "";
-};
-
-const getIconClass = (
-  size?: keyof typeof DropdownWidthEnum,
-  customSize?: string
-): string => {
-  if (customSize) {
-    return customSize;
-  }
-  if (size) {
-    return DropdownIconEnum[size];
+  if (size && enumObject) {
+    return enumObject[size];
   }
   return "";
 };
@@ -137,10 +99,10 @@ const Dropdown = ({
     };
   }, []);
 
-  const widthClass = getWidthClass(size, customSize?.width);
-  const paddingClass = getPaddingClass(size, customSize?.padding);
-  const heightClass = getHeightClass(size, customSize?.height);
-  const iconClass = getIconClass(size, customSize?.icon);
+  const widthClass = getClass(size, customSize?.width, DropdownWidthEnum);
+  const paddingClass = getClass(size, customSize?.padding, DropdownPaddingEnum);
+  const heightClass = getClass(size, customSize?.height, DropdownHeightEnum);
+  const iconClass = getClass(size, customSize?.icon, DropdownIconEnum);
 
   return (
     <div className="relative">
@@ -155,7 +117,7 @@ const Dropdown = ({
           </button>
           <Icon
             name={toggled ? "DropDownIcon" : "DropUpIcon"}
-            iconSizeClass={`${iconClass}`}
+            iconSizeClass={iconClass}
           />
         </div>
       </div>

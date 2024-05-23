@@ -1,3 +1,4 @@
+"use client";
 import { InputProps } from "@/shared/types/input";
 import Icon from "../Icon/Icon";
 import { useState } from "react";

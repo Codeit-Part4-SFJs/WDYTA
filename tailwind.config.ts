@@ -8,6 +8,10 @@ const config: Config = {
     "./src/shared/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      mobile: { max: "767px" },
+      md: { min: "768px", max: "1024px" },
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -33,6 +37,10 @@ const config: Config = {
         green: "#05D58B",
         pink: "#FF2F9F",
         red: "#FF0000",
+      },
+      dropShadow: {
+        "linear-gradient":
+          "10px 10px 10px linear-gradient(91deg, #5097FA 100%, #5363FF 100%)",
       },
     },
   },

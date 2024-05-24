@@ -155,7 +155,7 @@ const Dropdown = ({
           </button>
           <Icon
             name={toggled ? "DropDownIcon" : "DropUpIcon"}
-            iconSizeClass={`${iconClass}`}
+            className={`${iconClass}`}
           />
         </div>
       </div>

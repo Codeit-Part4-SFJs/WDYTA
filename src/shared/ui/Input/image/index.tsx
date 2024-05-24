@@ -28,7 +28,7 @@ const ImageInput = ({
           <div className="absolute top-[5px] right-[5px] w-[26px] lg:w-7 h-[26px] lg:h-7 p-1 bg-black bg-opacity-50 rounded-lg">
             <Icon
               name="CloseIcon"
-              className="w-full h-full bg-gray-F1"
+              className="w-full h-full text-gray-F1"
               onClick={handleDeleteButton}
             />
           </div>
@@ -42,7 +42,7 @@ const ImageInput = ({
             type="file"
             onChange={handleImageUpload}
           />
-          <Icon name="PhotoIcon" className="w-full h-full bg-gray-6E" />
+          <Icon name="PhotoIcon" className="w-full h-full text-gray-6E" />
         </div>
       )}
     </>

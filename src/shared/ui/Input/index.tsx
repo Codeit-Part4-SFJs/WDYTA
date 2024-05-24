@@ -2,7 +2,7 @@ import { InputHTMLAttributes, forwardRef } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputSize: "small" | "medium" | "large";
-  isError: boolean;
+  isError?: boolean;
 }
 
 const SIZE_MAP = {

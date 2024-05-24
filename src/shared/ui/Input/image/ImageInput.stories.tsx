@@ -4,14 +4,14 @@ import ImageInput, { ImageInputProps } from ".";
 import "@/styles/globals.css";
 
 export default {
-  title: "ImageInput",
+  title: "Input/ImageInput",
   component: ImageInput,
   argTypes: {
     image: { control: "text" },
     handleDeleteButton: { action: "delete" },
     handleImageUpload: { action: "upload" },
   },
-} as Meta<typeof ImageInput>;
+} as Meta;
 
 const Template: StoryFn<ImageInputProps> = (args) => <ImageInput {...args} />;
 

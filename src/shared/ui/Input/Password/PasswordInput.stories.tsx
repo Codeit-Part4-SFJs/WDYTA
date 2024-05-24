@@ -1,30 +1,21 @@
 import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
+import { useForm } from "react-hook-form";
 import PasswordInput from ".";
-import "@/styles/globals.css";
-import { AuthInputProps, FormValues } from "@/shared/types/input";
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
-
-const withFormProvider = (Story: StoryFn) => {
-  const methods = useForm<FormValues>();
-  return (
-    <FormProvider {...methods}>
-      <Story />
-    </FormProvider>
-  );
-};
+import { FormValues } from "@/shared/types/input";
 
 export default {
-  title: "PasswordInput",
+  title: "Input/PasswordInput",
   component: PasswordInput,
-  decorators: [withFormProvider],
-} as Meta<typeof PasswordInput>;
+} as Meta;
 
-const Template: StoryFn<AuthInputProps> = () => {
+const Template: StoryFn = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<FormValues>();
+  } = useForm<FormValues>({ mode: "onChange" });
+
   return <PasswordInput register={register} errors={errors} />;
 };
+
 export const Default = Template.bind({});

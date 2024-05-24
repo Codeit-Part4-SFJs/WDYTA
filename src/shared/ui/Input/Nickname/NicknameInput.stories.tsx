@@ -1,31 +1,21 @@
 import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
-import NicknameInput from ".";
-import "@/styles/globals.css";
-import { AuthInputProps, FormValues } from "@/shared/types/input";
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
-
-const withFormProvider = (Story: StoryFn) => {
-  const methods = useForm<FormValues>();
-  return (
-    <FormProvider {...methods}>
-      <Story />
-    </FormProvider>
-  );
-};
+import { Meta, StoryFn } from "@storybook/react";
+import { useForm } from "react-hook-form";
+import Nickname from ".";
+import { FormValues } from "@/shared/types/input";
 
 export default {
-  title: "NicknameInput",
-  component: NicknameInput,
-  decorators: [withFormProvider],
-} as Meta<typeof NicknameInput>;
+  title: "Input/Nickname",
+  component: Nickname,
+} as Meta;
 
-const Template: StoryFn<AuthInputProps> = () => {
+const Template: StoryFn = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<FormValues>();
-  return <NicknameInput register={register} errors={errors} />;
+  } = useForm<FormValues>({ mode: "onChange" });
+
+  return <Nickname register={register} errors={errors} />;
 };
 
 export const Default = Template.bind({});

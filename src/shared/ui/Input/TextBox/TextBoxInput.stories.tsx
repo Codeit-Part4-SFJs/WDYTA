@@ -1,39 +1,20 @@
 import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
-import TextBoxInput, { TextBoxInputProps } from ".";
-import "@/styles/globals.css";
+import { Meta, StoryFn } from "@storybook/react";
+import { useForm } from "react-hook-form";
+import TextBoxInput from ".";
 import { FormValues } from "@/shared/types/input";
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
-
-const withFormProvider = (Story: StoryFn) => {
-  const methods = useForm<FormValues>();
-  return (
-    <FormProvider {...methods}>
-      <Story />
-    </FormProvider>
-  );
-};
 
 export default {
-  title: "TextBoxInput",
+  title: "Input/TextBoxInput",
   component: TextBoxInput,
-  decorators: [withFormProvider],
-  argTypes: {
-    text: {
-      control: "text",
-    },
-  },
-} as Meta<typeof TextBoxInput>;
+} as Meta;
 
-const Template: StoryFn<TextBoxInputProps> = (args) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext<FormValues>();
-  return <TextBoxInput register={register} text={args.text} />;
+const Template: StoryFn<{ text: string }> = () => {
+  const { register, watch } = useForm<FormValues>({ mode: "onChange" });
+
+  const text = watch("textarea", "");
+
+  return <TextBoxInput register={register} text={text} />;
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  text: "",
-};

@@ -4,7 +4,7 @@ import Input from ".";
 import "@/styles/globals.css";
 
 export default {
-  title: "Input",
+  title: "Input/Input",
   component: Input,
   argTypes: {
     inputSize: {
@@ -22,8 +22,11 @@ export default {
     placeholder: {
       control: "text",
     },
+    isError: {
+      control: "boolean",
+    },
   },
-} as Meta<typeof Input>;
+} as Meta;
 
 const Template: StoryFn<typeof Input> = (args) => <Input {...args} />;
 
@@ -32,4 +35,5 @@ exampleInput.args = {
   inputSize: "small",
   type: "email",
   placeholder: "비밀번호를 입력해주세요",
+  isError: true,
 };

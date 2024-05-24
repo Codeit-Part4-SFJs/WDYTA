@@ -38,8 +38,8 @@ const ThumbsChip = ({ reviewID, isLike, likeCount }: Props) => {
         <button onClick={handleLike}>
           <Icon
             name={likeIconImage}
-            color={likeColor}
-            iconSizeClass={"w-[18px] h-[18px]"}
+            // color={likeColor}
+            className={"w-[18px] h-[18px]"}
           />
         </button>
         <span className={`font-normal ${likeClassName} ${likeCountClassName}`}>

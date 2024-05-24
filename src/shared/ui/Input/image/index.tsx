@@ -28,8 +28,8 @@ const ImageInput = ({
           <div className="absolute top-[5px] right-[5px] w-[26px] lg:w-7 h-[26px] lg:h-7 p-1 bg-black bg-opacity-50 rounded-lg">
             <Icon
               name="CloseIcon"
-              iconSizeClass="w-full h-full"
-              color="#F1F1F5"
+              className="w-full h-full"
+              // color="#F1F1F5"
               onClick={handleDeleteButton}
             />
           </div>
@@ -45,8 +45,8 @@ const ImageInput = ({
           />
           <Icon
             name="PhotoIcon"
-            iconSizeClass="w-full h-full"
-            color="#6E6E82"
+            className="w-full h-full"
+            // color="#6E6E82"
           />
         </div>
       )}

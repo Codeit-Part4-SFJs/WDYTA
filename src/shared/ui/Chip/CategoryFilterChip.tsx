@@ -20,8 +20,8 @@ const CategoryFilterChip = ({ categoryID }: Props) => {
       >
         <Icon
           name={"CategoryIcon"}
-          iconSizeClass={"w-[18px] h-[18px]"}
-          color={"#9FA6B2"}
+          className={"w-[18px] h-[18px]"}
+          // color={"#9FA6B2"}
         />
         {ProductCategoryEnum[categoryID]}
       </div>

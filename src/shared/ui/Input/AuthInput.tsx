@@ -42,8 +42,8 @@ const AuthInput = ({
         {type === "password" && (
           <Icon
             name={showPasswordIcon ? "VisibilityIcon" : "VisibilityOffIcon"}
-            iconSizeClass="absolute top-[16px] lg:top-[23px] right-5 w-[22px] h-[22px] lg:w-6 lg:h-6"
-            color="#9fa8b2"
+            className="absolute top-[16px] lg:top-[23px] right-5 w-[22px] h-[22px] lg:w-6 lg:h-6"
+            // color="#9fa8b2"
             onClick={toggleIcon}
           />
         )}

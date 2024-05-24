@@ -5,7 +5,7 @@ import HelperText from "../HelperText";
 import { AuthInputProps } from "@/shared/types/input";
 import Icon from "../../Icon/Icon";
 
-interface PasswordCheckInputProps extends AuthInputProps {
+export interface PasswordCheckInputProps extends AuthInputProps {
   password: string;
 }
 

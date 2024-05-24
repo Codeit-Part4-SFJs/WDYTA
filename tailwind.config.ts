@@ -20,18 +20,6 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "main-gradation": "linear-gradient(91deg, #5097FA 0%, #5363FF 100%)",
       },
-      spacing: {
-        "3.75": "15px",
-        "10.5": "42px",
-        "15": "60px",
-        "24.5": "98px",
-        "25": "100px",
-        "35": "140px",
-        "40": "160px",
-        "50": "200px",
-        "56.75": "227px",
-        "70": "284px",
-      },
       colors: {
         "black-17": "#17171C",
         "black-21": "#21212A",

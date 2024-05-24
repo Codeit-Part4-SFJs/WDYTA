@@ -32,6 +32,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-family: Pretendard;
   background: linear-gradient(
       to bottom,
       transparent,

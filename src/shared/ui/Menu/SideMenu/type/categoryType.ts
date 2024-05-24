@@ -7,6 +7,10 @@ export interface Category {
 
 export interface Categories extends Array<Category> {}
 
+export interface SideMenuProps {
+  categories: Categories | undefined;
+}
+
 export interface SideMenuTabProps {
   category: string;
 }

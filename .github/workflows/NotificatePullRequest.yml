@@ -1,0 +1,22 @@
+name: Notificate Pull Request
+
+on:
+  pull_request:
+
+jobs:
+  build-test:
+    name: Next Discord notification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          title: "pull_request"
+          description: "PR 확인해주세요!!"
+          image: "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/152/1716473069532/8b5b2d90cc7948b48b636c600da2edbf6171106ebaf509650d0443eb1d55fe1e.png"
+          color: 0x0000ff
+          url: "https://github.com/Codeit-Part4-SFJs/WDYTA/pulls"
+          username: GitHub Actions
+          avatar_url: "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/152/1716473626382/11.png"

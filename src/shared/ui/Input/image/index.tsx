@@ -1,6 +1,6 @@
-import Icon from "../Icon/Icon";
+import Icon from "../../Icon/Icon";
 
-interface ImageInputProps {
+export interface ImageInputProps {
   image: string;
   handleDeleteButton: () => void;
   handleImageUpload: () => void;

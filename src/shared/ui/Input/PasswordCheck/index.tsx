@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Label from "./Label";
-import Input from ".";
-import HelperText from "./HelperText";
+import Label from "../Label";
+import Input from "..";
+import HelperText from "../HelperText";
 import { AuthInputProps } from "@/shared/types/input";
-import Icon from "../Icon/Icon";
+import Icon from "../../Icon/Icon";
 
 interface PasswordCheckInputProps extends AuthInputProps {
   password: string;
@@ -25,17 +25,15 @@ const PasswordCheckInput = ({
       <Label>비밀번호 확인</Label>
       <div className="relative">
         <Input
-          id="passwordCheck"
           inputSize="large"
           type={isShowPassword ? "text" : "password"}
           placeholder="비밀번호를 한 번 더 입력해주세요"
-          register={register}
-          errors={errors}
-          validation={{
+          {...register("passwordCheck", {
             required: "비밀번호를 입력해주세요",
             validate: (value: string) =>
               value === password || "비밀번호가 일치하지 않습니다",
-          }}
+          })}
+          isError={!!errors.passwordCheck}
         />
         <Icon
           name={isShowPassword ? "VisibilityIcon" : "VisibilityOffIcon"}

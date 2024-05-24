@@ -1,13 +1,8 @@
-import { FormValues } from "@/shared/types/input";
-import { InputHTMLAttributes } from "react";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { InputHTMLAttributes, forwardRef } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  id: keyof FormValues;
   inputSize: "small" | "medium" | "large";
-  register: UseFormRegister<FormValues>;
-  validation?: object | undefined;
-  errors: FieldErrors<FormValues>;
+  isError: boolean;
 }
 
 const SIZE_MAP = {
@@ -17,25 +12,20 @@ const SIZE_MAP = {
   large: "w-[335px] md:w-[440px] lg:w-[640px] h-[55px] lg:h-[70px]",
 };
 
-const Input = ({
-  id,
-  inputSize,
-  register,
-  errors,
-  validation,
-  ...props
-}: InputProps) => {
-  return (
-    <input
-      className={`${SIZE_MAP[inputSize]} px-5 py-[23px] rounded-lg border border-solid bg-black-25 text-gray-F1 text-sm lg:text-base placeholder-gray-6E focus:outline-none ${
-        errors[id]
-          ? "border-red focus:border-red"
-          : "border-gray-35 focus:border-main-blue"
-      }`}
-      {...register(id, validation)}
-      {...props}
-    />
-  );
-};
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ inputSize, isError, ...props }, ref) => {
+    return (
+      <input
+        ref={ref}
+        className={`${SIZE_MAP[inputSize]} px-5 py-[23px] rounded-lg border border-solid bg-black-25 text-gray-F1 text-sm lg:text-base placeholder-gray-6E focus:outline-none ${
+          isError
+            ? "border-red focus:border-red"
+            : "border-gray-35 focus:border-main-blue"
+        }`}
+        {...props}
+      />
+    );
+  }
+);
 
 export default Input;

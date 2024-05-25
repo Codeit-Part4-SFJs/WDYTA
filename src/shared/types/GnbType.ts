@@ -11,3 +11,8 @@ export interface GnbSearchButtonProps {
   isOpenMobileSearchBar: boolean;
   handleToggledSearchBar: () => void;
 }
+
+export interface GnbHamburgerMenuOptionProps {
+  isOpenHamburgerMenu: boolean;
+  handleToggledHamburgerMenu: () => void;
+}

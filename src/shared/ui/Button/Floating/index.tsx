@@ -1,4 +1,4 @@
-import IconComponent from "../Icon/Icon";
+import IconComponent from "../../Icon/Icon";
 
 interface FloatingProps {
   location?: string;
@@ -8,8 +8,7 @@ const Floating = ({ location }: FloatingProps) => {
   return (
     <IconComponent
       name="AddIcon"
-      iconSizeClass={`w-[60px] fixed ${location}`}
-      color="main-gradation"
+      className={`w-[60px] fixed main-gradation ${location}`}
     />
   );
 };

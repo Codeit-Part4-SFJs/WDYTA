@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PropsWithChildren } from "react";
-import Icon from "../Icon/Icon";
+import Icon from "../../Icon/Icon";
 
 interface Option {
   value: string;
@@ -64,7 +64,7 @@ const Sort = ({
           </button>
           <Icon
             name={toggled ? "DropDownIcon" : "DropUpIcon"}
-            iconSizeClass="w-6 md:w-[22px] mobile:w-5"
+            className="w-6 md:w-[22px] mobile:w-5"
           />
         </div>
       </div>

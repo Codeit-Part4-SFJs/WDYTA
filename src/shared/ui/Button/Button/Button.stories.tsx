@@ -1,7 +1,7 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import Button, { ButtonKind, ButtonSizeEnum } from "./Button";
-import "../../../styles/globals.css";
+import Button, { ButtonKind, ButtonSizeEnum } from "./index";
+import "../../../../styles/globals.css";
 
 export default {
   title: "Button",

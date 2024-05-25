@@ -8,7 +8,6 @@ export interface GnbSearchBarProps {
 }
 
 export interface GnbSearchButtonProps {
-  isOpenMobileSearchBar: boolean;
   handleToggledSearchBar: () => void;
 }
 

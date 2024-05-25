@@ -19,10 +19,7 @@ const GnbSearch = () => {
 
   return (
     <>
-      <GnbSearchButton
-        isOpenMobileSearchBar={isOpenMobileSearchBar}
-        handleToggledSearchBar={handleToggledSearchBar}
-      />
+      <GnbSearchButton handleToggledSearchBar={handleToggledSearchBar} />
       <GnbSearchBar
         isOpenMobileSearchBar={isOpenMobileSearchBar}
         handleToggledSearchBar={handleToggledSearchBar}
@@ -47,7 +44,7 @@ const GnbSearchBar = ({
   return (
     <div
       ref={searchBarRef}
-      className={`${isOpenMobileSearchBar ? "block" : "mobile:hidden md:block lg:block"}`}
+      className={`${isOpenMobileSearchBar ? "block mobile:absolute mobile:z-10 mobile:right-[20px] md:ml-auto lg:ml-auto" : "mobile:hidden md:block md:ml-auto lg:ml-auto lg:block"}`}
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -81,13 +78,10 @@ const GnbSearchBar = ({
   );
 };
 
-const GnbSearchButton = ({
-  isOpenMobileSearchBar,
-  handleToggledSearchBar,
-}: GnbSearchButtonProps) => {
+const GnbSearchButton = ({ handleToggledSearchBar }: GnbSearchButtonProps) => {
   return (
     <button
-      className={`${isOpenMobileSearchBar ? "hidden" : "mobile:block md:hidden lg:hidden"}`}
+      className="mobile:block md:hidden lg:hidden"
       type="button"
       onClick={handleToggledSearchBar}
     >

@@ -64,7 +64,7 @@ const Dropdown = ({
           </button>
           <Icon
             name={toggled ? "DropDownIcon" : "DropUpIcon"}
-            iconSizeClass="w-6 md:w-[22px] mobile:w-5"
+            className={"w-6"}
           />
         </div>
       </div>

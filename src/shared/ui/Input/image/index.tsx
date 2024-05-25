@@ -1,27 +1,16 @@
-import Icon from "../Icon/Icon";
+import Icon from "../../Icon/Icon";
 
-interface ImageInputProps {
+export interface ImageInputProps {
   image: string;
-  setImage: (url: string) => void;
   handleDeleteButton: () => void;
+  handleImageUpload: () => void;
 }
 
 const ImageInput = ({
   image,
-  setImage,
   handleDeleteButton,
+  handleImageUpload,
 }: ImageInputProps) => {
-  const handleUploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectFile = event.target.files;
-
-    if (selectFile && selectFile[0]) {
-      const formData = new FormData();
-      formData.append("image", selectFile[0]);
-
-      //@TODO : API 연동 POST 요청
-    }
-  };
-
   const containerStyle =
     "relative w-[140px] md:w-[135px] lg:w-[160px] h-[140px] md:h-[135px] lg:h-[160px] rounded-lg";
 
@@ -39,8 +28,7 @@ const ImageInput = ({
           <div className="absolute top-[5px] right-[5px] w-[26px] lg:w-7 h-[26px] lg:h-7 p-1 bg-black bg-opacity-50 rounded-lg">
             <Icon
               name="CloseIcon"
-              iconSizeClass="w-full h-full"
-              color="#F1F1F5"
+              className="w-full h-full text-gray-F1"
               onClick={handleDeleteButton}
             />
           </div>
@@ -52,13 +40,9 @@ const ImageInput = ({
           <input
             className="absolute w-full h-full opacity-0"
             type="file"
-            onChange={handleUploadImage}
+            onChange={handleImageUpload}
           />
-          <Icon
-            name="PhotoIcon"
-            iconSizeClass="w-full h-full"
-            color="#6E6E82"
-          />
+          <Icon name="PhotoIcon" className="w-full h-full text-gray-6E" />
         </div>
       )}
     </>

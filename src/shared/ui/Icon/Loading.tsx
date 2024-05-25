@@ -1,21 +1,14 @@
+import { PropsWithChildren } from "react";
 import LoadingIcon from "../../../../public/icon/loading.svg";
 
-interface Loading {
-  iconSizeClass: string;
-  fontSizeClass: string;
-  color: string;
-  children: React.ReactNode;
-}
-const Loading = ({
-  iconSizeClass,
-  fontSizeClass,
-  color,
-  children,
-}: Loading) => {
+const Loading = ({ children }: PropsWithChildren) => {
   return (
     <div className="flex flex-col items-center gap-3">
-      <LoadingIcon className={`${iconSizeClass}`} color={color} />
-      <p className={`${fontSizeClass}`}>{children}</p>
+      <LoadingIcon className="mobile:w-[39.2px] mobile:h-[32px] md:w-[39.2px] md:h-[32px] lg:w-[49px] lg:h-[40px] fill-gray-6E " />
+
+      <p className="mobile:text-lg md:text-lg lg:text-xl text-gray-6E">
+        {children}
+      </p>
     </div>
   );
 };

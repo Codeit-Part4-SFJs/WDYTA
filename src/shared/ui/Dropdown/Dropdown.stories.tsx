@@ -1,25 +1,11 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import Dropdown, {
-  DropdownSize,
-  DropdownHeightEnum,
-  DropdownIconEnum,
-  DropdownPaddingEnum,
-} from "./Dropdown";
+import Dropdown from "./Dropdown";
 import "../../../styles/globals.css";
 
 export default {
   title: "Dropdown",
   component: Dropdown,
-  argTypes: {
-    size: {
-      control: "select",
-      options: ["L", "M", "S"],
-    },
-    customSize: {
-      control: "text",
-    },
-  },
 } as Meta<typeof Dropdown>;
 
 const Template: StoryFn<typeof Dropdown> = (args) => <Dropdown {...args} />;
@@ -32,6 +18,5 @@ exampleButton1.args = {
     { value: "example", label: "예" },
     { value: "abc", label: "cba" },
   ],
-  size: DropdownSize.L,
-  defaultValue: "예시",
+  placeholder: "예시",
 };

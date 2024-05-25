@@ -7,25 +7,25 @@ interface Option {
   label: string;
 }
 
-export interface DropdownProps {
+export interface SortProps {
   options: Option[];
-  placeholder?: string;
+  defaultValue?: string;
   onSelect: (value: string) => void;
 }
 
-const Dropdown = ({
+const Sort = ({
   children,
   options,
   onSelect,
-  placeholder = "선택",
-}: PropsWithChildren<DropdownProps>) => {
-  const dropDownClickRef = useRef<HTMLDivElement>(null);
+  defaultValue = "최신순",
+}: PropsWithChildren<SortProps>) => {
+  const sortClickRef = useRef<HTMLDivElement>(null);
   const [toggled, setToggled] = useState(false);
   const defaultOption =
-    options.find((option) => option.value === placeholder) || null;
+    options.find((option) => option.value === defaultValue) || null;
   const [selectedOption, setSelectedOption] = useState(defaultOption);
 
-  const handleToggleDropdown = () => {
+  const handleToggleSort = () => {
     setToggled(!toggled);
   };
 
@@ -37,8 +37,8 @@ const Dropdown = ({
 
   const handleClick = (e: MouseEvent) => {
     if (
-      dropDownClickRef.current &&
-      !dropDownClickRef.current.contains(e.target as Node)
+      sortClickRef.current &&
+      !sortClickRef.current.contains(e.target as Node)
     ) {
       setToggled(false);
     }
@@ -54,13 +54,13 @@ const Dropdown = ({
   return (
     <div className="relative">
       <div
-        className={`flex w-[400px] md:w-[360px] mobile:w-[335px] py-[23px] md:py-[17px] mobile:py-[17px] md:h-[60px] mobile:h-[55px] px-5 flex-col items-start gap-[10px] rounded-lg border border-solid border-transparent bg-black-25 ${toggled ? "border-linear-gradients-black-25 text-white" : "border-gray-35 text-gray-6E"}`}
-        onClick={handleToggleDropdown}
+        className={`flex w-[160px] md:w-[140px] px-5 flex-col items-center justify-between bg-transparent ${toggled ? "text-white" : " text-gray-6E"}`}
+        onClick={handleToggleSort}
       >
         <div className="flex justify-between items-center self-stretch">
           <p className="text-base text-gray-6E active:text-white">{children}</p>
           <button className=" w-full flex ">
-            {selectedOption?.label ?? placeholder}
+            {selectedOption?.label ?? defaultValue}
           </button>
           <Icon
             name={toggled ? "DropDownIcon" : "DropUpIcon"}
@@ -70,7 +70,7 @@ const Dropdown = ({
       </div>
       {toggled && (
         <div
-          className={`absolute top-[100%] flex w-[400px] md:w-[360px] mobile:w-[335px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25`}
+          className={`absolute z-10 top-[100%] flex w-[160px] md:w-[140px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25`}
         >
           {options.map((option) => (
             <div
@@ -87,4 +87,4 @@ const Dropdown = ({
   );
 };
 
-export default Dropdown;
+export default Sort;

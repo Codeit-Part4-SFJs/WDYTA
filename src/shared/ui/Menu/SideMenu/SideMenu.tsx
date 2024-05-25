@@ -2,10 +2,7 @@
 
 import { useRef } from "react";
 import DEFAULT_CATEGORIES from "@/shared/ui/Menu/SideMenu/constant/DEFAULT_CATEGORIES";
-import {
-  Categories,
-  SideMenuProps,
-} from "@/shared/ui/Menu/SideMenu/type/categoryType";
+import { Categories, SideMenuProps } from "@/shared/types/categoryType";
 import SideMenuTab from "@/shared/ui/Menu/SideMenu/SideMenuTab";
 import useSideMenuStore from "@/stores/useSideMenuStore";
 import useClose from "@/shared/@common/hooks/useClose";

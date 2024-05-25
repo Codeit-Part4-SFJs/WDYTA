@@ -1,7 +1,7 @@
 "use client";
 
 import useSideMenuStore from "@/stores/useSideMenuStore";
-import { SideMenuTabProps } from "@/shared/ui/Menu/SideMenu/type/categoryType";
+import { SideMenuTabProps } from "@/shared/types/categoryType";
 
 const SideMenuTab = ({ category }: SideMenuTabProps) => {
   const currentCategory = useSideMenuStore((state) => state.currentCategory);

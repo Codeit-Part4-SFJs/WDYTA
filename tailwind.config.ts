@@ -44,7 +44,6 @@ const config: Config = {
 
         "green-49": "#49AF1A",
         "green-23": "#23B581",
-        "green-05": "#05D58B",
 
         "pink-D6": "#D676C1",
         "pink-FD": "#FD529A",

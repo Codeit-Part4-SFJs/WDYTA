@@ -1,8 +1,8 @@
 import Icon from "@/shared/ui/Icon/Icon";
 
 export enum CompareColor {
-  GREEN,
-  PINK,
+  GREEN = "GREEN",
+  PINK = "PINK",
 }
 
 interface CompareChipProps {
@@ -12,7 +12,7 @@ interface CompareChipProps {
 }
 
 const makeCompareColor = {
-  [CompareColor.GREEN]: "green-05",
+  [CompareColor.GREEN]: "green",
   [CompareColor.PINK]: "pink",
 };
 

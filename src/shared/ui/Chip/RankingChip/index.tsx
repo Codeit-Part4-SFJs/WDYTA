@@ -1,7 +1,7 @@
 export enum RankingColor {
-  PINK,
-  GREEN,
-  GRAY,
+  "PINK",
+  "GREEN",
+  "GRAY",
 }
 
 interface RankingChipProps {

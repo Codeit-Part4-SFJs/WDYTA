@@ -18,7 +18,7 @@ const makeColorByRanking = {
 const RankingChip = ({ ranking, color }: RankingProps) => {
   return (
     <div
-      className={`inline-flex items-center justify-center w-[26px] md:w-[32px] lg:w-[32px] h-[16px] md:h-[18px] lg:h-[18px] px-[6px] md:px-[8px] lg:px-[8px] py-[2px] rounded-full text-[10px] md:text-[12px] lg:text-[12px] font-normal bg-opacity-10 ${makeColorByRanking[color]}`}
+      className={`inline-flex items-center justify-center w-[26px] lg:w-[32px] h-[16px] lg:h-[18px] px-[6px] lg:px-[8px] py-[2px] rounded-full text-[10px] lg:text-[12px] font-normal bg-opacity-10 ${makeColorByRanking[color]}`}
     >
       {ranking}
       <span>등</span>

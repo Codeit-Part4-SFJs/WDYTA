@@ -1,7 +1,6 @@
 import CategoryChip from "@/shared/ui/Chip/CategoryChip";
 import CategoryFilterChip from "@/shared/ui/Chip/CategoryFilterChip";
-import CompareAChip from "@/shared/ui/Chip/CompareAChip";
-import CompareBChip from "@/shared/ui/Chip/CompareBChip";
+import CompareChip, { CompareColor } from "@/shared/ui/Chip/CompareChip";
 import RankingChip from "@/shared/ui/Chip/RankingChip";
 import ThumbsChip from "@/shared/ui/Chip/ThumbsChip";
 import { RankingColor } from "@/shared/ui/Chip/RankingChip";
@@ -20,8 +19,8 @@ export default function Home() {
         <CategoryFilterChip key={index} categoryID={index + 1} />
       ))}
       <ThumbsChip reviewID={1} isLike={false} likeCount={99} />
-      <CompareAChip productName="IPhone 14 Pro Max" />
-      <CompareBChip productName="Galaxy S22 Ultra" />
+      <CompareChip productName="IPhone 14 Pro Max" color={CompareColor.GREEN} />
+      <CompareChip productName="Galaxy Z Fold 4" color={CompareColor.PINK} />
     </div>
   );
 }

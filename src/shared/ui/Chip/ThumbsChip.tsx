@@ -3,18 +3,18 @@
 import { useState } from "react";
 import Icon from "@/shared/ui/Icon/Icon";
 
-interface Props {
+interface ThumbsChipProps {
   reviewID?: number;
   isLike: boolean;
   likeCount: number;
 }
 
-const ThumbsChip = ({ reviewID, isLike, likeCount }: Props) => {
+const ThumbsChip = ({ reviewID, isLike, likeCount }: ThumbsChipProps) => {
   const [isLiked, setIsLiked] = useState(isLike);
   const [likedCount, setLikedCount] = useState(likeCount);
 
   const likeIconImage = isLiked ? "UpIcon" : "UpNoColorIcon";
-  const likeClassName = isLiked ? "text-[#FF2F9F]" : "text-[#9FA6B2]";
+  const likeClassName = isLiked ? "text-pink" : "text-gray-9F";
   //좋아요가 세자리 이상이면 text-[12px]로 변경
   let likeCountClassName = "text-[14px]";
   if (likedCount >= 100) {
@@ -32,7 +32,7 @@ const ThumbsChip = ({ reviewID, isLike, likeCount }: Props) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-start gap-3 w-fit h-fit px-[12px] py-[6px] rounded-full bg-[#252530] border-solid border-2 border-[#353542]">
+    <div className="flex flex-col justify-center items-start gap-3 w-fit h-fit px-[12px] py-[6px] rounded-full bg-gray-25 border-solid border-2 border-gray-35">
       <div className="flex items-center gap-1">
         <button onClick={handleLike}>
           <Icon

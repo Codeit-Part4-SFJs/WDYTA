@@ -10,11 +10,15 @@ const Floating = ({ location }: FloatingProps) => {
   };
 
   return (
-    <IconComponent
-      name="AddIcon"
-      className={`w-[60px] fixed main-gradation ${location}`}
-      onClick={makingAlertNow}
-    />
+    <div
+      className={`flex w-[60px] h-[60px] rounded-full fixed bg-main-gradation ${location} align-center justify-center`}
+    >
+      <IconComponent
+        name="AddIcon"
+        className={`w-[40px] text-white `}
+        onClick={makingAlertNow}
+      />
+    </div>
   );
 };
 

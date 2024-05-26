@@ -5,8 +5,8 @@ export interface ExempleState {
 }
 
 export interface SideMenuState {
-  currentCategory: string;
+  currentCategory: number;
   isOpenSideMenu: boolean;
-  setCurrentCategory: (category: string) => void;
+  setCurrentCategory: (categoryId: number) => void;
   setIsOpenSideMenu: () => void;
 }

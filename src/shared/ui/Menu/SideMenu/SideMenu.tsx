@@ -8,7 +8,7 @@ import useSideMenuStore from "@/stores/useSideMenuStore";
 import useClose from "@/shared/@common/hooks/useClose";
 
 /**
- * 메인 페이지의 layout.tsx에서 API 요청해서 카테고리 데이터 받아오고 layout.tsx에서 사용하면됨
+ * 메인 페이지의 page.tsx에서 API 요청해서 카테고리 데이터 받아오고 page.tsx에서 사용하면됨
  *
  * @param categories '/categories'로 GET 요청해서 받은 데이터
  */
@@ -37,7 +37,13 @@ const SideMenu = ({ categories }: SideMenuProps) => {
       </div>
       <ul className="flex flex-col items-start shrink-0 gap-1 bg-black-1C">
         {categoryList.map((item) => {
-          return <SideMenuTab key={item.id} category={item.name} />;
+          return (
+            <SideMenuTab
+              key={item.id}
+              category={item.name}
+              categoryId={item.id}
+            />
+          );
         })}
       </ul>
     </div>

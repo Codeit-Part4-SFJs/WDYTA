@@ -61,7 +61,7 @@ const GnbHamburgerMenuOption = ({
 
   return (
     <div
-      className="mobile:block md:hidden lg:hidden absolute z-50 top-[78px] left-0 w-52 overflow-hidden bg-black-1C rounded-lg text-gray-F1 not-italic font-normal leading-normal text-[14px] text-center"
+      className="mobile:block md:hidden lg:hidden absolute z-50 top-[78px] left-0 w-52 overflow-hidden bg-black-1C rounded-lg border border-solid border-black-25 text-gray-F1 not-italic font-normal leading-normal text-[14px] text-center"
       ref={MenuOptionRef}
     >
       {pathname === "/Login" && (
@@ -78,7 +78,10 @@ const GnbHamburgerMenuOption = ({
         pathname !== "/Register" &&
         (isLoggedIn ? (
           <div>
-            <Link className={linkClass} href="/Compare">
+            <Link
+              className={`${linkClass} border-b border-solid border-black-25`}
+              href="/Compare"
+            >
               비교하기
             </Link>
             <Link className={linkClass} href="/Profile">
@@ -87,7 +90,10 @@ const GnbHamburgerMenuOption = ({
           </div>
         ) : (
           <div>
-            <Link className={linkClass} href="/Login">
+            <Link
+              className={`${linkClass} border-b border-solid border-black-25`}
+              href="/Login"
+            >
               로그인
             </Link>
             <Link className={linkClass} href="/Register">

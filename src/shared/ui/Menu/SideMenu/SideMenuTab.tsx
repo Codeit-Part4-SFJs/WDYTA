@@ -3,19 +3,19 @@
 import useSideMenuStore from "@/stores/useSideMenuStore";
 import { SideMenuTabProps } from "@/shared/types/categoryType";
 
-const SideMenuTab = ({ category }: SideMenuTabProps) => {
+const SideMenuTab = ({ category, categoryId }: SideMenuTabProps) => {
   const currentCategory = useSideMenuStore((state) => state.currentCategory);
   const setCurrentCategory = useSideMenuStore(
     (state) => state.setCurrentCategory
   );
 
-  const isClicked = currentCategory === category;
+  const isClicked = currentCategory === categoryId;
 
   const handleClick = () => {
     if (isClicked) {
-      setCurrentCategory("idle");
+      setCurrentCategory(0);
     } else {
-      setCurrentCategory(category);
+      setCurrentCategory(categoryId);
     }
   };
 

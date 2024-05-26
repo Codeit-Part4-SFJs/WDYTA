@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { PropsWithChildren } from "react";
 import Icon from "../../Icon/Icon";
+import useClose from "@/shared/@common/hooks/useClose";
 
 interface Option {
   value: string;
@@ -20,41 +21,31 @@ const Sort = ({
   defaultValue = "최신순",
 }: PropsWithChildren<SortProps>) => {
   const sortClickRef = useRef<HTMLDivElement>(null);
-  const [toggled, setToggled] = useState(false);
+  const [isToggled, setIsToggled] = useState(false);
   const defaultOption =
     options.find((option) => option.value === defaultValue) || null;
   const [selectedOption, setSelectedOption] = useState(defaultOption);
 
   const handleToggleSort = () => {
-    setToggled(!toggled);
+    setIsToggled(!isToggled);
   };
 
   const handleSelectOption = (option: Option) => {
     setSelectedOption(option);
     onSelect(option.value);
-    setToggled(false);
+    setIsToggled(false);
   };
 
-  const handleClick = (e: MouseEvent) => {
-    if (
-      sortClickRef.current &&
-      !sortClickRef.current.contains(e.target as Node)
-    ) {
-      setToggled(false);
-    }
+  const handleClose = () => {
+    setIsToggled(false);
   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClick);
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
-  }, []);
+  useClose(isToggled, handleClose, sortClickRef);
 
   return (
     <div className="relative">
       <div
-        className={`flex w-[160px] md:w-[140px] px-5 flex-col items-center justify-between bg-transparent ${toggled ? "text-white" : " text-gray-6E"}`}
+        className={`flex w-[160px] md:w-[140px] px-5 flex-col items-center justify-between bg-transparent ${isToggled ? "text-white" : " text-gray-6E"}`}
         onClick={handleToggleSort}
       >
         <div className="flex justify-between items-center self-stretch">
@@ -63,13 +54,14 @@ const Sort = ({
             {selectedOption?.label ?? defaultValue}
           </button>
           <Icon
-            name={toggled ? "DropDownIcon" : "DropUpIcon"}
+            name={isToggled ? "DropDownIcon" : "DropUpIcon"}
             className="w-6 md:w-[22px] mobile:w-5"
           />
         </div>
       </div>
-      {toggled && (
+      {isToggled && (
         <div
+          ref={sortClickRef}
           className={`absolute z-10 top-[100%] flex w-[160px] md:w-[140px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25`}
         >
           {options.map((option) => (

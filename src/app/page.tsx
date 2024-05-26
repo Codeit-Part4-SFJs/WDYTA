@@ -19,11 +19,8 @@ export default function Home() {
         <CategoryFilterChip key={index} categoryID={index + 1} />
       ))}
       <ThumbsChip reviewID={1} isLike={false} likeCount={99} />
-      <CompareChip
-        productName="IPhone 14 Pro Max"
-        color={CompareColor["GREEN"]}
-      />
-      <CompareChip productName="Galaxy Z Fold 4" color={CompareColor["PINK"]} />
+      <CompareChip productName="IPhone 14 Pro Max" color={CompareColor.GREEN} />
+      <CompareChip productName="Galaxy Z Fold 4" color={CompareColor.PINK} />
     </div>
   );
 }

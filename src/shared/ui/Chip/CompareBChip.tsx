@@ -13,7 +13,7 @@ const CompareBChip = ({ productName }: Props) => {
       <button className="flex justify-center items-center p-[2px] gap-3 w-[17px] md:w-[19px] h-[17px] md:h-[19px] rounded-md bg-[#000000] bg-opacity-80">
         <Icon
           name={"CloseIcon"}
-          className="w-[13px] md:w-[15px] h-[13px] md:h-[15px] z-10"
+          className="w-[13px] md:w-[15px] h-[13px] md:h-[15px] z-10 fill-[#F1F1F5]"
         />
       </button>
     </div>

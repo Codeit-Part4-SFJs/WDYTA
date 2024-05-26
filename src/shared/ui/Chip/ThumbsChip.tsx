@@ -14,7 +14,6 @@ const ThumbsChip = ({ reviewID, isLike, likeCount }: Props) => {
   const [likedCount, setLikedCount] = useState(likeCount);
 
   const likeIconImage = isLiked ? "UpIcon" : "UpNoColorIcon";
-  const likeColor = isLiked ? "" : "#9FA6B2";
   const likeClassName = isLiked ? "text-[#FF2F9F]" : "text-[#9FA6B2]";
   //좋아요가 세자리 이상이면 text-[12px]로 변경
   let likeCountClassName = "text-[14px]";
@@ -38,8 +37,7 @@ const ThumbsChip = ({ reviewID, isLike, likeCount }: Props) => {
         <button onClick={handleLike}>
           <Icon
             name={likeIconImage}
-            // color={likeColor}
-            className={"w-[18px] h-[18px]"}
+            className={"w-[18px] h-[18px] fill-gray-9F"}
           />
         </button>
         <span className={`font-normal ${likeClassName} ${likeCountClassName}`}>

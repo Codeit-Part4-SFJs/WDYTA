@@ -33,6 +33,21 @@ const config: Config = {
         "gray-35": "#353542",
         "gray-25": "#252530",
 
+        "lime-C5": "#C5D17C",
+
+        "orange-F7": "#F75532",
+        "orange-FF": "#FF7E46",
+
+        "purple-A9": "#A953FF",
+        "purple-75": "#757AFF",
+
+        "green-49": "#49AF1A",
+        "green-23": "#23B581",
+
+        "pink-D6": "#D676C1",
+        "pink-FD": "#FD529A",
+
+        "blue-30": "#3098E3",
         "main-blue": "#5097FA",
         "main-indigo": "#5363FF",
 

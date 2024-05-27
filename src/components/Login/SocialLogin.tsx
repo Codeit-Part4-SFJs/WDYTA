@@ -1,5 +1,5 @@
-import { IconType } from "@/shared/types/iconType";
 import Icon from "@/shared/ui/Icon/Icon";
+import { IconType } from "@/shared/ui/Icon/type/iconType";
 
 const SNS_MAP: { name: IconType }[] = [
   { name: "GoogleIcon" },

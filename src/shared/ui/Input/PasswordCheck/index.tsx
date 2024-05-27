@@ -22,9 +22,10 @@ const PasswordCheckInput = ({
 
   return (
     <div className="flex flex-col gap-2.5">
-      <Label>비밀번호 확인</Label>
+      <Label htmlFor="passwordCheck">비밀번호 확인</Label>
       <div className="relative">
         <Input
+          id="passwordCheck"
           inputSize="large"
           type={isShowPassword ? "text" : "password"}
           placeholder="비밀번호를 한 번 더 입력해주세요"

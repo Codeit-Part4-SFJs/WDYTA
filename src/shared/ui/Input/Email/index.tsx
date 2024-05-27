@@ -6,8 +6,9 @@ import { AuthInputProps } from "@/shared/types/input";
 const EmailInput = ({ register, errors }: AuthInputProps) => {
   return (
     <div className="flex flex-col gap-2.5">
-      <Label>이메일</Label>
+      <Label htmlFor="email">이메일</Label>
       <Input
+        id="email"
         inputSize="large"
         type="email"
         placeholder="이메일을 입력해주세요"

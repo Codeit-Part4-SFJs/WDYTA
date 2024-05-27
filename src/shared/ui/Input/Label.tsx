@@ -1,11 +1,15 @@
-import { ReactNode } from "react";
+import { LabelHTMLAttributes, ReactNode } from "react";
 
-interface LabelProps {
+interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   children: ReactNode;
 }
 
-const Label = ({ children }: LabelProps) => {
-  return <p className="text-gray-F1 text-sm lg:text-base">{children}</p>;
+const Label = ({ htmlFor, children }: LabelProps) => {
+  return (
+    <label htmlFor={htmlFor} className="text-gray-F1 text-sm lg:text-base">
+      {children}
+    </label>
+  );
 };
 
 export default Label;

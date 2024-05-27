@@ -6,8 +6,9 @@ import { AuthInputProps } from "@/shared/types/input";
 const NicknameInput = ({ register, errors }: AuthInputProps) => {
   return (
     <div className="flex flex-col gap-2.5">
-      <Label>닉네임</Label>
+      <Label htmlFor="nickname">닉네임</Label>
       <Input
+        id="nickname"
         inputSize="large"
         type="text"
         placeholder="닉네임을 입력해 주세요"

@@ -14,9 +14,10 @@ const PasswordInput = ({ register, errors }: AuthInputProps) => {
 
   return (
     <div className="flex flex-col gap-2.5">
-      <Label>비밀번호</Label>
+      <Label htmlFor="password">비밀번호</Label>
       <div className="relative">
         <Input
+          id="password"
           inputSize="large"
           type={isShowPassword ? "text" : "password"}
           placeholder="비밀번호를 입력해주세요"

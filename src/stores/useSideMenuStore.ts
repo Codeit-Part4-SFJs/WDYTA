@@ -6,9 +6,10 @@ const useSideMenuStore = create<SideMenuState>()(
   devtools(
     persist(
       (set) => ({
-        currentCategory: "idle",
+        currentCategory: 0,
         isOpenSideMenu: false,
-        setCurrentCategory: (category) => set({ currentCategory: category }),
+        setCurrentCategory: (categoryId) =>
+          set({ currentCategory: categoryId }),
         setIsOpenSideMenu: () =>
           set((state) => ({ isOpenSideMenu: !state.isOpenSideMenu })),
       }),

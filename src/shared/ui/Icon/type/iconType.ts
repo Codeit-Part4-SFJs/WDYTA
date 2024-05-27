@@ -28,3 +28,8 @@ export interface IconProps {
   className: HTMLAttributes<SVGAElement>["className"];
   onClick?: React.MouseEventHandler<SVGSVGElement>;
 }
+
+export interface LoadingProps {
+  iconClassName?: HTMLAttributes<SVGAElement>["className"];
+  textClassName?: HTMLAttributes<HTMLParagraphElement>["className"];
+}

@@ -43,9 +43,9 @@ const Sort = ({
   useClose(isToggled, handleClose, sortClickRef);
 
   return (
-    <div className="relative">
+    <div className="relative w-[160px] md:w-[140px]" ref={sortClickRef}>
       <div
-        className={`flex w-[160px] md:w-[140px] px-5 flex-col items-center justify-between bg-transparent ${isToggled ? "text-white" : " text-gray-6E"}`}
+        className={`flex  px-5 flex-col items-center justify-between bg-transparent ${isToggled ? "text-white" : " text-gray-6E"}`}
         onClick={handleToggleSort}
       >
         <div className="flex justify-between items-center self-stretch">
@@ -61,8 +61,7 @@ const Sort = ({
       </div>
       {isToggled && (
         <div
-          ref={sortClickRef}
-          className={`absolute z-10 top-[100%] flex w-[160px] md:w-[140px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25`}
+          className={`absolute z-20 top-[100%] flex w-[160px] md:w-[140px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25`}
         >
           {options.map((option) => (
             <div

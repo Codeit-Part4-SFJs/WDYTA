@@ -57,11 +57,11 @@ const GnbHamburgerMenuOption = ({
   useClose(isOpenHamburgerMenu, handleToggledHamburgerMenu, MenuOptionRef);
 
   const linkClass =
-    "block w-52 p-4 hover:bg-black-25 focus:bg-black-25 focus:outline-none";
+    "block w-36 p-4 hover:bg-black-25 focus:bg-black-25 focus:outline-none";
 
   return (
     <div
-      className="mobile:block md:hidden lg:hidden absolute z-50 top-[78px] left-0 w-52 overflow-hidden bg-black-1C rounded-lg border border-solid border-black-25 text-gray-F1 not-italic font-normal leading-normal text-[14px] text-center"
+      className="mobile:block md:hidden lg:hidden absolute z-50 top-[50px] left-[20px] w-36 overflow-hidden bg-black-1C rounded-lg border border-solid border-black-25 text-gray-F1 not-italic font-normal leading-normal text-[14px] text-center"
       ref={MenuOptionRef}
     >
       {pathname === "/Login" && (

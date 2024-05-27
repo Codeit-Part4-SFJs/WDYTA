@@ -1,4 +1,5 @@
-import "../styles/globals.css";
+import "@/styles/globals.css";
+import Gnb from "@/shared/ui/Menu/Gnb/Gnb";
 
 export const metadata = {
   title: "Next.js",
@@ -11,8 +12,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
-      <body>{children}</body>
+    <html lang="en">
+      <body>
+        <Gnb />
+        {children}
+      </body>
     </html>
   );
 }

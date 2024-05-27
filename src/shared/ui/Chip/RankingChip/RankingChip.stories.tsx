@@ -1,0 +1,35 @@
+import React from "react";
+import { StoryFn, Meta } from "@storybook/react";
+import RankingChip from ".";
+import { RankingColor } from "./index";
+import "@/styles/globals.css";
+
+export default {
+  title: "Chip/RankingChip",
+  component: RankingChip,
+  argTypes: {
+    ranking: {
+      control: {
+        type: "number",
+        min: 1,
+        max: 5,
+      },
+    },
+    color: {
+      control: "select",
+      options: Object.values(RankingColor).filter(
+        (value) => typeof value === "string"
+      ),
+    },
+  },
+} as Meta<typeof RankingChip>;
+
+const Template: StoryFn<typeof RankingChip> = (args) => (
+  <RankingChip {...args} />
+);
+
+export const exampleRankingChip = Template.bind({});
+exampleRankingChip.args = {
+  ranking: 1,
+  color: RankingColor.PINK,
+};

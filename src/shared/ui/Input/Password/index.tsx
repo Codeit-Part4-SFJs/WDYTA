@@ -37,7 +37,7 @@ const PasswordInput = ({ register, errors }: AuthInputProps) => {
         />
         <Icon
           name={isShowPassword ? "VisibilityIcon" : "VisibilityOffIcon"}
-          className="absolute top-[16px] lg:top-[23px] left-[293px] md:left-[398px] lg:left-[596px] w-[22px] lg:w-6 h-[22px] lg:h-6 text-gray-9F"
+          className="absolute top-[16px] lg:top-[23px] left-[293px] md:left-[398px] lg:left-[596px] w-[22px] lg:w-6 h-[22px] lg:h-6 text-gray-9F cursor-pointer"
           onClick={toggleIcon}
         />
       </div>

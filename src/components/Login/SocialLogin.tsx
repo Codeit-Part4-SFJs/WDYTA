@@ -18,7 +18,10 @@ const SocialLogin = () => {
             key={index}
             className="w-14 h-14 p-[14px] rounded-full border border-solid border-gray-6E flex items-center justify-center"
           >
-            <Icon name={item.name} className="w-full h-full text-gray-6E" />
+            <Icon
+              name={item.name}
+              className="w-full h-full text-gray-6E cursor-pointer"
+            />
           </div>
         ))}
       </div>

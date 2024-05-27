@@ -1,11 +1,5 @@
 import { PropsWithChildren, ButtonHTMLAttributes } from "react";
 
-export enum ButtonSizeEnum {
-  S = "w-[335px] h-[50px] text-base",
-  M = "w-[440px] h-[55px] text-base",
-  L = "w-[640px] h-[65px] text-lg",
-}
-
 export enum ButtonKind {
   primary = "primary",
   secondary = "secondary",
@@ -13,7 +7,6 @@ export enum ButtonKind {
 }
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   kind: ButtonKind;
-  size?: ButtonSizeEnum;
   customSize?: string;
 }
 
@@ -39,15 +32,14 @@ const ButtonStyleByKind = {
 const Button = ({
   children,
   kind,
-  size,
+
   customSize,
   disabled,
   ...props
 }: PropsWithChildren<ButtonProps>) => {
-  const sizeClass = customSize ? customSize : size;
   return (
     <button
-      className={`${sizeClass} ${buttonBase} ${ButtonStyleByKind[kind].button} group `}
+      className={`${customSize} ${buttonBase} ${ButtonStyleByKind[kind].button} group `}
       disabled={disabled}
       {...props}
     >

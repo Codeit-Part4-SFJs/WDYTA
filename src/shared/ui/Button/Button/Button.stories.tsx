@@ -1,6 +1,6 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import Button, { ButtonKind, ButtonSizeEnum } from "./index";
+import Button, { ButtonKind } from "./index";
 import "../../../../styles/globals.css";
 
 export default {
@@ -10,10 +10,6 @@ export default {
     kind: {
       control: "select",
       options: ["primary", "secondary", "tertiary"],
-    },
-    size: {
-      control: "select",
-      options: Object.values(ButtonSizeEnum),
     },
     customSize: {
       control: "text",
@@ -30,5 +26,4 @@ export const exampleButton1 = Template.bind({});
 exampleButton1.args = {
   children: "예시",
   kind: ButtonKind.primary,
-  size: ButtonSizeEnum.M,
 };

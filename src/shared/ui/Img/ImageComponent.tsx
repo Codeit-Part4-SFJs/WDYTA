@@ -1,4 +1,4 @@
-import { ImageProps } from "@/shared/types/imageType";
+import { ImageProps } from "@/shared/ui/Img/type/imageType";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 

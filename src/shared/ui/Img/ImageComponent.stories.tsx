@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import ImageComponent from "./ImageComponent";
-import { ImageProps } from "@/shared/types/imageType";
+import { ImageProps } from "@/shared/ui/Img/type/imageType";
 import "@/styles/globals.css";
 
 export default {

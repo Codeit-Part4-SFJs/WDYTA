@@ -46,7 +46,7 @@ const RegisterForm = () => {
       <Button
         type="submit"
         kind={ButtonKind.primary}
-        customSize={`${isDisabled ? "cursor-not-allowed" : "cursor-pointer"} mt-[20px] w-[335px] md:w-[440px] lg:w-[640px] h-[50px] md:h-[55px] lg:h-[65px]`}
+        customSize={`${isDisabled ? "cursor-not-allowed" : "cursor-pointer"} mt-[20px] mobile:mt-[126px] w-[335px] md:w-[440px] lg:w-[640px] h-[50px] md:h-[55px] lg:h-[65px]`}
         disabled={isDisabled}
       >
         회원가입하기

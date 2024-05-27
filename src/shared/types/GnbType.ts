@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface SearchInput {
   search: string;
 }
@@ -14,4 +16,5 @@ export interface GnbSearchButtonProps {
 export interface GnbHamburgerMenuOptionProps {
   isOpenHamburgerMenu: boolean;
   handleToggledHamburgerMenu: () => void;
+  hamburgerMenuRef: React.RefObject<HTMLDivElement>;
 }

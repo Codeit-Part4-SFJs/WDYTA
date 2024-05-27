@@ -1,7 +1,7 @@
 import { AuthInputProps } from '@/shared/types/input';
 import Label from '../Label';
-import Input from '..';
 import HelperText from '../HelperText';
+import Input from '../Input';
 
 const EmailInput = ({ register, errors }: AuthInputProps) => {
   return (

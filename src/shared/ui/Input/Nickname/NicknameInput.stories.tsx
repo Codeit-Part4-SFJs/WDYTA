@@ -1,11 +1,11 @@
 import { FormValues } from '@/shared/types/input';
 import { Meta, StoryFn } from '@storybook/react';
 import { useForm } from 'react-hook-form';
-import Nickname from '.';
+import NicknameInput from './NicknameInput';
 
 export default {
   title: 'Input/Nickname',
-  component: Nickname,
+  component: NicknameInput,
 } as Meta;
 
 const Template: StoryFn = () => {
@@ -14,7 +14,7 @@ const Template: StoryFn = () => {
     formState: { errors },
   } = useForm<FormValues>({ mode: 'onChange' });
 
-  return <Nickname register={register} errors={errors} />;
+  return <NicknameInput register={register} errors={errors} />;
 };
 
 export const Default = Template.bind({});

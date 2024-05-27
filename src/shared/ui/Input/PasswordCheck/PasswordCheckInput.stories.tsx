@@ -1,7 +1,9 @@
 import { FormValues } from '@/shared/types/input';
 import { Meta, StoryFn } from '@storybook/react';
 import { useForm } from 'react-hook-form';
-import PasswordCheckInput, { PasswordCheckInputProps } from '.';
+import PasswordCheckInput, {
+  PasswordCheckInputProps,
+} from './PasswordCheckInput';
 
 export default {
   title: 'Input/PasswordCheckInput',

@@ -2,8 +2,8 @@
 
 import { FormValues } from '@/shared/types/input';
 import Button, { ButtonKind } from '@/shared/ui/Button/Button';
-import EmailInput from '@/shared/ui/Input/Email';
-import PasswordInput from '@/shared/ui/Input/Password';
+import { EmailInput } from '@/shared/ui/Input/Email';
+import { PasswordInput } from '@/shared/ui/Input/Password';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 

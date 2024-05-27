@@ -1,6 +1,6 @@
 import { AuthInputProps } from '@/shared/types/input';
 import Label from '../Label';
-import Input from '..';
+import Input from '../Input';
 import HelperText from '../HelperText';
 
 const NicknameInput = ({ register, errors }: AuthInputProps) => {

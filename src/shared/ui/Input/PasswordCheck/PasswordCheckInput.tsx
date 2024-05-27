@@ -1,7 +1,7 @@
 import { AuthInputProps } from '@/shared/types/input';
 import { useState } from 'react';
 import Label from '../Label';
-import Input from '..';
+import Input from '../Input';
 import HelperText from '../HelperText';
 import Icon from '../../Icon/Icon';
 

@@ -14,10 +14,10 @@ const LinkClass =
 const GnbUserSign = () => {
   return (
     <div className={flexClass}>
-      <Link className={LinkClass} href="/Login">
+      <Link className={LinkClass} href="/login">
         로그인
       </Link>
-      <Link className={LinkClass} href="/Register">
+      <Link className={LinkClass} href="/register">
         회원가입
       </Link>
     </div>
@@ -26,10 +26,10 @@ const GnbUserSign = () => {
 const GnbUserFeature = () => {
   return (
     <div className={flexClass}>
-      <Link className={LinkClass} href="/Compare">
+      <Link className={LinkClass} href="/compare">
         비교하기
       </Link>
-      <Link className={LinkClass} href="Profile">
+      <Link className={LinkClass} href="/profile">
         내 프로필
       </Link>
     </div>

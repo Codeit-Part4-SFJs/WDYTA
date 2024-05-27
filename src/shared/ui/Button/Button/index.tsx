@@ -1,11 +1,5 @@
 import { PropsWithChildren, ButtonHTMLAttributes } from "react";
 
-export enum ButtonSizeEnum {
-  S = "w-[335px] h-[50px] text-base",
-  M = "w-[440px] h-[55px] text-base",
-  L = "w-[640px] h-[65px] text-lg",
-}
-
 export enum ButtonKind {
   primary = "primary",
   secondary = "secondary",
@@ -13,7 +7,6 @@ export enum ButtonKind {
 }
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   kind: ButtonKind;
-  size?: ButtonSizeEnum;
   customSize?: string;
 }
 
@@ -22,42 +15,35 @@ const buttonBase =
 const ButtonStyleByKind = {
   [ButtonKind.primary]: {
     button: "bg-main-gradation disabled:bg-none disabled:bg-gray-35",
-    p: "text-white",
-    disabledP: "text-gray-6E",
+    p: "text-white group-disabled:text-gray-6E",
   },
   [ButtonKind.secondary]: {
     button:
-      "border border-solid border-linear-gradients border-transparent disabled:border-gray-35 disabled:text-gray-6E",
-    p: "disabled:text-gray-6E text-transparent bg-clip-text bg-main-gradation",
-    disabledP: "text-gray-6E",
+      "border border-solid border-main-blue border-transparent disabled:border-gray-35 disabled:text-gray-6E",
+    p: "group-disabled:text-gray-6E text-transparent bg-clip-text bg-main-gradation",
   },
   [ButtonKind.tertiary]: {
     button:
       "bg-transparent border border-solid border-gray-9F disabled:border-gray-35",
-    p: "text-gray-9F disabled:text-gray-6E",
-    disabledP: "text-gray-6E",
+    p: "text-gray-9F group-disabled:text-gray-6E",
   },
 };
 
 const Button = ({
   children,
   kind,
-  size,
+
   customSize,
   disabled,
   ...props
 }: PropsWithChildren<ButtonProps>) => {
-  const sizeClass = customSize ? customSize : size;
-  const pStyle = disabled
-    ? ButtonStyleByKind[kind].disabledP
-    : ButtonStyleByKind[kind].p;
   return (
     <button
-      className={`${sizeClass} ${buttonBase} ${ButtonStyleByKind[kind].button} `}
+      className={`${customSize} ${buttonBase} ${ButtonStyleByKind[kind].button} group `}
       disabled={disabled}
       {...props}
     >
-      <p className={pStyle}>{children}</p>
+      <p className={ButtonStyleByKind[kind].p}>{children}</p>
     </button>
   );
 };

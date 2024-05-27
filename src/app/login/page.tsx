@@ -1,6 +1,6 @@
-import LoginForm from "@/components/Login/LoginForm";
-import SocialLogin from "@/components/Login/SocialLogin";
-import Link from "next/link";
+import LoginForm from '@/components/Login/LoginForm';
+import SocialLogin from '@/components/Login/SocialLogin';
+import Link from 'next/link';
 
 const Login = () => {
   return (

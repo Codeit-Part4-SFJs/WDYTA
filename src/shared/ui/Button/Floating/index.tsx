@@ -1,6 +1,7 @@
+import { ButtonHTMLAttributes } from "react";
 import IconComponent from "../../Icon/Icon";
 
-interface FloatingProps {
+interface FloatingProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   location?: string;
 }
 
@@ -10,15 +11,15 @@ const Floating = ({ location }: FloatingProps) => {
   };
 
   return (
-    <div
-      className={`flex w-[60px] h-[60px] rounded-full fixed bg-main-gradation ${location} align-center justify-center`}
+    <button
+      className={`flex w-[60px] h-[60px] rounded-full fixed bg-main-gradation items-center justify-center  ${location}`}
     >
       <IconComponent
         name="AddIcon"
         className={`w-[40px] text-white `}
         onClick={makingAlertNow}
       />
-    </div>
+    </button>
   );
 };
 

@@ -1,6 +1,6 @@
 "use client";
 import { FormValues } from "@/shared/types/input";
-import Button, { ButtonKind, ButtonSizeEnum } from "@/shared/ui/Button/Button";
+import Button, { ButtonKind } from "@/shared/ui/Button/Button";
 import EmailInput from "@/shared/ui/Input/Email";
 import PasswordInput from "@/shared/ui/Input/Password";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -24,10 +24,13 @@ const LoginForm = () => {
     >
       <EmailInput register={register} errors={errors} />
       <PasswordInput register={register} errors={errors} />
-      {/* 버튼 컴포넌트 수정 후 변경 예정
-      <Button type="submit" kind={ButtonKind.primary} size={ButtonSizeEnum.L}>
+      <Button
+        type="submit"
+        kind={ButtonKind.primary}
+        customSize="mt-[20px] w-[335px] md:w-[440px] lg:w-[640px] h-[50px] md:h-[55px] lg:h-[65px]"
+      >
         로그인
-      </Button> */}
+      </Button>
     </form>
   );
 };

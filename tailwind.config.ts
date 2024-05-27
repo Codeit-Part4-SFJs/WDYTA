@@ -21,6 +21,7 @@ const config: Config = {
         "main-gradation": "linear-gradient(91deg, #5097FA 0%, #5363FF 100%)",
       },
       colors: {
+        "black-00": "#000000",
         "black-17": "#17171C",
         "black-21": "#21212A",
         "black-2E": "#2E2E3A",
@@ -33,6 +34,21 @@ const config: Config = {
         "gray-35": "#353542",
         "gray-25": "#252530",
 
+        "lime-C5": "#C5D17C",
+
+        "orange-F7": "#F75532",
+        "orange-FF": "#FF7E46",
+
+        "purple-A9": "#A953FF",
+        "purple-75": "#757AFF",
+
+        "green-49": "#49AF1A",
+        "green-23": "#23B581",
+
+        "pink-D6": "#D676C1",
+        "pink-FD": "#FD529A",
+
+        "blue-30": "#3098E3",
         "main-blue": "#5097FA",
         "main-indigo": "#5363FF",
 

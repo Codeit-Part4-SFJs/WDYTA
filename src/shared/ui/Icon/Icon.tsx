@@ -19,9 +19,9 @@ import UpNoColorIcon from "../../../../public/icon/up-no-color.svg";
 import UpIcon from "../../../../public/icon/up.svg";
 import VisibilityIcon from "../../../../public/icon/visibility.svg";
 import VisibilityOffIcon from "../../../../public/icon/visibility-off.svg";
-import { IconProps, IconType } from "@/shared/types/iconType";
+import { IconProps, IconType } from "@/shared/ui/Icon/type/iconType";
 
-const iconTypes: Record<
+export const iconTypes: Record<
   IconType,
   React.ComponentType<React.SVGProps<SVGSVGElement>>
 > = {

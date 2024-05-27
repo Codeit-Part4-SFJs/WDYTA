@@ -13,4 +13,5 @@ export interface SideMenuProps {
 
 export interface SideMenuTabProps {
   category: string;
+  categoryId: number;
 }

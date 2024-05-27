@@ -1,4 +1,4 @@
-import { LabelHTMLAttributes, ReactNode } from "react";
+import { LabelHTMLAttributes, ReactNode } from 'react';
 
 interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   children: ReactNode;

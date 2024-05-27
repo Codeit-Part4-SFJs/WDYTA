@@ -1,4 +1,5 @@
 'use client';
+
 import { FormValues } from '@/shared/types/input';
 import Button, { ButtonKind } from '@/shared/ui/Button/Button';
 import EmailInput from '@/shared/ui/Input/Email';
@@ -18,7 +19,6 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
-    //@todo API 요청
   };
 
   const email = watch('email');
@@ -47,4 +47,4 @@ const LoginForm = () => {
   );
 };
 
-// export default LoginForm;
+export default LoginForm;

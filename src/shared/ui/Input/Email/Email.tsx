@@ -1,7 +1,7 @@
-import Label from "../Label";
-import Input from "..";
-import HelperText from "../HelperText";
-import { AuthInputProps } from "@/shared/types/input";
+import { AuthInputProps } from '@/shared/types/input';
+import Label from '../Label';
+import Input from '..';
+import HelperText from '../HelperText';
 
 const EmailInput = ({ register, errors }: AuthInputProps) => {
   return (
@@ -12,11 +12,11 @@ const EmailInput = ({ register, errors }: AuthInputProps) => {
         inputSize="large"
         type="email"
         placeholder="이메일을 입력해주세요"
-        {...register("email", {
-          required: "이메일을 입력해주세요",
+        {...register('email', {
+          required: '이메일을 입력해주세요',
           pattern: {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: "잘못된 이메일입니다",
+            message: '잘못된 이메일입니다',
           },
         })}
         isError={!!errors.email}

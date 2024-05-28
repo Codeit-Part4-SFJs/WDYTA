@@ -1,4 +1,4 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 export interface FormValues {
   email: string;

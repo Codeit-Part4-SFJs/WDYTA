@@ -1,15 +1,15 @@
-import { InputHTMLAttributes, forwardRef } from "react";
+import { InputHTMLAttributes, forwardRef } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  inputSize: "small" | "medium" | "large";
+  inputSize: 'small' | 'medium' | 'large';
   isError?: boolean;
 }
 
 const SIZE_MAP = {
-  small: "w-[360px] mobile:w-[295px] h-[55px] md:h-[60px] lg:h-[70px]",
+  small: 'w-[360px] mobile:w-[295px] h-[55px] md:h-[60px] lg:h-[70px]',
   medium:
-    "w-[295px] md:w-[510px] lg:w-[540px] h-[55px] md:h-[60px] lg:h-[70px]",
-  large: "w-[335px] md:w-[440px] lg:w-[640px] h-[55px] lg:h-[70px]",
+    'w-[295px] md:w-[510px] lg:w-[540px] h-[55px] md:h-[60px] lg:h-[70px]',
+  large: 'w-[335px] md:w-[440px] lg:w-[640px] h-[55px] lg:h-[70px]',
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -19,13 +19,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         className={`${SIZE_MAP[inputSize]} px-5 py-[23px] rounded-lg border border-solid bg-black-25 text-gray-F1 text-sm lg:text-base placeholder-gray-6E focus:outline-none ${
           isError
-            ? "border-red focus:border-red"
-            : "border-gray-35 focus:border-main-blue"
+            ? 'border-red focus:border-red'
+            : 'border-gray-35 focus:border-main-blue'
         }`}
         {...props}
       />
     );
-  }
+  },
 );
 
 export default Input;

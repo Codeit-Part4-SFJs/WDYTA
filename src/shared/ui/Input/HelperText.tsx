@@ -1,12 +1,12 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 
 interface HelperTextProps {
-  type: "basic" | "error";
+  type: 'basic' | 'error';
 }
 
 const TEXT_TYPE = {
-  basic: "text-gray-6E",
-  error: "text-red",
+  basic: 'text-gray-6E',
+  error: 'text-red',
 };
 
 const HelperText = ({ type, children }: PropsWithChildren<HelperTextProps>) => {

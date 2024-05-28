@@ -1,7 +1,8 @@
-"use client";
-import { FormValues } from "@/shared/types/input";
-import { useState } from "react";
-import { UseFormRegister } from "react-hook-form";
+'use client';
+
+import { FormValues } from '@/shared/types/input';
+import { useState } from 'react';
+import { UseFormRegister } from 'react-hook-form';
 
 export interface TextBoxInputProps {
   register: UseFormRegister<FormValues>;
@@ -11,7 +12,7 @@ export interface TextBoxInputProps {
 const TextBoxInput = ({ register, text }: TextBoxInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const focusStyle = isFocused ? "border-main-blue" : "border-gray-35";
+  const focusStyle = isFocused ? 'border-main-blue' : 'border-gray-35';
 
   return (
     <div
@@ -20,7 +21,7 @@ const TextBoxInput = ({ register, text }: TextBoxInputProps) => {
       <textarea
         className="scrollbar-hide w-full h-[66px] md:h-[106px] bg-black-25 text-gray-F1 text-sm lg:text-base font-normal placeholder-gray-6 resize-none focus:outline-none leading-5 lg:leading-[22px]"
         placeholder="리뷰를 작성해 주세요"
-        {...register("textarea")}
+        {...register('textarea')}
         maxLength={300}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}

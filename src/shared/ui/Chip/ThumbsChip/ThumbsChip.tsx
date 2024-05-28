@@ -10,7 +10,7 @@ interface ThumbsChipProps {
   onClick?: () => void;
 }
 
-const ThumbsChip = ({
+export const ThumbsChip = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   reviewID,
   isLike,
@@ -72,5 +72,3 @@ const ThumbsChip = ({
     </div>
   );
 };
-
-export default ThumbsChip;

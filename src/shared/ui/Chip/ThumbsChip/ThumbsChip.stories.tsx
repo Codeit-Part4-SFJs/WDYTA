@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import ThumbsChip from '.';
+import { ThumbsChip } from './index';
 import '@/styles/globals.css';
 
 export default {

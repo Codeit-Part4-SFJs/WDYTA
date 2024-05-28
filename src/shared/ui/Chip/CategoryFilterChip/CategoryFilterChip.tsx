@@ -4,7 +4,7 @@ import { Icon } from '@/shared/ui/Icon';
 interface CategoryFilterChipProps {
   categoryID: ProductCategoryEnum;
 }
-const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
+export const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
   let categoryClassName = '';
   if (categoryID) {
     categoryClassName = 'text-gray-9F';
@@ -24,5 +24,3 @@ const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
     </div>
   );
 };
-
-export default CategoryFilterChip;

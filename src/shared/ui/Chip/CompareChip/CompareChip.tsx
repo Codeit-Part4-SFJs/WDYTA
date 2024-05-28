@@ -16,7 +16,11 @@ const makeCompareColor = {
   [CompareColor.PINK]: 'pink',
 };
 
-const CompareChip = ({ productName, color, onDelete }: CompareChipProps) => {
+export const CompareChip = ({
+  productName,
+  color,
+  onDelete,
+}: CompareChipProps) => {
   return (
     <div
       className={`inline-flex justify-center items-center gap-3 w-fit h-fit px-[10px] py-[8px] bg-${makeCompareColor[color]} bg-opacity-10 rounded-md`}
@@ -39,5 +43,3 @@ const CompareChip = ({ productName, color, onDelete }: CompareChipProps) => {
     </div>
   );
 };
-
-export default CompareChip;

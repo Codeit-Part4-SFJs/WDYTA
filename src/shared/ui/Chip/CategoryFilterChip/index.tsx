@@ -9,7 +9,6 @@ const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
   if (categoryID) {
     categoryClassName = 'text-gray-9F';
   } else {
-    // 카테고리 선택 안하면 id가 없을 것이므로 "카테고리"로 표시
     categoryClassName = 'text-gray-6E';
   }
 
@@ -18,7 +17,10 @@ const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
       <div
         className={`flex items-center gap-1 text-[14px] font-normal ${categoryClassName}`}
       >
-        <Icon name="CategoryIcon" className="w-[18px] h-[18px] fill-gray-9F" />
+        <Icon
+          name={'CategoryIcon'}
+          className={'w-[18px] h-[18px] fill-gray-9F'}
+        />
         {ProductCategoryEnum[categoryID]}
       </div>
     </div>

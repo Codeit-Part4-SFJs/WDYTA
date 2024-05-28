@@ -28,10 +28,7 @@
     "tailwind-merge": "^2.3.0",
     "tailwind-scrollbar-hide": "^1.1.7",
     "yarn": "^1.22.22",
-    "zustand": "^4.5.2"
-  },
-  "devDependencies": {
-    "@chromatic-com/storybook": "1.4.0",
+    "zustand": "^4.5.2",
     "@storybook/addon-controls": "^8.1.1",
     "@storybook/addon-essentials": "^8.1.1",
     "@storybook/addon-interactions": "^8.1.1",

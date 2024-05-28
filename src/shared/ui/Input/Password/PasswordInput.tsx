@@ -1,9 +1,9 @@
 import { AuthInputProps } from '@/shared/types/input';
 import { useState } from 'react';
+import { Icon } from '@/shared/ui/Icon';
 import Label from '../Label';
 import { Input } from '../Input';
 import HelperText from '../HelperText';
-import Icon from '../../Icon/Icon';
 
 export const PasswordInput = ({ register, errors }: AuthInputProps) => {
   const [isShowPassword, setIsShowPassword] = useState(false);

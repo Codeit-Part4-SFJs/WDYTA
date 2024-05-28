@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Logo from '@/shared/ui/Icon/Logo';
+import { Logo } from '@/shared/ui/Icon';
 
 export const GnbLogo = () => {
   return (

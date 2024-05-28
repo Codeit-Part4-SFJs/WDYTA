@@ -1,14 +1,14 @@
-import { Meta, StoryFn } from "@storybook/react";
-import ImageComponent from "./ImageComponent";
-import { ImageProps } from "@/shared/ui/Img/type/imageType";
-import "@/styles/globals.css";
+import { Meta, StoryFn } from '@storybook/react';
+import { ImageComponent } from '@/shared/ui/Img';
+import { ImageProps } from '@/shared/ui/Img/types/imageType';
+import '@/styles/globals.css';
 
 export default {
-  title: "Image/ImageComponent",
+  title: 'Image/ImageComponent',
   component: ImageComponent,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
     docs: {
       description: {
         component: `
@@ -24,11 +24,11 @@ type을 조절해 profile, product, review 타입에 맞게 사용이 가능합�
   },
   argTypes: {
     type: {
-      control: { type: "select", options: ["product", "profile", "review"] },
+      control: { type: 'select', options: ['product', 'profile', 'review'] },
     },
-    className: { control: "text" },
-    src: { control: "text" },
-    alt: { control: "text" },
+    className: { control: 'text' },
+    src: { control: 'text' },
+    alt: { control: 'text' },
   },
 } as Meta<typeof ImageComponent>;
 
@@ -36,21 +36,21 @@ const Template: StoryFn<ImageProps> = (args) => <ImageComponent {...args} />;
 
 export const ProductImage = Template.bind({});
 ProductImage.args = {
-  type: "product",
-  src: "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/156/1716641993564/next.js.png",
-  alt: "Product Image",
+  type: 'product',
+  src: 'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/156/1716641993564/next.js.png',
+  alt: 'Product Image',
 };
 
 export const ProfileImage = Template.bind({});
 ProfileImage.args = {
-  type: "profile",
-  src: "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/156/1716641993564/next.js.png",
-  alt: "Profile Image",
+  type: 'profile',
+  src: 'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/156/1716641993564/next.js.png',
+  alt: 'Profile Image',
 };
 
 export const ReviewImage = Template.bind({});
 ReviewImage.args = {
-  type: "review",
-  src: "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/156/1716641993564/next.js.png",
-  alt: "Review Image",
+  type: 'review',
+  src: 'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/156/1716641993564/next.js.png',
+  alt: 'Review Image',
 };

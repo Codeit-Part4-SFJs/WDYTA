@@ -1,4 +1,4 @@
-import Icon from '../../Icon/Icon';
+import { Icon } from '@/shared/ui/Icon';
 
 export interface ImageInputProps {
   image: string;

@@ -7,7 +7,7 @@ import {
   GnbSearchButtonProps,
   SearchInput,
 } from '@/shared/ui/Menu/Gnb/types/gnbType';
-import IconComponent from '@/shared/ui/Icon/Icon';
+import { Icon } from '@/shared/ui/Icon';
 import { useClose } from '@/shared/@common/hooks';
 
 const GnbSearchBar = ({
@@ -36,10 +36,7 @@ const GnbSearchBar = ({
           htmlFor="search"
           className="mobile:pl-[15px] mobile:py-4 md:pl-5 md:py-4 lg:pl-5 lg:py-4"
         >
-          <IconComponent
-            name="SearchIcon"
-            className="w-[24px] h-[24px] fill-gray-9F"
-          />
+          <Icon name="SearchIcon" className="w-[24px] h-[24px] fill-gray-9F" />
         </label>
         <input
           className="mobile:px-[15px] mobile:py-4 md:pl-[10px] md:pr-[20px] md:py-4 lg:pl-[10px] lg:pr-[20px] lg:py-4 placeholder:text-gray-6E placeholder:text-[14px] placeholder:not-italic placeholder:font-normal placeholder:leading-normal text-gray-F1 text-[14px] not-italic font-normal leading-normal w-full h-full bg-black-25 rounded-r-[28px] outline-none"
@@ -67,10 +64,7 @@ const GnbSearchButton = ({ handleToggledSearchBar }: GnbSearchButtonProps) => {
       type="button"
       onClick={handleToggledSearchBar}
     >
-      <IconComponent
-        name="SearchIcon"
-        className="w-[24px] h-[24px] fill-gray-9F"
-      />
+      <Icon name="SearchIcon" className="w-[24px] h-[24px] fill-gray-9F" />
     </button>
   );
 };

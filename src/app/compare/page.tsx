@@ -2,7 +2,7 @@
 
 import { Button, ButtonKind } from '@/shared/ui/Button/Button/Button';
 import { Floating } from '@/shared/ui/Button/Floating/Floating';
-import Loading from '@/shared/ui/Icon/Loading';
+import { Loading } from '@/shared/ui/Icon';
 import { Input } from '@/shared/ui/Input';
 import { useState } from 'react';
 

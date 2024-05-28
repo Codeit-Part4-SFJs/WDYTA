@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import IconComponent from '@/shared/ui/Icon/Icon';
+import { Icon } from '@/shared/ui/Icon';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { useClose } from '@/shared/@common/hooks';
@@ -78,7 +78,7 @@ export const GnbHamburgerMenu = () => {
         className={`${isOpenHamburgerMenu && 'bg-black-25 rounded-sm'} md:hidden lg:hidden`}
         type="button"
       >
-        <IconComponent
+        <Icon
           name="MenuIcon"
           className="mobile:w-[24px] mobile:h-[24px] md:hidden lg:hidden fill-gray-9F"
         />

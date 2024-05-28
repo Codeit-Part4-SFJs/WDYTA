@@ -1,7 +1,7 @@
-import GnbHamburgerMenu from "@/shared/ui/Menu/Gnb/GnbHamburgerMenu";
-import GnbLogo from "@/shared/ui/Menu/Gnb/GnbLogo";
-import GnbSearch from "@/shared/ui/Menu/Gnb/GnbSearch";
-import GnbUser from "@/shared/ui/Menu/Gnb/GnbUser";
+import GnbHamburgerMenu from '@/shared/ui/Menu/Gnb/GnbHamburgerMenu';
+import GnbLogo from '@/shared/ui/Menu/Gnb/GnbLogo';
+import GnbSearch from '@/shared/ui/Menu/Gnb/GnbSearch';
+import GnbUser from '@/shared/ui/Menu/Gnb/GnbUser';
 
 const Gnb = () => {
   return (

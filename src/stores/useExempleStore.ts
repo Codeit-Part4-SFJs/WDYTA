@@ -1,13 +1,13 @@
-import { create } from "zustand";
-import { ExampleState } from "./storeType";
+import { create } from 'zustand';
+import { ExampleState } from './storeType';
 
 // 0. storeType.ts에서 타입 선언
 // 1. create를 이용해 스토어를 생성
 // 2. create<타입>()(...) 타입스크립트에서는 반드시 () 하나 더 넣어야함!
 // 3. 필요에 따라 미들웨어를 적용한다.
 const useExampleStore = create<ExampleState>()((set) => ({
-  example: "예시",
-  setExample: (newExample) => set((state) => ({ example: newExample })),
+  example: '예시',
+  setExample: (newExample) => set(() => ({ example: newExample })),
 }));
 
 // 미들웨어 적용 방법

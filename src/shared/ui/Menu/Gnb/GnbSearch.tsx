@@ -1,32 +1,14 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useRef, useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   GnbSearchBarProps,
   GnbSearchButtonProps,
   SearchInput,
-} from "@/shared/types/GnbType";
-import IconComponent from "@/shared/ui/Icon/Icon";
-import useClose from "@/shared/@common/hooks/useClose";
-
-const GnbSearch = () => {
-  const [isOpenMobileSearchBar, setIsOpenMobileSearchBar] =
-    useState<boolean>(false);
-  const handleToggledSearchBar = () => {
-    setIsOpenMobileSearchBar(!isOpenMobileSearchBar);
-  };
-
-  return (
-    <>
-      <GnbSearchButton handleToggledSearchBar={handleToggledSearchBar} />
-      <GnbSearchBar
-        isOpenMobileSearchBar={isOpenMobileSearchBar}
-        handleToggledSearchBar={handleToggledSearchBar}
-      />
-    </>
-  );
-};
+} from '@/shared/types/gnbType';
+import IconComponent from '@/shared/ui/Icon/Icon';
+import useClose from '@/shared/@common/hooks/useClose';
 
 const GnbSearchBar = ({
   isOpenMobileSearchBar,
@@ -44,7 +26,7 @@ const GnbSearchBar = ({
   return (
     <div
       ref={searchBarRef}
-      className={`${isOpenMobileSearchBar ? "block mobile:absolute mobile:z-10 mobile:right-[20px] md:ml-auto lg:ml-auto" : "mobile:hidden md:block md:ml-auto lg:ml-auto lg:block"}`}
+      className={`${isOpenMobileSearchBar ? 'block mobile:absolute mobile:z-10 mobile:right-[20px] md:ml-auto lg:ml-auto' : 'mobile:hidden md:block md:ml-auto lg:ml-auto lg:block'}`}
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -67,7 +49,7 @@ const GnbSearchBar = ({
           id="search"
           placeholder="상품 이름을 검색해 보세요"
           type="text"
-          {...register("search", {
+          {...register('search', {
             required: true,
             // 정규식 등등 새로운 규칙 추가 가능! 지금은 임시로 설정함, 필요시 추가 가능!
             maxLength: 30,
@@ -90,6 +72,24 @@ const GnbSearchButton = ({ handleToggledSearchBar }: GnbSearchButtonProps) => {
         className="w-[24px] h-[24px] fill-gray-9F"
       />
     </button>
+  );
+};
+
+const GnbSearch = () => {
+  const [isOpenMobileSearchBar, setIsOpenMobileSearchBar] =
+    useState<boolean>(false);
+  const handleToggledSearchBar = () => {
+    setIsOpenMobileSearchBar(!isOpenMobileSearchBar);
+  };
+
+  return (
+    <>
+      <GnbSearchButton handleToggledSearchBar={handleToggledSearchBar} />
+      <GnbSearchBar
+        isOpenMobileSearchBar={isOpenMobileSearchBar}
+        handleToggledSearchBar={handleToggledSearchBar}
+      />
+    </>
   );
 };
 

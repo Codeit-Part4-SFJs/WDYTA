@@ -1,10 +1,10 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
-import SideMenu from "@/shared/ui/Menu/SideMenu/SideMenu";
-import "@/styles/globals.css";
+import React from 'react';
+import { StoryFn, Meta } from '@storybook/react';
+import SideMenu from '@/shared/ui/Menu/SideMenu/SideMenu';
+import '@/styles/globals.css';
 
 export default {
-  title: "SideMenu",
+  title: 'SideMenu',
   component: SideMenu,
   argTypes: {
     categories: {

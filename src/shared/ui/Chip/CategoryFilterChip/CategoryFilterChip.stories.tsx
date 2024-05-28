@@ -1,17 +1,17 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
-import CategoryFilterChip from ".";
-import { ProductCategoryEnum } from "@/shared/types/categoryChipType";
-import "@/styles/globals.css";
+import React from 'react';
+import { StoryFn, Meta } from '@storybook/react';
+import CategoryFilterChip from '.';
+import { ProductCategoryEnum } from '@/shared/types/categoryChipType';
+import '@/styles/globals.css';
 
 export default {
-  title: "Chip/CategoryFilterChip",
+  title: 'Chip/CategoryFilterChip',
   component: CategoryFilterChip,
   argTypes: {
     categoryID: {
-      control: "select",
+      control: 'select',
       options: Object.values(ProductCategoryEnum).filter(
-        (value) => typeof value === "number"
+        (value) => typeof value === 'number',
       ),
     },
   },
@@ -23,5 +23,5 @@ const Template: StoryFn<typeof CategoryFilterChip> = (args) => (
 
 export const exampleCategoryFilterChip = Template.bind({});
 exampleCategoryFilterChip.args = {
-  categoryID: ProductCategoryEnum["음악"],
+  categoryID: ProductCategoryEnum['음악'],
 };

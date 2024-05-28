@@ -1,6 +1,6 @@
 'use client';
 
-import { FormValues } from '@/shared/types/input';
+import { FormValues } from '@/shared/@common/types/input';
 import { useState } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 

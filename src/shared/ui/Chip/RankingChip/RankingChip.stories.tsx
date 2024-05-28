@@ -1,24 +1,23 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
-import RankingChip from ".";
-import { RankingColor } from "./index";
-import "@/styles/globals.css";
+import React from 'react';
+import { StoryFn, Meta } from '@storybook/react';
+import { RankingChip, RankingColor } from './index';
+import '@/styles/globals.css';
 
 export default {
-  title: "Chip/RankingChip",
+  title: 'Chip/RankingChip',
   component: RankingChip,
   argTypes: {
     ranking: {
       control: {
-        type: "number",
+        type: 'number',
         min: 1,
         max: 5,
       },
     },
     color: {
-      control: "select",
+      control: 'select',
       options: Object.values(RankingColor).filter(
-        (value) => typeof value === "string"
+        (value) => typeof value === 'string',
       ),
     },
   },

@@ -1,10 +1,10 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes } from 'react';
 
-export type ImageType = "product" | "profile" | "review";
+export type ImageType = 'product' | 'profile' | 'review';
 
 export interface ImageProps {
   type: ImageType;
-  className?: HTMLAttributes<HTMLImageElement>["className"];
+  className?: HTMLAttributes<HTMLImageElement>['className'];
   src: string;
   alt: string;
 }

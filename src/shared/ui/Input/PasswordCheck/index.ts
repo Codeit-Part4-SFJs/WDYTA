@@ -1,1 +1,1 @@
-export { default as PasswordCheckInput } from './PasswordCheckInput';
+export * from './PasswordCheckInput';

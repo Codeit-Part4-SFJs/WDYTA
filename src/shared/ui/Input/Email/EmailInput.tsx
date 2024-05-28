@@ -1,9 +1,9 @@
 import { AuthInputProps } from '@/shared/types/input';
 import Label from '../Label';
 import HelperText from '../HelperText';
-import Input from '../Input';
+import { Input } from '../Input';
 
-const EmailInput = ({ register, errors }: AuthInputProps) => {
+export const EmailInput = ({ register, errors }: AuthInputProps) => {
   return (
     <div className="flex flex-col gap-2.5">
       <Label htmlFor="email">이메일</Label>
@@ -27,5 +27,3 @@ const EmailInput = ({ register, errors }: AuthInputProps) => {
     </div>
   );
 };
-
-export default EmailInput;

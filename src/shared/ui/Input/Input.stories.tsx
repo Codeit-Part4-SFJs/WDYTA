@@ -1,5 +1,5 @@
 import { StoryFn, Meta } from '@storybook/react';
-import Input from './Input';
+import { Input } from './Input';
 import '@/styles/globals.css';
 
 export default {

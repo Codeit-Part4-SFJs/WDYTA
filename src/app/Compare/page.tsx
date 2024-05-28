@@ -1,7 +1,7 @@
 'use client';
 
-import Button, { ButtonKind } from '@/shared/ui/Button/Button';
-import Floating from '@/shared/ui/Button/Floating';
+import { Button, ButtonKind } from '@/shared/ui/Button/Button/Button';
+import { Floating } from '@/shared/ui/Button/Floating/Floating';
 import Loading from '@/shared/ui/Icon/Loading';
 import { Input } from '@/shared/ui/Input';
 import Gnb from '@/shared/ui/Menu/Gnb/Gnb';

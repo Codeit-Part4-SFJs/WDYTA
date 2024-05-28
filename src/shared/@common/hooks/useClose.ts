@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
  * @param {React.RefObject} elementRef Modal, DropDown, SideMenu, HamburgerMenu 영역
  */
 
-export default function useClose(
+export function useClose(
   isOpenElement: boolean,
   handleClose: () => void,
   elementRef: React.RefObject<HTMLDivElement>,

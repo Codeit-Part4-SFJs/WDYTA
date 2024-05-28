@@ -1,9 +1,9 @@
 'use client';
 
-import useSideMenuStore from '@/stores/useSideMenuStore';
+import { useSideMenuStore } from '@/stores';
 import CategoryFilterChip from '@/shared/ui/Chip/CategoryFilterChip';
 
-const SideMenuOpenButton = () => {
+export const SideMenuOpenButton = () => {
   const currentCategory = useSideMenuStore((state) => state.currentCategory);
   const isOpenSideMenu = useSideMenuStore((state) => state.isOpenSideMenu);
   const setIsOpenSideMenu = useSideMenuStore(
@@ -28,5 +28,3 @@ const SideMenuOpenButton = () => {
     </div>
   );
 };
-
-export default SideMenuOpenButton;

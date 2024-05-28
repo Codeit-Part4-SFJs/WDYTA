@@ -6,9 +6,9 @@ import {
   GnbSearchBarProps,
   GnbSearchButtonProps,
   SearchInput,
-} from '@/shared/types/gnbType';
+} from '@/shared/ui/Menu/Gnb/types/gnbType';
 import IconComponent from '@/shared/ui/Icon/Icon';
-import useClose from '@/shared/@common/hooks/useClose';
+import { useClose } from '@/shared/@common/hooks';
 
 const GnbSearchBar = ({
   isOpenMobileSearchBar,
@@ -75,7 +75,7 @@ const GnbSearchButton = ({ handleToggledSearchBar }: GnbSearchButtonProps) => {
   );
 };
 
-const GnbSearch = () => {
+export const GnbSearch = () => {
   const [isOpenMobileSearchBar, setIsOpenMobileSearchBar] =
     useState<boolean>(false);
   const handleToggledSearchBar = () => {
@@ -92,5 +92,3 @@ const GnbSearch = () => {
     </>
   );
 };
-
-export default GnbSearch;

@@ -2,10 +2,13 @@
 
 import { useRef } from 'react';
 import DEFAULT_CATEGORIES from '@/shared/ui/Menu/SideMenu/constant/DEFAULT_CATEGORIES';
-import { Categories, SideMenuProps } from '@/shared/types/categoryType';
-import SideMenuTab from '@/shared/ui/Menu/SideMenu/SideMenuTab';
-import useSideMenuStore from '@/stores/useSideMenuStore';
-import useClose from '@/shared/@common/hooks/useClose';
+import {
+  Categories,
+  SideMenuProps,
+} from '@/shared/ui/Menu/SideMenu/types/categoryType';
+import { SideMenuTab } from '@/shared/ui/Menu/SideMenu/SideMenuTab';
+import { useSideMenuStore } from '@/stores';
+import { useClose } from '@/shared/@common/hooks';
 
 /**
  * 메인 페이지의 page.tsx에서 API 요청해서 카테고리 데이터 받아오고 page.tsx에서 사용하면됨
@@ -13,7 +16,7 @@ import useClose from '@/shared/@common/hooks/useClose';
  * @param categories '/categories'로 GET 요청해서 받은 데이터
  */
 
-const SideMenu = ({ categories }: SideMenuProps) => {
+export const SideMenu = ({ categories }: SideMenuProps) => {
   const categoryList: Categories = categories ?? DEFAULT_CATEGORIES;
 
   const isOpenSideMenu = useSideMenuStore((state) => state.isOpenSideMenu);
@@ -49,5 +52,3 @@ const SideMenu = ({ categories }: SideMenuProps) => {
     </div>
   );
 };
-
-export default SideMenu;

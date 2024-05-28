@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import SideMenu from '@/shared/ui/Menu/SideMenu/SideMenu';
+import { SideMenu } from '@/shared/ui/Menu/SideMenu';
 import '@/styles/globals.css';
 
 export default {

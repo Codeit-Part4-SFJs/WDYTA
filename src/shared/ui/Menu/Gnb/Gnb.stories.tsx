@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import Gnb from '@/shared/ui/Menu/Gnb/Gnb';
+import { Gnb } from '@/shared/ui/Menu/Gnb';
 import '@/styles/globals.css';
 
 export default {

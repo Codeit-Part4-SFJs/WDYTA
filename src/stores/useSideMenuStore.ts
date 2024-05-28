@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import { SideMenuState } from '@/stores/storeType';
 
-const useSideMenuStore = create<SideMenuState>()(
+export const useSideMenuStore = create<SideMenuState>()(
   devtools(
     persist(
       (set) => ({
@@ -22,5 +22,3 @@ const useSideMenuStore = create<SideMenuState>()(
     { name: 'SideMenuStore' },
   ),
 );
-
-export default useSideMenuStore;

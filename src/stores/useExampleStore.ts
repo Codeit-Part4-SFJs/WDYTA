@@ -5,7 +5,7 @@ import { ExampleState } from '@/stores/storeType';
 // 1. create를 이용해 스토어를 생성
 // 2. create<타입>()(...) 타입스크립트에서는 반드시 () 하나 더 넣어야함!
 // 3. 필요에 따라 미들웨어를 적용한다.
-const useExampleStore = create<ExampleState>()((set) => ({
+export const useExampleStore = create<ExampleState>()((set) => ({
   example: '예시',
   setExample: (newExample) => set(() => ({ example: newExample })),
 }));
@@ -29,5 +29,3 @@ const useExampleStore = create<ExampleState>()((set) => ({
 // 주의할점은 구조분해 할당을 이용해 한번에 호출하면 안된다. 이 경우 서로 영향을 줘서 불필요한 부분까지 재렌더링을 유발할 수 있다고한다.
 // Bad Code:
 // const {example, setExample} = useExampleStore();
-
-export default useExampleStore;

@@ -30,7 +30,7 @@ const GnbUserFeature = () => {
   );
 };
 
-const GnbUser = () => {
+export const GnbUser = () => {
   // TO DO: 로그인 기능 구현 이후 로그인 유무에 따른 분기처리 추가 예정, 현재는 임시로 만든 상태!
   const isLoggedIn = false;
 
@@ -40,5 +40,3 @@ const GnbUser = () => {
     </div>
   );
 };
-
-export default GnbUser;

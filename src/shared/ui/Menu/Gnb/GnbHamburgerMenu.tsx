@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import IconComponent from '@/shared/ui/Icon/Icon';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import useClose from '@/shared/@common/hooks/useClose';
+import { useClose } from '@/shared/@common/hooks';
 
 const GnbHamburgerMenuOption = () => {
   // TO DO: 로그인 기능 구현 이후 로그인 유무에 따른 분기처리 추가 예정, 현재는 임시로 만든 상태!
@@ -58,7 +58,7 @@ const GnbHamburgerMenuOption = () => {
   );
 };
 
-const GnbHamburgerMenu = () => {
+export const GnbHamburgerMenu = () => {
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] =
     useState<boolean>(false);
   const handleToggledHamburgerMenu = () => {
@@ -87,5 +87,3 @@ const GnbHamburgerMenu = () => {
     </div>
   );
 };
-
-export default GnbHamburgerMenu;

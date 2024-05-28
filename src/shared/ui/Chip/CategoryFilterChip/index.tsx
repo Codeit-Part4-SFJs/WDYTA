@@ -1,16 +1,16 @@
-import { ProductCategoryEnum } from "@/shared/types/categoryChipType";
-import Icon from "@/shared/ui/Icon/Icon";
+import { ProductCategoryEnum } from '@/shared/types/categoryChipType';
+import Icon from '@/shared/ui/Icon/Icon';
 
 interface CategoryFilterChipProps {
   categoryID: ProductCategoryEnum;
 }
 const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
-  let categoryClassName = "";
+  let categoryClassName = '';
   if (categoryID) {
-    categoryClassName = "text-gray-9F";
+    categoryClassName = 'text-gray-9F';
   } else {
     //카테고리 선택 안하면 id가 없을 것이므로 "카테고리"로 표시
-    categoryClassName = "text-gray-6E";
+    categoryClassName = 'text-gray-6E';
   }
 
   return (
@@ -19,8 +19,8 @@ const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
         className={`flex items-center gap-1 text-[14px] font-normal ${categoryClassName}`}
       >
         <Icon
-          name={"CategoryIcon"}
-          className={"w-[18px] h-[18px] fill-gray-9F"}
+          name={'CategoryIcon'}
+          className={'w-[18px] h-[18px] fill-gray-9F'}
         />
         {ProductCategoryEnum[categoryID]}
       </div>

@@ -2,7 +2,7 @@ import { useRef, useState, PropsWithChildren } from 'react';
 import useClose from '@/shared/@common/hooks/useClose';
 import Icon from '../../Icon/Icon';
 
-interface Option {
+export interface Option {
   value: string;
   label: string;
 }
@@ -13,7 +13,7 @@ export interface SortProps {
   onSelect: (value: string) => void;
 }
 
-const Sort = ({
+export const Sort = ({
   children,
   options,
   onSelect,
@@ -89,5 +89,3 @@ const Sort = ({
     </div>
   );
 };
-
-export default Sort;

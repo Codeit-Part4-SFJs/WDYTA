@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import Floating from './Floating';
+import { Floating } from './Floating';
 
 export default {
   title: 'Floating',

@@ -1,9 +1,8 @@
 import { useRef, useState, PropsWithChildren } from 'react';
-
 import useClose from '@/shared/@common/hooks/useClose';
 import Icon from '../../Icon/Icon';
 
-interface Option {
+export interface Option {
   value: string;
   label: string;
 }
@@ -14,7 +13,7 @@ export interface DropdownProps {
   onSelect: (value: string) => void;
 }
 
-const Dropdown = ({
+export const Dropdown = ({
   children,
   options,
   onSelect,
@@ -95,5 +94,3 @@ const Dropdown = ({
     </div>
   );
 };
-
-export default Dropdown;

@@ -1,9 +1,13 @@
 import IconComponent from '../../Icon/Icon';
 
-const Floating = () => {
+export const Floating = () => {
   const makingAlertNow = () => {
     alert('Floating이 클릭되었습니다!');
   };
+
+  /*
+    onClick으로 상품 등록 Modal Open 해야 함.
+  */
 
   return (
     <button
@@ -18,8 +22,3 @@ const Floating = () => {
     </button>
   );
 };
-/*
-  onClick으로 상품 등록 Modal Open 해야 함.
-*/
-
-export default Floating;

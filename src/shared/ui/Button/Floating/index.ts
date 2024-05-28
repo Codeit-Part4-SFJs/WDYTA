@@ -1,1 +1,1 @@
-export * from './Floating';
+export * from '@/shared/ui/Button/Floating/Floating';

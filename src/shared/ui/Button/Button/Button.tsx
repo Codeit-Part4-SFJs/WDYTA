@@ -10,9 +10,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   customSize?: string;
 }
 
-const buttonBase =
+export const buttonBase =
   'flex justify-center items-center gap-[10px] flex-shrink-0 rounded-lg whitespace-nowrap';
-const ButtonStyleByKind = {
+export const ButtonStyleByKind = {
   [ButtonKind.primary]: {
     button: 'bg-main-gradation disabled:bg-none disabled:bg-gray-35',
     p: 'text-white group-disabled:text-gray-6E',
@@ -29,7 +29,7 @@ const ButtonStyleByKind = {
   },
 };
 
-const Button = ({
+export const Button = ({
   children,
   kind,
   customSize,
@@ -56,5 +56,3 @@ onClick Prop을 활용하여 다음 동작을 결정하시면 됩니다.
       </PrimaryButton>
   와 같이 사용하시면 children props로 값이 전달됩니다. 
 */
-
-export default Button;

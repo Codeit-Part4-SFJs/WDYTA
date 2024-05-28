@@ -1,10 +1,10 @@
-import { ProductCategoryEnum } from '@/shared/types/categoryChipType';
+import { ProductCategoryEnum } from '@/shared/ui/Chip/types/categoryChipType';
 import Icon from '@/shared/ui/Icon/Icon';
 
 interface CategoryFilterChipProps {
   categoryID: ProductCategoryEnum;
 }
-const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
+export const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
   let categoryClassName = '';
   if (categoryID) {
     categoryClassName = 'text-gray-9F';
@@ -24,5 +24,3 @@ const CategoryFilterChip = ({ categoryID }: CategoryFilterChipProps) => {
     </div>
   );
 };
-
-export default CategoryFilterChip;

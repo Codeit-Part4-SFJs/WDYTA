@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import RankingChip, { RankingColor } from '.';
+import { RankingChip, RankingColor } from './index';
 import '@/styles/globals.css';
 
 export default {

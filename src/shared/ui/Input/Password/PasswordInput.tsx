@@ -2,10 +2,10 @@ import { AuthInputProps } from '@/shared/types/input';
 import { useState } from 'react';
 import { Icon } from '@/shared/ui/Icon';
 import Label from '../Label';
-import Input from '../Input';
+import { Input } from '../Input';
 import HelperText from '../HelperText';
 
-const PasswordInput = ({ register, errors }: AuthInputProps) => {
+export const PasswordInput = ({ register, errors }: AuthInputProps) => {
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const toggleIcon = () => {
@@ -47,5 +47,3 @@ const PasswordInput = ({ register, errors }: AuthInputProps) => {
     </div>
   );
 };
-
-export default PasswordInput;

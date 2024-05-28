@@ -1,6 +1,7 @@
 import { useRef, useState, PropsWithChildren } from 'react';
 import { Icon } from '@/shared/ui/Icon';
-import useClose from '@/shared/@common/hooks/useClose';
+import { useClose } from '@/shared/@common/hooks';
+
 
 export interface Option {
   value: string;

@@ -1,7 +1,7 @@
 import { AuthInputProps } from '@/shared/types/input';
 import { useState } from 'react';
 import Label from '../Label';
-import Input from '../Input';
+import { Input } from '../Input';
 import HelperText from '../HelperText';
 import { Icon } from '../../Icon/Icon';
 
@@ -9,7 +9,7 @@ export interface PasswordCheckInputProps extends AuthInputProps {
   password: string;
 }
 
-const PasswordCheckInput = ({
+export const PasswordCheckInput = ({
   password,
   register,
   errors,
@@ -48,5 +48,3 @@ const PasswordCheckInput = ({
     </div>
   );
 };
-
-export default PasswordCheckInput;

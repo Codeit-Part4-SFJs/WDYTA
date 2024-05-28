@@ -6,27 +6,9 @@ import {
   GnbSearchBarProps,
   GnbSearchButtonProps,
   SearchInput,
-} from '@/shared/types/GnbType';
+} from '@/shared/ui/Menu/Gnb/types/gnbType';
 import { Icon } from '@/shared/ui/Icon';
-import useClose from '@/shared/@common/hooks/useClose';
-
-const GnbSearch = () => {
-  const [isOpenMobileSearchBar, setIsOpenMobileSearchBar] =
-    useState<boolean>(false);
-  const handleToggledSearchBar = () => {
-    setIsOpenMobileSearchBar(!isOpenMobileSearchBar);
-  };
-
-  return (
-    <>
-      <GnbSearchButton handleToggledSearchBar={handleToggledSearchBar} />
-      <GnbSearchBar
-        isOpenMobileSearchBar={isOpenMobileSearchBar}
-        handleToggledSearchBar={handleToggledSearchBar}
-      />
-    </>
-  );
-};
+import { useClose } from '@/shared/@common/hooks';
 
 const GnbSearchBar = ({
   isOpenMobileSearchBar,
@@ -87,4 +69,20 @@ const GnbSearchButton = ({ handleToggledSearchBar }: GnbSearchButtonProps) => {
   );
 };
 
-export default GnbSearch;
+export const GnbSearch = () => {
+  const [isOpenMobileSearchBar, setIsOpenMobileSearchBar] =
+    useState<boolean>(false);
+  const handleToggledSearchBar = () => {
+    setIsOpenMobileSearchBar(!isOpenMobileSearchBar);
+  };
+
+  return (
+    <>
+      <GnbSearchButton handleToggledSearchBar={handleToggledSearchBar} />
+      <GnbSearchBar
+        isOpenMobileSearchBar={isOpenMobileSearchBar}
+        handleToggledSearchBar={handleToggledSearchBar}
+      />
+    </>
+  );
+};

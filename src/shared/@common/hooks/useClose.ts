@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 /**
  * 외부 영역을 클릭하거나 esc 키를 눌렀을 때 Modal, DropDown, SideMenu, HamburgerMenu를 닫는 훅
@@ -9,10 +9,10 @@ import React, { useEffect } from "react";
  * @param {React.RefObject} elementRef Modal, DropDown, SideMenu, HamburgerMenu 영역
  */
 
-export default function useClose(
+export function useClose(
   isOpenElement: boolean,
   handleClose: () => void,
-  elementRef: React.RefObject<HTMLDivElement>
+  elementRef: React.RefObject<HTMLDivElement>,
 ) {
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -24,19 +24,19 @@ export default function useClose(
       }
     };
     const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         handleClose();
       }
     };
 
     if (isOpenElement) {
-      document.addEventListener("mousedown", handleOutsideClick);
-      document.addEventListener("keydown", handleEscapeKey);
+      document.addEventListener('mousedown', handleOutsideClick);
+      document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-      document.removeEventListener("keydown", handleEscapeKey);
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('keydown', handleEscapeKey);
     };
   }, [isOpenElement, handleClose, elementRef]);
 }

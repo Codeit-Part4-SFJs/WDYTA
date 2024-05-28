@@ -1,7 +1,7 @@
 import { FormValues } from '@/shared/types/input';
 import { Meta, StoryFn } from '@storybook/react';
 import { useForm } from 'react-hook-form';
-import PasswordInput from './PasswordInput';
+import { PasswordInput } from './PasswordInput';
 
 export default {
   title: 'Input/PasswordInput',

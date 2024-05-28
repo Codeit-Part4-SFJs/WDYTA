@@ -1,33 +1,34 @@
-import React from "react";
-import { Meta, StoryFn } from "@storybook/react";
-import { useForm } from "react-hook-form";
-import PasswordCheckInput from ".";
-import { FormValues } from "@/shared/types/input";
+import { FormValues } from '@/shared/types/input';
+import { Meta, StoryFn } from '@storybook/react';
+import { useForm } from 'react-hook-form';
+import PasswordCheckInput, {
+  PasswordCheckInputProps,
+} from './PasswordCheckInput';
 
 export default {
-  title: "Input/PasswordCheckInput",
+  title: 'Input/PasswordCheckInput',
   component: PasswordCheckInput,
-  argTypes: {
-    password: { control: "text" },
-  },
 } as Meta;
 
-const Template: StoryFn<{ password: string }> = (args) => {
+const Template: StoryFn<PasswordCheckInputProps> = () => {
   const {
     register,
+    watch,
     formState: { errors },
-  } = useForm<FormValues>({ mode: "onChange" });
+  } = useForm<FormValues>({ mode: 'onChange' });
+
+  const password = watch('password');
 
   return (
     <PasswordCheckInput
       register={register}
       errors={errors}
-      password={args.password}
+      password={password}
     />
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  password: "qwerqwer1234!",
+  password: 'qwerqwer1234!',
 };

@@ -18,9 +18,8 @@ const Floating = () => {
     </button>
   );
 };
-
-export default Floating;
-
 /*
   onClick으로 상품 등록 Modal Open 해야 함.
 */
+
+export default Floating;

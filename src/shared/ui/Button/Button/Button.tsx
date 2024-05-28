@@ -32,7 +32,6 @@ const ButtonStyleByKind = {
 const Button = ({
   children,
   kind,
-
   customSize,
   disabled,
   ...props

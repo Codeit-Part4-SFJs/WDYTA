@@ -11,9 +11,11 @@ interface ThumbsChipProps {
 }
 
 const ThumbsChip = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   reviewID,
   isLike,
   likeCount,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onClick,
 }: ThumbsChipProps) => {
   const [isLiked, setIsLiked] = useState(isLike);
@@ -57,7 +59,7 @@ const ThumbsChip = ({
   return (
     <div className="flex flex-col justify-center items-start gap-3 w-fit h-fit px-[12px] py-[6px] rounded-full bg-gray-25 border-solid border-2 border-gray-35">
       <div className="flex items-center gap-1">
-        <button onClick={handleLike}>
+        <button type="button" onClick={handleLike}>
           <Icon
             name={likeIconImage}
             className="w-[18px] h-[18px] fill-gray-9F"

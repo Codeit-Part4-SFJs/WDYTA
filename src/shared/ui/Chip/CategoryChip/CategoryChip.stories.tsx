@@ -1,7 +1,7 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import CategoryChip from '.';
 import { ProductCategoryEnum } from '@/shared/types/categoryChipType';
+import CategoryChip from '.';
 import '@/styles/globals.css';
 
 export default {

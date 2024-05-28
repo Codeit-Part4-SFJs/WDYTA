@@ -1,7 +1,7 @@
 export enum RankingColor {
-  PINK = "PINK",
-  GREEN = "GREEN",
-  GRAY = "GRAY",
+  PINK = 'PINK',
+  GREEN = 'GREEN',
+  GRAY = 'GRAY',
 }
 
 interface RankingChipProps {
@@ -10,9 +10,9 @@ interface RankingChipProps {
 }
 
 const makeColorByRanking = {
-  [RankingColor.PINK]: "text-pink bg-pink",
-  [RankingColor.GREEN]: "text-green bg-green",
-  [RankingColor.GRAY]: "text-gray-9F bg-gray-9F",
+  [RankingColor.PINK]: 'text-pink bg-pink',
+  [RankingColor.GREEN]: 'text-green bg-green',
+  [RankingColor.GRAY]: 'text-gray-9F bg-gray-9F',
 };
 
 const RankingChip = ({ ranking, color }: RankingChipProps) => {

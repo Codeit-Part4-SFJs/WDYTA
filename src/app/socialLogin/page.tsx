@@ -1,4 +1,4 @@
-import SocialLoginForm from "@/components/SocialLogin/SosialLoginForm";
+import SocialLoginForm from '@/components/SocialLogin/SosialLoginForm';
 
 const SocialLogin = () => {
   return (

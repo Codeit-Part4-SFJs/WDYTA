@@ -1,5 +1,5 @@
-import RegisterForm from "@/components/Register/RegisterForm";
-import Link from "next/link";
+import RegisterForm from '@/components/Register/RegisterForm';
+import Link from 'next/link';
 
 const Register = () => {
   return (

@@ -1,8 +1,8 @@
-import Icon from "@/shared/ui/Icon/Icon";
+import Icon from '@/shared/ui/Icon/Icon';
 
 export enum CompareColor {
-  GREEN = "GREEN",
-  PINK = "PINK",
+  GREEN = 'GREEN',
+  PINK = 'PINK',
 }
 
 interface CompareChipProps {
@@ -12,8 +12,8 @@ interface CompareChipProps {
 }
 
 const makeCompareColor = {
-  [CompareColor.GREEN]: "green",
-  [CompareColor.PINK]: "pink",
+  [CompareColor.GREEN]: 'green',
+  [CompareColor.PINK]: 'pink',
 };
 
 const CompareChip = ({ productName, color, onDelete }: CompareChipProps) => {
@@ -32,7 +32,7 @@ const CompareChip = ({ productName, color, onDelete }: CompareChipProps) => {
         className="flex justify-center items-center p-[2px] gap-3 w-[17px] lg:w-[19px] h-[17px] lg:h-[19px] rounded-md bg-black-00 bg-opacity-80"
       >
         <Icon
-          name={"CloseIcon"}
+          name="CloseIcon"
           className="w-[13px] lg:w-[15px] h-[13px] lg:h-[15px] z-10 fill-gray-F1"
         />
       </button>

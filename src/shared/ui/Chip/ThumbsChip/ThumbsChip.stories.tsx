@@ -1,20 +1,20 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
-import ThumbsChip from ".";
-import "@/styles/globals.css";
+import React from 'react';
+import { StoryFn, Meta } from '@storybook/react';
+import ThumbsChip from '.';
+import '@/styles/globals.css';
 
 export default {
-  title: "Chip/ThumbsChip",
+  title: 'Chip/ThumbsChip',
   component: ThumbsChip,
   argTypes: {
     reviewID: {
-      control: "number",
+      control: 'number',
     },
     isLike: {
-      control: "boolean",
+      control: 'boolean',
     },
     likeCount: {
-      control: "number",
+      control: 'number',
     },
   },
 } as Meta<typeof ThumbsChip>;

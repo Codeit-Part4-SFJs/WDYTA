@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import Sort from './Sort';
+import { Sort } from './Sort';
 import '../../../../styles/globals.css';
 
 export default {

@@ -1,9 +1,9 @@
 import { AuthInputProps } from '@/shared/types/input';
 import Label from '../Label';
-import Input from '../Input';
+import { Input } from '../Input';
 import HelperText from '../HelperText';
 
-const NicknameInput = ({ register, errors }: AuthInputProps) => {
+export const NicknameInput = ({ register, errors }: AuthInputProps) => {
   return (
     <div className="flex flex-col gap-2.5">
       <Label htmlFor="nickname">닉네임</Label>
@@ -27,5 +27,3 @@ const NicknameInput = ({ register, errors }: AuthInputProps) => {
     </div>
   );
 };
-
-export default NicknameInput;

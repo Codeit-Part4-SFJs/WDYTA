@@ -12,7 +12,7 @@ const SIZE_MAP = {
   large: 'w-[335px] md:w-[440px] lg:w-[640px] h-[55px] lg:h-[70px]',
 };
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ inputSize, isError, ...props }, ref) => {
     return (
       <input
@@ -27,5 +27,3 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     );
   },
 );
-
-export default Input;

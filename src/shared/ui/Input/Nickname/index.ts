@@ -1,1 +1,1 @@
-export { default as NicknameInput } from './NicknameInput';
+export * from './NicknameInput';

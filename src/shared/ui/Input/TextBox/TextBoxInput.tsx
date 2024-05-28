@@ -9,7 +9,7 @@ export interface TextBoxInputProps {
   text: string;
 }
 
-const TextBoxInput = ({ register, text }: TextBoxInputProps) => {
+export const TextBoxInput = ({ register, text }: TextBoxInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const focusStyle = isFocused ? 'border-main-blue' : 'border-gray-35';
@@ -32,5 +32,3 @@ const TextBoxInput = ({ register, text }: TextBoxInputProps) => {
     </div>
   );
 };
-
-export default TextBoxInput;

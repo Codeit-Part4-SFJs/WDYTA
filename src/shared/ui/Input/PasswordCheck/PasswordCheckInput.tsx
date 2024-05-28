@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Label from '../Label';
 import Input from '../Input';
 import HelperText from '../HelperText';
-import Icon from '../../Icon/Icon';
+import { Icon } from '../../Icon/Icon';
 
 export interface PasswordCheckInputProps extends AuthInputProps {
   password: string;

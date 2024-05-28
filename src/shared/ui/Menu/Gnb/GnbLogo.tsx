@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Logo from "@/shared/ui/Icon/Logo";
+import Link from 'next/link';
+import { Logo } from '@/shared/ui/Icon';
 
 const GnbLogo = () => {
   return (

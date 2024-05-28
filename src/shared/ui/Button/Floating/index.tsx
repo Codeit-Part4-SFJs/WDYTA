@@ -1,4 +1,4 @@
-import IconComponent from "../../Icon/Icon";
+import { Icon } from '@/shared/ui/Icon';
 
 interface FloatingProps {
   location?: string;
@@ -6,14 +6,14 @@ interface FloatingProps {
 
 const Floating = ({ location }: FloatingProps) => {
   const makingAlertNow = () => {
-    alert("Floating이 클릭되었습니다!");
+    alert('Floating이 클릭되었습니다!');
   };
 
   return (
     <div
       className={`flex w-[60px] h-[60px] rounded-full fixed bg-main-gradation ${location} align-center justify-center`}
     >
-      <IconComponent
+      <Icon
         name="AddIcon"
         className={`w-[40px] text-white `}
         onClick={makingAlertNow}

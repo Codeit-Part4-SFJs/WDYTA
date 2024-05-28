@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { usePathname } from "next/navigation";
-import IconComponent from "@/shared/ui/Icon/Icon";
-import Link from "next/link";
-import { useRef, useState } from "react";
-import { GnbHamburgerMenuOptionProps } from "@/shared/types/GnbType";
-import useClose from "@/shared/@common/hooks/useClose";
+import { usePathname } from 'next/navigation';
+import { Icon } from '@/shared/ui/Icon';
+import Link from 'next/link';
+import { useRef, useState } from 'react';
+import { GnbHamburgerMenuOptionProps } from '@/shared/types/GnbType';
+import useClose from '@/shared/@common/hooks/useClose';
 
 const GnbHamburgerMenu = () => {
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] =
@@ -23,10 +23,10 @@ const GnbHamburgerMenu = () => {
     >
       <button
         onClick={handleToggledHamburgerMenu}
-        className={`${isOpenHamburgerMenu && "bg-black-25 rounded-sm"} md:hidden lg:hidden`}
+        className={`${isOpenHamburgerMenu && 'bg-black-25 rounded-sm'} md:hidden lg:hidden`}
         type="button"
       >
-        <IconComponent
+        <Icon
           name="MenuIcon"
           className="mobile:w-[24px] mobile:h-[24px] md:hidden lg:hidden fill-gray-9F"
         />
@@ -54,22 +54,22 @@ const GnbHamburgerMenuOption = ({
   useClose(isOpenHamburgerMenu, handleToggledHamburgerMenu, hamburgerMenuRef);
 
   const linkClass =
-    "block w-36 p-4 hover:bg-black-25 focus:bg-black-25 focus:outline-none";
+    'block w-36 p-4 hover:bg-black-25 focus:bg-black-25 focus:outline-none';
 
   return (
     <div className="mobile:block md:hidden lg:hidden absolute z-50 top-[50px] left-[20px] w-36 overflow-hidden bg-black-1C rounded-lg border border-solid border-black-25 text-gray-F1 not-italic font-normal leading-normal text-[14px] text-center">
-      {pathname === "/login" && (
+      {pathname === '/login' && (
         <Link className={linkClass} href="/register">
           회원가입
         </Link>
       )}
-      {pathname === "/register" && (
+      {pathname === '/register' && (
         <Link className={linkClass} href="/login">
           로그인
         </Link>
       )}
-      {pathname !== "/login" &&
-        pathname !== "/register" &&
+      {pathname !== '/login' &&
+        pathname !== '/register' &&
         (isLoggedIn ? (
           <div>
             <Link

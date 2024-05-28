@@ -1,7 +1,7 @@
 'use client';
 
 import { FormValues } from '@/shared/types/input';
-import Button, { ButtonKind } from '@/shared/ui/Button/Button';
+import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { NicknameInput } from '@/shared/ui/Input/Nickname';
 import { SubmitHandler, useForm } from 'react-hook-form';
 

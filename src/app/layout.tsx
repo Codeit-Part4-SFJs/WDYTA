@@ -1,5 +1,5 @@
 import '@/styles/globals.css';
-import { Gnb } from '@/shared/ui/Menu/Gnb/Gnb';
+import { Gnb } from '@/shared/ui/Menu/Gnb';
 
 export const metadata = {
   title: 'Next.js',

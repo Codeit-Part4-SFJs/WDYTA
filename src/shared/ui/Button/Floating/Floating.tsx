@@ -1,4 +1,4 @@
-import IconComponent from '../../Icon/Icon';
+import { Icon } from '@/shared/ui/Icon';
 
 export const Floating = () => {
   const makingAlertNow = () => {
@@ -14,7 +14,7 @@ export const Floating = () => {
       type="button"
       className="flex w-[60px] h-[60px] rounded-full fixed bg-main-gradation items-center justify-center right-[90px] bottom-[180px] md:right-[30px] md:bottom-[60px] mobile:right-5 mobile:bottom-10"
     >
-      <IconComponent
+      <Icon
         name="AddIcon"
         className={`w-[40px] text-white `}
         onClick={makingAlertNow}

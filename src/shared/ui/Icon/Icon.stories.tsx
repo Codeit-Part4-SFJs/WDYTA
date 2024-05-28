@@ -1,14 +1,13 @@
-import { Meta, StoryFn } from "@storybook/react";
-import IconComponent from "./Icon";
-import { IconProps, IconType } from "@/shared/ui/Icon/type/iconType";
-import { iconTypes } from "./Icon";
+import { Meta, StoryFn } from '@storybook/react';
+import { IconProps } from '@/shared/ui/Icon/types/iconType';
+import { iconTypes, Icon } from '@/shared/ui/Icon/';
 
 export default {
-  title: "Icon/IconComponent",
-  component: IconComponent,
-  tags: ["autodocs"],
+  title: 'Icon/Icon',
+  component: Icon,
+  tags: ['autodocs'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
     docs: {
       description: {
         component: `
@@ -24,18 +23,17 @@ export default {
     },
   },
   argTypes: {
-    name: { control: { type: "select", options: Object.values(iconTypes) } },
-    className: { control: "text" },
-    onClick: { action: "clicked" },
+    name: { control: { type: 'select', options: Object.values(iconTypes) } },
+    className: { control: 'text' },
+    onClick: { action: 'clicked' },
   },
 } as Meta;
 
-const Template: StoryFn<IconProps> = (args) => <IconComponent {...args} />;
+const Template: StoryFn<IconProps> = (args) => <Icon {...args} />;
 
-export const Icon = Template.bind({});
+export const IconCompoent = Template.bind({});
 
-Icon.args = {
-  name: "StarIcon",
-  className:
-    "mobile:w-[12px] mobile:h-[12px] md:w-[15px] md:h-[15px] lg:w-[16px] lg:h-[16px]",
+IconCompoent.args = {
+  name: 'StarIcon',
+  className: '',
 };

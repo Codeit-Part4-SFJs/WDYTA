@@ -1,6 +1,6 @@
 import { StoryFn, Meta } from '@storybook/react';
 import '@/styles/globals.css';
-import ImageInput, { ImageInputProps } from './ImageInput';
+import { ImageInput, ImageInputProps } from './ImageInput';
 
 export default {
   title: 'Input/ImageInput',

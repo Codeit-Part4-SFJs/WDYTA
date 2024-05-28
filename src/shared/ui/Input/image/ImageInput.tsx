@@ -1,4 +1,4 @@
-import Icon from '../../Icon/Icon';
+import { Icon } from '@/shared/ui/Icon';
 
 export interface ImageInputProps {
   image: string;
@@ -6,7 +6,7 @@ export interface ImageInputProps {
   handleImageUpload: () => void;
 }
 
-const ImageInput = ({
+export const ImageInput = ({
   image,
   handleDeleteButton,
   handleImageUpload,
@@ -51,5 +51,3 @@ const ImageInput = ({
     </div>
   );
 };
-
-export default ImageInput;

@@ -1,11 +1,11 @@
-import { Meta, StoryFn } from "@storybook/react";
-import Logo from "./Logo";
+import { Meta, StoryFn } from '@storybook/react';
+import { Logo } from '@/shared/ui/Icon';
 
 export default {
-  title: "Icon/Logo",
+  title: 'Icon/Logo',
   component: Logo,
 } as Meta;
 
 const Template: StoryFn = () => <Logo />;
 
-export const Icon = Template.bind({});
+export const LogoIcon = Template.bind({});

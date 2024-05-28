@@ -1,11 +1,11 @@
-import React from "react";
-import { Meta, StoryFn } from "@storybook/react";
-import { useForm } from "react-hook-form";
-import EmailInput from ".";
-import { FormValues } from "@/shared/types/input";
+import React from 'react';
+import { Meta, StoryFn } from '@storybook/react';
+import { useForm } from 'react-hook-form';
+import { FormValues } from '@/shared/types/input';
+import EmailInput from './EmailInput';
 
 export default {
-  title: "Input/EmailInput",
+  title: 'Input/EmailInput',
   component: EmailInput,
 } as Meta;
 
@@ -13,7 +13,7 @@ const Template: StoryFn = () => {
   const {
     register,
     formState: { errors },
-  } = useForm<FormValues>({ mode: "onChange" });
+  } = useForm<FormValues>({ mode: 'onChange' });
 
   return <EmailInput register={register} errors={errors} />;
 };

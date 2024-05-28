@@ -1,7 +1,7 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import { Dropdown } from './Dropdown';
-import '../../../../styles/globals.css';
+import '@/styles/globals.css';
 
 export default {
   title: 'Dropdown',

@@ -1,4 +1,4 @@
-import { ProductCategoryEnum } from '@/shared/types/categoryChipType';
+import { ProductCategoryEnum } from '@/shared/ui/Chip/types/categoryChipType';
 import { Icon } from '@/shared/ui/Icon';
 
 interface CategoryFilterChipProps {

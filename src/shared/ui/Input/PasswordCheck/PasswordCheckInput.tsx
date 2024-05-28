@@ -1,4 +1,4 @@
-import { AuthInputProps } from '@/shared/types/input';
+import { AuthInputProps } from '@/shared/@common/types/input';
 import { useState } from 'react';
 import Label from '../Label';
 import { Input } from '../Input';

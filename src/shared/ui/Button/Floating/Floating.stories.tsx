@@ -11,7 +11,7 @@ export default {
   },
 } as Meta<typeof Floating>;
 
-const Template: StoryFn<typeof Floating> = (args) => <Floating {...args} />;
+const Template: StoryFn<typeof Floating> = () => <Floating />;
 
 export const exampleFloating = Template.bind({});
 exampleFloating.args = {

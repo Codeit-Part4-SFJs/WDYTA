@@ -1,7 +1,7 @@
 'use client';
 
 import useSideMenuStore from '@/stores/useSideMenuStore';
-import CategoryFilterChip from '../../Chip/CategoryFilterChip';
+import CategoryFilterChip from '@/shared/ui/Chip/CategoryFilterChip';
 
 const SideMenuOpenButton = () => {
   const currentCategory = useSideMenuStore((state) => state.currentCategory);

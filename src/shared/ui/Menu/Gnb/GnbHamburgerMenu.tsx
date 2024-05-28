@@ -4,19 +4,13 @@ import { usePathname } from 'next/navigation';
 import IconComponent from '@/shared/ui/Icon/Icon';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { GnbHamburgerMenuOptionProps } from '@/shared/types/gnbType';
 import useClose from '@/shared/@common/hooks/useClose';
 
-const GnbHamburgerMenuOption = ({
-  isOpenHamburgerMenu,
-  handleToggledHamburgerMenu,
-  hamburgerMenuRef,
-}: GnbHamburgerMenuOptionProps) => {
+const GnbHamburgerMenuOption = () => {
   // TO DO: 로그인 기능 구현 이후 로그인 유무에 따른 분기처리 추가 예정, 현재는 임시로 만든 상태!
   const isLoggedIn = false;
 
   const pathname = usePathname();
-  useClose(isOpenHamburgerMenu, handleToggledHamburgerMenu, hamburgerMenuRef);
 
   const linkClass =
     'block w-36 p-4 hover:bg-black-25 focus:bg-black-25 focus:outline-none';
@@ -72,6 +66,7 @@ const GnbHamburgerMenu = () => {
   };
 
   const hamburgerMenuRef = useRef<HTMLDivElement>(null);
+  useClose(isOpenHamburgerMenu, handleToggledHamburgerMenu, hamburgerMenuRef);
 
   return (
     <div
@@ -88,13 +83,7 @@ const GnbHamburgerMenu = () => {
           className="mobile:w-[24px] mobile:h-[24px] md:hidden lg:hidden fill-gray-9F"
         />
       </button>
-      {isOpenHamburgerMenu && (
-        <GnbHamburgerMenuOption
-          isOpenHamburgerMenu={isOpenHamburgerMenu}
-          handleToggledHamburgerMenu={handleToggledHamburgerMenu}
-          hamburgerMenuRef={hamburgerMenuRef}
-        />
-      )}
+      {isOpenHamburgerMenu && <GnbHamburgerMenuOption />}
     </div>
   );
 };

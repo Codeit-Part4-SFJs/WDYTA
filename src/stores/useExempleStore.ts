@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { ExampleState } from './storeType';
+import { ExampleState } from '@/stores/storeType';
 
 // 0. storeType.ts에서 타입 선언
 // 1. create를 이용해 스토어를 생성

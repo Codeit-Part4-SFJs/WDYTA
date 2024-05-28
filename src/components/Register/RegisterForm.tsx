@@ -1,7 +1,7 @@
 'use client';
 
 import { FormValues } from '@/shared/types/input';
-import { Button, ButtonKind } from '@/shared/ui/Button/Button/Button';
+import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { EmailInput } from '@/shared/ui/Input/Email';
 import { NicknameInput } from '@/shared/ui/Input/Nickname';
 import { PasswordInput } from '@/shared/ui/Input/Password';

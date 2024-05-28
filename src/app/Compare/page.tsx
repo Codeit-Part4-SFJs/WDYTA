@@ -13,21 +13,21 @@ const Compare = () => {
   return (
     <>
       <Gnb />
-      <div className="flex justify-center gap-5 m-[60px] h-[400px] ">
-        <div className="flex flex-row gap-5">
-          <div className="flex flex-col items-start gap-[10px] lg:w-[240px]">
+      <div className="flex justify-center gap-5 w-full mt-[60px] h-[400px] mobile:flex-col mobile:items-center">
+        <div className="flex flex-row gap-5 mobile:flex-col">
+          <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 1</p>
-            <Input inputSize="small" />
+            <Input inputSize="xsmall" />
           </div>
-          <div className="flex flex-col items-start gap-[10px] lg:w-[240px]">
+          <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 2</p>
-            <Input inputSize="small" />
+            <Input inputSize="xsmall" />
           </div>
         </div>
         <div className="mt-">
           <Button
             kind={ButtonKind.primary}
-            customSize="w-[200px] h-[70px] mt-[34px] lg:w-[288px]"
+            customSize="w-[200px] h-[70px] mt-[34px] w-[200px] md:w-[164px] mobile:w-[288px]"
             onClick={() => setIsCompare(!isCompare)}
           >
             비교하기
@@ -41,7 +41,7 @@ const Compare = () => {
         </div>
       )}
 
-      <Floating location="right-[90px] bottom-[180px]" />
+      <Floating />
     </>
   );
 };

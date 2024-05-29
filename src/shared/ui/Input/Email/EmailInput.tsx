@@ -1,4 +1,4 @@
-import { AuthInputProps } from '@/shared/types/input';
+import { AuthInputProps } from '@/shared/@common/types/input';
 import Label from '../Label';
 import HelperText from '../HelperText';
 import { Input } from '../Input';

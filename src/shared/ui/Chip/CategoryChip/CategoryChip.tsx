@@ -1,4 +1,4 @@
-import { ProductCategoryEnum } from '@/shared/types/categoryChipType';
+import { ProductCategoryEnum } from '@/shared/ui/Chip/types/categoryChipType';
 
 interface CategoryChipProps {
   categoryID: ProductCategoryEnum;
@@ -18,7 +18,7 @@ const categoryStyles = {
   default: 'text-gray-9F bg-gray-9F',
 };
 
-const CategoryChip = ({ categoryID }: CategoryChipProps) => {
+export const CategoryChip = ({ categoryID }: CategoryChipProps) => {
   const categoryClassName =
     categoryStyles[categoryID as keyof typeof categoryStyles] ||
     categoryStyles.default;
@@ -31,5 +31,3 @@ const CategoryChip = ({ categoryID }: CategoryChipProps) => {
     </div>
   );
 };
-
-export default CategoryChip;

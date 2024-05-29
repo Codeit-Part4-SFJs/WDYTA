@@ -1,20 +1,19 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
-import CompareChip from ".";
-import { CompareColor } from "./index";
-import "@/styles/globals.css";
+import React from 'react';
+import { StoryFn, Meta } from '@storybook/react';
+import { CompareChip, CompareColor } from './index';
+import '@/styles/globals.css';
 
 export default {
-  title: "Chip/CompareChip",
+  title: 'Chip/CompareChip',
   component: CompareChip,
   argTypes: {
     productName: {
-      control: "text",
+      control: 'text',
     },
     color: {
-      control: "select",
+      control: 'select',
       options: Object.values(CompareColor).filter(
-        (value) => typeof value === "string"
+        (value) => typeof value === 'string',
       ),
     },
   },
@@ -25,6 +24,6 @@ const Template: StoryFn<typeof CompareChip> = (args) => (
 );
 export const exampleCompareChip = Template.bind({});
 exampleCompareChip.args = {
-  productName: "IPhone 14 Pro Max",
+  productName: 'IPhone 14 Pro Max',
   color: CompareColor.GREEN,
 };

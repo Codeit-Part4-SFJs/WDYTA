@@ -1,14 +1,14 @@
-import React, { PropsWithChildren } from "react";
-import { Meta, StoryFn } from "@storybook/react";
-import Loading from "./Loading";
-import { LoadingProps } from "./type/iconType";
+import React, { PropsWithChildren } from 'react';
+import { Meta, StoryFn } from '@storybook/react';
+import { Loading } from '@/shared/ui/Icon';
+import { LoadingProps } from '@/shared/ui/Icon/types/iconType';
 
 export default {
-  title: "Icon/Loading",
+  title: 'Icon/Loading',
   component: Loading,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
     docs: {
       description: {
         component: `
@@ -24,9 +24,9 @@ export default {
     },
   },
   argTypes: {
-    iconClassName: { control: "text" },
-    textClassName: { control: "text" },
-    children: { control: "text" },
+    iconClassName: { control: 'text' },
+    textClassName: { control: 'text' },
+    children: { control: 'text' },
   },
 } as Meta;
 
@@ -34,9 +34,9 @@ const Template: StoryFn<PropsWithChildren<LoadingProps>> = (args) => (
   <Loading {...args} />
 );
 
-export const Icon = Template.bind({});
-Icon.args = {
-  iconClassName: "",
-  textClassName: "",
-  children: "로딩 중...",
+export const LoadingIcon = Template.bind({});
+LoadingIcon.args = {
+  iconClassName: '',
+  textClassName: '',
+  children: '로딩 중...',
 };

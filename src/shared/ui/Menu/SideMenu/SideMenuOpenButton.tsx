@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import useSideMenuStore from "@/stores/useSideMenuStore";
-import CategoryFilterChip from "../../Chip/CategoryFilterChip";
+import { useSideMenuStore } from '@/stores';
+import { CategoryFilterChip } from '@/shared/ui/Chip/CategoryFilterChip';
 
-const SideMenuOpenButton = () => {
+export const SideMenuOpenButton = () => {
   const currentCategory = useSideMenuStore((state) => state.currentCategory);
   const isOpenSideMenu = useSideMenuStore((state) => state.isOpenSideMenu);
   const setIsOpenSideMenu = useSideMenuStore(
-    (state) => state.setIsOpenSideMenu
+    (state) => state.setIsOpenSideMenu,
   );
 
   return (
-    <>
+    <div className="mobile:block md:hidden lg:hidden">
       {isOpenSideMenu ? (
         <div className="mobile:block md:hidden lg:hidden hover:cursor-pointer">
           <CategoryFilterChip categoryID={currentCategory} />
@@ -25,8 +25,6 @@ const SideMenuOpenButton = () => {
           <CategoryFilterChip categoryID={currentCategory} />
         </button>
       )}
-    </>
+    </div>
   );
 };
-
-export default SideMenuOpenButton;

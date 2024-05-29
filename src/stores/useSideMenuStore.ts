@@ -1,8 +1,8 @@
-import { create } from "zustand";
-import { createJSONStorage, devtools, persist } from "zustand/middleware";
-import { SideMenuState } from "@/stores/storeType";
+import { create } from 'zustand';
+import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import { SideMenuState } from '@/stores/storeType';
 
-const useSideMenuStore = create<SideMenuState>()(
+export const useSideMenuStore = create<SideMenuState>()(
   devtools(
     persist(
       (set) => ({
@@ -14,13 +14,11 @@ const useSideMenuStore = create<SideMenuState>()(
           set((state) => ({ isOpenSideMenu: !state.isOpenSideMenu })),
       }),
       {
-        name: "currentCategory",
+        name: 'currentCategory',
         storage: createJSONStorage(() => sessionStorage),
         partialize: (state) => ({ currentCategory: state.currentCategory }),
-      }
+      },
     ),
-    { name: "SideMenuStore" }
-  )
+    { name: 'SideMenuStore' },
+  ),
 );
-
-export default useSideMenuStore;

@@ -17,3 +17,7 @@ export interface SideMenuTabProps {
   categoryId: number;
   currentCategoryId?: number;
 }
+
+export interface SideMenuOpenButtonProps {
+  currentCategoryId?: number;
+}

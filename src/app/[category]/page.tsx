@@ -1,8 +1,19 @@
-import { SideMenu } from '@/shared/ui/Menu/SideMenu';
+import { convertCategoryToCategoryId } from '@/shared/@common/utils';
+import { SideMenu, SideMenuOpenButton } from '@/shared/ui/Menu/SideMenu';
 
-const Page = ({ params }: { params: { category: number } }) => {
+const Page = ({ params }: { params: { category: string } }) => {
   return (
-    <SideMenu categories={undefined} currentCategoryId={params.category} />
+    <div>
+      <SideMenu
+        categories={undefined}
+        currentCategoryId={convertCategoryToCategoryId(params.category)}
+      />
+      <div className="flex justify-end">
+        <SideMenuOpenButton
+          currentCategoryId={convertCategoryToCategoryId(params.category)}
+        />
+      </div>
+    </div>
   );
 };
 

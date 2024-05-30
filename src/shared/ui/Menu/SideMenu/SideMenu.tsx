@@ -14,6 +14,7 @@ import { useClose } from '@/shared/@common/hooks';
  * 메인 페이지의 page.tsx에서 API 요청해서 카테고리 데이터 받아오고 page.tsx에서 사용하면됨
  *
  * @param categories '/categories'로 GET 요청해서 받은 데이터
+ * @param currentCategoryId params.category를 categoryId로 포멧팅 후 데이터 삽입
  */
 
 export const SideMenu = ({ categories, currentCategoryId }: SideMenuProps) => {

@@ -9,9 +9,11 @@ export interface Categories extends Array<Category> {}
 
 export interface SideMenuProps {
   categories: Categories | undefined;
+  currentCategoryId?: number;
 }
 
 export interface SideMenuTabProps {
   category: string;
   categoryId: number;
+  currentCategoryId?: number;
 }

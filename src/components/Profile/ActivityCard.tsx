@@ -10,7 +10,7 @@ const rating = 5;
 const reviewCount = 3;
 const ActivityCard = ({ title, icon }: ActivitySummaryProps) => {
   return (
-    <div className="flex flex-col justify-center items-center gap-[20px] rounded-xl lg:w-[300px] lg:h-[128px] md:w-[163px] md:h-[119px] w-[105px] h-[119px] bg-gray-35">
+    <div className="flex flex-col justify-center items-center gap-[20px] rounded-xl lg:w-[300px] lg:h-[128px] md:w-[163px] md:h-[119px] w-[105px] h-[119px] bg-gray-25">
       <p className="text-[14px] lg:text-[16px] text-gray-9F">{title}</p>
       <div className="flex items-center gap-[5px] text-gray-F1 h-[20px] md:h-[24px] lg:h-[24px]">
         {icon && (

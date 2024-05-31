@@ -26,7 +26,7 @@ const ProfileCard = () => {
     }
   }, []);
   return (
-    <div className="flex flex-col items-center justify-center gap-[42px] md:gap-[25px] mobile:gap-[35px] bg-gray-25 w-[335px] h-[466px] lg:w-[340px] lg:h-[603px] md:w-[509px] md:h-[451px] mobile:w-[335px] mobile:h-[466px] rounded-xl border border-solid border-gray-35">
+    <section className="flex flex-col items-center justify-center gap-[42px] md:gap-[25px] mobile:gap-[35px] bg-gray-25 w-[335px] h-[466px] lg:w-[340px] lg:h-[603px] md:w-[509px] md:h-[451px] mobile:w-[335px] mobile:h-[466px] rounded-xl border border-solid border-gray-35">
       <ImageComponent
         type="profile"
         src={profileData.image}
@@ -64,7 +64,7 @@ const ProfileCard = () => {
       >
         팔로우
       </Button>
-    </div>
+    </section>
   );
 };
 

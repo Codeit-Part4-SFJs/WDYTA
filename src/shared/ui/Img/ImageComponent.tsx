@@ -12,16 +12,10 @@ const typeClasses: Record<ImageProps['type'], string> = {
 };
 
 export const ImageComponent = ({ type, className, src, alt }: ImageProps) => {
+  const isProduct = type === 'product' ? { objectFit: 'contain' } : {};
   return (
     <div className={twMerge('relative', typeClasses[type], className)}>
-      <Image
-        src={src}
-        style={{ objectFit: 'contain' }}
-        fill
-        alt={alt}
-        sizes="auto"
-        priority
-      />
+      <Image src={src} {...isProduct} fill alt={alt} sizes="auto" priority />
     </div>
   );
 };

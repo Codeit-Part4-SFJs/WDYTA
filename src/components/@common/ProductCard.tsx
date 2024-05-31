@@ -41,9 +41,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <div className="flex items-center gap-[2px]">
               <Icon
                 name="StarIcon"
-                className="mobile:w-[12px] mobile:h-[12px] md:w-[15px] md:h-[15px] lg:w-[16px] lg:h-[16px] fill-yellow"
+                className="w-[12px] h-[12px] md:w-[15px] md:h-[15px] lg:w-[16px] lg:h-[16px] fill-yellow"
               />
-              <p className="text-gray-9F">{rating}</p>
+              <p className="leading-none text-gray-9F">{rating}</p>
             </div>
           </div>
         </div>

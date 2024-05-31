@@ -4,7 +4,7 @@ export interface FormValues {
   email: string;
   nickname: string;
   password: string;
-  passwordCheck: string;
+  passwordConfirmation: string;
   text: string;
   textarea: string;
 }

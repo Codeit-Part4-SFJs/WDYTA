@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import { Gnb } from '@/shared/ui/Menu/Gnb';
+import ClientProviders from './clientProviders';
 
 export const metadata = {
   title: 'Next.js',
@@ -14,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Gnb />
-        {children}
+        <ClientProviders>
+          <Gnb />
+          {children}
+        </ClientProviders>
       </body>
     </html>
   );

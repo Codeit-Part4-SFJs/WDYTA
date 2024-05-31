@@ -26,28 +26,34 @@ const ProfileCard = () => {
     }
   }, []);
   return (
-    <div className="flex flex-col items-center justify-center gap-[30px]  bg-gray-25 w-[335px] h-[466px] lg:w-[340px] lg:h-[603px] md:w-[509px] md:h-[451] rounded-xl border border-solid border-gray-35">
+    <div className="flex flex-col items-center justify-center gap-[40px] md:gap-[30px] bg-gray-25 w-[335px] h-[466px] lg:w-[340px] lg:h-[603px] md:w-[509px] md:h-[451px] rounded-xl border border-solid border-gray-35">
       <ImageComponent
         type="profile"
         src={profileData.image}
-        className="lg:w-[180px] lg:h-[180px]"
+        className="lg:w-[180px] lg:h-[180px] md:w-[120px] md:h-[120px]"
         alt="프로필 이미지"
       />
-      <div className=" flex flex-col items-center lg:gap-[20px] w-[300px] min-h-[66px] text-center">
-        <p className="text-[24px] text-gray-F1">{profileData?.nickname}</p>
-        <p className="text-gray-6E w-[300px] h-[70px] line-clamp-3">
+      <div className=" flex flex-col items-center lg:gap-[20px] md:gap-[10px] w-[300px] min-h-[66px] text-center">
+        <p className="lg:text-[24px] md:text-[20px]  text-gray-F1">
+          {profileData?.nickname}
+        </p>
+        <p className="text-gray-6E w-[300px] h-[70px] md:w-[449px] md:h-[40px] md:text-[14px] lg:line-clamp-3 md:line-clamp-2">
           {profileData?.description}
         </p>
       </div>
-      <div className="flex justify-between lg:w-[184px] lg:h-[53px]">
+      <div className="flex justify-between lg:w-[184px] lg:h-[53px] md:w-[234px] md:h-[48px]">
         <div className="flex flex-col items-center">
-          <div className="lg:text-[20px] text-gray-F1">762</div>
-          <div className="lg:text-[16px] text-gray-9F">팔로워</div>
+          <div className="lg:text-[20px] md:text-[18px] text-gray-F1">762</div>
+          <div className="lg:text-[16px] md:text-[14px] text-gray-9F">
+            팔로워
+          </div>
         </div>
         <div className="border border-solid border-gray-35" />
         <div className="flex flex-col items-center">
-          <div className="lg:text-[20px] text-gray-F1">102</div>
-          <div className="lg:text-[16px] text-gray-9F">팔로잉</div>
+          <div className="lg:text-[20px] md:text-[18px] text-gray-F1">102</div>
+          <div className="lg:text-[16px] md:text-[14px] text-gray-9F">
+            팔로잉
+          </div>
         </div>
       </div>
       <Button

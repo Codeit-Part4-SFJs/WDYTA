@@ -61,7 +61,7 @@ export const ProductStatistics = () => {
   const productDetailData = PRODUCT_MOCK;
 
   return (
-    <div className="lg:mx-auto lg:max-w-[940px] flex flex-col gap-[30px]">
+    <div className="flex flex-col gap-[30px]">
       <div className="mobile:text-lg md:text-base lg:text-xl lg:font-normal font-semibold not-italic leading-normal text-gray-F1">
         상품 통계
       </div>

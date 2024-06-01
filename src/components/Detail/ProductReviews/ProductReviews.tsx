@@ -42,7 +42,7 @@ export const ProductReviews = () => {
   const handleSelect = () => {};
 
   return (
-    <div className="lg:mx-auto lg:max-w-[940px] flex flex-col gap-[30px]">
+    <div className="flex flex-col gap-[30px]">
       <div className="flex justify-between items-center">
         <div className="mobile:text-lg md:text-base lg:text-xl text-gray-F1 not-italic leading-normal font-semibold lg:font-normal">
           상품 리뷰

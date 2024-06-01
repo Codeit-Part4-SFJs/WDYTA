@@ -11,7 +11,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const buttonBase =
-  'flex justify-center items-center gap-[10px] flex-shrink-0 rounded-lg whitespace-nowrap';
+  'flex justify-center items-center gap-[10px] rounded-lg whitespace-nowrap';
 export const ButtonStyleByKind = {
   [ButtonKind.primary]: {
     button: 'bg-main-gradation disabled:bg-none disabled:bg-gray-35',

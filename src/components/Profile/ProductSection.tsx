@@ -95,8 +95,8 @@ const ProductSection = () => {
             { value: '등록한 상품', label: '등록한 상품' },
             { value: '찜한 상품', label: '찜한 상품' },
           ]}
-          onSelect={() => {
-            console.log('a');
+          onSelect={(value) => {
+            setActiveTab(value);
           }}
           defaultValue="리뷰 남긴 상품"
         />

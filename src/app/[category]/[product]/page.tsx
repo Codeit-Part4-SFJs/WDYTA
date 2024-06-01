@@ -1,3 +1,4 @@
+import { ProductReviews } from '@/components/Detail/ProductReviews';
 import { ProductStatistics } from '@/components/Detail/ProductStatistics';
 import { Floating } from '@/shared/ui/Button/Floating';
 
@@ -6,7 +7,7 @@ const Detail = () => {
     <div>
       {/* <ProductDetail /> */}
       <ProductStatistics />
-      {/* <ProductReview /> */}
+      <ProductReviews />
       <Floating />
     </div>
   );

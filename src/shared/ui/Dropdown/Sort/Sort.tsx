@@ -1,3 +1,5 @@
+'use client';
+
 import { Icon } from '@/shared/ui/Icon';
 import { useRef, useState, PropsWithChildren } from 'react';
 import { useClose } from '@/shared/@common/hooks';

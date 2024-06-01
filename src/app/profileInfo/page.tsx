@@ -1,69 +1,18 @@
-import ProductCard from '@/components/@common/ProductCard';
-import ActivityCard from '@/components/Profile/ActivityCard';
+'use client';
+
+import ActivitySection from '@/components/Profile/ActivitySection';
+import ProductSection from '@/components/Profile/ProductSection';
 import ProfileCard from '@/components/Profile/ProfileCard';
+
 // import ProfileCard from '@/components/Profile/ProfileCard';
-
-const data1 = {
-  updatedAt: '2024-05-29T15:11:37.143Z',
-  createdAt: '2024-05-29T15:11:37.143Z',
-  writerId: 1,
-  categoryId: 1,
-  favoriteCount: 34,
-  reviewCount: 129,
-  rating: 4.7,
-  image:
-    'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/158/1716804166536/KakaoTalk_20240527_185342395.jpg',
-  name: 'stringxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-  id: 1,
-};
-
-const data2 = {
-  updatedAt: '2024-05-29T15:11:37.143Z',
-  createdAt: '2024-05-29T15:11:37.143Z',
-  writerId: 1,
-  categoryId: 1,
-  favoriteCount: 34,
-  reviewCount: 129,
-  rating: 4.7,
-  image:
-    'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/158/1717172068396/macbookkkk.jpg',
-  name: 'stringxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-  id: 1,
-};
 
 export default function Profile() {
   return (
-    <main className="flex justify-center md:flex-col md:items-center md:min-w-[509px] lg:gap-[70px] p-[52px]">
+    <main className="flex justify-center md:flex-col mobile:flex-col  md:items-center mobile:items-center md:min-w-[509px] mobile:min-w-[335px] lg:gap-[70px] gap-[60px] p-[52px]">
       <ProfileCard />
-      <div className="flex flex-col gap-[80px]">
-        <section className="flex flex-col lg:gap-[30px] md:gap-[30px]">
-          <h1 className="text-[20px] text-gray-F1">활동 내역</h1>
-          <div className="flex justify-between lg:gap-[20px]">
-            <ActivityCard title="남긴 별점 평균" icon="StarIcon" />
-            <ActivityCard title="남긴 리뷰" icon="ReviewIcon" />
-            <ActivityCard title="남긴 별점 평균" />
-          </div>
-        </section>
-        <section className="flex flex-col gap-[30px]">
-          <ul className="flex gap-[40px] text-gray-6E text-[20px]">
-            <li>
-              <button type="button">리뷰 남긴 상품</button>
-            </li>
-            <button type="button">등록한 상품</button>
-            <button type="button">찜한 상품</button>
-          </ul>
-
-          <div className="grid grid-cols-3 gap-[20px]">
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-          </div>
-        </section>
+      <div className="flex flex-col lg:gap-[80px] gap-[60px] mobile:w-[335px]">
+        <ActivitySection />
+        <ProductSection />
       </div>
       {/* <ProfileCard /> */}
     </main>

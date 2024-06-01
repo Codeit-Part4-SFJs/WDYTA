@@ -24,7 +24,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const { id, image, name, reviewCount, rating, favoriteCount } = product;
   return (
     <Link href={`/detail/${id}`}>
-      <div className="flex flex-col items-center lg:pt-[8px] lg:pb-[25px] md:pt-[10px] md:pb-[20px] mobile:pt-[10px] mobile:pb-[10px] mobile:w-[160px] mobile:h-[183px] md:w-[247px] md:h-[256px] lg:max-w-[300px] lg:h-[308px] mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border border-solid border-gray-35 bg-gray-25">
+      <div className="flex flex-col items-center justify-center md:pt-[10px] md:pb-[20px] mobile:pt-[10px] mobile:pb-[10px] mobile:w-[160px] mobile:h-[183px] md:w-[247px] md:h-[256px] lg:max-w-[300px] lg:h-[308px] mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border border-solid border-gray-35 bg-gray-25">
         <ImageComponent type="product" src={image} alt="이미지" />
 
         <div className="w-full flex flex-col lg:gap-[10px] md:gap-[10px] mobile:gap-[5px] lg:px-[20px] md:px-[16.5px] mobile:px-[10px]">

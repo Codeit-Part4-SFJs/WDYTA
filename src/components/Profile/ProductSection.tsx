@@ -35,14 +35,14 @@ const data2 = {
 };
 
 const ProductSection = () => {
-  const [activeTab, setActiveTab] = useState('리뷰 남긴 상품');
+  const [activeMenu, setActiveMenu] = useState('리뷰 남긴 상품');
 
   const handleClickTab = (tab: string) => {
-    setActiveTab(tab);
+    setActiveMenu(tab);
   };
 
   const renderProductCards = () => {
-    switch (activeTab) {
+    switch (activeMenu) {
       case '리뷰 남긴 상품':
         return (
           <>
@@ -96,7 +96,7 @@ const ProductSection = () => {
             { value: '찜한 상품', label: '찜한 상품' },
           ]}
           onSelect={(value) => {
-            setActiveTab(value);
+            setActiveMenu(value);
           }}
           defaultValue="리뷰 남긴 상품"
         />
@@ -106,7 +106,7 @@ const ProductSection = () => {
           <li key={tab}>
             <button
               type="button"
-              className={`${activeTab === tab ? 'text-white' : ''}`}
+              className={`${activeMenu === tab ? 'text-white' : ''}`}
               onClick={() => handleClickTab(tab)}
             >
               {tab}

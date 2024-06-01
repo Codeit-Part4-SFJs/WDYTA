@@ -1,7 +1,10 @@
 'use client';
 
 import { Sort } from '@/shared/ui/Dropdown/Sort';
+import { useState } from 'react';
 import ProductCard from '../@common/ProductCard';
+
+const productMenu = ['리뷰 남긴 상품', '등록한 상품', '찜한 상품'];
 
 const data1 = {
   updatedAt: '2024-05-29T15:11:37.143Z',
@@ -32,6 +35,57 @@ const data2 = {
 };
 
 const ProductSection = () => {
+  const [activeTab, setActiveTab] = useState('리뷰 남긴 상품');
+
+  const handleClickTab = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const renderProductCards = () => {
+    switch (activeTab) {
+      case '리뷰 남긴 상품':
+        return (
+          <>
+            <ProductCard product={data1} />
+            <ProductCard product={data2} />
+            <ProductCard product={data1} />
+            <ProductCard product={data2} />
+            <ProductCard product={data1} />
+            <ProductCard product={data2} />
+            <ProductCard product={data1} />
+            <ProductCard product={data2} />
+          </>
+        );
+      case '등록한 상품':
+        return (
+          <>
+            <ProductCard product={data2} />
+            <ProductCard product={data1} />
+            <ProductCard product={data2} />
+            <ProductCard product={data1} />
+            <ProductCard product={data2} />
+            <ProductCard product={data1} />
+            <ProductCard product={data2} />
+            <ProductCard product={data1} />
+          </>
+        );
+      case '찜한 상품':
+        return (
+          <>
+            <ProductCard product={data1} />
+            <ProductCard product={data1} />
+            <ProductCard product={data1} />
+            <ProductCard product={data1} />
+            <ProductCard product={data1} />
+            <ProductCard product={data1} />
+            <ProductCard product={data1} />
+            <ProductCard product={data1} />
+          </>
+        );
+      default:
+        return null;
+    }
+  };
   return (
     <section className="flex flex-col gap-[30px]">
       <div className="!p-0 lg:hidden">
@@ -48,22 +102,21 @@ const ProductSection = () => {
         />
       </div>
       <ul className="flex gap-[40px] text-gray-6E lg:text-[20px] text-[18px] mobile:hidden md:hidden">
-        <li>
-          <button type="button">리뷰 남긴 상품</button>
-        </li>
-        <button type="button">등록한 상품</button>
-        <button type="button">찜한 상품</button>
+        {productMenu.map((tab) => (
+          <li key={tab}>
+            <button
+              type="button"
+              className={`${activeTab === tab ? 'text-white' : ''}`}
+              onClick={() => handleClickTab(tab)}
+            >
+              {tab}
+            </button>
+          </li>
+        ))}
       </ul>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 mobile:grid-cols-2  gap-[20px]">
-        <ProductCard product={data1} />
-        <ProductCard product={data2} />
-        <ProductCard product={data1} />
-        <ProductCard product={data2} />
-        <ProductCard product={data1} />
-        <ProductCard product={data2} />
-        <ProductCard product={data1} />
-        <ProductCard product={data2} />
+        {renderProductCards()}
       </div>
     </section>
   );

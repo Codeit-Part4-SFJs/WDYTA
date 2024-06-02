@@ -17,7 +17,7 @@ const authData = {
 const userData = {
   id: 2,
 };
-const ProfileCard = () => {
+export const ProfileCard = () => {
   const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
@@ -77,5 +77,3 @@ const ProfileCard = () => {
     </section>
   );
 };
-
-export default ProfileCard;

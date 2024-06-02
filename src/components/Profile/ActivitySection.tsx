@@ -1,6 +1,6 @@
-import ActivityCard from './ActivityCard';
+import { ActivityCard } from './ActivityCard';
 
-const ActivitySection = () => {
+export const ActivitySection = () => {
   return (
     <section className="flex flex-col gap-[30px]">
       <h1 className="lg:text-[20px] text-[18px]  text-gray-F1">활동 내역</h1>
@@ -12,5 +12,3 @@ const ActivitySection = () => {
     </section>
   );
 };
-
-export default ActivitySection;

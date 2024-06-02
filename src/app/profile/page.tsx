@@ -1,8 +1,8 @@
-'use client';
-
-import ActivitySection from '@/components/Profile/ActivitySection';
-import ProductSection from '@/components/Profile/ProductSection';
-import ProfileCard from '@/components/Profile/ProfileCard';
+import {
+  ActivitySection,
+  ProductSection,
+  ProfileCard,
+} from '@/components/Profile';
 
 export default function Profile() {
   return (

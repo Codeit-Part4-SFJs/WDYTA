@@ -8,7 +8,8 @@ interface ActivitySummaryProps {
 }
 const rating = 5;
 const reviewCount = 3;
-const ActivityCard = ({ title, icon }: ActivitySummaryProps) => {
+
+export const ActivityCard = ({ title, icon }: ActivitySummaryProps) => {
   return (
     <div className="flex flex-col grow justify-center items-center gap-[20px] rounded-xl lg:max-w-[300px] lg:h-[128px] md:max-w-[163px] md:h-[119px] mobile:w-[105px] mobile:h-[119px] bg-gray-25">
       <p className="text-[14px] lg:text-[16px] text-gray-9F">{title}</p>
@@ -33,5 +34,3 @@ const ActivityCard = ({ title, icon }: ActivitySummaryProps) => {
     </div>
   );
 };
-
-export default ActivityCard;

@@ -34,13 +34,14 @@ const data2 = {
   id: 1,
 };
 
-const ProductSection = () => {
+export const ProductSection = () => {
   const [activeMenu, setActiveMenu] = useState('리뷰 남긴 상품');
 
   const handleClickTab = (tab: string) => {
     setActiveMenu(tab);
   };
 
+  // 리팩토링 예정
   const renderProductCards = () => {
     switch (activeMenu) {
       case '리뷰 남긴 상품':
@@ -121,5 +122,3 @@ const ProductSection = () => {
     </section>
   );
 };
-
-export default ProductSection;

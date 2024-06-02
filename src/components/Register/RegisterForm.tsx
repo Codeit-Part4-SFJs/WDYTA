@@ -14,7 +14,7 @@ const RegisterForm = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm<FormValues>({ mode: 'onChange' });
   const { mutate, isPending } = useRegisterMutation();
 
@@ -23,6 +23,8 @@ const RegisterForm = () => {
   };
 
   const password = watch('password');
+
+  const isButtonDisabled = !isValid || isSubmitting || isPending;
 
   return (
     <form
@@ -40,8 +42,8 @@ const RegisterForm = () => {
       <Button
         type="submit"
         kind={ButtonKind.primary}
-        customSize={`${!isValid || isPending ? 'cursor-not-allowed' : 'cursor-pointer'} mt-[20px] mobile:mt-[126px] w-[335px] md:w-[440px] lg:w-[640px] h-[50px] md:h-[55px] lg:h-[65px]`}
-        disabled={!isValid || isPending}
+        customSize={`${isButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'} mt-[20px] mobile:mt-[126px] w-[335px] md:w-[440px] lg:w-[640px] h-[50px] md:h-[55px] lg:h-[65px]`}
+        disabled={isButtonDisabled}
       >
         회원가입하기
       </Button>

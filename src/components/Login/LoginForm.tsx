@@ -5,17 +5,21 @@ import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { EmailInput } from '@/shared/ui/Input/Email';
 import { PasswordInput } from '@/shared/ui/Input/Password';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import useLoginMutation from './hooks/useLoginMutation';
 
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm<FormValues>({ mode: 'onChange' });
+  const { mutate, isPending } = useLoginMutation();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    mutate(data);
   };
+
+  const isButtonDisabled = !isValid || isSubmitting || isPending;
 
   return (
     <form
@@ -27,8 +31,8 @@ const LoginForm = () => {
       <Button
         type="submit"
         kind={ButtonKind.primary}
-        customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} mt-[20px] w-[335px] md:w-[440px] lg:w-[640px] h-[50px] md:h-[55px] lg:h-[65px]`}
-        disabled={!isValid}
+        customSize={`${isButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'} mt-[20px] w-[335px] md:w-[440px] lg:w-[640px] h-[50px] md:h-[55px] lg:h-[65px]`}
+        disabled={isButtonDisabled}
       >
         로그인
       </Button>

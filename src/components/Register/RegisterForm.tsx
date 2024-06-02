@@ -7,6 +7,7 @@ import { NicknameInput } from '@/shared/ui/Input/Nickname';
 import { PasswordInput } from '@/shared/ui/Input/Password';
 import { PasswordCheckInput } from '@/shared/ui/Input/PasswordCheck';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import useRegisterMutation from './hooks/useRegisterMutation';
 
 const RegisterForm = () => {
   const {
@@ -15,8 +16,11 @@ const RegisterForm = () => {
     watch,
     formState: { errors, isValid },
   } = useForm<FormValues>({ mode: 'onChange' });
+  const { mutate, isPending } = useRegisterMutation();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => [console.log(data)];
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    mutate(data);
+  };
 
   const password = watch('password');
 
@@ -36,8 +40,8 @@ const RegisterForm = () => {
       <Button
         type="submit"
         kind={ButtonKind.primary}
-        customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} mt-[20px] mobile:mt-[126px] w-[335px] md:w-[440px] lg:w-[640px] h-[50px] md:h-[55px] lg:h-[65px]`}
-        disabled={!isValid}
+        customSize={`${!isValid || isPending ? 'cursor-not-allowed' : 'cursor-pointer'} mt-[20px] mobile:mt-[126px] w-[335px] md:w-[440px] lg:w-[640px] h-[50px] md:h-[55px] lg:h-[65px]`}
+        disabled={!isValid || isPending}
       >
         회원가입하기
       </Button>

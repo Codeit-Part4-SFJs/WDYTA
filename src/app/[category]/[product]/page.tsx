@@ -2,6 +2,11 @@ import { ProductReviews } from '@/components/Detail/ProductReviews';
 import { ProductStatistics } from '@/components/Detail/ProductStatistics';
 import { ProductDetail } from '@/components/Detail/ProductDetail';
 import { Floating } from '@/shared/ui/Button/Floating';
+import {
+  SkeletonProductDetail,
+  SkeletonProductReviews,
+  SkeletonProductStatistics,
+} from '@/components/Detail/skeletons';
 
 const Detail = () => {
   return (
@@ -10,6 +15,12 @@ const Detail = () => {
       <ProductStatistics />
       <ProductReviews />
       <Floating />
+      <SkeletonProductDetail />
+      <SkeletonProductStatistics />
+      <SkeletonProductReviews />
+      <SkeletonProductReviews />
+      <SkeletonProductReviews />
+      <SkeletonProductReviews />
     </div>
   );
 };

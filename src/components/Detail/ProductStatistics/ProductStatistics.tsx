@@ -34,7 +34,7 @@ const Statistic = ({ type, typeValue, categoryMetric }: StatisticProps) => {
           </div>
         </div>
       </div>
-      <div className="lg:text-sm lg:justify-center lg:flex lg:flex-col md:font-light md:text-xs md:justify-center md:flex md:flex-col mobile:flex mobile:font-light mobile:text-xs mobile:leading-[18px] ">
+      <div className="lg:text-sm lg:justify-center lg:flex lg:flex-col md:font-light md:text-xs md:justify-center md:flex md:flex-col mobile:flex mobile:font-light mobile:text-xs mobile:leading-[18px]">
         <div className="lg:text-center md:text-center">
           같은 카테고리의 제품들보다
         </div>

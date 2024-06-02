@@ -26,18 +26,18 @@ const ProfileCard = () => {
     }
   }, []);
   return (
-    <section className="flex flex-col items-center justify-center gap-[42px] md:gap-[25px] mobile:gap-[35px] bg-gray-25 w-[335px] h-[466px] lg:min-w-[340px] lg:h-[603px] md:w-[509px] md:h-[451px] mobile:w-[335px] mobile:h-[466px] rounded-xl border border-solid border-gray-35">
+    <section className="flex flex-col items-center justify-center gap-[42px] pt-[40px] pb-[30px] md:gap-[25px] mobile:gap-[35px]  lg:min-w-[340px] md:w-[509px] mobile:w-[335px] rounded-xl border border-solid bg-gray-25 border-gray-35">
       <ImageComponent
         type="profile"
         src={profileData.image}
         className="lg:w-[180px] lg:h-[180px] md:w-[120px] md:h-[120px] mobile:w-[120px] mobile:h-[120px]"
         alt="프로필 이미지"
       />
-      <div className=" flex flex-col items-center lg:gap-[20px] md:gap-[10px] mobile:gap-[10px] w-[300px] min-h-[66px] text-center">
+      <div className="flex flex-col items-center lg:gap-[20px] md:gap-[10px] mobile:gap-[10px] w-[300px] min-h-[66px] text-center">
         <p className="lg:text-[24px] md:text-[20px]  text-gray-F1">
           {profileData?.nickname}
         </p>
-        <p className="text-gray-6E w-[300px] h-[70px] md:w-[449px] md:h-[60px] mobile:w-[295px] mobile:h-[60px] md:text-[14px] mobile:text-[14px] line-clamp-3">
+        <p className="text-gray-6E w-[300px] md:w-[449px] mobile:w-[295px] md:text-[14px] mobile:text-[14px]">
           {profileData?.description}
         </p>
       </div>
@@ -56,14 +56,24 @@ const ProfileCard = () => {
           </div>
         </div>
       </div>
-      <Button
-        type="submit"
-        kind={ButtonKind.primary}
-        customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} w-[295px] md:w-[449px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]`}
-        disabled={!isValid}
-      >
-        팔로우
-      </Button>
+      <div className="flex flex-col gap-[20px]">
+        <Button
+          type="submit"
+          kind={ButtonKind.primary}
+          customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} w-[295px] md:w-[449px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]`}
+          disabled={!isValid}
+        >
+          팔로우
+        </Button>
+        <Button
+          type="submit"
+          kind={ButtonKind.tertiary}
+          customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} w-[295px] md:w-[449px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]`}
+          disabled={!isValid}
+        >
+          로그아웃
+        </Button>
+      </div>
     </section>
   );
 };

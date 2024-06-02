@@ -8,7 +8,7 @@ import { useClose } from '@/shared/@common/hooks';
 
 const GnbHamburgerMenuOption = () => {
   // TO DO: 로그인 기능 구현 이후 로그인 유무에 따른 분기처리 추가 예정, 현재는 임시로 만든 상태!
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   const pathname = usePathname();
 
@@ -37,9 +37,15 @@ const GnbHamburgerMenuOption = () => {
             >
               비교하기
             </Link>
-            <Link className={linkClass} href="/profile">
+            <Link
+              className={`${linkClass} border-b border-solid border-black-25`}
+              href="/profile"
+            >
               내 프로필
             </Link>
+            <button className={linkClass} type="button">
+              로그아웃
+            </button>
           </div>
         ) : (
           <div>

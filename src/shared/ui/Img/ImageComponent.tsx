@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
 const typeClasses: Record<ImageProps['type'], string> = {
-  product: 'w-full aspect-[284/200]',
+  product: 'w-full aspect-[284/200] rounded-lg overflow-hidden',
   profile:
     'mobile:w-[36px] mobile:h-[36px] md:w-[36px] md:h-[36px] lg:w-[42px] lg:h-[42px] rounded-full overflow-hidden',
   review:

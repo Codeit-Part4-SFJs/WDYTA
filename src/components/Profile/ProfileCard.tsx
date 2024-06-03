@@ -59,7 +59,7 @@ export const ProfileCard = () => {
         <Button
           type="submit"
           kind={ButtonKind.primary}
-          customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} lg:w-[295px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]`}
+          customSize="lg:w-[295px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]"
           disabled={!isValid}
         >
           팔로우
@@ -67,7 +67,7 @@ export const ProfileCard = () => {
         <Button
           type="submit"
           kind={ButtonKind.tertiary}
-          customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} lg:w-[295px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]`}
+          customSize="lg:w-[295px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]"
           disabled={!isValid}
         >
           로그아웃

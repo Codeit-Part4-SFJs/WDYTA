@@ -14,13 +14,13 @@ const Detail = () => {
       <ProductDetail />
       <ProductStatistics />
       <ProductReviews />
-      <Floating />
       <SkeletonProductDetail />
       <SkeletonProductStatistics />
       <SkeletonProductReviews />
       <SkeletonProductReviews />
       <SkeletonProductReviews />
       <SkeletonProductReviews />
+      <Floating />
     </div>
   );
 };

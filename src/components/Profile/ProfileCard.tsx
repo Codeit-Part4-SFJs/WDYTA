@@ -21,10 +21,9 @@ export const ProfileCard = () => {
   const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
-    if (userData.id === authData.id) {
-      setIsValid(false);
-    }
+    setIsValid(userData.id !== authData.id);
   }, []);
+
   return (
     <section className="flex flex-col items-center justify-center gap-[42px] pt-[40px] pb-[30px] md:gap-[25px] mobile:gap-[35px]  lg:min-w-[340px] md:w-[509px] mobile:w-[335px] rounded-xl border border-solid bg-gray-25 border-gray-35">
       <ImageComponent

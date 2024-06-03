@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 
-const logoutAction = async () => {
+const logoutAction = () => {
   cookies().delete('accessToken');
   cookies().delete('userId');
 };

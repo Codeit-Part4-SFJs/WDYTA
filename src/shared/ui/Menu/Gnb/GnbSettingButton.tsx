@@ -5,6 +5,11 @@ import Link from 'next/link';
 import { useState, useRef } from 'react';
 
 const SettingOptions = () => {
+  const handleSignOut = () => {
+    // 연아님! 로그아웃 여기에 구현해주시면 됩니다! 쿠키 지워지고 Reload를 해야 바뀐 쿠키 상태가 GnB에 반영됩니다!
+    window.location.reload();
+  };
+
   return (
     <div className="z-50 top-[30px] lg:right-[0px] md:right-[0px] mobile:hidden md:block lg:block absolute overflow-hidden bg-black-1C rounded-lg border border-solid border-black-25 text-gray-F1 not-italic font-normal leading-normal md:text-[14px] lg:text-4 text-center">
       <Link
@@ -14,6 +19,7 @@ const SettingOptions = () => {
         내 프로필
       </Link>
       <button
+        onClick={handleSignOut}
         className="w-full lg:w-36 md:w-28 block px-[20px] py-4 hover:bg-black-25 focus:bg-black-25 focus:outline-none"
         type="button"
       >

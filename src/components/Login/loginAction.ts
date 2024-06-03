@@ -9,7 +9,7 @@ interface LoginActionProps {
   };
 }
 
-const loginAction = async (data: LoginActionProps) => {
+const loginAction = (data: LoginActionProps) => {
   const { accessToken, user } = data;
 
   cookies().set('accessToken', accessToken);

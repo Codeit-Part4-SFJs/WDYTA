@@ -2,19 +2,29 @@
 
 import { useSideMenuStore } from '@/stores';
 import { CategoryFilterChip } from '@/shared/ui/Chip/CategoryFilterChip';
+import { SideMenuOpenButtonProps } from './types/categoryType';
 
-export const SideMenuOpenButton = () => {
-  const currentCategory = useSideMenuStore((state) => state.currentCategory);
+export const SideMenuOpenButton = ({
+  currentCategoryId,
+}: SideMenuOpenButtonProps) => {
   const isOpenSideMenu = useSideMenuStore((state) => state.isOpenSideMenu);
   const setIsOpenSideMenu = useSideMenuStore(
     (state) => state.setIsOpenSideMenu,
   );
 
+  let categoryID = null;
+
+  if (currentCategoryId === undefined) {
+    categoryID = 0;
+  } else {
+    categoryID = currentCategoryId;
+  }
+
   return (
     <div className="mobile:block md:hidden lg:hidden">
       {isOpenSideMenu ? (
         <div className="mobile:block md:hidden lg:hidden hover:cursor-pointer">
-          <CategoryFilterChip categoryID={currentCategory} />
+          <CategoryFilterChip categoryID={categoryID} />
         </div>
       ) : (
         <button
@@ -22,7 +32,7 @@ export const SideMenuOpenButton = () => {
           type="button"
           onClick={setIsOpenSideMenu}
         >
-          <CategoryFilterChip categoryID={currentCategory} />
+          <CategoryFilterChip categoryID={categoryID} />
         </button>
       )}
     </div>

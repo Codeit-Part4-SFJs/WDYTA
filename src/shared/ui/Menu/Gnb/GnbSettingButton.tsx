@@ -1,12 +1,13 @@
 'use client';
 
 import { useClose } from '@/shared/@common/hooks';
+import { logoutAction } from '@/shared/@common/utils';
 import Link from 'next/link';
 import { useState, useRef } from 'react';
 
 const SettingOptions = () => {
-  const handleSignOut = () => {
-    // 연아님! 로그아웃 여기에 구현해주시면 됩니다! 쿠키 지워지고 Reload를 해야 바뀐 쿠키 상태가 GnB에 반영됩니다!
+  const handleSignOut = async () => {
+    await logoutAction();
     window.location.reload();
   };
 

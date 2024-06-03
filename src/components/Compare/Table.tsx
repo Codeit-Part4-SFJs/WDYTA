@@ -1,38 +1,38 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 export const Table = () => {
-  interface AutoDatas {
-    id: number,
-    name: string,
-    description: string,
-    image: string,
-    rating: number,
-    reviewCount: number,
-    favoriteCount: number,
-    categoryId: number,
-    createdAt: string,
-    updatedAt: string,
-    writerId: number,
-    isFavorite: boolean,
-    category: {
-      id: number,
-      name: string,
-    },
-    categoryMetric: {
-      rating: number,
-      favoriteCount: number,
-      reviewCount: number,
-    },
-  };
+  // interface AutoDatas {
+  //   id: number;
+  //   name: string;
+  //   description: string;
+  //   image: string;
+  //   rating: number;
+  //   reviewCount: number;
+  //   favoriteCount: number;
+  //   categoryId: number;
+  //   createdAt: string;
+  //   updatedAt: string;
+  //   writerId: number;
+  //   isFavorite: boolean;
+  //   category: {
+  //     id: number;
+  //     name: string;
+  //   };
+  //   categoryMetric: {
+  //     rating: number;
+  //     favoriteCount: number;
+  //     reviewCount: number;
+  //   };
+  // }
 
-  const [compareItems, setCompareItems] = useState<AutoDatas[]>([]);
+  // const [compareItems, setCompareItems] = useState<AutoDatas[]>([]);
+  // let categories = '';
 
-
-  const handleCheckWinner = (category: AutoDatas) => {
-    if (category) {
-      category.categoryMetric.
-    }
-  }
+  // const handleCheckWinner = (category: AutoDatas) => {
+  //   if (category) {
+  //     category.categoryMetric.rating;
+  //   }
+  // };
 
   return (
     <div className="w-[940px] h-[297px] bg-black-25 flex-shrink-0 md:w-[684px] md:h-[308px] md:text-sm mobile:w-[335px] mobile:h-[186px] mobile:text-xs">

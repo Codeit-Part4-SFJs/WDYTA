@@ -1,10 +1,11 @@
 'use client';
 
+import { AutoComplete } from '@/components/Compare/AutoComplete';
 import { Table } from '@/components/Compare/Table';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button/Button';
 import { Floating } from '@/shared/ui/Button/Floating/Floating';
+import { CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Loading } from '@/shared/ui/Icon';
-import { Input } from '@/shared/ui/Input';
 import { useEffect, useState } from 'react';
 
 const Compare = () => {
@@ -23,11 +24,11 @@ const Compare = () => {
         <div className="flex flex-row gap-5 mobile:flex-col">
           <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 1</p>
-            <Input inputSize="xsmall" />
+            <AutoComplete color={CompareColor.GREEN} />
           </div>
           <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 2</p>
-            <Input inputSize="xsmall" />
+            <AutoComplete />
           </div>
         </div>
         <div className="mt-">
@@ -59,6 +60,18 @@ const Compare = () => {
           <div className="mb-[100px]">
             <Table />
           </div>
+          <Button
+            kind={ButtonKind.primary}
+            customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
+          >
+            다른 상품 비교해보기
+          </Button>
+          <Button
+            kind={ButtonKind.primary}
+            customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
+          >
+            이 상품 보러 가기
+          </Button>
         </div>
       )}
 

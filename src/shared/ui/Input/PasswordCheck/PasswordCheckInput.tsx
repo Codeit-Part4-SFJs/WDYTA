@@ -25,16 +25,16 @@ export const PasswordCheckInput = ({
       <Label htmlFor="passwordCheck">비밀번호 확인</Label>
       <div className="relative">
         <Input
-          id="passwordCheck"
+          id="passwordConfirmation"
           inputSize="large"
           type={isShowPassword ? 'text' : 'password'}
           placeholder="비밀번호를 한 번 더 입력해주세요"
-          {...register('passwordCheck', {
+          {...register('passwordConfirmation', {
             required: '비밀번호를 입력해주세요',
             validate: (value: string) =>
               value === password || '비밀번호가 일치하지 않습니다',
           })}
-          isError={!!errors.passwordCheck}
+          isError={!!errors.passwordConfirmation}
         />
         <Icon
           name={isShowPassword ? 'VisibilityIcon' : 'VisibilityOffIcon'}
@@ -42,8 +42,10 @@ export const PasswordCheckInput = ({
           onClick={toggleIcon}
         />
       </div>
-      {errors.passwordCheck && (
-        <HelperText type="error">{errors.passwordCheck.message}</HelperText>
+      {errors.passwordConfirmation && (
+        <HelperText type="error">
+          {errors.passwordConfirmation.message}
+        </HelperText>
       )}
     </div>
   );

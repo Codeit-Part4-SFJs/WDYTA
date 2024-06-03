@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 
-export type ImageType = 'product' | 'profile' | 'review';
+export type ImageType = 'product' | 'profile' | 'review' | 'detail';
 
 export interface ImageProps {
   type: ImageType;

@@ -1,21 +1,14 @@
+import { getProductList } from '@/shared/@common/apis/product';
 import { CompareChip, CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Input } from '@/shared/ui/Input';
 import { useEffect, useState } from 'react';
 
-interface AutoData {
-  nextCursor: number;
-  list: {
-    updatedAt: string;
-    createdAt: string;
-    writerId: number;
-    categoryId: number;
-    favoriteCount: number;
-    reviewCount: number;
-    rating: number;
-    image: string;
-    name: string;
-    id: number;
-  };
+interface Product {
+  categoryId: number;
+  image: string;
+  description: string;
+  name: string;
+  id: number;
 }
 
 interface AutoCompleteProps {
@@ -24,32 +17,32 @@ interface AutoCompleteProps {
 
 export const AutoComplete = ({ color }: AutoCompleteProps): JSX.Element => {
   const [keyword, setKeyword] = useState<string>('');
-  const [keyItems, setKeyItems] = useState<AutoData[]>([]);
+  const [keyItems, setKeyItems] = useState<Product[]>([]);
   const [isChip, setIsChip] = useState<string>('a');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const onChangeData = (e: React.FormEvent<HTMLInputElement>) => {
     setKeyword(e.currentTarget.value);
   };
 
-  const fetchData = async (): Promise<AutoData[]> => {
-    try {
-      const res = await fetch('https://mogazoa-api.vercel.app/4-19/products');
-      const data = await res.json();
-      return data.slice(0, 100);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return [];
-    }
-  };
-
   const updateData = async () => {
-    const res = await fetchData();
-    const filteredData = res
-      .filter((item) =>
-        item.list.name.toLowerCase().includes(keyword.toLowerCase()),
-      )
-      .slice(0, 10);
-    setKeyItems(filteredData);
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await getProductList();
+      const products: Product[] = await response.json();
+      const filteredData = products
+        .filter((product: Product) =>
+          product.name.toLowerCase().includes(keyword.toLowerCase()),
+        )
+        .slice(0, 10);
+      setKeyItems(filteredData);
+    } catch (error) {
+      setError('Failed to fetch product list.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -78,23 +71,23 @@ export const AutoComplete = ({ color }: AutoCompleteProps): JSX.Element => {
       {keyItems.length > 0 && keyword && (
         <div>
           <ul>
-            {keyItems.map((search) => (
-              <li key={search.list.id}>
+            {keyItems.map((product) => (
+              <li key={product.id}>
                 <button
                   type="button"
                   onClick={() => {
-                    setKeyword(search.list.name);
+                    setKeyword(product.name);
                     setKeyItems([]);
                     setIsChip(keyword);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
-                      setKeyword(search.list.name);
+                      setKeyword(product.name);
                       setKeyItems([]);
                     }
                   }}
                 >
-                  {search.list.name}
+                  {product.name}
                 </button>
               </li>
             ))}

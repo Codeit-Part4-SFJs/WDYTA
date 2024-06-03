@@ -116,7 +116,7 @@ export const ProductSection = () => {
         ))}
       </ul>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 mobile:grid-cols-2  gap-[20px]">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 mobile:grid-cols-2 gap-[20px] ">
         {renderProductCards()}
       </div>
     </section>

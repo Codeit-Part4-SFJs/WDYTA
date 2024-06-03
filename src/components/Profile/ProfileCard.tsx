@@ -25,18 +25,18 @@ export const ProfileCard = () => {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center gap-[42px] pt-[40px] pb-[30px] md:gap-[25px] mobile:gap-[35px]  lg:min-w-[340px] md:w-[509px] mobile:w-[335px] rounded-xl border border-solid bg-gray-25 border-gray-35">
+    <section className="flex flex-col items-center justify-center gap-[42px] pt-[40px] pb-[30px] px-[30px] md:gap-[25px] mobile:gap-[35px] lg:min-w-[340px] md:w-full mobile:w-full rounded-xl border border-solid bg-gray-25 border-gray-35">
       <ImageComponent
         type="profile"
         src={profileData.image}
         className="lg:w-[180px] lg:h-[180px] md:w-[120px] md:h-[120px] mobile:w-[120px] mobile:h-[120px]"
         alt="프로필 이미지"
       />
-      <div className="flex flex-col items-center lg:gap-[20px] md:gap-[10px] mobile:gap-[10px] w-[300px] min-h-[66px] text-center">
+      <div className="flex flex-col items-center lg:gap-[20px] md:gap-[10px] mobile:gap-[10px] lg:w-[300px] lg:min-h-[66px] md:w-full mobile:w-full text-center">
         <p className="lg:text-[24px] md:text-[20px]  text-gray-F1">
           {profileData?.nickname}
         </p>
-        <p className="text-gray-6E w-[300px] md:w-[449px] mobile:w-[295px] md:text-[14px] mobile:text-[14px]">
+        <p className="text-gray-6E w-[300px] md:w-full mobile:w-full md:text-[14px] mobile:text-[14px]">
           {profileData?.description}
         </p>
       </div>
@@ -55,11 +55,11 @@ export const ProfileCard = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-[20px]">
+      <div className="flex flex-col gap-[20px] mobile:w-full md:w-full">
         <Button
           type="submit"
           kind={ButtonKind.primary}
-          customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} w-[295px] md:w-[449px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]`}
+          customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} lg:w-[295px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]`}
           disabled={!isValid}
         >
           팔로우
@@ -67,7 +67,7 @@ export const ProfileCard = () => {
         <Button
           type="submit"
           kind={ButtonKind.tertiary}
-          customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} w-[295px] md:w-[449px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]`}
+          customSize={`${!isValid ? 'cursor-not-allowed' : 'cursor-pointer'} lg:w-[295px] lg:w-[300px] h-[50px] md:h-[55px] lg:h-[65px] lg:text-[18px]`}
           disabled={!isValid}
         >
           로그아웃

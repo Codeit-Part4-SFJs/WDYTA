@@ -23,8 +23,9 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const { id, image, name, reviewCount, rating, favoriteCount } = product;
   return (
+    // categoryId/productId
     <Link href={`/detail/${id}`}>
-      <div className="flex flex-col items-center justify-center pt-[10px]  lg:pb-[20px] md:pb-[15px] mobile:pb-[10px] mobile:w-[160px] mobile:h-[183px] md:w-[247px] md:h-[256px] lg:max-w-[300px]  mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border border-solid border-gray-35 bg-gray-25">
+      <div className="flex flex-col items-center justify-center pt-[10px] lg:pb-[20px] md:pb-[15px] mobile:pb-[10px] px-[10px] mobile:w-full lg:max-w-[300px] mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border border-solid border-gray-35 bg-gray-25">
         <ImageComponent
           className="border-[3px] border-solid border-gray-35 "
           type="product"

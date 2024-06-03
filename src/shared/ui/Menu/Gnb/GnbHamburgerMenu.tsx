@@ -5,11 +5,14 @@ import { Icon } from '@/shared/ui/Icon';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { useClose } from '@/shared/@common/hooks';
+import {
+  GnbHamburgerMenuOptionProps,
+  GnbHamburgerMenuProps,
+} from './types/gnbType';
 
-const GnbHamburgerMenuOption = () => {
-  // TO DO: 로그인 기능 구현 이후 로그인 유무에 따른 분기처리 추가 예정, 현재는 임시로 만든 상태!
-  const isLoggedIn = true;
-
+const GnbHamburgerMenuOption = ({
+  isLoggedIn,
+}: GnbHamburgerMenuOptionProps) => {
   const pathname = usePathname();
 
   const linkClass =
@@ -64,7 +67,7 @@ const GnbHamburgerMenuOption = () => {
   );
 };
 
-export const GnbHamburgerMenu = () => {
+export const GnbHamburgerMenu = ({ isLoggedIn }: GnbHamburgerMenuProps) => {
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] =
     useState<boolean>(false);
   const handleToggledHamburgerMenu = () => {
@@ -89,7 +92,9 @@ export const GnbHamburgerMenu = () => {
           className="mobile:w-[24px] mobile:h-[24px] md:hidden lg:hidden fill-gray-9F"
         />
       </button>
-      {isOpenHamburgerMenu && <GnbHamburgerMenuOption />}
+      {isOpenHamburgerMenu && (
+        <GnbHamburgerMenuOption isLoggedIn={isLoggedIn} />
+      )}
     </div>
   );
 };

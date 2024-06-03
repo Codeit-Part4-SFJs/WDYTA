@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { GnbSettingButton } from '@/shared/ui/Menu/Gnb/GnbSettingButton';
 
 const flexClass = 'mobile:hidden md:flex lg:flex md:gap-[30px] lg:gap-[60px] ';
 const LinkClass =
@@ -23,16 +24,14 @@ const GnbUserFeature = () => {
       <Link className={LinkClass} href="/compare">
         비교하기
       </Link>
-      <Link className={LinkClass} href="/profile">
-        내 프로필
-      </Link>
+      <GnbSettingButton />
     </div>
   );
 };
 
 export const GnbUser = () => {
   // TO DO: 로그인 기능 구현 이후 로그인 유무에 따른 분기처리 추가 예정, 현재는 임시로 만든 상태!
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   return (
     <div className="mobile:hidden">

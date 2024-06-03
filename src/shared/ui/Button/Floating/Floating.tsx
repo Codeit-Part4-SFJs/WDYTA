@@ -1,3 +1,5 @@
+'use client';
+
 import { Icon } from '@/shared/ui/Icon';
 
 export const Floating = () => {

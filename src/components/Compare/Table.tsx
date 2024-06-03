@@ -35,7 +35,7 @@ export const Table = () => {
   // };
 
   return (
-    <div className="w-[940px] h-[297px] bg-black-25 flex-shrink-0 md:w-[684px] md:h-[308px] md:text-sm mobile:w-[335px] mobile:h-[186px] mobile:text-xs">
+    <div className="border border-solid border-gray-35 rounded-xl w-[940px] h-[297px] bg-black-25 flex-shrink-0 md:w-[684px] md:h-[308px] md:text-sm mobile:w-[335px] mobile:h-[186px] mobile:text-xs">
       <table className="table-auto w-full h-full text-center">
         <thead className="w-full">
           <tr className="text-gray-9F h-[60px] md:h-[57px] mobile:h-11">

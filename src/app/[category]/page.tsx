@@ -1,4 +1,4 @@
-import { convertCategoryToCategoryId } from '@/shared/@common/utils';
+import { convertCategoryToId } from '@/shared/@common/utils';
 import { SideMenu, SideMenuOpenButton } from '@/shared/ui/Menu/SideMenu';
 
 const Page = ({ params }: { params: { category: string } }) => {
@@ -6,11 +6,11 @@ const Page = ({ params }: { params: { category: string } }) => {
     <div>
       <SideMenu
         categories={undefined}
-        currentCategoryId={convertCategoryToCategoryId(params.category)}
+        currentCategoryId={convertCategoryToId(params.category)}
       />
       <div className="flex justify-end">
         <SideMenuOpenButton
-          currentCategoryId={convertCategoryToCategoryId(params.category)}
+          currentCategoryId={convertCategoryToId(params.category)}
         />
       </div>
     </div>

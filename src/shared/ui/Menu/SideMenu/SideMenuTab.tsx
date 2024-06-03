@@ -1,6 +1,6 @@
 'use client';
 
-import { convertCategoryIdToCategory } from '@/shared/@common/utils/convertCategoryIdToCategory';
+import { convertIdToCategory } from '@/shared/@common/utils';
 import { SideMenuTabProps } from '@/shared/ui/Menu/SideMenu/types/categoryType';
 import Link from 'next/link';
 
@@ -26,7 +26,7 @@ export const SideMenuTab = ({
       ) : (
         <Link
           className={`${unClickedClass}`}
-          href={`/${convertCategoryIdToCategory(categoryId)}`}
+          href={`/${convertIdToCategory(categoryId)}`}
         >
           {category}
         </Link>

@@ -11,7 +11,7 @@ const CATEGORIES_ID: { [key: number]: string } = {
   10: 'app',
 };
 
-export const convertCategoryIdToCategory = (categoryId: number) => {
+export const convertIdToCategory = (categoryId: number) => {
   const category = CATEGORIES_ID[categoryId];
 
   return category;

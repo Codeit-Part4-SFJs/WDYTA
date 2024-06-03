@@ -10,3 +10,15 @@ export interface GnbSearchBarProps {
 export interface GnbSearchButtonProps {
   handleToggledSearchBar: () => void;
 }
+
+export interface GnbHamburgerMenuProps {
+  isLoggedIn: boolean;
+}
+
+export interface GnbHamburgerMenuOptionProps {
+  isLoggedIn: boolean;
+}
+
+export interface GnbUserProps {
+  isLoggedIn: boolean;
+}

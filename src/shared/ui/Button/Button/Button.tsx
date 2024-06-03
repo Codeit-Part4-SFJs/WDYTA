@@ -19,7 +19,7 @@ export const ButtonStyleByKind = {
   },
   [ButtonKind.secondary]: {
     button:
-      'border border-solid border-main-blue border-transparent disabled:border-gray-35 disabled:text-gray-6E',
+      'border border-solid border-main-blue bg-transparent disabled:border-gray-35 disabled:text-gray-6E',
     p: 'group-disabled:text-gray-6E text-transparent bg-clip-text bg-main-gradation',
   },
   [ButtonKind.tertiary]: {

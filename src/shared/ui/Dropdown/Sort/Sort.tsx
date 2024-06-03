@@ -69,7 +69,7 @@ export const Sort = ({
         </div>
       </div>
       {isToggled && (
-        <div className="absolute z-20 top-[100%] flex w-[160px] md:w-[140px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25">
+        <div className="absolute z-20 top-[calc(100%+10px)] flex w-[160px] md:w-[140px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25">
           {options.map((option) => (
             <div
               role="button"

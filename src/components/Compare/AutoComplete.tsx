@@ -13,9 +13,13 @@ interface Product {
 
 interface AutoCompleteProps {
   color?: string;
+  onSelectProduct: (id: number) => void;
 }
 
-export const AutoComplete = ({ color }: AutoCompleteProps): JSX.Element => {
+export const AutoComplete = ({
+  color,
+  onSelectProduct,
+}: AutoCompleteProps): JSX.Element => {
   const [keyword, setKeyword] = useState<string>('');
   const [keyItems, setKeyItems] = useState<Product[]>([]);
   const [isChip, setIsChip] = useState<string>('a');
@@ -79,6 +83,7 @@ export const AutoComplete = ({ color }: AutoCompleteProps): JSX.Element => {
                     setKeyword(product.name);
                     setKeyItems([]);
                     setIsChip(keyword);
+                    onSelectProduct(product.id);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {

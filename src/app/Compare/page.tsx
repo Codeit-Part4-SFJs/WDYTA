@@ -11,6 +11,13 @@ import { useEffect, useState } from 'react';
 const Compare = () => {
   const [isCompare, setIsCompare] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
+  const [selectedSecondProductId, setSelectedSecondProductId] = useState<
+    number | null
+  >(null);
+
+  const handleSelectSecondProduct = (id: number) => {
+    setSelectedSecondProductId(id);
+  };
 
   useEffect(() => {
     if (isCompare) {
@@ -24,11 +31,14 @@ const Compare = () => {
         <div className="flex flex-row gap-5 mobile:flex-col">
           <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 1</p>
-            <AutoComplete color={CompareColor.GREEN} />
+            <AutoComplete
+              color={CompareColor.GREEN}
+              onSelectProduct={handleSelectSecondProduct}
+            />
           </div>
           <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 2</p>
-            <AutoComplete />
+            <AutoComplete onSelectProduct={handleSelectSecondProduct} />
           </div>
         </div>
         <div className="mt-">
@@ -58,7 +68,7 @@ const Compare = () => {
             </p>
           </div>
           <div className="mb-[100px]">
-            <Table />
+            <Table selectedSecondProductId={selectedSecondProductId} />
           </div>
           <Button
             kind={ButtonKind.primary}

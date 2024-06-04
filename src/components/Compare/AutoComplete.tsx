@@ -2,11 +2,17 @@ import { getProductList } from '@/shared/@common/apis/product';
 import { CompareChip, CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Input } from '@/shared/ui/Input';
 import { useEffect, useState } from 'react';
+import { PRODUCT_LIST_MOCK } from './mock/PRODUCT_LIST_MOCK';
 
 interface Product {
+  updatedAt: string;
+  createdAt: string;
+  writerId: number;
   categoryId: number;
+  favoriteCount: number;
+  reviewCount: number;
+  rating: number;
   image: string;
-  description: string;
   name: string;
   id: number;
 }
@@ -14,17 +20,22 @@ interface Product {
 interface AutoCompleteProps {
   color?: string;
   onSelectProduct: (id: number) => void;
+  selectedProduct?: string;
 }
 
 export const AutoComplete = ({
   color,
   onSelectProduct,
+  selectedProduct,
 }: AutoCompleteProps): JSX.Element => {
   const [keyword, setKeyword] = useState<string>('');
   const [keyItems, setKeyItems] = useState<Product[]>([]);
-  const [isChip, setIsChip] = useState<string>('a');
+  const [isChip, setIsChip] = useState<string | undefined>('a');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [listOpen, setListOpen] = useState<boolean>(false);
+
+  console.log(listOpen);
 
   const onChangeData = (e: React.FormEvent<HTMLInputElement>) => {
     setKeyword(e.currentTarget.value);
@@ -34,9 +45,10 @@ export const AutoComplete = ({
     setLoading(true);
     setError(null);
     try {
-      const response = await getProductList();
-      const products: Product[] = await response.json();
-      const filteredData = products
+      // const response = await getProductList();
+      // const products: Product[] = await response.json();
+      const products = PRODUCT_LIST_MOCK;
+      const filteredData = products.list
         .filter((product: Product) =>
           product.name.toLowerCase().includes(keyword.toLowerCase()),
         )
@@ -50,12 +62,31 @@ export const AutoComplete = ({
   };
 
   useEffect(() => {
+    setIsChip(selectedProduct);
     const debounce = setTimeout(() => {
-      if (keyword) updateData();
-      else setKeyItems([]);
+      if (keyword) {
+        updateData();
+        setListOpen(true);
+      } else {
+        setKeyItems([]);
+        setListOpen(false);
+      }
     }, 200);
     return () => clearTimeout(debounce);
   }, [keyword]);
+
+  const handleInputBlur = () => {
+    setTimeout(() => {
+      setListOpen(false);
+    }, 276);
+  };
+
+  const handleItemClick = (product: Product) => {
+    setKeyword(product.name);
+    onSelectProduct(product.id);
+    setKeyItems([]);
+    setListOpen(false);
+  };
 
   return (
     <div>
@@ -69,31 +100,26 @@ export const AutoComplete = ({
             />
           </div>
         ) : (
-          <Input inputSize="xsmall" value={keyword} onChange={onChangeData} />
+          <Input
+            inputSize="xsmall"
+            value={keyword}
+            onChange={onChangeData}
+            onBlur={handleInputBlur}
+          />
         )}
       </div>
-      {keyItems.length > 0 && keyword && (
-        <div>
-          <ul>
+      {keyItems.length > 0 && keyword && listOpen && (
+        <div className="mt-2">
+          <ul className="flex w-[350px] p-[10px] flex-col items-start gap-[5px] bg-black-25 border border-solid border-gray-35 rounded-lg">
             {keyItems.map((product) => (
-              <li key={product.id}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setKeyword(product.name);
-                    setKeyItems([]);
-                    setIsChip(keyword);
-                    onSelectProduct(product.id);
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      setKeyword(product.name);
-                      setKeyItems([]);
-                    }
-                  }}
-                >
-                  {product.name}
-                </button>
+              <li
+                className="flex py-[6px] px-5 items-center gap-[10px] self-stretch rounded-md  text-white hover:bg-gray-35 cursor-pointer"
+                key={product.id}
+                onClick={() => {
+                  handleItemClick(product);
+                }}
+              >
+                {product.name}
               </li>
             ))}
           </ul>

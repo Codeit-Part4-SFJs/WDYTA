@@ -2,15 +2,41 @@
 
 import { AutoComplete } from '@/components/Compare/AutoComplete';
 import { Table } from '@/components/Compare/Table';
+import { getDetailProduct } from '@/shared/@common/apis/product';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button/Button';
 import { Floating } from '@/shared/ui/Button/Floating/Floating';
 import { CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Loading } from '@/shared/ui/Icon';
+// import { cookies } from 'next/headers';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 const Compare = () => {
   const [isCompare, setIsCompare] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
+  const [selectedSecondProductId, setSelectedSecondProductId] =
+    useState<number>(0);
+
+  // const userId = cookies().get('userId');
+
+  // // const router = useRouter();
+  // const { product } = router.query;
+  // const [product1, setProduct1] = useState<number>(1);
+
+  // api로 product의 id를 이용해서 product1은 product의 name을 받아와야 하는 것이다.
+
+  const handleSelectSecondProduct = (id: number) => {
+    setSelectedSecondProductId(id);
+  };
+
+  // useEffect(() => {
+  //   if (typeof product === 'string') {
+  //     const parsedProduct = parseInt(product, 10);
+  //     if (!isNaN(parsedProduct)) {
+  //       setProduct1(parsedProduct);
+  //     }
+  //   }
+  // }, [product]);
 
   useEffect(() => {
     if (isCompare) {
@@ -24,11 +50,15 @@ const Compare = () => {
         <div className="flex flex-row gap-5 mobile:flex-col">
           <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 1</p>
-            <AutoComplete color={CompareColor.GREEN} />
+            <AutoComplete
+              color={CompareColor.GREEN}
+              onSelectProduct={handleSelectSecondProduct}
+              // selectedProduct={getDetailProduct(product1, userId).name}
+            />
           </div>
           <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 2</p>
-            <AutoComplete />
+            <AutoComplete onSelectProduct={handleSelectSecondProduct} />
           </div>
         </div>
         <div className="mt-">
@@ -58,7 +88,7 @@ const Compare = () => {
             </p>
           </div>
           <div className="mb-[100px]">
-            <Table />
+            <Table selectedSecondProductId={selectedSecondProductId} />
           </div>
           <Button
             kind={ButtonKind.primary}

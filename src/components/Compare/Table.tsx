@@ -1,38 +1,54 @@
-// import { useState } from 'react';
+import { getDetailProduct } from '@/shared/@common/apis/product';
+// import { cookies } from 'next/headers';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-export const Table = () => {
-  // interface AutoDatas {
-  //   id: number;
-  //   name: string;
-  //   description: string;
-  //   image: string;
-  //   rating: number;
-  //   reviewCount: number;
-  //   favoriteCount: number;
-  //   categoryId: number;
-  //   createdAt: string;
-  //   updatedAt: string;
-  //   writerId: number;
-  //   isFavorite: boolean;
-  //   category: {
-  //     id: number;
-  //     name: string;
-  //   };
-  //   categoryMetric: {
-  //     rating: number;
-  //     favoriteCount: number;
-  //     reviewCount: number;
-  //   };
-  // }
+interface AutoDatas {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  rating: number;
+  reviewCount: number;
+  favoriteCount: number;
+  categoryId: number;
+  createdAt: string;
+  updatedAt: string;
+  writerId: number;
+  isFavorite: boolean;
+  category: {
+    id: number;
+    name: string;
+  };
+  categoryMetric: {
+    rating: number;
+    favoriteCount: number;
+    reviewCount: number;
+  };
+}
 
-  // const [compareItems, setCompareItems] = useState<AutoDatas[]>([]);
-  // let categories = '';
+interface TableProps {
+  selectedSecondProductId: number;
+}
 
-  // const handleCheckWinner = (category: AutoDatas) => {
-  //   if (category) {
-  //     category.categoryMetric.rating;
-  //   }
+export const Table = ({ selectedSecondProductId }: TableProps) => {
+  // const userId = cookies().get('userId');
+  // {category}/{product} 에서 선택되면 compare/{product}로 넘어와야 한다.
+
+  const [compareItems, setCompareItems] = useState<AutoDatas[]>([]);
+  const [product2, setProduct2] = useState<AutoDatas | null>(null);
+
+  let categories = '';
+
+  // const handleFindProduct = (e) => {
+  //   getDetailProduct(e);
   // };
+
+  const handleCheckWinner = (category: AutoDatas) => {
+    if (category) {
+      category.categoryMetric.rating;
+    }
+  };
 
   return (
     <div className="border border-solid border-gray-35 rounded-xl w-[940px] h-[297px] bg-black-25 flex-shrink-0 md:w-[684px] md:h-[308px] md:text-sm mobile:w-[335px] mobile:h-[186px] mobile:text-xs">

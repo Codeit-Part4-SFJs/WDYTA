@@ -116,15 +116,21 @@ export const AutoComplete = ({
         <div className="mt-2">
           <ul className="flex w-[350px] p-[10px] flex-col items-start gap-[5px] bg-black-25 border border-solid border-gray-35 rounded-lg">
             {keyItems.map((product) => (
-              <li
+              <button
+                type="button"
                 className="flex py-[6px] px-5 items-center gap-[10px] self-stretch rounded-md  text-white hover:bg-gray-35 cursor-pointer"
                 key={product.id}
                 onClick={() => {
                   handleItemClick(product);
                 }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleItemClick(product);
+                  }
+                }}
               >
                 {product.name}
-              </li>
+              </button>
             ))}
           </ul>
         </div>

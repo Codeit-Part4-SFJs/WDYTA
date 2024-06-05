@@ -122,34 +122,10 @@ const Compare = () => {
         </div>
       )}
       {isLoad && (
-        <div className="flex flex-col items-center justify-center">
-          <div className="flex flex-col h-[300px] items-center justify-center gap-5 md:max-w-[200px] mobile:max-w-[200px] ">
-            <p className="text-white lg:text-2xl text-xl">
-              Air Pods Max 상품이 승리하였습니다!
-            </p>
-            <p className="text-gray-9F lg:text-base text-xs">
-              3가지 항목 중 2가지 항목에서 우세합니다.
-            </p>
-          </div>
-          <div className="mb-[100px]">
-            <Table
-              selectedFirstProductId={selectedFirstProductId}
-              selectedSecondProductId={selectedSecondProductId}
-            />
-          </div>
-          <Button
-            kind={ButtonKind.primary}
-            customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
-          >
-            다른 상품 비교해보기
-          </Button>
-          <Button
-            kind={ButtonKind.primary}
-            customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
-          >
-            이 상품 보러 가기
-          </Button>
-        </div>
+        <Table
+          selectedFirstProductId={selectedFirstProductId}
+          selectedSecondProductId={selectedSecondProductId}
+        />
       )}
 
       <Floating />

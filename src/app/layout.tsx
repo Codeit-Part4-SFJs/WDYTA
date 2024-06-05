@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { Gnb } from '@/shared/ui/Menu/Gnb';
 import localFont from 'next/font/local';
-import ClientProviders from './clientProviders';
+import Providers from '@/app/providers';
 
 export const metadata = {
   title: 'WDYTA',
@@ -23,10 +23,10 @@ export default function RootLayout({
   return (
     <html lang="ko" className={pretendard.className}>
       <body>
-        <ClientProviders>
+        <Providers>
           <Gnb />
           {children}
-        </ClientProviders>
+        </Providers>
       </body>
     </html>
   );

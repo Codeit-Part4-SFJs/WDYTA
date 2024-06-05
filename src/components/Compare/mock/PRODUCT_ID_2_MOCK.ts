@@ -1,4 +1,4 @@
-export const PRODUCT_ID_MOCK = {
+export const PRODUCT_ID_2_MOCK = {
   id: 1,
   name: '에어팟 프로',
   description: '노이즈 캔슬링이 잘 되는 이어폰',

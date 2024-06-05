@@ -30,12 +30,10 @@ export const AutoComplete = ({
 }: AutoCompleteProps): JSX.Element => {
   const [keyword, setKeyword] = useState<string>('');
   const [keyItems, setKeyItems] = useState<Product[]>([]);
-  const [isChip, setIsChip] = useState<string | undefined>('a');
+  const [isChip, setIsChip] = useState<string | undefined>(selectedProduct);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [listOpen, setListOpen] = useState<boolean>(false);
-
-  console.log(listOpen);
 
   const onChangeData = (e: React.FormEvent<HTMLInputElement>) => {
     setKeyword(e.currentTarget.value);
@@ -61,8 +59,13 @@ export const AutoComplete = ({
     }
   };
 
+  console.log(isChip);
+
   useEffect(() => {
     setIsChip(selectedProduct);
+  }, []);
+
+  useEffect(() => {
     const debounce = setTimeout(() => {
       if (keyword) {
         updateData();
@@ -78,12 +81,13 @@ export const AutoComplete = ({
   const handleInputBlur = () => {
     setTimeout(() => {
       setListOpen(false);
-    }, 276);
+    }, 200);
   };
 
   const handleItemClick = (product: Product) => {
     setKeyword(product.name);
     onSelectProduct(product.id);
+    setIsChip(product.name);
     setKeyItems([]);
     setListOpen(false);
   };

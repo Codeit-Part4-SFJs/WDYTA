@@ -3,3 +3,9 @@ export interface ProductDetailProps {
   productId: number;
   accessToken: string;
 }
+
+export interface FavoriteButtonProps {
+  productId: number;
+  accessToken: string;
+  isFavorite: boolean;
+}

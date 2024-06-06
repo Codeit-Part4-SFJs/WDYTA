@@ -41,7 +41,9 @@ export const ProductDetail = ({
                   {productDetailData.name}
                 </div>
                 <DetailFavoriteButton
-                  defaultFavorite={productDetailData.isFavorite}
+                  productId={productId}
+                  accessToken={accessToken}
+                  isFavorite={productDetailData.isFavorite}
                 />
               </div>
               <ShareButtons />

@@ -1,13 +1,76 @@
 'use client';
 
 import { Icon } from '@/shared/ui/Icon';
-import { useState } from 'react';
+import { FavoriteButtonProps } from '@/components/Detail/types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  ProductDetail,
+  deleteFavoriteProduct,
+  postFavoriteProduct,
+} from '@/shared/@common/apis/product';
+import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
+import { useRouter } from 'next/navigation';
 
-export const DetailFavoriteButton = ({ defaultFavorite }: any) => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(defaultFavorite);
+export const DetailFavoriteButton = ({
+  isFavorite,
+  productId,
+  accessToken,
+}: FavoriteButtonProps) => {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const favoriteMutation = useMutation({
+    mutationFn: async () => {
+      if (isFavorite) {
+        await deleteFavoriteProduct(productId, accessToken);
+      } else {
+        await postFavoriteProduct(productId, accessToken);
+      }
+    },
+    onMutate: async () => {
+      await queryClient.cancelQueries({
+        queryKey: productKeys.detail(productId),
+      });
+      const previousFavorite = queryClient.getQueryData<ProductDetail>(
+        productKeys.detail(productId),
+      );
+      queryClient.setQueryData(
+        productKeys.detail(productId),
+        (prev: ProductDetail) => {
+          if (isFavorite) {
+            return {
+              ...prev,
+              isFavorite: false,
+              favoriteCount: prev.favoriteCount - 1,
+            };
+          }
+          return {
+            ...prev,
+            isFavorite: true,
+            favoriteCount: prev.favoriteCount + 1,
+          };
+        },
+      );
+      return { previousFavorite };
+    },
+    onError: (context: { previousFavorite?: ProductDetail }) => {
+      queryClient.setQueryData(
+        productKeys.detail(productId),
+        context.previousFavorite,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: productKeys.detail(productId),
+      });
+    },
+  });
 
   const handleClick = () => {
-    setIsFavorite(!isFavorite);
+    if (!accessToken) {
+      router.push('/login');
+    }
+    favoriteMutation.mutate();
   };
 
   return (

@@ -49,8 +49,8 @@ const Statistic = ({ type, typeValue, categoryMetric }: StatisticProps) => {
           &nbsp;
           <span className="text-gray-F1">
             {type === 'rating'
-              ? Math.abs(statisticDiff).toFixed(1)
-              : Math.abs(statisticDiff)}
+              ? statisticDiff && Math.abs(statisticDiff).toFixed(1)
+              : Math.abs(statisticDiff).toFixed(0)}
             {makeOptionsByType[type].unit}
           </span>
           &nbsp;

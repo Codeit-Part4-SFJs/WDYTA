@@ -22,9 +22,9 @@ export const ProfilePageComponent = ({
         currentProfileId={Number(currentProfileId)}
         accessToken={accessToken}
       />
-      <div className="flex flex-col lg:gap-[80px] gap-[60px] md:w-full mobile:w-full">
+      <div className="flex flex-col grow lg:gap-[80px] gap-[60px] md:w-full mobile:w-full">
         <ActivitySection />
-        <ProductSection />
+        <ProductSection currentProfileId={Number(currentProfileId)} />
       </div>
     </main>
   );

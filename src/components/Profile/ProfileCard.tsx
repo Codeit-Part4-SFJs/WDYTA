@@ -7,6 +7,7 @@ import { ImageComponent } from '@/shared/ui/Img';
 // import { useEffect, useState } from 'react';
 import useUserInfoSuspenseQuery from './hooks/useUserInfoSuspenseQuery';
 import useFollowMutation from './hooks/useFollowMutation';
+import useUnFollowMutation from './hooks/useUnFollowMutation';
 // import useUserFolloweeQuery from './hooks/useUserFolloweeQuery';
 // import useUserInfoSuspenseQuery from './hooks/useUserInfoSuspenseQuery';
 
@@ -30,18 +31,20 @@ export const ProfileCard = ({
     accessToken,
   );
   const { mutate: responseFollowMutate } = useFollowMutation();
-
+  const { mutate: responseUnFollowMutate } = useUnFollowMutation();
   const isFollowing = userInfoData?.isFollowing;
   const isMyProfile = currentProfileId === loginedId;
 
   const FollowBtnKind = isFollowing ? ButtonKind.tertiary : ButtonKind.primary;
   const FollowBtnText = isFollowing ? '팔로우 취소' : '팔로우';
-  console.log(userInfoData);
+
   // console.log(followeeInfo);
   const handleClickFollow = () => {
     responseFollowMutate({ currentProfileId, accessToken });
   };
-  const handleClickUnFollow = () => {};
+  const handleClickUnFollow = () => {
+    responseUnFollowMutate({ currentProfileId, accessToken });
+  };
   const handleSignOut = async () => {
     await logoutAction();
     window.location.reload();

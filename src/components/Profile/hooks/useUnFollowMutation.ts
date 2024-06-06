@@ -1,19 +1,16 @@
 import { API_USERS } from '@/shared/@common/apis/constants/API';
-import { postUserFollow } from '@/shared/@common/apis/follow';
+import { deleteUserFollow } from '@/shared/@common/apis/follow';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { FollowMutationProps } from './useFollowMutation';
 
-export interface FollowMutationProps {
-  currentProfileId: number;
-  accessToken: string;
-}
-const useFollowMutation = () => {
+const useUnFollowMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({
       currentProfileId,
       accessToken,
     }: FollowMutationProps) => {
-      const response = await postUserFollow(
+      const response = await deleteUserFollow(
         { userId: currentProfileId },
         accessToken,
       );
@@ -27,4 +24,4 @@ const useFollowMutation = () => {
   });
 };
 
-export default useFollowMutation;
+export default useUnFollowMutation;

@@ -1,8 +1,8 @@
 import { getQueryClient } from '@/app/getQueryClient';
 import { ProfilePageComponent } from '@/components/Profile';
 import { getUserInfo } from '@/shared/@common/apis';
+import { getUserCookies } from '@/shared/@common/utils/getUserCookies';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
-import { cookies } from 'next/headers';
 
 interface ProfileProps {
   params: {
@@ -11,10 +11,7 @@ interface ProfileProps {
 }
 export default function Profile({ params }: ProfileProps) {
   const { userId } = params;
-  const accessTokenCookie = cookies().get('accessToken');
-  const accessToken = accessTokenCookie ? accessTokenCookie.value : '';
-  const loginedIdcookie = cookies().get('userId');
-  const loginedId = loginedIdcookie ? loginedIdcookie.value : null;
+  const { loginedId, accessToken } = getUserCookies();
 
   const queryClient = getQueryClient();
 

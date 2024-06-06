@@ -1,16 +1,13 @@
 import { ProfilePageComponent } from '@/components/Profile';
-import { cookies } from 'next/headers';
+import { getUserCookies } from '@/shared/@common/utils/getUserCookies';
+// import { cookies } from 'next/headers';
 
 export default function Profile() {
-  const userIdCookie = cookies().get('userId');
-  const accessTokenCookie = cookies().get('accessToken');
-  const userId = userIdCookie ? userIdCookie.value : null;
-  const accessToken = accessTokenCookie ? accessTokenCookie.value : '';
-
+  const { loginedId, accessToken } = getUserCookies();
   return (
     <ProfilePageComponent
-      currentProfileId={userId}
-      loginedId={userId}
+      currentProfileId={loginedId}
+      loginedId={loginedId}
       accessToken={accessToken}
     />
   );

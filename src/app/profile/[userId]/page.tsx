@@ -1,12 +1,8 @@
-// 'use client';
-
 import { getQueryClient } from '@/app/getQueryClient';
 import { ProfilePageComponent } from '@/components/Profile';
 import { getUserInfo } from '@/shared/@common/apis';
-// import { API_USERS } from '@/shared/@common/apis/constants/API';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
-// import { useProfileStore } from '@/stores';
 
 interface ProfileProps {
   params: {
@@ -23,7 +19,7 @@ export default function Profile({ params }: ProfileProps) {
   const queryClient = getQueryClient();
 
   queryClient.prefetchQuery({
-    queryKey: [userId],
+    queryKey: ['user', userId],
     queryFn: async () => {
       if (!userId) return null;
       const response = await getUserInfo(Number(userId), accessToken);

@@ -7,7 +7,6 @@ export default function Profile() {
   const userId = userIdCookie ? userIdCookie.value : null;
   const accessToken = accessTokenCookie ? accessTokenCookie.value : '';
 
-  console.log(userId);
   return (
     <ProfilePageComponent
       currentProfileId={userId}

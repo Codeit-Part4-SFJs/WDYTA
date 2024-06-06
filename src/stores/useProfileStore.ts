@@ -1,11 +1,27 @@
 import { create } from 'zustand';
 
-interface ProfileState {
-  userId: number | null;
-  setCurrentProfileUser: (id: number) => void;
+interface UserInfoData {
+  id: number;
+  nickname: string;
+  description: string;
+  image: string | null;
+  createdAt: string;
+  updatedAt: string;
+  teamId: string;
+  isFollowing: boolean;
+  followersCount: number;
+  followeesCount: number;
+  reviewCount: number;
+  averageRating: number;
+  mostFavoriteCategory: string | null;
 }
 
-export const useProfileStore = create<ProfileState>((set) => ({
-  userId: null,
-  setCurrentProfileUser: (id: number) => set({ userId: id }),
+interface ProfileState {
+  userInfoData: UserInfoData | null;
+  setUserInfoData: (data: UserInfoData) => void;
+}
+
+export const useUserInfoStore = create<ProfileState>((set) => ({
+  userInfoData: null,
+  setUserInfoData: (data: UserInfoData) => set({ userInfoData: data }),
 }));

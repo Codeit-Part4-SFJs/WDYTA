@@ -1,14 +1,18 @@
+'use client';
+
 import { CategoryChip } from '@/shared/ui/Chip/CategoryChip';
 import { Icon } from '@/shared/ui/Icon';
-import { IconType } from '@/shared/ui/Icon/types/iconType';
+import { useUserInfoStore } from '@/stores';
+import { ActivityCardProps } from './types/userActivityType';
 
-export interface ActivitySummaryProps {
-  title: string;
-  icon?: IconType;
-}
-const rating = 5;
-const reviewCount = 3;
-export const ActivityCard = ({ title, icon }: ActivitySummaryProps) => {
+export const ActivityCard = ({ title, icon }: ActivityCardProps) => {
+  const currentUserInfo = useUserInfoStore((state: any) => state.userInfoData);
+  console.log('a', currentUserInfo);
+  if (!currentUserInfo) {
+    return null;
+  }
+  const { averageRating, reviewCount } = currentUserInfo;
+  console.log(currentUserInfo);
   return (
     <div className="flex flex-col flex-1 grow justify-center items-center gap-[20px] rounded-xl lg:max-w-[300px] lg:h-[128px] md:max-w-full md:h-[119px] mobile:w-[105px] mobile:h-[119px] bg-gray-25">
       <p className="text-[14px] lg:text-[16px] text-gray-9F">{title}</p>
@@ -24,7 +28,7 @@ export const ActivityCard = ({ title, icon }: ActivitySummaryProps) => {
                 icon === 'ReviewIcon' ? 'lg:leading-none' : ''
               }`}
             >
-              {icon === 'StarIcon' ? rating : reviewCount}
+              {icon === 'StarIcon' ? averageRating : reviewCount}
             </p>
           </>
         )}

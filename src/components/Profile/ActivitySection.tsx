@@ -1,6 +1,7 @@
-import { ActivityCard, ActivitySummaryProps } from './ActivityCard';
+import { ActivityCard } from './ActivityCard';
+import { ActivityCardProps } from './types/userActivityType';
 
-const activityData: ActivitySummaryProps[] = [
+const activityData: ActivityCardProps[] = [
   { title: '남긴 별점 평균', icon: 'StarIcon' },
   { title: '남긴 리뷰', icon: 'ReviewIcon' },
   { title: '관심 카테고리' },
@@ -15,7 +16,7 @@ export const ActivitySection = () => {
           <ActivityCard
             key={activity.title}
             title={activity.title}
-            icon={activity.icon && activity.icon}
+            icon={activity.icon}
           />
         ))}
       </div>

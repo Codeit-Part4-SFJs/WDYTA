@@ -15,3 +15,8 @@ export interface StatisticsOptions {
   up: string;
   down: string;
 }
+
+export interface ProductStatisticsProps {
+  productId: number;
+  accessToken: string;
+}

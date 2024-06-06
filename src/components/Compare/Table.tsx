@@ -48,6 +48,8 @@ export const Table = ({
     return '무승부';
   };
 
+  console.log(selectedFirstProductId, selectedSecondProductId);
+
   const getComparisonClass = (result: string) => {
     if (result === '상품 1 승리') {
       return 'text-green';

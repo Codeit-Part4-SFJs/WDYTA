@@ -1,4 +1,3 @@
-import { getProductList } from '@/shared/@common/apis/product';
 import { CompareChip, CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Input } from '@/shared/ui/Input';
 import { useEffect, useState, useRef } from 'react';
@@ -32,7 +31,6 @@ export const AutoComplete = ({
   const [keyItems, setKeyItems] = useState<Product[]>([]);
   const [isChip, setIsChip] = useState<string | undefined>(selectedProduct);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
   const [listOpen, setListOpen] = useState<boolean>(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
 
@@ -42,9 +40,11 @@ export const AutoComplete = ({
     setKeyword(e.currentTarget.value);
   };
 
+  console.log(loading);
+
   const updateData = async () => {
     setLoading(true);
-    setError(null);
+
     try {
       // const response = await getProductList();
       // const products: Product[] = await response.json();
@@ -56,7 +56,7 @@ export const AutoComplete = ({
         .slice(0, 10);
       setKeyItems(filteredData);
     } catch (error) {
-      setError('Failed to fetch product list.');
+      console.error('Failed to fetch product list.');
     } finally {
       setLoading(false);
     }

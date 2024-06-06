@@ -1,15 +1,13 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { AutoComplete } from '@/components/Compare/AutoComplete';
 import { Table } from '@/components/Compare/Table';
 import { PRODUCT_ID_1_MOCK } from '@/components/Compare/mock/PRODUCT_ID_1_MOCK';
-import { getDetailProduct } from '@/shared/@common/apis/product';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button/Button';
 import { Floating } from '@/shared/ui/Button/Floating/Floating';
 import { CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Loading } from '@/shared/ui/Icon';
-import { cookies } from 'next/headers';
 import { useEffect, useState } from 'react';
 
 interface Product {
@@ -65,7 +63,7 @@ const Compare = () => {
   useEffect(() => {
     if (typeof product === 'string') {
       const parsedProduct = parseInt(product, 10);
-      if (!isNaN(parsedProduct)) {
+      if (!Number.isNaN(parsedProduct)) {
         const fetchProductDetail = async () => {
           try {
             // const response = await getDetailProduct(parsedProduct, userId);

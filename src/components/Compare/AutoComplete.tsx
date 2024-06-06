@@ -1,7 +1,7 @@
 import { getProductList } from '@/shared/@common/apis/product';
 import { CompareChip, CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Input } from '@/shared/ui/Input';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { PRODUCT_LIST_MOCK } from './mock/PRODUCT_LIST_MOCK';
 
 interface Product {
@@ -34,6 +34,9 @@ export const AutoComplete = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [listOpen, setListOpen] = useState<boolean>(false);
+  const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const onChangeData = (e: React.FormEvent<HTMLInputElement>) => {
     setKeyword(e.currentTarget.value);
@@ -59,8 +62,6 @@ export const AutoComplete = ({
     }
   };
 
-  console.log(isChip);
-
   useEffect(() => {
     setIsChip(selectedProduct);
   }, []);
@@ -78,18 +79,42 @@ export const AutoComplete = ({
     return () => clearTimeout(debounce);
   }, [keyword]);
 
-  const handleInputBlur = () => {
-    setTimeout(() => {
-      setListOpen(false);
-    }, 200);
-  };
-
   const handleItemClick = (product: Product) => {
     setKeyword(product.name);
     onSelectProduct(product.id);
     setIsChip(product.name);
     setKeyItems([]);
     setListOpen(false);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (listOpen) {
+        if (e.key === 'ArrowDown' || e.key === 'Tab') {
+          e.preventDefault();
+          setHighlightedIndex((prevIndex) =>
+            prevIndex < keyItems.length - 1 ? prevIndex + 1 : prevIndex,
+          );
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          setHighlightedIndex((prevIndex) =>
+            prevIndex > 0 ? prevIndex - 1 : prevIndex,
+          );
+        } else if (e.key === 'Enter' && highlightedIndex >= 0) {
+          e.preventDefault();
+          handleItemClick(keyItems[highlightedIndex]);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [listOpen, keyItems, highlightedIndex]);
+
+  const handleInputBlur = () => {
+    setTimeout(() => {
+      setListOpen(false);
+    }, 200);
   };
 
   return (
@@ -113,21 +138,17 @@ export const AutoComplete = ({
         )}
       </div>
       {keyItems.length > 0 && keyword && listOpen && (
-        <div className="mt-2">
+        <div className="mt-2" ref={dropdownRef}>
           <ul className="flex w-[350px] p-[10px] flex-col items-start gap-[5px] bg-black-25 border border-solid border-gray-35 rounded-lg">
-            {keyItems.map((product) => (
+            {keyItems.map((product, index) => (
               <button
                 type="button"
-                className="flex py-[6px] px-5 items-center gap-[10px] self-stretch rounded-md  text-white hover:bg-gray-35 cursor-pointer"
+                className={`flex py-[6px] px-5 items-center gap-[10px] self-stretch rounded-md text-white hover:bg-gray-35 cursor-pointer ${
+                  index === highlightedIndex ? 'bg-gray-35' : ''
+                }`}
                 key={product.id}
-                onClick={() => {
-                  handleItemClick(product);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    handleItemClick(product);
-                  }
-                }}
+                onClick={() => handleItemClick(product)}
+                onMouseEnter={() => setHighlightedIndex(index)}
               >
                 {product.name}
               </button>
@@ -138,8 +159,3 @@ export const AutoComplete = ({
     </div>
   );
 };
-
-/*
-  Chip 클릭 시 상품 페이지로 이동하기.
-  Zustand로 비교하기에 해당되는 상품들 기록해놓기.
-*/

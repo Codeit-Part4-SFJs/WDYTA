@@ -164,19 +164,15 @@ export const Table = ({
             </tbody>
           </table>
         </div>
+        <div className="mt-10">
+          <Button
+            kind={ButtonKind.secondary}
+            customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
+          >
+            이 상품 보러 가기
+          </Button>
+        </div>
       </div>
-      <Button
-        kind={ButtonKind.primary}
-        customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
-      >
-        다른 상품 비교해보기
-      </Button>
-      <Button
-        kind={ButtonKind.primary}
-        customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
-      >
-        이 상품 보러 가기
-      </Button>
     </div>
   );
 };

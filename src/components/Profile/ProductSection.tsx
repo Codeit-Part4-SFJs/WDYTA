@@ -3,6 +3,20 @@
 import { Sort } from '@/shared/ui/Dropdown/Sort';
 import { useState } from 'react';
 import ProductCard from '../@common/ProductCard';
+import useReviewedProductQuery from './hooks/useReviewedProductQuery';
+
+interface ReviewedProductData {
+  updatedAt: string;
+  createdAt: string;
+  writerId: number;
+  categoryId: number;
+  favoriteCount: number;
+  reviewCount: number;
+  rating: number;
+  image: string;
+  name: string;
+  id: number;
+}
 
 const productMenu = ['리뷰 남긴 상품', '등록한 상품', '찜한 상품'];
 
@@ -34,27 +48,27 @@ const data2 = {
   id: 1,
 };
 
-export const ProductSection = () => {
+interface ProductSectionProps {
+  currentProfileId: number;
+}
+export const ProductSection = ({ currentProfileId }: ProductSectionProps) => {
   const [activeMenu, setActiveMenu] = useState('리뷰 남긴 상품');
 
   const handleClickTab = (tab: string) => {
     setActiveMenu(tab);
   };
-
+  const { data } = useReviewedProductQuery(currentProfileId);
+  const { list: reviewedProducts } = data;
+  console.log(reviewedProducts);
   // 리팩토링 예정
   const renderProductCards = () => {
     switch (activeMenu) {
       case '리뷰 남긴 상품':
         return (
           <>
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
+            {reviewedProducts.map((product: ReviewedProductData) => (
+              <ProductCard key={product?.id} product={product} />
+            ))}
           </>
         );
       case '등록한 상품':

@@ -32,7 +32,7 @@ export const ActivityCard = ({ title, icon }: ActivityCardProps) => {
             </p>
           </>
         )}
-        {!icon && <CategoryChip categoryID={mostFavoriteCategory.id} />}
+        {!icon && <CategoryChip categoryID={mostFavoriteCategory?.id} />}
       </div>
     </div>
   );

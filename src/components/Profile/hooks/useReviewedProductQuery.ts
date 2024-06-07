@@ -4,7 +4,7 @@ import { API_USERS } from '@/shared/@common/apis/constants/API';
 
 function useReviewedProductQuery(userId: number) {
   return useSuspenseQuery({
-    queryKey: [API_USERS.REVIEW, userId],
+    queryKey: [API_USERS.REVIEW, userId, 'reviewedProduct'],
     queryFn: async () => {
       if (!userId) return null;
       const response = await getUserReviewedProducts(userId);

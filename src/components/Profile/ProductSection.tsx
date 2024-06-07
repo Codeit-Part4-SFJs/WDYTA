@@ -5,6 +5,7 @@ import { useState } from 'react';
 import ProductCard from '../@common/ProductCard';
 import useReviewedProductQuery from './hooks/useReviewedProductQuery';
 import useCreatedProductQuery from './hooks/useCreatedProductQuery';
+import useFavoriteProduct from './hooks/useFavoriteProductQuery';
 
 interface UserProductData {
   updatedAt: string;
@@ -20,20 +21,6 @@ interface UserProductData {
 }
 
 const productMenu = ['리뷰 남긴 상품', '등록한 상품', '찜한 상품'];
-
-const data1 = {
-  updatedAt: '2024-05-29T15:11:37.143Z',
-  createdAt: '2024-05-29T15:11:37.143Z',
-  writerId: 1,
-  categoryId: 1,
-  favoriteCount: 34,
-  reviewCount: 129,
-  rating: 4.7,
-  image:
-    'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/158/1716804166536/KakaoTalk_20240527_185342395.jpg',
-  name: 'stringxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-  id: 1,
-};
 
 interface ProductSectionProps {
   currentProfileId: number;
@@ -53,37 +40,41 @@ export const ProductSection = ({ currentProfileId }: ProductSectionProps) => {
 
   console.log(createdProductsData);
   const createdProductsList = createdProductsData?.list || [];
-  console.log(createdProductsList);
+
+  const { data: favoriteProductsData } = useFavoriteProduct(currentProfileId);
+  const favoriteProductsList = favoriteProductsData?.list || [];
+
   // 리팩토링 예정
   const renderProductCards = () => {
     switch (activeMenu) {
       case '리뷰 남긴 상품':
         return (
           <>
-            {reviewedProductsList.map((product: UserProductData) => (
-              <ProductCard key={product?.id} product={product} />
+            {reviewedProductsList.map((reviewedProduct: UserProductData) => (
+              <ProductCard
+                key={reviewedProduct?.id}
+                product={reviewedProduct}
+              />
             ))}
           </>
         );
       case '등록한 상품':
         return (
           <>
-            {createdProductsList.map((product: UserProductData) => (
-              <ProductCard key={product?.id} product={product} />
+            {createdProductsList.map((createdProduct: UserProductData) => (
+              <ProductCard key={createdProduct?.id} product={createdProduct} />
             ))}
           </>
         );
       case '찜한 상품':
         return (
           <>
-            <ProductCard product={data1} />
-            <ProductCard product={data1} />
-            <ProductCard product={data1} />
-            <ProductCard product={data1} />
-            <ProductCard product={data1} />
-            <ProductCard product={data1} />
-            <ProductCard product={data1} />
-            <ProductCard product={data1} />
+            {favoriteProductsList.map((favoriteProduct: UserProductData) => (
+              <ProductCard
+                key={favoriteProduct?.id}
+                product={favoriteProduct}
+              />
+            ))}
           </>
         );
       default:

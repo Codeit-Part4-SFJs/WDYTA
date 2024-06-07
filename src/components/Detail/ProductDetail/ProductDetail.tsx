@@ -8,6 +8,7 @@ import { ShareButtons } from '@/components/Detail/ProductDetail/ShareButtons';
 import { ProductDetailProps } from '@/components/Detail/types';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { productOptions } from '@/app/[category]/[product]/queryOptions';
+import { useRouter } from 'next/navigation';
 
 export const ProductDetail = ({
   userId,
@@ -19,6 +20,12 @@ export const ProductDetail = ({
   );
 
   const MY_PRODUCT = productDetailData.writerId === userId;
+
+  const router = useRouter();
+
+  const handleCompareButtonClick = () => {
+    router.push(`/compare/${productId}`);
+  };
 
   return (
     <div className="mobile:mt-[30px] md:mt-[44px] lg:mt-[64px] lg:mb-[20px] flex mobile:flex-col justify-center items-center md:items-start lg:items-start gap-[20px] lg:gap-[40px]">
@@ -63,6 +70,7 @@ export const ProductDetail = ({
             리뷰 작성하기
           </Button>
           <Button
+            onClick={handleCompareButtonClick}
             customSize="flex-1 w-full p-[15px]"
             kind={ButtonKind.secondary}
           >

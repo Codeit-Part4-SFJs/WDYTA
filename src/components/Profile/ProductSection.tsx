@@ -4,8 +4,9 @@ import { Sort } from '@/shared/ui/Dropdown/Sort';
 import { useState } from 'react';
 import ProductCard from '../@common/ProductCard';
 import useReviewedProductQuery from './hooks/useReviewedProductQuery';
+import useCreatedProductQuery from './hooks/useCreatedProductQuery';
 
-interface ReviewedProductData {
+interface UserProductData {
   updatedAt: string;
   createdAt: string;
   writerId: number;
@@ -34,20 +35,6 @@ const data1 = {
   id: 1,
 };
 
-const data2 = {
-  updatedAt: '2024-05-29T15:11:37.143Z',
-  createdAt: '2024-05-29T15:11:37.143Z',
-  writerId: 1,
-  categoryId: 1,
-  favoriteCount: 34,
-  reviewCount: 129,
-  rating: 4.7,
-  image:
-    'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/158/1717172068396/macbookkkk.jpg',
-  name: 'stringxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-  id: 1,
-};
-
 interface ProductSectionProps {
   currentProfileId: number;
 }
@@ -57,16 +44,23 @@ export const ProductSection = ({ currentProfileId }: ProductSectionProps) => {
   const handleClickTab = (tab: string) => {
     setActiveMenu(tab);
   };
-  const { data } = useReviewedProductQuery(currentProfileId);
-  const { list: reviewedProducts } = data;
-  console.log(reviewedProducts);
+  const { data: reviewedProductsData } =
+    useReviewedProductQuery(currentProfileId);
+  const reviewedProductsList = reviewedProductsData?.list || [];
+
+  const { data: createdProductsData } =
+    useCreatedProductQuery(currentProfileId);
+
+  console.log(createdProductsData);
+  const createdProductsList = createdProductsData?.list || [];
+  console.log(createdProductsList);
   // 리팩토링 예정
   const renderProductCards = () => {
     switch (activeMenu) {
       case '리뷰 남긴 상품':
         return (
           <>
-            {reviewedProducts.map((product: ReviewedProductData) => (
+            {reviewedProductsList.map((product: UserProductData) => (
               <ProductCard key={product?.id} product={product} />
             ))}
           </>
@@ -74,14 +68,9 @@ export const ProductSection = ({ currentProfileId }: ProductSectionProps) => {
       case '등록한 상품':
         return (
           <>
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
-            <ProductCard product={data2} />
-            <ProductCard product={data1} />
+            {createdProductsList.map((product: UserProductData) => (
+              <ProductCard key={product?.id} product={product} />
+            ))}
           </>
         );
       case '찜한 상품':

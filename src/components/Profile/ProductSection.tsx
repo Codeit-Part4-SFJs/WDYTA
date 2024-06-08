@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { MenuDropdown } from './MenuDropdown';
 import { ProductList } from './ProductList';
-import { ProductMenuType } from './types/productSectionType';
+import { ProductMenuType } from './types/productType';
 import { PRODUCT_MENU } from './constants/PRODUCT_MENU';
 import useProductsQuery from './hooks/useProductsQuery';
 

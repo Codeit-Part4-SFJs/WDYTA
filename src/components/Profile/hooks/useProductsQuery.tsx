@@ -6,7 +6,7 @@ import {
   getUserFavoriteProducts,
   getUserReviewedProducts,
 } from '@/shared/@common/apis';
-import { ProductMenuType } from '../types/productSectionType';
+import { ProductMenuType } from '../types/productType';
 
 const useProductsQuery = (
   currentProfileId: number,

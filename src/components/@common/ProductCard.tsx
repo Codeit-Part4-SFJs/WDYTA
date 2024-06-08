@@ -1,7 +1,7 @@
 import { Icon } from '@/shared/ui/Icon';
 import { ImageComponent } from '@/shared/ui/Img';
 import Link from 'next/link';
-import { ProductCardProps } from '@/components/Profile/types/productSectionType';
+import { ProductCardProps } from '@/components/Profile/types/productType';
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { id, image, name, reviewCount, rating, favoriteCount } = product;

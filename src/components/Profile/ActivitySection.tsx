@@ -1,4 +1,4 @@
-import { ActivityCard } from './ActivityCard';
+import { ActivityCard } from '@/components/Profile/ActivityCard';
 import { ActivityCardProps } from './types/userActivityType';
 
 const activityData: ActivityCardProps[] = [

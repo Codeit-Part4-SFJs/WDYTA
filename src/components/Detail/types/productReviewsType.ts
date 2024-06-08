@@ -31,3 +31,11 @@ export interface ReviewProfileProps {
 export interface ReviewImageProps {
   src: string;
 }
+
+export interface ProductReviewsProps {
+  category: string;
+  userId: number;
+  productId: number;
+  accessToken: string;
+  currentFilter: string | undefined;
+}

@@ -93,8 +93,10 @@ export const patchProduct = (
 export const getProductReviewList = (
   productId: number,
   accessToken: string,
+  filter: string,
+  pageParam: number,
 ) => {
-  return fetch(API_PRODUCT.REVIEWS(productId), {
+  return fetch(API_PRODUCT.REVIEWS(productId, filter, pageParam), {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

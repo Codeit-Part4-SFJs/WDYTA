@@ -37,7 +37,9 @@ const Statistic = ({ type, typeValue, categoryMetric }: StatisticProps) => {
             className={makeOptionsByType[type].className}
           />
           <div className="lg:text-2xl md:text-xl mobile:text-base mobile:font-light leading-normal text-gray-9F">
-            {typeValue}
+            {type === 'rating'
+              ? typeValue && Math.abs(typeValue).toFixed(1)
+              : typeValue}
           </div>
         </div>
       </div>

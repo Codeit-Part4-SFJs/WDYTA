@@ -1,13 +1,24 @@
 'use client';
 
-import { REVIEWS_MOCK } from '@/components/Detail/mock';
 import { Sort } from '@/shared/ui/Dropdown/Sort';
 import { SORT_OPTIONS } from '@/components/Detail/constants';
 import { ReviewProfile } from '@/components/Detail/ProductReviews/ReviewProfile';
-import { ReviewCardProps } from '@/components/Detail/types';
+import {
+  ProductReviewsProps,
+  ReviewCardProps,
+} from '@/components/Detail/types';
 import { ReviewLikeButton } from '@/components/Detail/ProductReviews/ReviewLikeButton';
 import { convertCreatedAt } from '@/shared/@common/utils';
 import { ReviewImage } from '@/components/Detail/ProductReviews/ReviewImage';
+import {
+  useQueryClient,
+  useSuspenseInfiniteQuery,
+} from '@tanstack/react-query';
+import { reviewsOptions } from '@/app/[category]/[product]/queryOptions';
+import { useRouter } from 'next/navigation';
+import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
+import { ProductDetail } from '@/shared/@common/apis/product';
+import { Loading } from '@/shared/ui/Icon';
 
 const ReviewCard = ({ reviewData }: ReviewCardProps) => {
   return (
@@ -35,25 +46,58 @@ const ReviewCard = ({ reviewData }: ReviewCardProps) => {
   );
 };
 
-export const ProductReviews = () => {
-  // 여기서 API 호출
-  const productReviewsData = REVIEWS_MOCK.list;
+export const ProductReviews = ({
+  productId,
+  category,
+  accessToken,
+  // userId,
+  currentFilter,
+}: ProductReviewsProps) => {
+  const queryClient = useQueryClient();
+  const { data: productReviewsData } = useSuspenseInfiniteQuery(
+    reviewsOptions(productId, accessToken, currentFilter),
+  );
 
-  const handleSelect = () => {};
+  const router = useRouter();
+  const handleSelect = (value: string) => {
+    router.replace(`/${category}/${productId}?order=${value}`, {
+      scroll: false,
+    });
+  };
+
+  const productDetailData: ProductDetail | undefined = queryClient.getQueryData(
+    productKeys.detail(productId),
+  );
+  const isReviewed = productDetailData && productDetailData.reviewCount !== 0;
 
   return (
-    <div className="flex flex-col gap-[30px]">
+    <div className="flex flex-col gap-[30px] mb-[100px]">
       <div className="flex justify-between items-center">
         <div className="mobile:text-lg md:text-base lg:text-xl text-gray-F1 not-italic leading-normal font-semibold lg:font-normal">
           상품 리뷰
         </div>
-        <Sort options={SORT_OPTIONS} onSelect={handleSelect} />
+        <Sort
+          defaultValue={currentFilter}
+          options={SORT_OPTIONS}
+          onSelect={handleSelect}
+        />
       </div>
-      <div className="flex flex-col gap-[15px] lg:gap-[20px]">
-        {productReviewsData.map((item) => (
-          <ReviewCard key={item.id} reviewData={item} />
-        ))}
-      </div>
+      {isReviewed ? (
+        productReviewsData.pages.map((page) => (
+          <div
+            key={page.nextCursor}
+            className="flex flex-col gap-[15px] lg:gap-[20px]"
+          >
+            {page.list.map((review: any) => (
+              <ReviewCard key={review.id} reviewData={review} />
+            ))}
+          </div>
+        ))
+      ) : (
+        <div className="mt-[70px]">
+          <Loading>첫 리뷰를 작성해 보세요!</Loading>
+        </div>
+      )}
     </div>
   );
 };

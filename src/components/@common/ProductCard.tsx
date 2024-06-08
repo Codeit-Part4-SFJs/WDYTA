@@ -1,24 +1,7 @@
 import { Icon } from '@/shared/ui/Icon';
 import { ImageComponent } from '@/shared/ui/Img';
 import Link from 'next/link';
-
-// 추후 이동
-interface ProductTypes {
-  updatedAt: string;
-  createdAt: string;
-  writerId: number;
-  categoryId: number;
-  favoriteCount: number;
-  reviewCount: number;
-  rating: number;
-  image: string;
-  name: string;
-  id: number;
-}
-
-interface ProductCardProps {
-  product: ProductTypes;
-}
+import { ProductCardProps } from '@/components/Profile/types/productSectionType';
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { id, image, name, reviewCount, rating, favoriteCount } = product;
@@ -44,7 +27,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 name="StarIcon"
                 className="w-[12px] h-[12px] md:w-[15px] md:h-[15px] lg:w-[16px] lg:h-[16px] fill-yellow"
               />
-              <p className="leading-none text-gray-9F">{rating}</p>
+              <p className="leading-none text-gray-9F">
+                {Math.round(rating * 100) / 100}
+              </p>
             </div>
           </div>
         </div>

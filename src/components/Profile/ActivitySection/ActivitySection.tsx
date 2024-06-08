@@ -1,5 +1,5 @@
-import { ActivityCard } from '@/components/Profile/ActivityCard';
-import { ActivityCardProps } from './types/userActivityType';
+import { ActivityCard } from '@/components/Profile/ActivitySection/ActivityCard';
+import { ActivityCardProps } from '@/components/Profile/types/userActivityType';
 
 const activityData: ActivityCardProps[] = [
   { title: '남긴 별점 평균', icon: 'StarIcon' },

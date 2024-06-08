@@ -3,24 +3,18 @@
 import { logoutAction } from '@/shared/@common/utils';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { ImageComponent } from '@/shared/ui/Img';
-// import { useProfileStore } from '@/stores';
-// import { useEffect, useState } from 'react';
 import { useUserInfoStore } from '@/stores';
 import { useEffect } from 'react';
-import useUserInfoSuspenseQuery from './hooks/useUserInfoSuspenseQuery';
-import useFollowMutation from './hooks/useFollowMutation';
-import useUnFollowMutation from './hooks/useUnFollowMutation';
-// import useUserFolloweeQuery from './hooks/useUserFolloweeQuery';
-// import useUserInfoSuspenseQuery from './hooks/useUserInfoSuspenseQuery';
+import useUserInfoSuspenseQuery from '@/components/Profile/hooks/useUserInfoSuspenseQuery';
+import useFollowMutation from '@/components/Profile/hooks/useFollowMutation';
+import useUnFollowMutation from '@/components/Profile/hooks/useUnFollowMutation';
+import { PROFILE_DEFAULT_IMAGE } from '@/components/Profile/constants/PROFILE_DEFAULT_IMAGE';
 
 interface ProfileCardProps {
   loginedId?: number | null;
   accessToken: string;
   currentProfileId: number;
 }
-
-const PROFILE_DEFAULT_IMAGE =
-  'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/185/1717575969372/profile.jpeg';
 
 export const ProfileCard = ({
   loginedId,

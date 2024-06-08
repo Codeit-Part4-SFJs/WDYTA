@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { MenuDropdown } from './MenuDropdown';
-import { ProductList } from './ProductList';
-import { ProductMenuType } from './types/productType';
-import { PRODUCT_MENU } from './constants/PRODUCT_MENU';
-import useProductsQuery from './hooks/useProductsQuery';
+import { MenuDropdown } from '@/components/Profile/ProductSection/MenuDropdown';
+import { ProductList } from '@/components/Profile/ProductSection/ProductList';
+import { ProductMenuType } from '@/components/Profile/types/productType';
+import { PRODUCT_MENU } from '@/components/Profile/constants/PRODUCT_MENU';
+import useProductsQuery from '@/components/Profile/hooks/useProductsQuery';
 
 interface ProductSectionProps {
   currentProfileId: number;

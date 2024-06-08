@@ -1,6 +1,6 @@
 import { ActivitySection } from '@/components/Profile/ActivitySection';
-import { ProductSection } from './ProductSection';
-import { ProfileCard } from './ProfileCard';
+import { ProductSection } from '@/components/Profile/ProductSection';
+import { ProfileCard } from '@/components/Profile/ProfileCard';
 
 interface ProfilePageComponentProps {
   loginedId: string | null;

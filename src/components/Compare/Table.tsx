@@ -1,7 +1,7 @@
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { PRODUCT_ID_1_MOCK } from './mock/PRODUCT_ID_1_MOCK';
 import { PRODUCT_ID_2_MOCK } from './mock/PRODUCT_ID_2_MOCK';
-import ComparisonResult from './hooks/TableHook';
+import { ComparisonResult } from './hooks/ComparisonResult';
 
 interface TableProps {
   selectedSecondProductId: number;

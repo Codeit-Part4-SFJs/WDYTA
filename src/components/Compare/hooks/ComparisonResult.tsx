@@ -1,24 +1,25 @@
-import React from 'react';
+import { useState } from 'react';
 
-interface ComparisonResultProps {
-  firstProduct: {
-    name: string;
-    rating: number;
-    reviewCount: number;
-    favoriteCount: number;
-  };
-  secondProduct: {
-    name: string;
-    rating: number;
-    reviewCount: number;
-    favoriteCount: number;
-  };
+interface TableProps {
+  firstProduct: Product;
+  secondProduct: Product;
 }
 
-const ComparisonResult: React.FC<ComparisonResultProps> = ({
+interface Product {
+  name: string;
+  rating: number;
+  reviewCount: number;
+  favoriteCount: number;
+}
+
+export const ComparisonResult = ({
   firstProduct,
   secondProduct,
-}) => {
+}: TableProps) => {
+  const [finalResult, setFinalResult] = useState<string>('');
+  const [winResult, setWinResult] = useState<number>(0);
+  const [resultText, setResultText] = useState<string>('');
+
   const handleCompare = (first: number, second: number) => {
     if (first > second) {
       return '상품 1 승리';
@@ -39,24 +40,6 @@ const ComparisonResult: React.FC<ComparisonResultProps> = ({
     return 'text-gray';
   };
 
-  const renderRow = (
-    label: string,
-    firstValue: number,
-    secondValue: number,
-  ) => {
-    const comparisonResult = handleCompare(firstValue, secondValue);
-    return (
-      <tr className="text-white h-[calc(100%/3)]">
-        <td className="text-gray-9F w-1/4">{label}</td>
-        <td className="w-1/4">{firstValue}</td>
-        <td className="w-1/4">{secondValue}</td>
-        <td className={`w-1/4 ${getComparisonClass(comparisonResult)}`}>
-          {comparisonResult}
-        </td>
-      </tr>
-    );
-  };
-
   const comparisonResults = [
     handleCompare(firstProduct.rating, secondProduct.rating),
     handleCompare(firstProduct.reviewCount, secondProduct.reviewCount),
@@ -70,22 +53,30 @@ const ComparisonResult: React.FC<ComparisonResultProps> = ({
     (result) => result === '상품 2 승리',
   ).length;
 
-  let finalResult: string;
-  let winResult: number | undefined;
-  let resultText: string;
-
   if (firstProductWins > secondProductWins) {
-    finalResult = firstProduct.name;
-    winResult = firstProductWins;
-    resultText = 'text-green';
+    setFinalResult(firstProduct.name);
+    setWinResult(firstProductWins);
+    setResultText('text-green');
   } else if (secondProductWins > firstProductWins) {
-    finalResult = secondProduct.name;
-    winResult = secondProductWins;
-    resultText = 'text-pink';
+    setFinalResult(secondProduct.name);
+    setWinResult(secondProductWins);
+    setResultText('text-pink');
   } else {
-    finalResult = '무승부입니다';
-    resultText = 'text-white';
+    setFinalResult('무승부입니다');
+    setResultText('text-white');
   }
+
+  const label = ['별점', '리뷰 개수', '찜 개수'];
+  const firstValue = [
+    firstProduct.rating,
+    firstProduct.reviewCount,
+    firstProduct.favoriteCount,
+  ];
+  const secondValue = [
+    secondProduct.rating,
+    secondProduct.reviewCount,
+    secondProduct.favoriteCount,
+  ];
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -114,22 +105,39 @@ const ComparisonResult: React.FC<ComparisonResultProps> = ({
             </tr>
           </thead>
           <tbody className="h-full w-full">
-            {renderRow('별점', firstProduct.rating, secondProduct.rating)}
-            {renderRow(
-              '리뷰 개수',
-              firstProduct.reviewCount,
-              secondProduct.reviewCount,
-            )}
-            {renderRow(
-              '찜 개수',
-              firstProduct.favoriteCount,
-              secondProduct.favoriteCount,
-            )}
+            <tr className="text-white h-[calc(100%/3)]">
+              <td className="text-gray-9F w-1/4">{label[0]}</td>
+              <td className="w-1/4">{firstValue[0]}</td>
+              <td className="w-1/4">{secondValue[0]}</td>
+              <td
+                className={`w-1/4 ${getComparisonClass(handleCompare(firstValue[0], secondValue[0]))}`}
+              >
+                {handleCompare(firstValue[0], secondValue[0])}
+              </td>
+            </tr>
+            <tr className="text-white h-[calc(100%/3)]">
+              <td className="text-gray-9F w-1/4">{label[1]}</td>
+              <td className="w-1/4">{firstValue[1]}</td>
+              <td className="w-1/4">{secondValue[1]}</td>
+              <td
+                className={`w-1/4 ${getComparisonClass(handleCompare(firstValue[1], secondValue[1]))}`}
+              >
+                {handleCompare(firstValue[1], secondValue[1])}
+              </td>
+            </tr>
+            <tr className="text-white h-[calc(100%/3)]">
+              <td className="text-gray-9F w-1/4">{label[2]}</td>
+              <td className="w-1/4">{firstValue[2]}</td>
+              <td className="w-1/4">{secondValue[2]}</td>
+              <td
+                className={`w-1/4 ${handleCompare(firstValue[2], secondValue[2])}`}
+              >
+                {handleCompare(firstValue[2], secondValue[2])}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   );
 };
-
-export default ComparisonResult;

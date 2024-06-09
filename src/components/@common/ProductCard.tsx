@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { ProductCardProps } from '@/components/Profile/types/productType';
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const { id, image, name, reviewCount, rating, favoriteCount } = product;
+  const { categoryId, id, image, name, reviewCount, rating, favoriteCount } =
+    product;
   return (
-    // categoryId/productId
-    <Link href={`/detail/${id}`}>
+    <Link href={`/${categoryId}/${id}`}>
       <div className="flex flex-col items-center justify-center pt-[10px] lg:pb-[20px] md:pb-[15px] mobile:pb-[10px] px-[10px] mobile:w-full lg:max-w-[300px] mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border-gray-35 bg-gray-25">
         <ImageComponent type="product" src={image} alt="이미지" />
 

@@ -1,5 +1,9 @@
 import { create } from 'zustand';
 
+interface FavoriteCategory {
+  id: number;
+  name: string;
+}
 interface UserInfoData {
   id: number;
   nickname: string;
@@ -13,7 +17,7 @@ interface UserInfoData {
   followeesCount: number;
   reviewCount: number;
   averageRating: number;
-  mostFavoriteCategory: string | null;
+  mostFavoriteCategory: FavoriteCategory;
 }
 
 interface ProfileState {

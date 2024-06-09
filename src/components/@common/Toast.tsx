@@ -4,7 +4,7 @@ interface ToastProp {
 
 export const Toast = ({ text }: ToastProp) => {
   return (
-    <div className="absolute top-[250px] right-1/2 translate-x-1/2 flex py-[10px] px-4 items-start gap-[10px] rounded-lg text-center leading-7 font-normal not-italic text-base bg-main-gradation text-white">
+    <div className="w-[200px] flex py-[10px] px-4 items-center justify-center gap-[10px] rounded-lg text-center leading-7 font-normal not-italic text-base bg-main-gradation text-white">
       {text}
     </div>
   );

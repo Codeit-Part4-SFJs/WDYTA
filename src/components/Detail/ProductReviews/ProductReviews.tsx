@@ -1,5 +1,8 @@
 'use client';
 
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Sort } from '@/shared/ui/Dropdown/Sort';
 import { SORT_OPTIONS } from '@/components/Detail/constants';
 import { ReviewProfile } from '@/components/Detail/ProductReviews/ReviewProfile';
@@ -10,15 +13,10 @@ import {
 import { ReviewLikeButton } from '@/components/Detail/ProductReviews/ReviewLikeButton';
 import { convertCreatedAt } from '@/shared/@common/utils';
 import { ReviewImage } from '@/components/Detail/ProductReviews/ReviewImage';
-import {
-  useQueryClient,
-  useSuspenseInfiniteQuery,
-} from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { reviewsOptions } from '@/app/[category]/[product]/queryOptions';
-import { useRouter } from 'next/navigation';
-import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
-import { ProductDetail } from '@/shared/@common/apis/product';
 import { Loading } from '@/shared/ui/Icon';
+import { SkeletonReviewCards } from '@/components/Detail/skeletons';
 
 const ReviewCard = ({ reviewData }: ReviewCardProps) => {
   return (
@@ -53,10 +51,15 @@ export const ProductReviews = ({
   // userId,
   currentFilter,
 }: ProductReviewsProps) => {
-  const queryClient = useQueryClient();
-  const { data: productReviewsData } = useSuspenseInfiniteQuery(
+  const {
+    data: productReviewsData,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useSuspenseInfiniteQuery(
     reviewsOptions(productId, accessToken, currentFilter),
   );
+
+  const isReviewed = productReviewsData.pages[0].list[0] !== undefined;
 
   const router = useRouter();
   const handleSelect = (value: string) => {
@@ -65,14 +68,17 @@ export const ProductReviews = ({
     });
   };
 
-  const productDetailData: ProductDetail | undefined = queryClient.getQueryData(
-    productKeys.detail(productId),
-  );
-  const isReviewed = productDetailData && productDetailData.reviewCount !== 0;
+  const { ref: triggerRef, inView } = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, inView]);
 
   return (
-    <div className="flex flex-col gap-[30px] mb-[100px]">
-      <div className="flex justify-between items-center">
+    <div className="flex flex-col mb-[100px]">
+      <div className="flex justify-between items-center mb-[30px]">
         <div className="mobile:text-lg md:text-base lg:text-xl text-gray-F1 not-italic leading-normal font-semibold lg:font-normal">
           상품 리뷰
         </div>
@@ -91,6 +97,8 @@ export const ProductReviews = ({
             {page.list.map((review: any) => (
               <ReviewCard key={review.id} reviewData={review} />
             ))}
+            {isFetchingNextPage && <SkeletonReviewCards />}
+            <div ref={triggerRef} />
           </div>
         ))
       ) : (

@@ -22,7 +22,7 @@ const ReviewCard = ({ reviewData }: ReviewCardProps) => {
   return (
     <div className="w-full mobile:gap-[30px] md:gap-[60px] lg:gap-[80px] p-[20px] lg:p-[30px] mobile:rounded-2xl md:rounded-lg lg:rounded-lg mobile:flex-col flex border border-solid border-gray-35 bg-black-25">
       <ReviewProfile rating={reviewData.rating} reviewUser={reviewData.user} />
-      <div className="flex flex-col gap-[15px] overflow-hidden">
+      <div className="w-full flex flex-col gap-[15px] overflow-hidden">
         <div className="flex flex-col gap-[20px] md:gap-[40px] lg:gap-[20px]">
           <div className="lg:text-base lg:leading-[22px] text-xs leading-4 text-gray-F1 not-italic font-normal">
             {reviewData.content}

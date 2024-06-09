@@ -2,11 +2,25 @@
 
 import { CategoryChip } from '@/shared/ui/Chip/CategoryChip';
 import { Icon } from '@/shared/ui/Icon';
-import { useUserInfoStore } from '@/stores';
+// import { useUserInfoStore } from '@/stores';
 import { ActivityCardProps } from '@/components/Profile/types/userActivityType';
+import { useParams } from 'next/navigation';
+import useUserInfoSuspenseQuery from '../hooks/useUserInfoSuspenseQuery';
 
-export const ActivityCard = ({ title, icon }: ActivityCardProps) => {
-  const currentUserInfo = useUserInfoStore((state: any) => state.userInfoData);
+export const ActivityCard = ({
+  title,
+  icon,
+  accessToken,
+}: ActivityCardProps) => {
+  const params = useParams();
+  console.log(params.userId);
+
+  const { data: currentUserInfo } = useUserInfoSuspenseQuery(
+    Number(params.userId),
+    accessToken,
+  );
+
+  // const currentUserInfo = useUserInfoStore((state: any) => state.userInfoData);
   if (!currentUserInfo) {
     return null;
   }

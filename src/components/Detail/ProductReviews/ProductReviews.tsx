@@ -71,10 +71,10 @@ export const ProductReviews = ({
   const { ref: triggerRef, inView } = useInView();
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [fetchNextPage, inView]);
+  }, [fetchNextPage, isFetchingNextPage, inView]);
 
   return (
     <div className="flex flex-col mb-[100px]">

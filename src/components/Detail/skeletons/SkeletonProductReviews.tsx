@@ -31,6 +31,9 @@ export const SkeletonReviewCards = () => {
       <SkeletonReviewCard />
       <SkeletonReviewCard />
       <SkeletonReviewCard />
+      <SkeletonReviewCard />
+      <SkeletonReviewCard />
+      <SkeletonReviewCard />
     </div>
   );
 };

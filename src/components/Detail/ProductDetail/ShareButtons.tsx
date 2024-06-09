@@ -5,7 +5,18 @@ import { Icon } from '@/shared/ui/Icon';
 import { Toast } from '@/components/@common';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export const ShareButtons = () => {
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface Window {
+    Kakao: any;
+  }
+}
+
+interface ShareButtonsProps {
+  productName: string;
+}
+
+export const ShareButtons = ({ productName }: ShareButtonsProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const order = searchParams.get('order');
@@ -14,9 +25,38 @@ export const ShareButtons = () => {
     ? `${process.env.NEXT_PUBLIC_FE_URL}${pathname}?order=${order}`
     : `${process.env.NEXT_PUBLIC_FE_URL}${pathname}`;
 
+  const handleKakaoClick = () => {
+    if (!window.Kakao?.isInitialized()) {
+      window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
+    }
+
+    window.Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: 'WDYTA',
+        description: `지금 ${productName} 상품을 비교해보세요`,
+        imageUrl:
+          'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+        link: {
+          mobileWebUrl: url,
+          webUrl: url,
+        },
+      },
+      buttons: [
+        {
+          title: '모든 상품 비교하러 가기',
+          link: {
+            mobileWebUrl: process.env.NEXT_PUBLIC_FE_URL,
+            webUrl: process.env.NEXT_PUBLIC_FE_URL,
+          },
+        },
+      ],
+    });
+  };
+
   const [copyUrlStatus, setCopyUrlStatus] = useState('idle');
 
-  const handleButtonClick = async (copyUrl: string) => {
+  const handleUrlButtonClick = async (copyUrl: string) => {
     setCopyUrlStatus('fetching');
     try {
       await navigator.clipboard.writeText(copyUrl);
@@ -35,6 +75,7 @@ export const ShareButtons = () => {
   return (
     <div className="relative mobile:absolute mobile:right-0 mobile:top-[-34px] flex shrink-0 gap-[10px]">
       <button
+        onClick={handleKakaoClick}
         className="flex justify-center items-center bg-black-25 rounded-md mobile:w-[24px] mobile:h-[24px] md:w-[24px] md:h-[24px] lg:w-[28px] lg:h-[28px]"
         type="button"
       >
@@ -47,7 +88,7 @@ export const ShareButtons = () => {
         className="flex justify-center items-center bg-black-25 rounded-md mobile:w-[24px] mobile:h-[24px] md:w-[24px] md:h-[24px] lg:w-[28px] lg:h-[28px] disabled:cursor-not-allowed"
         type="button"
         disabled={copyUrlStatus !== 'idle'}
-        onClick={() => handleButtonClick(url)}
+        onClick={() => handleUrlButtonClick(url)}
       >
         <Icon
           name="ShareIcon"

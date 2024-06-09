@@ -53,7 +53,7 @@ export const ProductDetail = ({
                   isFavorite={productDetailData.isFavorite}
                 />
               </div>
-              <ShareButtons />
+              <ShareButtons productName={productDetailData.name} />
             </div>
           </div>
           <div className="text-gray-F1 not-italic font-semibold mobile:leading-5 md:leading-5 lg:leading-[22px] text-sm lg:text-base">

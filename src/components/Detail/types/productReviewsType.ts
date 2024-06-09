@@ -21,6 +21,10 @@ export interface ReviewData {
 
 export interface ReviewCardProps {
   reviewData: ReviewData;
+  userId: number;
+  accessToken: string;
+  productId: number;
+  filter: string | undefined;
 }
 
 export interface ReviewProfileProps {
@@ -38,4 +42,11 @@ export interface ProductReviewsProps {
   productId: number;
   accessToken: string;
   currentFilter: string | undefined;
+}
+
+export interface ControlButtonsProps {
+  accessToken: string;
+  reviewId: number;
+  productId: number;
+  filter: string | undefined;
 }

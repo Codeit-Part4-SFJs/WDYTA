@@ -7,18 +7,81 @@ import { Sort } from '@/shared/ui/Dropdown/Sort';
 import { SORT_OPTIONS } from '@/components/Detail/constants';
 import { ReviewProfile } from '@/components/Detail/ProductReviews/ReviewProfile';
 import {
+  ControlButtonsProps,
   ProductReviewsProps,
   ReviewCardProps,
 } from '@/components/Detail/types';
 import { ReviewLikeButton } from '@/components/Detail/ProductReviews/ReviewLikeButton';
 import { convertCreatedAt } from '@/shared/@common/utils';
 import { ReviewImage } from '@/components/Detail/ProductReviews/ReviewImage';
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseInfiniteQuery,
+} from '@tanstack/react-query';
 import { reviewsOptions } from '@/app/[category]/[product]/queryOptions';
 import { Loading } from '@/shared/ui/Icon';
 import { SkeletonReviewCards } from '@/components/Detail/skeletons';
+import { deleteReview } from '@/shared/@common/apis';
+import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
 
-const ReviewCard = ({ reviewData }: ReviewCardProps) => {
+const ControlButtons = ({
+  accessToken,
+  reviewId,
+  productId,
+  filter,
+}: ControlButtonsProps) => {
+  const currentFilter = filter ?? 'recent';
+
+  const queryClient = useQueryClient();
+  const deleteReviewMutation = useMutation({
+    mutationFn: async () => {
+      await deleteReview(reviewId, accessToken);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: productKeys.reviews(productId, currentFilter),
+      });
+      queryClient.invalidateQueries({
+        queryKey: productKeys.detail(productId),
+      });
+    },
+  });
+
+  const handleDeleteClick = () => {
+    deleteReviewMutation.mutate();
+  };
+
+  const handleEditClick = () => {
+    alert('리뷰 수정 모달 열림');
+  };
+
+  return (
+    <div className="flex gap-[10px] underline text-gray-9F">
+      <button onClick={handleEditClick} type="button">
+        수정
+      </button>
+      <button
+        onClick={handleDeleteClick}
+        disabled={deleteReviewMutation.isPending}
+        className={`${deleteReviewMutation.isPending ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+        type="button"
+      >
+        삭제
+      </button>
+    </div>
+  );
+};
+
+const ReviewCard = ({
+  reviewData,
+  userId,
+  accessToken,
+  productId,
+  filter,
+}: ReviewCardProps) => {
+  const isMyReview = userId === reviewData.userId;
+
   return (
     <div className="w-full mobile:gap-[30px] md:gap-[60px] lg:gap-[80px] p-[20px] lg:p-[30px] mobile:rounded-2xl md:rounded-lg lg:rounded-lg mobile:flex-col flex border border-solid border-gray-35 bg-black-25">
       <ReviewProfile rating={reviewData.rating} reviewUser={reviewData.user} />
@@ -34,8 +97,16 @@ const ReviewCard = ({ reviewData }: ReviewCardProps) => {
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <div className="mobile:text-xs lg:text-sm text-gray-6E not-italic leading-normal font-normal">
+          <div className="flex mobile:gap-[15px] md:gap-[20px] lg:gap-[20px] mobile:text-xs lg:text-sm text-gray-6E not-italic leading-normal font-normal">
             {convertCreatedAt(reviewData.createdAt)}
+            {isMyReview && (
+              <ControlButtons
+                accessToken={accessToken}
+                reviewId={reviewData.id}
+                productId={productId}
+                filter={filter}
+              />
+            )}
           </div>
           <ReviewLikeButton />
         </div>
@@ -48,7 +119,7 @@ export const ProductReviews = ({
   productId,
   category,
   accessToken,
-  // userId,
+  userId,
   currentFilter,
 }: ProductReviewsProps) => {
   const {
@@ -95,7 +166,14 @@ export const ProductReviews = ({
             className="flex flex-col gap-[15px] lg:gap-[20px]"
           >
             {page.list.map((review: any) => (
-              <ReviewCard key={review.id} reviewData={review} />
+              <ReviewCard
+                key={review.id}
+                reviewData={review}
+                userId={userId}
+                accessToken={accessToken}
+                productId={productId}
+                filter={currentFilter}
+              />
             ))}
             {isFetchingNextPage && <SkeletonReviewCards />}
             <div ref={triggerRef} />

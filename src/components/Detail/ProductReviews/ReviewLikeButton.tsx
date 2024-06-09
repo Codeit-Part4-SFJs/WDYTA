@@ -1,5 +1,5 @@
 import { ThumbsChip } from '@/shared/ui/Chip/ThumbsChip';
 
 export const ReviewLikeButton = () => {
-  return <ThumbsChip isLike={false} likeCount={7} />;
+  return <ThumbsChip isLike likeCount={10000} />;
 };

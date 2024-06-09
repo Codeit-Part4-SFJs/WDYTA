@@ -77,7 +77,6 @@ const ReviewCard = ({
   reviewData,
   userId,
   accessToken,
-  productId,
   filter,
 }: ReviewCardProps) => {
   const isMyReview = userId === reviewData.userId;
@@ -103,12 +102,19 @@ const ReviewCard = ({
               <ControlButtons
                 accessToken={accessToken}
                 reviewId={reviewData.id}
-                productId={productId}
+                productId={reviewData.productId}
                 filter={filter}
               />
             )}
           </div>
-          <ReviewLikeButton />
+          <ReviewLikeButton
+            isLike={reviewData.isLiked}
+            likeCount={reviewData.likeCount}
+            reviewId={reviewData.id}
+            accessToken={accessToken}
+            productId={reviewData.productId}
+            filter={filter}
+          />
         </div>
       </div>
     </div>
@@ -171,7 +177,6 @@ export const ProductReviews = ({
                 reviewData={review}
                 userId={userId}
                 accessToken={accessToken}
-                productId={productId}
                 filter={currentFilter}
               />
             ))}

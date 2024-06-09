@@ -5,8 +5,8 @@ export default function Profile() {
   const { loginedId, accessToken } = getUserCookies();
   return (
     <ProfilePageComponent
-      currentProfileId={loginedId}
-      loginedId={loginedId}
+      currentProfileId={Number(loginedId)}
+      loginedId={Number(loginedId)}
       accessToken={accessToken}
     />
   );

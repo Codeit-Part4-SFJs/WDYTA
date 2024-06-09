@@ -1,4 +1,4 @@
-import { PRODUCT_MENU } from '../constants/PRODUCT_MENU';
+import { PRODUCT_MENU } from '@/components/Profile/constants/productMenu';
 
 export interface ProductTypes {
   updatedAt: string;

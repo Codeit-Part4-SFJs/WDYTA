@@ -9,7 +9,7 @@ const activityData: ActivityData[] = [
 ];
 
 export const ActivitySection = () => {
-  const { accessToken } = getUserCookies();
+  const { loginedId, accessToken } = getUserCookies();
   return (
     <section className="flex flex-col gap-[30px]">
       <h1 className="lg:text-xl text-lg  text-gray-F1">활동 내역</h1>
@@ -20,6 +20,7 @@ export const ActivitySection = () => {
             title={activity.title}
             icon={activity.icon}
             accessToken={accessToken}
+            loginedId={loginedId}
           />
         ))}
       </div>

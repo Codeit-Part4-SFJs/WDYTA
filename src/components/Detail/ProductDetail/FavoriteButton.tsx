@@ -4,7 +4,7 @@ import { Icon } from '@/shared/ui/Icon';
 import { FavoriteButtonProps } from '@/components/Detail/types';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useFavoriteMutation } from './hooks';
+import { useFavoriteMutation } from '@/components/Detail/ProductDetail/hooks';
 
 export const FavoriteButton = ({
   isFavorite,

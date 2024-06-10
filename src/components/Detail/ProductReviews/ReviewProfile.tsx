@@ -1,7 +1,7 @@
 import { Icon } from '@/shared/ui/Icon';
 import { ImageComponent } from '@/shared/ui/Img';
 import Link from 'next/link';
-import { ReviewProfileProps } from '../types';
+import { ReviewProfileProps } from '@/components/Detail/types';
 
 const createRatingColors = (rating: number) => {
   const ratingColors = new Array<string>(0);

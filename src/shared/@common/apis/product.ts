@@ -6,6 +6,31 @@ interface ProductProps {
   description: string;
   name: string;
 }
+
+export interface ProductDetail {
+  id: number;
+  name: string;
+  image: string;
+  rating: number;
+  reviewCount: number;
+  categoryId: number;
+  createdAt: string;
+  updatedAt: string;
+  writerId: number;
+  description: string;
+  category: {
+    id: number;
+    name: string;
+  };
+  isFavorite: boolean;
+  favoriteCount: number;
+  categoryMetric: {
+    rating: number;
+    reviewCount: number;
+    favoriteCount: number;
+  };
+}
+
 /**
  * 상품목록조회
  */

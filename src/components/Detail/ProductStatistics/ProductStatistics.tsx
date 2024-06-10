@@ -1,11 +1,18 @@
+'use client';
+
 import {
   RATING_OPTIONS,
   FAVORITE_OPTIONS,
   REVIEW_OPTIONS,
 } from '@/components/Detail/constants';
-import { StatisticProps, StatisticsOptions } from '@/components/Detail/types';
+import {
+  ProductStatisticsProps,
+  StatisticProps,
+  StatisticsOptions,
+} from '@/components/Detail/types';
 import { Icon } from '@/shared/ui/Icon';
-import { PRODUCT_MOCK } from '@/components/Detail/mock';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { productOptions } from '@/app/[category]/[product]/queryOptions';
 
 const makeOptionsByType: {
   [key: string]: StatisticsOptions;
@@ -42,8 +49,8 @@ const Statistic = ({ type, typeValue, categoryMetric }: StatisticProps) => {
           &nbsp;
           <span className="text-gray-F1">
             {type === 'rating'
-              ? Math.abs(statisticDiff).toFixed(1)
-              : Math.abs(statisticDiff)}
+              ? statisticDiff && Math.abs(statisticDiff).toFixed(1)
+              : Math.abs(statisticDiff).toFixed(0)}
             {makeOptionsByType[type].unit}
           </span>
           &nbsp;
@@ -56,9 +63,13 @@ const Statistic = ({ type, typeValue, categoryMetric }: StatisticProps) => {
   );
 };
 
-export const ProductStatistics = () => {
-  // 여기서 API 요청
-  const productDetailData = PRODUCT_MOCK;
+export const ProductStatistics = ({
+  productId,
+  accessToken,
+}: ProductStatisticsProps) => {
+  const { data: productDetailData } = useSuspenseQuery(
+    productOptions(productId, accessToken),
+  );
 
   return (
     <div className="flex flex-col gap-[30px]">

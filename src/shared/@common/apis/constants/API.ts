@@ -38,8 +38,8 @@ export const API_PRODUCT = Object.freeze({
   PRODUCT: `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}`,
   BY_ID: (productId: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}/${productId}`,
-  REVIEWS: (productId: number) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}/${productId}/reviews`,
+  REVIEWS: (productId: number, filter: string, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}/${productId}/reviews?order=${filter}&cursor=${pageParam}`,
   FAVORITE: (productId: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}/${productId}/favorite`,
 } as const);

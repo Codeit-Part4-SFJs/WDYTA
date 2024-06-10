@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import { Gnb } from '@/shared/ui/Menu/Gnb';
 import localFont from 'next/font/local';
 import Providers from '@/app/providers';
+import Script from 'next/script';
 
 export const metadata = {
   title: 'WDYTA',
@@ -28,6 +29,11 @@ export default function RootLayout({
           {children}
         </Providers>
       </body>
+      <Script
+        src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+        crossOrigin="anonymous"
+        integrity={process.env.NEXT_PUBLIC_KAKAO_INTEGRITY}
+      />
     </html>
   );
 }

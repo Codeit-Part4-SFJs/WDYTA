@@ -19,13 +19,13 @@ export const ProductSection = ({ loginedId }: ProductSectionProps) => {
   const [activeMenu, setActiveMenu] =
     useState<ProductMenuType>('리뷰 남긴 상품');
 
-  const handleClickTab = (tab: ProductMenuType) => {
-    setActiveMenu(tab);
-  };
   const { productsList, content } = useProductsQuery(
     currentProfileId,
     activeMenu,
   );
+  const handleClickTab = (tab: ProductMenuType) => {
+    setActiveMenu(tab);
+  };
 
   return (
     <section className="flex flex-col gap-[30px]">

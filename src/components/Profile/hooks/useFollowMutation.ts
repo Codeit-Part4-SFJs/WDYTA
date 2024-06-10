@@ -21,7 +21,7 @@ const useFollowMutation = () => {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
-      return response;
+      return response.json();
     },
     onSuccess: (_, variables) =>
       queryClient.invalidateQueries({

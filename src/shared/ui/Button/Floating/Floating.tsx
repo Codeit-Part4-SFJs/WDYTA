@@ -14,7 +14,7 @@ export const Floating = () => {
   return (
     <button
       type="button"
-      className="flex w-[60px] h-[60px] rounded-full fixed bg-main-gradation items-center justify-center right-[90px] bottom-[180px] md:right-[30px] md:bottom-[60px] mobile:right-5 mobile:bottom-10"
+      className="flex w-[60px] h-[60px] rounded-full fixed bg-main-gradation items-center justify-center right-[160px] bottom-[50px] md:right-[30px] md:bottom-[60px] mobile:right-5 mobile:bottom-10"
     >
       <Icon
         name="AddIcon"

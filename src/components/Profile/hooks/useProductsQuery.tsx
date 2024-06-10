@@ -22,12 +22,12 @@ const useProductsQuery = (
     '찜한 상품': {
       queryKey: 'favoriteProduct',
       apiFunc: getUserFavoriteProducts,
-      content: '첫 상품을 등록해 보세요!',
+      content: '찜한 상품이 없습니다!',
     },
     '등록한 상품': {
       queryKey: 'createdProduct',
       apiFunc: getUserCreatedProducts,
-      content: '찜한 상품이 없습니다!',
+      content: '등록한 상품이 없습니다!',
     },
   } as const;
 

@@ -1,8 +1,8 @@
 import { FormValues } from '../types/input';
 import { API_AUTH } from './constants/API';
 
-interface AuthProps {
-  nickname: string;
+export interface AuthProps {
+  nickname?: string;
   redirectUri: string;
   token: string;
 }

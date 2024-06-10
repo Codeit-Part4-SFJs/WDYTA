@@ -38,7 +38,7 @@ export const ActivityCard = ({
                 icon === 'ReviewIcon' ? 'lg:leading-none' : ''
               }`}
             >
-              {icon === 'StarIcon' ? averageRating : reviewCount}
+              {icon === 'StarIcon' ? averageRating.toFixed(1) : reviewCount}
             </p>
           </>
         )}

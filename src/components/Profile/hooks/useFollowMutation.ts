@@ -1,4 +1,4 @@
-import { API_USERS } from '@/shared/@common/apis/constants/API';
+import { ProfileKeys } from '@/app/profile/[userId]/queryKeyFactories';
 import { postUserFollow } from '@/shared/@common/apis/follow';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -23,7 +23,10 @@ const useFollowMutation = () => {
       }
       return response;
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: [API_USERS] }),
+    onSuccess: (_, variables) =>
+      queryClient.invalidateQueries({
+        queryKey: ProfileKeys.user(variables.currentProfileId),
+      }),
   });
 };
 

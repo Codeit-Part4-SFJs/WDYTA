@@ -6,6 +6,7 @@ import {
   getUserFavoriteProducts,
   getUserReviewedProducts,
 } from '@/shared/@common/apis';
+import { ProfileKeys } from '@/app/profile/[userId]/queryKeyFactories';
 import { ProductMenuType } from '../types/productType';
 
 const useProductsQuery = (
@@ -31,7 +32,10 @@ const useProductsQuery = (
   } as const;
 
   const { data } = useSuspenseQuery({
-    queryKey: [currentProfileId, productMenuInfo[activeMenu].queryKey],
+    queryKey: ProfileKeys.productCard(
+      currentProfileId,
+      productMenuInfo[activeMenu].queryKey,
+    ),
     queryFn: async () => {
       if (!currentProfileId) return null;
       const response =

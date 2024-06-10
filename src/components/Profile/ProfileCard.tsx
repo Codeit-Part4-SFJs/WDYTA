@@ -9,7 +9,7 @@ import useUserInfoSuspenseQuery from '@/components/Profile/hooks/useUserInfoSusp
 import useFollowMutation from '@/components/Profile/hooks/useFollowMutation';
 import useUnFollowMutation from '@/components/Profile/hooks/useUnFollowMutation';
 import { PROFILE_DEFAULT_IMAGE } from '@/components/Profile/constants/profileDefaultImage';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 interface ProfileCardProps {
   loginedId: number;
@@ -17,7 +17,6 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
-  const router = useRouter();
   const { userId } = useParams();
 
   const currentProfileId = Number(userId) || Number(loginedId);
@@ -58,7 +57,7 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   };
   const handleSignOut = async () => {
     await logoutAction();
-    router.replace('/');
+    window.location.reload();
   };
 
   const buttonCustomSize =

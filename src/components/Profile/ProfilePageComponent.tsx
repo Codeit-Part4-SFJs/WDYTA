@@ -1,6 +1,7 @@
 import { ActivitySection } from '@/components/Profile/ActivitySection';
 import { ProductSection } from '@/components/Profile/ProductSection';
 import { ProfileCard } from '@/components/Profile/ProfileCard';
+import { Floating } from '@/shared/ui/Button/Floating';
 
 interface ProfilePageComponentProps {
   loginedId: number;
@@ -20,6 +21,7 @@ export const ProfilePageComponent = ({
         <ActivitySection />
         <ProductSection currentProfileId={currentProfileId} />
       </div>
+      <Floating />
     </main>
   );
 };

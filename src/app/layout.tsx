@@ -32,7 +32,7 @@ export default function RootLayout({
       <Script
         src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
         crossOrigin="anonymous"
-        integrity={process.env.NEXT_PUBLIC_KAKAO_API_KEY}
+        integrity={process.env.NEXT_PUBLIC_KAKAO_INTERGRITY}
       />
     </html>
   );

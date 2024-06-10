@@ -7,30 +7,6 @@ interface ProductProps {
   name: string;
 }
 
-export interface ProductDetail {
-  id: number;
-  name: string;
-  image: string;
-  rating: number;
-  reviewCount: number;
-  categoryId: number;
-  createdAt: string;
-  updatedAt: string;
-  writerId: number;
-  description: string;
-  category: {
-    id: number;
-    name: string;
-  };
-  isFavorite: boolean;
-  favoriteCount: number;
-  categoryMetric: {
-    rating: number;
-    reviewCount: number;
-    favoriteCount: number;
-  };
-}
-
 /**
  * 상품목록조회
  */
@@ -94,9 +70,11 @@ export const getProductReviewList = (
   productId: number,
   accessToken: string,
   filter: string,
-  pageParam: number,
+  pageParam: unknown,
 ) => {
-  return fetch(API_PRODUCT.REVIEWS(productId, filter, pageParam), {
+  const currentPageParam = Number(pageParam);
+
+  return fetch(API_PRODUCT.REVIEWS(productId, filter, currentPageParam), {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

@@ -5,9 +5,10 @@ import {
 } from '@/shared/@common/apis/product';
 import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
 import { notFound } from 'next/navigation';
+import { ProductDetailData, ReviewsDataPage } from '@/components/Detail/types';
 
 export const productOptions = (productId: number, accessToken: string) => {
-  return queryOptions({
+  return queryOptions<ProductDetailData>({
     queryKey: productKeys.detail(productId),
     queryFn: async () => {
       const response = await getDetailProduct(productId, accessToken);
@@ -28,7 +29,7 @@ export const reviewsOptions = (
 ) => {
   const filter = currentFilter ?? 'recent';
 
-  return infiniteQueryOptions({
+  return infiniteQueryOptions<ReviewsDataPage>({
     queryKey: productKeys.reviews(productId, filter),
     queryFn: async ({ pageParam }) => {
       const response = await getProductReviewList(

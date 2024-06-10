@@ -1,10 +1,12 @@
 'use client';
 
 import { Icon } from '@/shared/ui/Icon';
-import { FavoriteButtonProps } from '@/components/Detail/types';
+import {
+  FavoriteButtonProps,
+  ProductDetailData,
+} from '@/components/Detail/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
-  ProductDetail,
   deleteFavoriteProduct,
   postFavoriteProduct,
 } from '@/shared/@common/apis/product';
@@ -31,29 +33,20 @@ export const DetailFavoriteButton = ({
       await queryClient.cancelQueries({
         queryKey: productKeys.detail(productId),
       });
-      const previousFavorite = queryClient.getQueryData<ProductDetail>(
+      const previousFavorite = queryClient.getQueryData<ProductDetailData>(
         productKeys.detail(productId),
       );
       queryClient.setQueryData(
         productKeys.detail(productId),
-        (prev: ProductDetail) => {
-          if (isFavorite) {
-            return {
-              ...prev,
-              isFavorite: false,
-              favoriteCount: prev.favoriteCount - 1,
-            };
-          }
-          return {
-            ...prev,
-            isFavorite: true,
-            favoriteCount: prev.favoriteCount + 1,
-          };
-        },
+        (prev: ProductDetailData) => ({
+          ...prev,
+          isFavorite: !isFavorite,
+          favoriteCount: prev.favoriteCount + (isFavorite ? -1 : 1),
+        }),
       );
       return { previousFavorite };
     },
-    onError: (context: { previousFavorite?: ProductDetail }) => {
+    onError: (context: { previousFavorite?: ProductDetailData }) => {
       queryClient.setQueryData(
         productKeys.detail(productId),
         context.previousFavorite,

@@ -136,11 +136,11 @@ export const ProductReviews = ({
     reviewsOptions(productId, accessToken, currentFilter),
   );
 
-  const isReviewed = productReviewsData.pages[0].list[0] !== undefined;
+  const hasReview = productReviewsData.pages[0].list.length;
 
   const router = useRouter();
-  const handleSelect = (value: string) => {
-    router.replace(`/${category}/${productId}?order=${value}`, {
+  const handleSelect = (filter: string) => {
+    router.replace(`/${category}/${productId}?order=${filter}`, {
       scroll: false,
     });
   };
@@ -165,7 +165,7 @@ export const ProductReviews = ({
           onSelect={handleSelect}
         />
       </div>
-      {isReviewed ? (
+      {hasReview ? (
         productReviewsData.pages.map((page) => (
           <div
             key={page.nextCursor}

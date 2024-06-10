@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { ThumbsChip } from '@/shared/ui/Chip/ThumbsChip';
 import {
   Review,
-  ReviewsData,
+  ReviewsDataAllPages,
   ReviewsDataPage,
   ReviewLikeButtonProps,
 } from '@/components/Detail/types';
@@ -36,12 +36,12 @@ export const ReviewLikeButton = ({
       await queryClient.cancelQueries({
         queryKey: productKeys.reviews(productId, currentFilter),
       });
-      const previousReviews = queryClient.getQueryData<ReviewsData>(
+      const previousReviews = queryClient.getQueryData<ReviewsDataAllPages>(
         productKeys.reviews(productId, currentFilter),
       );
       queryClient.setQueryData(
         productKeys.reviews(productId, currentFilter),
-        (prev: ReviewsData) => {
+        (prev: ReviewsDataAllPages) => {
           if (!prev) return prev;
 
           const updatedPages = prev.pages.map((page: ReviewsDataPage) => ({
@@ -66,7 +66,7 @@ export const ReviewLikeButton = ({
 
       return { previousReviews };
     },
-    onError: (context: { previousReviews?: ReviewsData }) => {
+    onError: (context: { previousReviews?: ReviewsDataAllPages }) => {
       queryClient.setQueryData(
         productKeys.reviews(productId, currentFilter),
         context.previousReviews,

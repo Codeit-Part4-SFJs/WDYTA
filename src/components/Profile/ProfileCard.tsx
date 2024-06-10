@@ -20,13 +20,13 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   const router = useRouter();
   const { userId } = useParams();
 
-  const currentProfileId = Number(userId) || loginedId;
+  const currentProfileId = Number(userId) || Number(loginedId);
+  const isMyProfile = Number(userId) === Number(loginedId) || !userId;
 
   const { data: userInfoData } = useUserInfoSuspenseQuery(
-    currentProfileId,
+    Number(currentProfileId),
     accessToken,
   );
-
   const {
     image,
     nickname,
@@ -46,7 +46,6 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
 
   const { mutate: responseFollowMutate } = useFollowMutation();
   const { mutate: responseUnFollowMutate } = useUnFollowMutation();
-  const isMyProfile = currentProfileId === loginedId;
 
   const followBtnKind = isFollowing ? ButtonKind.tertiary : ButtonKind.primary;
   const followBtnText = isFollowing ? '팔로우 취소' : '팔로우';
@@ -83,7 +82,7 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
       <div className="flex justify-between lg:w-[184px] lg:h-[53px] md:w-[234px] md:h-[48px] mobile:w-[194px] mobile:h-[48px]">
         <div className="flex flex-col items-center">
           <div className="lg:text-[20px] md:text-[18px] text-gray-F1">
-            {followersCount || 0}
+            {followersCount}
           </div>
           <div className="lg:text-[16px] md:text-[14px] text-gray-9F">
             팔로워
@@ -92,7 +91,7 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
         <div className="border border-solid border-gray-35" />
         <div className="flex flex-col items-center">
           <div className="lg:text-[20px] md:text-[18px] text-gray-F1">
-            {followeesCount || 0}
+            {followeesCount}
           </div>
           <div className="lg:text-[16px] md:text-[14px] text-gray-9F">
             팔로잉

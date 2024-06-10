@@ -6,12 +6,16 @@ import { ProductList } from '@/components/Profile/ProductSection/ProductList';
 import { ProductMenuType } from '@/components/Profile/types/productType';
 import { PRODUCT_MENU } from '@/components/Profile/constants/productMenu';
 import useProductsQuery from '@/components/Profile/hooks/useProductsQuery';
+import { useParams } from 'next/navigation';
 
 interface ProductSectionProps {
-  currentProfileId: number;
+  loginedId: number;
 }
 
-export const ProductSection = ({ currentProfileId }: ProductSectionProps) => {
+export const ProductSection = ({ loginedId }: ProductSectionProps) => {
+  const { userId } = useParams();
+  const currentProfileId = Number(userId) || Number(loginedId);
+
   const [activeMenu, setActiveMenu] =
     useState<ProductMenuType>('리뷰 남긴 상품');
 

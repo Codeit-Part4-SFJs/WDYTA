@@ -1,27 +1,18 @@
-'use client';
-
-import { Icon } from '@/shared/ui/Icon';
-import {
-  FavoriteButtonProps,
-  ProductDetailData,
-} from '@/components/Detail/types';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ProductDetailData } from '@/components/Detail/types';
+import { QueryClient, useMutation } from '@tanstack/react-query';
 import {
   deleteFavoriteProduct,
   postFavoriteProduct,
 } from '@/shared/@common/apis/product';
 import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
-import { useRouter } from 'next/navigation';
 
-export const DetailFavoriteButton = ({
-  isFavorite,
-  productId,
-  accessToken,
-}: FavoriteButtonProps) => {
-  const router = useRouter();
-  const queryClient = useQueryClient();
-
-  const favoriteMutation = useMutation({
+export const useFavoriteMutation = (
+  queryClient: QueryClient,
+  isFavorite: boolean,
+  productId: number,
+  accessToken: string,
+) => {
+  return useMutation({
     mutationFn: async () => {
       if (isFavorite) {
         await deleteFavoriteProduct(productId, accessToken);
@@ -58,27 +49,4 @@ export const DetailFavoriteButton = ({
       });
     },
   });
-
-  const handleClick = () => {
-    if (!accessToken) {
-      router.push('/login');
-    }
-    favoriteMutation.mutate();
-  };
-
-  return (
-    <button onClick={handleClick} type="button">
-      {isFavorite ? (
-        <Icon
-          name="SaveIcon"
-          className="mobile:w-[24px] md:w-[24px] lg:w-[28px] mobile:h-[24px] md:h-[24px] lg:h-[28px] fill-red"
-        />
-      ) : (
-        <Icon
-          name="UnSaveIcon"
-          className="mobile:w-[24px] md:w-[24px] lg:w-[28px] mobile:h-[24px] md:h-[24px] lg:h-[28px] fill-gray-6E"
-        />
-      )}
-    </button>
-  );
 };

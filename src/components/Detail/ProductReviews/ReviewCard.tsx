@@ -2,7 +2,7 @@
 
 import { ReviewProfile } from '@/components/Detail/ProductReviews/ReviewProfile';
 import { ReviewCardProps } from '@/components/Detail/types';
-import { ReviewLikeButton } from '@/components/Detail/ProductReviews/ReviewLikeButton';
+import { LikeButton } from '@/components/Detail/ProductReviews/LikeButton';
 import { convertCreatedAt } from '@/shared/@common/utils';
 import { ReviewImage } from '@/components/Detail/ProductReviews/ReviewImage';
 import { ControlButtons } from '@/components/Detail/ProductReviews/ControlButtons';
@@ -41,7 +41,7 @@ export const ReviewCard = ({
               />
             )}
           </div>
-          <ReviewLikeButton
+          <LikeButton
             isLike={reviewData.isLiked}
             likeCount={reviewData.likeCount}
             reviewId={reviewData.id}

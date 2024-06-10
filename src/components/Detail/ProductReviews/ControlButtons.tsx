@@ -1,9 +1,8 @@
 'use client';
 
 import { ControlButtonsProps } from '@/components/Detail/types';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteReview } from '@/shared/@common/apis';
-import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
+import { useQueryClient } from '@tanstack/react-query';
+import { useDeleteReviewMutation } from '@/components/Detail/ProductReviews/hooks';
 
 export const ControlButtons = ({
   accessToken,
@@ -14,19 +13,14 @@ export const ControlButtons = ({
   const currentFilter = filter ?? 'recent';
 
   const queryClient = useQueryClient();
-  const deleteReviewMutation = useMutation({
-    mutationFn: async () => {
-      await deleteReview(reviewId, accessToken);
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: productKeys.reviews(productId, currentFilter),
-      });
-      queryClient.invalidateQueries({
-        queryKey: productKeys.detail(productId),
-      });
-    },
-  });
+
+  const deleteReviewMutation = useDeleteReviewMutation(
+    queryClient,
+    productId,
+    accessToken,
+    reviewId,
+    currentFilter,
+  );
 
   const handleDeleteClick = () => {
     deleteReviewMutation.mutate();

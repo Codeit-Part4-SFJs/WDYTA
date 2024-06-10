@@ -1,30 +1,21 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-import { ThumbsChip } from '@/shared/ui/Chip/ThumbsChip';
 import {
   Review,
   ReviewsDataAllPages,
   ReviewsDataPage,
-  ReviewLikeButtonProps,
 } from '@/components/Detail/types';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { QueryClient, useMutation } from '@tanstack/react-query';
 import { deleteLike, postLike } from '@/shared/@common/apis';
 import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
 
-export const ReviewLikeButton = ({
-  isLike,
-  likeCount,
-  reviewId,
-  accessToken,
-  productId,
-  filter,
-}: ReviewLikeButtonProps) => {
-  const currentFilter = filter ?? 'recent';
-  const router = useRouter();
-  const queryClient = useQueryClient();
-
-  const likeMutation = useMutation({
+export const useLikeMutation = (
+  queryClient: QueryClient,
+  isLike: boolean,
+  productId: number,
+  accessToken: string,
+  reviewId: number,
+  currentFilter: string,
+) => {
+  return useMutation({
     mutationFn: async () => {
       if (isLike) {
         await deleteLike(reviewId, accessToken);
@@ -78,17 +69,4 @@ export const ReviewLikeButton = ({
       });
     },
   });
-
-  const handleClick = () => {
-    if (!accessToken) {
-      router.push('/login');
-    }
-    likeMutation.mutate();
-  };
-
-  return (
-    <button onClick={handleClick} type="button">
-      <ThumbsChip isLike={isLike} likeCount={likeCount} />
-    </button>
-  );
 };

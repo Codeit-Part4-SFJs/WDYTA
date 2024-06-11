@@ -14,6 +14,23 @@ export const getProductList = () => {
 };
 
 /**
+ * 홈페이지에서의 상품목록조회
+ * @param keyword: 검색어
+ * @param category: 카테고리 Id
+ * @param order: 정렬 기준
+ */
+export const getHomeProductList = (
+  keyword: string,
+  category: number,
+  order: string,
+) => {
+  if (category) {
+    return fetch(API_PRODUCT.PRODUCT_BY_CATEGORY(keyword, category, order));
+  }
+  return fetch(API_PRODUCT.PRODUCT_BY_SEARCH(keyword, order));
+};
+
+/**
  * 상품 생성
  * @param data: categoryId(카테고리 Id), image(상품 이미지), description(상품 설명), name(상품 이름)
  */

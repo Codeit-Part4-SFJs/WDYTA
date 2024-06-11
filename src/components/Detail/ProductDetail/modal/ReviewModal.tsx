@@ -7,7 +7,7 @@ import { ImageInput } from '@/shared/ui/Input/image';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const ReviewModal = () => {
+export const ReviewModal = () => {
   const { register, watch } = useForm<FormValues>({ mode: 'onChange' });
 
   const [rating, setRating] = useState(0);
@@ -75,5 +75,3 @@ const ReviewModal = () => {
     </form>
   );
 };
-
-export default ReviewModal;

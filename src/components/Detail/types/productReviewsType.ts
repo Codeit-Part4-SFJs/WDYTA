@@ -66,7 +66,7 @@ export interface ReviewsDataPage {
   nextCursor: number;
 }
 
-export interface ReviewsData {
+export interface ReviewsDataAllPages {
   pages: ReviewsDataPage[];
   pageParams: number[];
 }

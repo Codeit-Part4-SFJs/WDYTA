@@ -3,7 +3,7 @@
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { CategoryChip } from '@/shared/ui/Chip/CategoryChip';
 import { ImageComponent } from '@/shared/ui/Img';
-import { DetailFavoriteButton } from '@/components/Detail/ProductDetail/DetailFavoriteButton';
+import { FavoriteButton } from '@/components/Detail/ProductDetail/FavoriteButton';
 import { ShareButtons } from '@/components/Detail/ProductDetail/ShareButtons';
 import { ProductDetailProps } from '@/components/Detail/types';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -47,7 +47,7 @@ export const ProductDetail = ({
                 <div className="text-gray-F1 not-italic font-normal mobile:leading-7 md:leading-normal lg:leading-normal text-xl lg:text-2xl">
                   {productDetailData.name}
                 </div>
-                <DetailFavoriteButton
+                <FavoriteButton
                   productId={productId}
                   accessToken={accessToken}
                   isFavorite={productDetailData.isFavorite}

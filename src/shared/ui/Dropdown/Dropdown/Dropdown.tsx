@@ -50,7 +50,7 @@ export const Dropdown = ({
       <div
         role="button"
         tabIndex={0}
-        className={`flex cursor-pointer py-[23px] md:py-[17px] mobile:py-[17px] md:h-[60px] mobile:h-[55px] px-5 flex-col items-start gap-[10px] rounded-lg border border-solid border-transparent bg-black-25 ${isToggled ? 'border-linear-gradients-black-25 text-white' : 'border-gray-35 text-gray-6E'}`}
+        className={`flex cursor-pointer py-[23px] md:py-[17px] mobile:py-[17px] md:h-[60px] mobile:h-[55px] px-5 flex-col items-start gap-[10px] rounded-lg border border-solid border-gray-35 bg-black-25 ${isToggled ? 'border-linear-gradients-black-25 text-white' : 'border-gray-35 text-gray-6E'}`}
         onClick={handleToggleDropdown}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -64,7 +64,7 @@ export const Dropdown = ({
             {selectedOption?.label ?? placeholder}
           </button>
           <Icon
-            name={isToggled ? 'DropDownIcon' : 'DropUpIcon'}
+            name={isToggled ? 'DropUpIcon' : 'DropDownIcon'}
             className="w-6"
           />
         </div>

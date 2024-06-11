@@ -13,7 +13,13 @@ const Template: StoryFn<{ text: string }> = () => {
 
   const text = watch('textarea', '');
 
-  return <TextBoxInput register={register} text={text} />;
+  return (
+    <TextBoxInput
+      register={register}
+      text={text}
+      placeholder="리뷰를 작성해주세요"
+    />
+  );
 };
 
 export const Default = Template.bind({});

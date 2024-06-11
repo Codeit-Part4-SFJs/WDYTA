@@ -9,6 +9,7 @@ import { Floating } from '@/shared/ui/Button/Floating/Floating';
 import { CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Loading } from '@/shared/ui/Icon';
 import { useEffect, useState } from 'react';
+import { useCompareItems } from '@/stores/useCompareItems';
 
 interface Product {
   id: number;
@@ -35,30 +36,25 @@ interface Product {
 }
 
 const Compare = () => {
+  const { firstItem, changingFirstItem, secondItem, changingSecondItem } =
+    useCompareItems();
   const [isCompare, setIsCompare] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
-  const [selectedSecondProductId, setSelectedSecondProductId] =
-    useState<number>(0);
-  const [selectedFirstProductId, setSelectedFirstProductId] =
-    useState<number>(0);
 
   // const userId = cookies().get('accessToken');
 
   const searchParams = useSearchParams();
   const product = searchParams.get('product');
-  const [product1, setProduct1] = useState<string>('');
 
   // api로 product의 id를 이용해서 product1은 product의 name을 받아와야 하는 것이다.
 
   const handleSelectFirstProduct = (id: number) => {
-    setSelectedFirstProductId(id);
+    changingFirstItem(id);
   };
 
   const handleSelectSecondProduct = (id: number) => {
-    setSelectedSecondProductId(id);
+    changingSecondItem(id);
   };
-
-  console.log(product1);
 
   useEffect(() => {
     if (typeof product === 'string') {
@@ -69,8 +65,7 @@ const Compare = () => {
             // const response = await getDetailProduct(parsedProduct, userId);
             // const productDetail: Product = await response.json();
             const productDetail: Product = PRODUCT_ID_1_MOCK;
-            setProduct1(productDetail.name);
-            console.log(product1);
+            changingFirstItem(productDetail.id);
           } catch (error) {
             console.error('Failed to fetch product detail:', error);
           }
@@ -95,7 +90,7 @@ const Compare = () => {
             <AutoComplete
               color={CompareColor.GREEN}
               onSelectProduct={handleSelectFirstProduct}
-              selectedProduct={product1}
+              selectedProduct={firstItem}
             />
           </div>
           <div className="flex flex-col items-start gap-[10px]">
@@ -121,8 +116,8 @@ const Compare = () => {
       )}
       {isLoad && (
         <Table
-          selectedFirstProductId={selectedFirstProductId}
-          selectedSecondProductId={selectedSecondProductId}
+          selectedFirstProductId={firstItem}
+          selectedSecondProductId={secondItem}
         />
       )}
 

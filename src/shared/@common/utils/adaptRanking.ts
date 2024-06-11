@@ -3,6 +3,7 @@ import { RankingColor } from '@/shared/ui/Chip/RankingChip';
 
 export interface AdaptedRankingData {
   id: number;
+  rank: number;
   nickname: string;
   image: string;
   followersCount: number;
@@ -22,8 +23,9 @@ const getColorByRank = (rank: number): RankingColor => {
 };
 
 export const adaptRanking = (data: Ranking[]): AdaptedRankingData[] => {
-  return data.map((item, index) => ({
+  return data.slice(0, 6).map((item, index) => ({
     id: item.id,
+    rank: index + 1,
     nickname: item.nickname,
     image: item.image,
     followersCount: item.followersCount,

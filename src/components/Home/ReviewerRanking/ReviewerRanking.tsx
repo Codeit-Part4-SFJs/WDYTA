@@ -14,16 +14,9 @@ export const ReviewerRanking = () => {
         리뷰어 랭킹
       </h2>
       <ul className="flex flex-row lg:flex-col gap-5 lg:gap-1 overflow-hidden">
-        {rankingData
-          ?.slice(0, 6)
-          .map((ranking, index) => (
-            <RankingCard
-              key={ranking.id}
-              ranking={ranking}
-              index={index}
-              color={ranking.color}
-            />
-          ))}
+        {rankingData.map((ranking) => (
+          <RankingCard key={ranking.id} ranking={ranking} />
+        ))}
       </ul>
     </aside>
   );

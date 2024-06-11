@@ -1,7 +1,7 @@
 import { Icon } from '@/shared/ui/Icon';
 import { ImageComponent } from '@/shared/ui/Img';
 import Link from 'next/link';
-import { ReviewProfileProps } from '../types';
+import { ReviewProfileProps } from '@/components/Detail/types';
 
 const createRatingColors = (rating: number) => {
   const ratingColors = new Array<string>(0);
@@ -37,6 +37,7 @@ export const ReviewProfile = ({ rating, reviewUser }: ReviewProfileProps) => {
         <div className="flex gap-[2px]">
           {ratingColors.map((color) => (
             <Icon
+              key={Math.random()}
               name="StarIcon"
               className={`mobile:w-[12px] mobile:h-[12px] md:w-[15px] md:h-[15px] lg:w-[16px] lg:h-[16px] ${color}`}
             />

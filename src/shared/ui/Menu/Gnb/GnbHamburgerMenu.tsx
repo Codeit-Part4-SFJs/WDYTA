@@ -5,14 +5,19 @@ import { Icon } from '@/shared/ui/Icon';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { useClose } from '@/shared/@common/hooks';
+import { logoutAction } from '@/shared/@common/utils';
 import {
   GnbHamburgerMenuOptionProps,
   GnbHamburgerMenuProps,
-} from './types/gnbType';
+} from '@/shared/ui/Menu/Gnb/types/gnbType';
 
 const GnbHamburgerMenuOption = ({
   isLoggedIn,
 }: GnbHamburgerMenuOptionProps) => {
+  const handleSignOut = async () => {
+    await logoutAction();
+    window.location.reload();
+  };
   const pathname = usePathname();
 
   const linkClass =
@@ -46,7 +51,7 @@ const GnbHamburgerMenuOption = ({
             >
               내 프로필
             </Link>
-            <button className={linkClass} type="button">
+            <button onClick={handleSignOut} className={linkClass} type="button">
               로그아웃
             </button>
           </div>

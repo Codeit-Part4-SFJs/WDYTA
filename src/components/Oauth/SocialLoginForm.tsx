@@ -4,16 +4,29 @@ import { FormValues } from '@/shared/@common/types/input';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { NicknameInput } from '@/shared/ui/Input/Nickname';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import useSignUpMutation from './hooks/useSignUpMutation';
 
-const SocialLoginForm = () => {
+interface SocialLoginFormProps {
+  code: string;
+}
+
+const SocialLoginForm = ({ code }: SocialLoginFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<FormValues>({ mode: 'onChange' });
 
+  const signUpMutation = useSignUpMutation('kakao');
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    const loginData = {
+      nickname: data.nickname,
+      redirectUri: 'http://localhost:3000/oauth/register',
+      token: code,
+    };
+
+    signUpMutation.mutate(loginData);
   };
 
   return (

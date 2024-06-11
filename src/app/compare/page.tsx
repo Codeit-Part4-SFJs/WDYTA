@@ -1,6 +1,6 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { AutoComplete } from '@/components/Compare/AutoComplete';
 import { Table } from '@/components/Compare/Table';
 import { PRODUCT_ID_1_MOCK } from '@/components/Compare/mock/PRODUCT_ID_1_MOCK';
@@ -36,15 +36,16 @@ interface Product {
 }
 
 const Compare = () => {
+  const router = useRouter();
   const { firstItem, changingFirstItem, secondItem, changingSecondItem } =
     useCompareItems();
   const [isCompare, setIsCompare] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
 
   // const userId = cookies().get('accessToken');
-
   const searchParams = useSearchParams();
-  const product = searchParams.get('product');
+  const product1 = searchParams.get('product1');
+  const product2 = searchParams.get('product2');
 
   // api로 product의 id를 이용해서 product1은 product의 name을 받아와야 하는 것이다.
 
@@ -57,13 +58,11 @@ const Compare = () => {
   };
 
   useEffect(() => {
-    if (typeof product === 'string') {
-      const parsedProduct = parseInt(product, 10);
-      if (!Number.isNaN(parsedProduct)) {
+    if (product1) {
+      const parsedProduct1 = parseInt(product1, 10);
+      if (!Number.isNaN(parsedProduct1)) {
         const fetchProductDetail = async () => {
           try {
-            // const response = await getDetailProduct(parsedProduct, userId);
-            // const productDetail: Product = await response.json();
             const productDetail: Product = PRODUCT_ID_1_MOCK;
             changingFirstItem(productDetail.id);
           } catch (error) {
@@ -73,13 +72,40 @@ const Compare = () => {
         fetchProductDetail();
       }
     }
-  }, [product]);
+  }, [product1, changingFirstItem]);
+
+  useEffect(() => {
+    if (product2) {
+      const parsedProduct2 = parseInt(product2, 10);
+      if (!Number.isNaN(parsedProduct2)) {
+        const fetchProductDetail = async () => {
+          try {
+            const productDetail: Product = PRODUCT_ID_1_MOCK;
+            changingSecondItem(productDetail.id);
+          } catch (error) {
+            console.error('Failed to fetch product detail:', error);
+          }
+        };
+        fetchProductDetail();
+      }
+    }
+  }, [product2, changingSecondItem]);
 
   useEffect(() => {
     if (isCompare) {
       setIsLoad(true);
     }
   }, [isCompare]);
+
+  const handleCompareClick = () => {
+    setIsCompare(!isCompare);
+    changingFirstItem(firstItem);
+    changingSecondItem(secondItem);
+    if (firstItem && secondItem) {
+      router.push(`/compare?product1=${firstItem}&product2=${secondItem}`);
+    }
+    console.log(firstItem, secondItem, '완료');
+  };
 
   return (
     <>
@@ -90,7 +116,6 @@ const Compare = () => {
             <AutoComplete
               color={CompareColor.GREEN}
               onSelectProduct={handleSelectFirstProduct}
-              selectedProduct={firstItem}
             />
           </div>
           <div className="flex flex-col items-start gap-[10px]">
@@ -102,7 +127,7 @@ const Compare = () => {
           <Button
             kind={ButtonKind.primary}
             customSize="w-[200px] h-[70px] mt-[34px] w-[200px] md:w-[164px] mobile:w-[288px]"
-            onClick={() => setIsCompare(!isCompare)}
+            onClick={handleCompareClick}
           >
             비교하기
           </Button>

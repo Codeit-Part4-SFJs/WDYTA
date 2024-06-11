@@ -20,7 +20,7 @@ const useSignInMutation = (provider: string) => {
     },
     onError: (error) => {
       alert(error.message);
-      router.push('/oauth/signup');
+      router.push('/oauth/register');
     },
   });
 };

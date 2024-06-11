@@ -11,7 +11,7 @@ const OauthSignUp = () => {
   useEffect(() => {
     if (!authorizationCode) {
       const clientId = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
-      const redirectUri = 'http://localhost:3000/oauth/signup';
+      const redirectUri = 'http://localhost:3000/oauth/register';
 
       window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
     }

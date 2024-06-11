@@ -22,7 +22,7 @@ const SocialLoginForm = ({ code }: SocialLoginFormProps) => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const loginData = {
       nickname: data.nickname,
-      redirectUri: 'http://localhost:3000/oauth/signup',
+      redirectUri: 'http://localhost:3000/oauth/register',
       token: code,
     };
 

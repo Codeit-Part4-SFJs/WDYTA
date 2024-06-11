@@ -32,7 +32,7 @@ const SNS_MAP: SocialLoginProps[] = [
 
 const SocialLogin = () => {
   return (
-    <div className="flex flex-col gap-5 mt-[40px]">
+    <div className="flex flex-col gap-5 mt-[40px] mb-[40px]">
       <span className="text-sm lg:text-base font-normal text-gray-6E">
         SNS로 바로 시작하기
       </span>

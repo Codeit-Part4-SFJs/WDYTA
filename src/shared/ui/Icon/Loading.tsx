@@ -12,7 +12,7 @@ export const Loading = ({
     <div className="flex flex-col items-center gap-3">
       <LoadingIcon
         className={twMerge(
-          'mobile:w-[39.2px] mobile:h-[32px] w-[39.2px] h-[32px] lg:w-[49px] lg:h-[40px] fill-gray-6E',
+          'mobile:w-[39px] mobile:h-[32px] w-[39px] h-[32px] lg:w-[49px] lg:h-[40px] fill-gray-6E',
           iconClassName,
         )}
       />

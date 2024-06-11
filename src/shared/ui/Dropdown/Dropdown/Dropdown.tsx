@@ -11,12 +11,30 @@ export interface DropdownProps {
   options: Option[];
   placeholder?: string;
   onSelect: (value: string) => void;
+  kind: DropdownKind;
 }
+
+export enum DropdownKind {
+  normal = 'normal',
+  modal = 'modal',
+}
+
+export const DropdownStyleByKind = {
+  [DropdownKind.normal]: {
+    div: 'w-[400px] md:w-[360px] mobile:w-[335px]',
+    p: 'text-base',
+  },
+  [DropdownKind.modal]: {
+    div: 'w-[360px] mobile:w-[295px]',
+    p: 'text-sm',
+  },
+};
 
 export const Dropdown = ({
   children,
   options,
   onSelect,
+  kind,
   placeholder = '선택',
 }: PropsWithChildren<DropdownProps>) => {
   const dropDownClickRef = useRef<HTMLDivElement>(null);
@@ -44,7 +62,7 @@ export const Dropdown = ({
 
   return (
     <div
-      className="relative w-[400px] md:w-[360px] mobile:w-[335px]"
+      className={`relative ${DropdownStyleByKind[kind].div}`}
       ref={dropDownClickRef}
     >
       <div
@@ -59,7 +77,11 @@ export const Dropdown = ({
         }}
       >
         <div className="flex justify-between items-center self-stretch">
-          <p className="text-base text-gray-6E active:text-white">{children}</p>
+          <p
+            className={`${DropdownStyleByKind[kind].p} text-gray-6E active:text-white`}
+          >
+            {children}
+          </p>
           <button type="button" className=" w-full flex ">
             {selectedOption?.label ?? placeholder}
           </button>

@@ -21,7 +21,7 @@ export default function Profile({ searchParams }: ProfileProps) {
 
   const queryClient = getQueryClient();
   queryClient.prefetchQuery(profileOptions(Number(userId), accessToken));
-  queryClient.prefetchQuery(
+  queryClient.prefetchInfiniteQuery(
     productOptions(
       Number(userId),
       currentMenu,

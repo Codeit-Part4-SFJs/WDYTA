@@ -12,5 +12,8 @@ export interface ProductTypes {
   name: string;
   id: number;
 }
-
+export interface ProductDataPage {
+  list: ProductTypes[];
+  nextCursor: number;
+}
 export type ProductMenuType = (typeof TAB_OPTIONS)[number]['label'];

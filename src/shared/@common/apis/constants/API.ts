@@ -57,12 +57,12 @@ export const API_USERS = Object.freeze({
   RANKING: `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/ranking`,
   BY_ID: (userId: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}`,
-  PRODUCT: (userId: number) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/created-products`,
-  REVIEW: (userId: number) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/reviewed-products`,
-  FAVORITE: (userId: number) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/favorite-products`,
+  PRODUCT: (userId: number, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/created-products?cursor=${pageParam}`,
+  REVIEW: (userId: number, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/reviewed-products?cursor=${pageParam}`,
+  FAVORITE: (userId: number, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/favorite-products?cursor=${pageParam}`,
   FOLLOWEES: (userId: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/followees`,
   FOLLOWERS: (userId: number) =>

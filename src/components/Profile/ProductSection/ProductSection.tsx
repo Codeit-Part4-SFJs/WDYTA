@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { MenuDropdown } from '@/components/Profile/ProductSection/MenuDropdown';
 import { ProductList } from '@/components/Profile/ProductSection/ProductList';
 import { ProductMenuType } from '@/components/Profile/types/productType';
@@ -23,10 +24,9 @@ export const ProductSection = ({ loginedId }: { loginedId: number }) => {
   const [activeMenu, setActiveMenu] =
     useState<ProductMenuType>('리뷰 남긴 상품');
 
-  const { productsList, content } = useProductsQuery(
-    currentProfileId,
-    currentMenu,
-  );
+  const { productData, fetchNextPage, isFetchingNextPage, content } =
+    useProductsQuery(currentProfileId, currentMenu);
+
   const handleClickTab = (tab: ProductMenuType) => {
     setActiveMenu(tab);
     const selectedTab = TAB_OPTIONS.find((option) => option.label === tab);
@@ -40,6 +40,14 @@ export const ProductSection = ({ loginedId }: { loginedId: number }) => {
       );
     }
   };
+
+  const { ref: triggerRef, inView } = useInView();
+
+  useEffect(() => {
+    if (inView && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, isFetchingNextPage, inView]);
 
   const MENU_KEYS = Object.keys(TAB_NAMES) as ProductMenuType[];
 
@@ -72,7 +80,11 @@ export const ProductSection = ({ loginedId }: { loginedId: number }) => {
         ))}
       </ul>
 
-      <ProductList productsList={productsList} content={content} />
+      <ProductList
+        productData={productData}
+        content={content}
+        triggerRef={triggerRef}
+      />
     </section>
   );
 };

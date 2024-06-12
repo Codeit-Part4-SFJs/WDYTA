@@ -1,6 +1,6 @@
 'use Client';
 
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import {
   getUserCreatedProducts,
   getUserFavoriteProducts,
@@ -29,17 +29,22 @@ export const productMenuInfo: Record<string, ProductMenuItem> = {
 } as const;
 
 const useProductsQuery = (currentProfileId: number, activeMenu: string) => {
-  console.log(productMenuInfo[activeMenu]);
-  const { data } = useSuspenseQuery(
+  const {
+    data: productData,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useSuspenseInfiniteQuery(
     productOptions(
       currentProfileId,
       activeMenu,
       productMenuInfo[activeMenu].apiFunc,
     ),
   );
-
-  const productsList = data?.list || [];
-
-  return { productsList, content: productMenuInfo[activeMenu].content };
+  return {
+    productData,
+    fetchNextPage,
+    isFetchingNextPage,
+    content: productMenuInfo[activeMenu].content,
+  };
 };
 export default useProductsQuery;

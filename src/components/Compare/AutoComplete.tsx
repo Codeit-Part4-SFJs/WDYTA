@@ -1,6 +1,7 @@
 import { CompareChip, CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Input } from '@/shared/ui/Input';
 import { useEffect, useState, useRef } from 'react';
+import { getProductListKeyword } from '@/shared/@common/apis/product';
 import { PRODUCT_LIST_MOCK } from './mock/PRODUCT_LIST_MOCK';
 
 interface Product {
@@ -14,6 +15,24 @@ interface Product {
   image: string;
   name: string;
   id: number;
+}
+
+interface ProductList {
+  list: [
+    {
+      id: number;
+      name: string;
+      image: string;
+      rating: number;
+      reviewCount: number;
+      categoryId: number;
+      createdAt: string;
+      updatedAt: string;
+      writerId: number;
+      favoriteCount: number;
+    },
+  ];
+  nextCursor: number;
 }
 
 interface AutoCompleteProps {
@@ -40,23 +59,20 @@ export const AutoComplete = ({
     setKeyword(e.currentTarget.value);
   };
 
-  console.log(loading);
-
   const updateData = async () => {
     setLoading(true);
 
     try {
-      // const response = await getProductList();
-      // const products: Product[] = await response.json();
-      const products = PRODUCT_LIST_MOCK;
+      const response = await getProductListKeyword(keyword);
+      const products: ProductList = await response.json();
+      // const products = PRODUCT_LIST_MOCK;
       const filteredData = products.list
-        .filter((product: Product) =>
-          product.name.toLowerCase().includes(keyword.toLowerCase()),
-        )
+        .filter((product: Product) => product.name)
         .slice(0, 10);
       setKeyItems(filteredData);
     } catch (error) {
       console.error('Failed to fetch product list.');
+      console.log(loading);
     } finally {
       setLoading(false);
     }

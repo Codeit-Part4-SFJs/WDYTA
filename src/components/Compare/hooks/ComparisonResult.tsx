@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface TableProps {
   firstProduct: Product;
@@ -40,31 +40,33 @@ export const ComparisonResult = ({
     return 'text-gray';
   };
 
-  const comparisonResults = [
-    handleCompare(firstProduct.rating, secondProduct.rating),
-    handleCompare(firstProduct.reviewCount, secondProduct.reviewCount),
-    handleCompare(firstProduct.favoriteCount, secondProduct.favoriteCount),
-  ];
+  useEffect(() => {
+    const comparisonResults = [
+      handleCompare(firstProduct.rating, secondProduct.rating),
+      handleCompare(firstProduct.reviewCount, secondProduct.reviewCount),
+      handleCompare(firstProduct.favoriteCount, secondProduct.favoriteCount),
+    ];
 
-  const firstProductWins = comparisonResults.filter(
-    (result) => result === '상품 1 승리',
-  ).length;
-  const secondProductWins = comparisonResults.filter(
-    (result) => result === '상품 2 승리',
-  ).length;
+    const firstProductWins = comparisonResults.filter(
+      (result) => result === '상품 1 승리',
+    ).length;
+    const secondProductWins = comparisonResults.filter(
+      (result) => result === '상품 2 승리',
+    ).length;
 
-  if (firstProductWins > secondProductWins) {
-    setFinalResult(firstProduct.name);
-    setWinResult(firstProductWins);
-    setResultText('text-green');
-  } else if (secondProductWins > firstProductWins) {
-    setFinalResult(secondProduct.name);
-    setWinResult(secondProductWins);
-    setResultText('text-pink');
-  } else {
-    setFinalResult('무승부입니다');
-    setResultText('text-white');
-  }
+    if (firstProductWins > secondProductWins) {
+      setFinalResult(firstProduct.name);
+      setWinResult(firstProductWins);
+      setResultText('text-green');
+    } else if (secondProductWins > firstProductWins) {
+      setFinalResult(secondProduct.name);
+      setWinResult(secondProductWins);
+      setResultText('text-pink');
+    } else {
+      setFinalResult('무승부입니다');
+      setResultText('text-white');
+    }
+  }, [firstProduct, secondProduct]);
 
   const label = ['별점', '리뷰 개수', '찜 개수'];
   const firstValue = [
@@ -130,7 +132,7 @@ export const ComparisonResult = ({
               <td className="w-1/4">{firstValue[2]}</td>
               <td className="w-1/4">{secondValue[2]}</td>
               <td
-                className={`w-1/4 ${handleCompare(firstValue[2], secondValue[2])}`}
+                className={`w-1/4 ${getComparisonClass(handleCompare(firstValue[2], secondValue[2]))}`}
               >
                 {handleCompare(firstValue[2], secondValue[2])}
               </td>

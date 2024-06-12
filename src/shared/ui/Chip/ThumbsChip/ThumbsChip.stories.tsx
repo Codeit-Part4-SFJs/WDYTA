@@ -7,9 +7,6 @@ export default {
   title: 'Chip/ThumbsChip',
   component: ThumbsChip,
   argTypes: {
-    reviewID: {
-      control: 'number',
-    },
     isLike: {
       control: 'boolean',
     },
@@ -22,7 +19,6 @@ export default {
 const Template: StoryFn<typeof ThumbsChip> = (args) => <ThumbsChip {...args} />;
 export const exampleThumbsChip = Template.bind({});
 exampleThumbsChip.args = {
-  reviewID: 1,
   isLike: false,
   likeCount: 99,
 };

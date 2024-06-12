@@ -6,6 +6,7 @@ interface ProductProps {
   description: string;
   name: string;
 }
+
 /**
  * 상품목록조회
  */
@@ -68,8 +69,12 @@ export const patchProduct = (
 export const getProductReviewList = (
   productId: number,
   accessToken: string,
+  filter: string,
+  pageParam: unknown,
 ) => {
-  return fetch(API_PRODUCT.REVIEWS(productId), {
+  const currentPageParam = Number(pageParam);
+
+  return fetch(API_PRODUCT.REVIEWS(productId, filter, currentPageParam), {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

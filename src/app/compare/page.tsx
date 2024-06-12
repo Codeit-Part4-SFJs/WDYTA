@@ -41,6 +41,8 @@ const Compare = () => {
     useCompareItems();
   const [isCompare, setIsCompare] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
+  const [firstName, setFirstName] = useState<string>('');
+  const [secondName, setSecondName] = useState<string>('');
 
   // const userId = cookies().get('accessToken');
   const searchParams = useSearchParams();
@@ -65,6 +67,8 @@ const Compare = () => {
           try {
             const productDetail: Product = PRODUCT_ID_1_MOCK;
             changingFirstItem(productDetail.id);
+            setFirstName(productDetail.name);
+            console.log('첫번째는', firstName);
           } catch (error) {
             console.error('Failed to fetch product detail:', error);
           }
@@ -72,7 +76,7 @@ const Compare = () => {
         fetchProductDetail();
       }
     }
-  }, [product1, changingFirstItem]);
+  }, []);
 
   useEffect(() => {
     if (product2) {
@@ -82,6 +86,7 @@ const Compare = () => {
           try {
             const productDetail: Product = PRODUCT_ID_1_MOCK;
             changingSecondItem(productDetail.id);
+            setSecondName(productDetail.name);
           } catch (error) {
             console.error('Failed to fetch product detail:', error);
           }
@@ -89,22 +94,16 @@ const Compare = () => {
         fetchProductDetail();
       }
     }
-  }, [product2, changingSecondItem]);
-
-  useEffect(() => {
-    if (isCompare) {
-      setIsLoad(true);
-    }
-  }, [isCompare]);
+  }, []);
 
   const handleCompareClick = () => {
-    setIsCompare(!isCompare);
-    changingFirstItem(firstItem);
-    changingSecondItem(secondItem);
-    if (firstItem && secondItem) {
-      router.push(`/compare?product1=${firstItem}&product2=${secondItem}`);
+    if (!firstItem || !secondItem) {
+      return;
     }
-    console.log(firstItem, secondItem, '완료');
+
+    router.push(`/compare?product1=${firstItem}&product2=${secondItem}`);
+    setIsCompare(true);
+    setIsLoad(true);
   };
 
   return (
@@ -116,18 +115,22 @@ const Compare = () => {
             <AutoComplete
               color={CompareColor.GREEN}
               onSelectProduct={handleSelectFirstProduct}
+              selectedProduct={firstName}
             />
           </div>
           <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 2</p>
-            <AutoComplete onSelectProduct={handleSelectSecondProduct} />
+            <AutoComplete
+              onSelectProduct={handleSelectSecondProduct}
+              selectedProduct={secondName}
+            />
           </div>
         </div>
         <div className="mt-">
           <Button
             kind={ButtonKind.primary}
             customSize="w-[200px] h-[70px] mt-[34px] w-[200px] md:w-[164px] mobile:w-[288px]"
-            onClick={handleCompareClick}
+            onClick={() => handleCompareClick()}
           >
             비교하기
           </Button>

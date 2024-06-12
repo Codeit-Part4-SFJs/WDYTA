@@ -8,7 +8,9 @@ const useSignInMutation = (provider: string) => {
   return useMutation({
     mutationFn: async (data: AuthProps) => {
       const response = await postSimpleSignIn(provider, data);
-      if (!response.ok) {
+      if (response.status === 403) {
+        throw new Error('Forbidden');
+      } else if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
@@ -19,8 +21,12 @@ const useSignInMutation = (provider: string) => {
       router.push('/');
     },
     onError: (error) => {
-      alert(error.message);
-      router.push('/oauth/register');
+      if (error.message === 'Forbidden') {
+        router.push('/oauth/register');
+      } else {
+        alert(error.message);
+        router.push('/');
+      }
     },
   });
 };

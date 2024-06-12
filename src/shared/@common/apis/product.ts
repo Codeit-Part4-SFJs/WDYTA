@@ -15,6 +15,17 @@ export const getProductList = () => {
 };
 
 /**
+ * 키워드를 이용한 상품목록조회
+ * @param keyword: 자동완성을 위한 키워드
+ */
+export const getProductListKeyword = (keyword: string) => {
+  if (keyword) {
+    fetch(`/products?keyword=${keyword}`);
+  }
+  return fetch(API_PRODUCT.PRODUCT);
+};
+
+/**
  * 상품 생성
  * @param data: categoryId(카테고리 Id), image(상품 이미지), description(상품 설명), name(상품 이름)
  */

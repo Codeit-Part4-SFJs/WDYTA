@@ -92,7 +92,9 @@ export const Dropdown = ({
         </div>
       </div>
       {isToggled && (
-        <div className="absolute z-20 top-[100%] flex w-[400px] md:w-[360px] mobile:w-[335px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25">
+        <div
+          className={`absolute z-20 top-[100%] flex ${DropdownStyleByKind[kind].div} p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25`}
+        >
           {options.map((option) => (
             <div
               role="button"

@@ -11,14 +11,11 @@ export const ImageInput = ({
   handleDeleteButton,
   handleImageUpload,
 }: ImageInputProps) => {
-  const containerStyle =
-    'relative w-[140px] md:w-[135px] lg:w-[160px] h-[140px] md:h-[135px] lg:h-[160px] rounded-lg';
-
   return (
     <div>
       {image ? (
         <div
-          className={containerStyle}
+          className="relative w-[140px] md:w-[135px] lg:w-[160px] h-[140px] md:h-[135px] lg:h-[160px] rounded-lg"
           style={{
             backgroundImage: `url(${image})`,
             backgroundSize: 'cover',
@@ -34,11 +31,9 @@ export const ImageInput = ({
           </div>
         </div>
       ) : (
-        <div
-          className={`${containerStyle} p-[58px] md:p-[55px] lg:p-[63px] border border-solid border-gray-35 bg-black-25`}
-        >
+        <div className="relative w-[140px] md:w-[135px] lg:w-[160px] h-[140px] md:h-[135px] lg:h-[160px] rounded-lg p-[58px] md:p-[55px] lg:p-[63px] border border-solid border-gray-35 bg-black-25">
           <input
-            className="absolute w-full h-full opacity-0"
+            className="absolute inset-0 w-full h-full opacity-0"
             type="file"
             onChange={handleImageUpload}
           />

@@ -4,7 +4,7 @@ interface FavoriteCategory {
   id: number;
   name: string;
 }
-interface UserInfoData {
+export interface UserInfoData {
   id: number;
   nickname: string;
   description: string;

@@ -1,4 +1,4 @@
-import { ProfileKeys } from '@/app/profile/[userId]/queryKeyFactories';
+import { ProfileKeys } from '@/app/profile/queryKeyFactories';
 import { postUserFollow } from '@/shared/@common/apis/follow';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 

@@ -6,43 +6,38 @@ import {
   getUserFavoriteProducts,
   getUserReviewedProducts,
 } from '@/shared/@common/apis';
-import { ProfileKeys } from '@/app/profile/[userId]/queryKeyFactories';
-import { ProductMenuType } from '../types/productType';
+import { productOptions } from '@/app/profile/queryOptions';
 
-const useProductsQuery = (
-  currentProfileId: number,
-  activeMenu: ProductMenuType,
-) => {
-  const productMenuInfo = {
-    '리뷰 남긴 상품': {
-      queryKey: 'reviewedProduct',
-      apiFunc: getUserReviewedProducts,
-      content: '첫 리뷰를 남겨 보세요!',
-    },
-    '찜한 상품': {
-      queryKey: 'favoriteProduct',
-      apiFunc: getUserFavoriteProducts,
-      content: '찜한 상품이 없습니다!',
-    },
-    '등록한 상품': {
-      queryKey: 'createdProduct',
-      apiFunc: getUserCreatedProducts,
-      content: '등록한 상품이 없습니다!',
-    },
-  } as const;
+type ProductMenuItem = {
+  apiFunc: any;
+  content: string;
+};
 
-  const { data } = useSuspenseQuery({
-    queryKey: ProfileKeys.productCard(
+export const productMenuInfo: Record<string, ProductMenuItem> = {
+  reviewedProduct: {
+    apiFunc: getUserReviewedProducts,
+    content: '첫 리뷰를 남겨 보세요!',
+  },
+  favoriteProduct: {
+    apiFunc: getUserFavoriteProducts,
+    content: '찜한 상품이 없습니다!',
+  },
+  createdProduct: {
+    apiFunc: getUserCreatedProducts,
+    content: '등록한 상품이 없습니다!',
+  },
+} as const;
+
+const useProductsQuery = (currentProfileId: number, activeMenu: string) => {
+  console.log(productMenuInfo[activeMenu]);
+  const { data } = useSuspenseQuery(
+    productOptions(
       currentProfileId,
-      productMenuInfo[activeMenu].queryKey,
+      activeMenu,
+      productMenuInfo[activeMenu].apiFunc,
     ),
-    queryFn: async () => {
-      if (!currentProfileId) return null;
-      const response =
-        await productMenuInfo[activeMenu].apiFunc(currentProfileId);
-      return response.json();
-    },
-  });
+  );
+
   const productsList = data?.list || [];
 
   return { productsList, content: productMenuInfo[activeMenu].content };

@@ -3,13 +3,12 @@
 import { logoutAction } from '@/shared/@common/utils';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { ImageComponent } from '@/shared/ui/Img';
-import { useUserInfoStore } from '@/stores';
-import { useEffect } from 'react';
-import useUserInfoSuspenseQuery from '@/components/Profile/hooks/useUserInfoSuspenseQuery';
 import useFollowMutation from '@/components/Profile/hooks/useFollowMutation';
 import useUnFollowMutation from '@/components/Profile/hooks/useUnFollowMutation';
 import { PROFILE_DEFAULT_IMAGE } from '@/components/Profile/constants/profileDefaultImage';
-import { useParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { profileOptions } from '@/app/profile/queryOptions';
 
 interface ProfileCardProps {
   loginedId: number;
@@ -17,14 +16,11 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
-  const { userId } = useParams();
-
+  const userId = useSearchParams().get('userId');
   const currentProfileId = Number(userId) || Number(loginedId);
   const isMyProfile = Number(userId) === Number(loginedId) || !userId;
-
-  const { data: userInfoData } = useUserInfoSuspenseQuery(
-    Number(currentProfileId),
-    accessToken,
+  const { data: userInfoData } = useSuspenseQuery(
+    profileOptions(Number(currentProfileId), accessToken),
   );
   const {
     image,
@@ -34,14 +30,6 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
     followersCount,
     followeesCount,
   } = userInfoData;
-
-  const { setUserInfoData } = useUserInfoStore();
-
-  useEffect(() => {
-    if (userInfoData) {
-      setUserInfoData(userInfoData);
-    }
-  }, [userInfoData, setUserInfoData]);
 
   const { mutate: responseFollowMutate } = useFollowMutation();
   const { mutate: responseUnFollowMutate } = useUnFollowMutation();

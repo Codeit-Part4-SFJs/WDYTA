@@ -1,4 +1,4 @@
-import { PRODUCT_MENU } from '@/components/Profile/constants/productMenu';
+import { TAB_OPTIONS } from '@/components/Profile/constants/productMenu';
 
 export interface ProductTypes {
   updatedAt: string;
@@ -13,8 +13,4 @@ export interface ProductTypes {
   id: number;
 }
 
-export interface ProductCardProps {
-  product: ProductTypes;
-}
-
-export type ProductMenuType = (typeof PRODUCT_MENU)[number];
+export type ProductMenuType = (typeof TAB_OPTIONS)[number]['label'];

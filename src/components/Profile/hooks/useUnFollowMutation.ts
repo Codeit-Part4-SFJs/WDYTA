@@ -1,6 +1,7 @@
 import { deleteUserFollow } from '@/shared/@common/apis/follow';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ProfileKeys } from '@/app/profile/[userId]/queryKeyFactories';
+import { ProfileKeys } from '@/app/profile/queryKeyFactories';
+
 import { FollowMutationProps } from './useFollowMutation';
 
 const useUnFollowMutation = () => {

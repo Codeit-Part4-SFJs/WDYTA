@@ -2,10 +2,10 @@
 
 import { CategoryChip } from '@/shared/ui/Chip/CategoryChip';
 import { Icon } from '@/shared/ui/Icon';
-// import { useUserInfoStore } from '@/stores';
 import { ActivityCardProps } from '@/components/Profile/types/userActivityType';
-import { useParams } from 'next/navigation';
-import useUserInfoSuspenseQuery from '../hooks/useUserInfoSuspenseQuery';
+import { useSearchParams } from 'next/navigation';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { profileOptions } from '@/app/profile/queryOptions';
 
 export const ActivityCard = ({
   title,
@@ -13,13 +13,12 @@ export const ActivityCard = ({
   loginedId,
   accessToken,
 }: ActivityCardProps) => {
-  const { userId } = useParams();
+  const userId = useSearchParams().get('userId');
 
   const currentProfileId = Number(userId) || Number(loginedId);
 
-  const { data: currentUserInfo } = useUserInfoSuspenseQuery(
-    currentProfileId,
-    accessToken,
+  const { data: currentUserInfo } = useSuspenseQuery(
+    profileOptions(currentProfileId, accessToken),
   );
 
   const { averageRating, reviewCount, mostFavoriteCategory } = currentUserInfo;

@@ -6,7 +6,7 @@ const activityData: ActivityData[] = [
   { title: '남긴 별점 평균', icon: 'StarIcon' },
   { title: '남긴 리뷰', icon: 'ReviewIcon' },
   { title: '관심 카테고리' },
-];
+] as const;
 
 export const ActivitySection = () => {
   const { loginedId, accessToken } = getUserCookies();

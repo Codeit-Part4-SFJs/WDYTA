@@ -14,9 +14,10 @@ const RegisterForm = () => {
     register,
     handleSubmit,
     watch,
+    setError,
     formState: { errors, isValid, isSubmitting },
   } = useForm<FormValues>({ mode: 'onChange' });
-  const { mutate, isPending } = useRegisterMutation();
+  const { mutate, isPending } = useRegisterMutation(setError);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     mutate(data);

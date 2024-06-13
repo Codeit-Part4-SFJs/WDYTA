@@ -29,7 +29,7 @@ export const Modal = ({
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-full z-[999] overflow-auto flex justify-center items-center bg-black bg-opacity-60 backdrop-blur">
+    <div className="fixed inset-0 w-full h-full z-[999] overflow-auto flex justify-center items-center bg-black bg-opacity-60 backdrop-blur">
       <div
         ref={modalRef}
         className="w-auto h-auto mobile:p-[15px] md:p-[20px] lg:p-[20px] flex justify-start items-end flex-col rounded-2xl bg-black-1C"

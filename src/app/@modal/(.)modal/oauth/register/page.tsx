@@ -1,5 +1,3 @@
-'use client';
-
 import { AlertModal } from '@/components/@common/modal';
 import { Modal } from '@/shared/ui/Modal';
 import { useRouter } from 'next/navigation';

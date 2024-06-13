@@ -5,13 +5,24 @@ import { useCloseModal } from '@/shared/@common/hooks';
 import { useRouter } from 'next/navigation';
 import { Icon } from '@/shared/ui/Icon';
 
-export const Modal = ({
-  children,
-  closeIcon,
-}: {
+const SIZE_MAP = {
+  xsmall:
+    'w-[500px] mobile:w-[335px] pt-[70px] p-10 mobile:pt-[50px] mobile:p-5',
+  small:
+    'w-[500px] mobile:w-[335px] pt-[40px] pt-[60px] p-10 mobile:pt-10 mobile:p-5',
+  medium:
+    'w-[335px] md:w-[590px] lg:w-[620px] pt-10 p-5 md:p-10 lg:pt-[60px] lg:p-10',
+  large:
+    'w-[335px] md:w-[590px] lg:w-[620px] pt-[60px] p-10 mobile:pt-10 mobile:p-5',
+};
+
+interface ModalProps {
   children: ReactNode;
   closeIcon: boolean;
-}) => {
+  size: 'xsmall' | 'small' | 'medium' | 'large';
+}
+
+export const Modal = ({ children, closeIcon, size }: ModalProps) => {
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -32,13 +43,17 @@ export const Modal = ({
     <div className="fixed inset-0 w-full h-full z-[999] overflow-auto flex justify-center items-center bg-black bg-opacity-60 backdrop-blur">
       <div
         ref={modalRef}
-        className="w-auto h-auto mobile:p-[15px] md:p-[20px] lg:p-[20px] flex justify-start items-end flex-col rounded-2xl bg-black-1C"
+        className={`${SIZE_MAP[size]} relative flex rounded-2xl bg-black-1C`}
       >
-        <button onClick={handleClose} type="button">
+        <button
+          className="absolute top-5 right-5 mobile:top-[15px] mobile:right-[15px]"
+          onClick={handleClose}
+          type="button"
+        >
           {closeIcon && (
             <Icon
               name="CloseIcon"
-              className="mobile:w-[24px] mobile:h-[24px] md:w-[36px] md:h-[36px] lg:w-[40px] lg:h-[40px] fill-gray-F1"
+              className="w-6 h-6 md:w-9 md:h-9 lg:w-10 lg:h-10 fill-gray-F1"
             />
           )}
         </button>

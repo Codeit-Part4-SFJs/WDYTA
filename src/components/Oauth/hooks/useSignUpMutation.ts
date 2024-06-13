@@ -18,8 +18,8 @@ const useSignUpMutation = (provider: string) => {
       await loginAction(data);
       router.push('/');
     },
-    onError: (error) => {
-      alert(error.message);
+    onError: () => {
+      router.push('/modal/oauth', { scroll: false });
     },
   });
 };

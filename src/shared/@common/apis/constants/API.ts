@@ -36,10 +36,15 @@ export const API_OAUTH = Object.freeze({
 
 export const API_PRODUCT = Object.freeze({
   PRODUCT: `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}`,
-  PRODUCT_BY_CATEGORY: (keyword: string, category: number, order: string) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}?keyword=${keyword}&category=${category}&order=${order}`,
-  PRODUCT_BY_SEARCH: (keyword: string, order: string) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}?keyword=${keyword}&order=${order}`,
+  PRODUCT_BY_CATEGORY: (
+    keyword: string,
+    category: number,
+    order: string,
+    pageParam: number,
+  ) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}?keyword=${keyword}&category=${category}&order=${order}&cursor=${pageParam}`,
+  PRODUCT_BY_SEARCH: (keyword: string, order: string, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}?keyword=${keyword}&order=${order}&cursor=${pageParam}`,
   BY_ID: (productId: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}/${productId}`,
   REVIEWS: (productId: number, filter: string, pageParam: number) =>

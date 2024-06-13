@@ -24,11 +24,21 @@ export const getHomeProductList = (
   keyword: string,
   category: number,
   order: string,
+  pageParam: unknown,
 ) => {
+  const currentPageParam = Number(pageParam);
+
   if (category) {
-    return fetch(API_PRODUCT.PRODUCT_BY_CATEGORY(keyword, category, order));
+    return fetch(
+      API_PRODUCT.PRODUCT_BY_CATEGORY(
+        keyword,
+        category,
+        order,
+        currentPageParam,
+      ),
+    );
   }
-  return fetch(API_PRODUCT.PRODUCT_BY_SEARCH(keyword, order));
+  return fetch(API_PRODUCT.PRODUCT_BY_SEARCH(keyword, order, currentPageParam));
 };
 
 /**

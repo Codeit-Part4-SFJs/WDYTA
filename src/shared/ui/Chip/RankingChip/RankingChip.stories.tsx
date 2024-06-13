@@ -7,7 +7,7 @@ export default {
   title: 'Chip/RankingChip',
   component: RankingChip,
   argTypes: {
-    ranking: {
+    rankNumber: {
       control: {
         type: 'number',
         min: 1,
@@ -29,6 +29,6 @@ const Template: StoryFn<typeof RankingChip> = (args) => (
 
 export const exampleRankingChip = Template.bind({});
 exampleRankingChip.args = {
-  ranking: 1,
+  rankNumber: 1,
   color: RankingColor.PINK,
 };

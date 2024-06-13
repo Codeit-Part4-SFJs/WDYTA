@@ -1,16 +1,16 @@
 import { deleteUserFollow } from '@/shared/@common/apis/follow';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ProfileKeys } from '@/app/profile/queryKeyFactories';
-
+import { UserInfoData } from '@/components/Profile/types/profileTypes';
 import { FollowMutationProps } from './useFollowMutation';
 
-const useUnFollowMutation = () => {
+const useUnFollowMutation = ({
+  currentProfileId,
+  accessToken,
+}: FollowMutationProps) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({
-      currentProfileId,
-      accessToken,
-    }: FollowMutationProps) => {
+    mutationFn: async () => {
       const response = await deleteUserFollow(
         { userId: currentProfileId },
         accessToken,
@@ -19,11 +19,34 @@ const useUnFollowMutation = () => {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
-      return response;
+      return response.json();
     },
-    onSuccess: (_, variables) =>
+    onMutate: async ({ isFollowing }: { isFollowing: boolean }) => {
+      await queryClient.cancelQueries({
+        queryKey: ProfileKeys.user(currentProfileId),
+      });
+      const previousFollow = queryClient.getQueryData<UserInfoData>(
+        ProfileKeys.user(currentProfileId),
+      );
+      queryClient.setQueryData(
+        ProfileKeys.user(currentProfileId),
+        (prev: UserInfoData) => ({
+          ...prev,
+          isFollowing: !isFollowing,
+        }),
+      );
+      return { previousFollow };
+    },
+    onError: (context: { previousFollow?: UserInfoData }) => {
+      queryClient.setQueryData(
+        ProfileKeys.user(currentProfileId),
+        context.previousFollow,
+      );
+    },
+
+    onSuccess: () =>
       queryClient.invalidateQueries({
-        queryKey: ProfileKeys.user(variables.currentProfileId),
+        queryKey: ProfileKeys.user(currentProfileId),
       }),
   });
 };

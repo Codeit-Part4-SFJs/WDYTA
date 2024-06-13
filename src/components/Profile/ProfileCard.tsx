@@ -19,8 +19,9 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   const userId = useSearchParams().get('userId');
   const currentProfileId = Number(userId) || Number(loginedId);
   const isMyProfile = Number(userId) === Number(loginedId) || !userId;
+
   const { data: userInfoData } = useSuspenseQuery(
-    profileOptions(Number(currentProfileId), accessToken),
+    profileOptions(currentProfileId, accessToken),
   );
   const {
     image,
@@ -31,17 +32,20 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
     followeesCount,
   } = userInfoData;
 
-  const { mutate: responseFollowMutate } = useFollowMutation();
-  const { mutate: responseUnFollowMutate } = useUnFollowMutation();
+  const followMutation = useFollowMutation({ currentProfileId, accessToken });
+  const unFollowMutation = useUnFollowMutation({
+    currentProfileId,
+    accessToken,
+  });
 
   const followBtnKind = isFollowing ? ButtonKind.tertiary : ButtonKind.primary;
   const followBtnText = isFollowing ? '팔로우 취소' : '팔로우';
 
   const handleClickFollow = () => {
-    responseFollowMutate({ currentProfileId, accessToken });
+    followMutation.mutate({ isFollowing });
   };
   const handleClickUnFollow = () => {
-    responseUnFollowMutate({ currentProfileId, accessToken });
+    unFollowMutation.mutate({ isFollowing });
   };
   const handleSignOut = async () => {
     await logoutAction();
@@ -54,7 +58,7 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
     <section className="flex flex-col items-center justify-center gap-[42px] pt-[40px] pb-[30px] px-[30px] md:gap-[25px] mobile:gap-[35px] lg:min-w-[340px] md:w-full mobile:w-full rounded-xl border border-solid bg-gray-25 border-gray-35">
       <ImageComponent
         type="profile"
-        src={image || PROFILE_DEFAULT_IMAGE}
+        src={image ?? PROFILE_DEFAULT_IMAGE}
         className="lg:w-[180px] lg:h-[180px] md:w-[120px] md:h-[120px] mobile:w-[120px] mobile:h-[120px]"
         alt="프로필 이미지"
       />

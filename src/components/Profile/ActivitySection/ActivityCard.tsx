@@ -19,6 +19,7 @@ export const ActivityCard = ({
   const { data: currentUserInfo } = useSuspenseQuery(
     profileOptions(currentProfileId, accessToken),
   );
+
   const { averageRating, reviewCount, mostFavoriteCategory } = currentUserInfo;
 
   return (

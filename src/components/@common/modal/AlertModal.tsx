@@ -1,16 +1,24 @@
+'use client';
+
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
+import { useRouter } from 'next/navigation';
 
 interface AlertModalProps {
   errorMessage: string;
   buttonText: string;
-  handleButtonClick: () => void;
+  path: string;
 }
 
 export const AlertModal = ({
   errorMessage,
   buttonText,
-  handleButtonClick,
+  path,
 }: AlertModalProps) => {
+  const router = useRouter();
+
+  const handleButtonClick = () => {
+    router.push(path);
+  };
   return (
     <div className="flex flex-col h-[136px] md:h-[156px] lg:h-[163px] justify-between items-center">
       <span className="text-gray-F1 text-base">{errorMessage}</span>

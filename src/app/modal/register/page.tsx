@@ -8,7 +8,7 @@ const RegisterAlertModal = () => {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push('/login');
+    router.push('/register');
   };
 
   return (

@@ -23,7 +23,7 @@ export const ReviewCard = ({
           <div className="lg:text-base lg:leading-[22px] text-xs leading-4 text-gray-F1 not-italic font-normal">
             {reviewData.content}
           </div>
-          <div className="flex gap-[10px] lg:gap-[20px] flex-nowrap overflow-x-scroll overflow-y-hidden">
+          <div className="flex justify-start items-center gap-[10px] lg:gap-[20px]">
             {reviewData.reviewImages.map((reviewImage) => (
               <ReviewImage key={reviewImage.id} src={reviewImage.source} />
             ))}

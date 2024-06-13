@@ -53,22 +53,22 @@ export const getUserInfo = (userId: number, accessToken: string) => {
 /**
  * 유저가 생성한 상품 조회
  */
-export const getUserCreatedProducts = (userId: number) => {
-  return fetch(API_USERS.PRODUCT(userId));
+export const getUserCreatedProducts = (userId: number, pageParam: number) => {
+  return fetch(API_USERS.PRODUCT(userId, pageParam));
 };
 
 /**
  * 유저가 리뷰한 상품 조회
  */
-export const getUserReviewedProducts = (userId: number) => {
-  return fetch(API_USERS.REVIEW(userId));
+export const getUserReviewedProducts = (userId: number, pageParam: number) => {
+  return fetch(API_USERS.REVIEW(userId, pageParam));
 };
 
 /**
  * 유저가 찜한 상품 조회
  */
-export const getUserFavoriteProducts = (userId: number) => {
-  return fetch(API_USERS.FAVORITE(userId));
+export const getUserFavoriteProducts = (userId: number, pageParam: number) => {
+  return fetch(API_USERS.FAVORITE(userId, pageParam));
 };
 
 /**

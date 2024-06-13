@@ -6,17 +6,14 @@ import { useEffect, useState } from 'react';
 import { CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { Loading } from '@/shared/ui/Icon';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import {
-  compareFirstOptions,
-  compareSecondOptions,
   reCompareFirstOptions,
   reCompareSecondOptions,
 } from '@/app/compare/queryOptions';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { Table } from './Table';
 import { AutoComplete } from './AutoComplete';
-import { PRODUCT_ID_1_MOCK } from './mock/PRODUCT_ID_1_MOCK';
 
 interface Product {
   id: number;
@@ -47,8 +44,8 @@ const ComparingButton2 = ({
   productId2,
   accessToken,
 }: {
-  productId1?: number;
-  productId2?: number;
+  productId1: number;
+  productId2: number;
   accessToken: string;
 }) => {
   const { data: product1 } = useQuery(
@@ -64,8 +61,12 @@ const ComparingButton2 = ({
     useCompareItems();
   const [isCompare, setIsCompare] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
-  const [firstName, setFirstName] = useState<string>(product1?.name);
-  const [secondName, setSecondName] = useState<string>(product2?.name);
+  const [firstName, setFirstName] = useState<string>(
+    product1 ? product1.name : '',
+  );
+  const [secondName, setSecondName] = useState<string>(
+    product2 ? product2.name : '',
+  );
 
   // const userId = cookies().get('accessToken');
 
@@ -83,10 +84,8 @@ const ComparingButton2 = ({
     if (product1) {
       const fetchProductDetail = async () => {
         try {
-          const productDetail: Product = getDetailProduct(
-            productId1,
-            accessToken,
-          );
+          const response = await getDetailProduct(productId1, accessToken);
+          const productDetail: Product = await response.json();
           changingFirstItem(productDetail.id);
           setFirstName(productDetail.name);
           console.log('firstItem: ', firstItem);
@@ -102,10 +101,8 @@ const ComparingButton2 = ({
     if (product2) {
       const fetchProductDetail = async () => {
         try {
-          const productDetail: Product = getDetailProduct(
-            productId2,
-            accessToken,
-          );
+          const response = await getDetailProduct(productId2, accessToken);
+          const productDetail: Product = await response.json();
           changingSecondItem(productDetail.id);
           setSecondName(productDetail.name);
           console.log('secondItem: ', secondItem);

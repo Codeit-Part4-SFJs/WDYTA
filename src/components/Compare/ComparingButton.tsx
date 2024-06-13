@@ -6,17 +6,14 @@ import { useEffect, useState } from 'react';
 import { CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { Loading } from '@/shared/ui/Icon';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import {
   compareFirstOptions,
   compareSecondOptions,
-  reCompareFirstOptions,
-  reCompareSecondOptions,
 } from '@/app/compare/queryOptions';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { Table } from './Table';
 import { AutoComplete } from './AutoComplete';
-import { PRODUCT_ID_1_MOCK } from './mock/PRODUCT_ID_1_MOCK';
 
 interface Product {
   id: number;

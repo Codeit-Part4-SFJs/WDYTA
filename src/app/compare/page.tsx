@@ -16,7 +16,7 @@ const Compare = ({
   const productId1 = searchParams.product1;
   const productId2 = searchParams.product2;
   const accessToken = cookies().get('accessToken')?.value ?? '';
-  const userId = Number(cookies().get('userId')?.value);
+  // const userId = Number(cookies().get('userId')?.value);
 
   const queryClient = getQueryClient();
 

@@ -14,14 +14,13 @@ export const ActivityCard = ({
   accessToken,
 }: ActivityCardProps) => {
   const userId = useSearchParams().get('userId');
-
   const currentProfileId = Number(userId) || Number(loginedId);
 
   const { data: currentUserInfo } = useSuspenseQuery(
     profileOptions(currentProfileId, accessToken),
   );
-
   const { averageRating, reviewCount, mostFavoriteCategory } = currentUserInfo;
+
   return (
     <div className="flex flex-col flex-1 grow justify-center items-center gap-[20px] rounded-xl lg:max-w-[300px] lg:h-[128px] md:max-w-full md:h-[119px] mobile:w-[105px] mobile:h-[119px] bg-gray-25">
       <p className="text-[14px] lg:text-[16px] text-gray-9F">{title}</p>

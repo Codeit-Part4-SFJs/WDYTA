@@ -17,7 +17,7 @@ export const PRODUCT_ID_1_MOCK = {
     name: '전자제품',
   },
   categoryMetric: {
-    rating: 4.0,
+    rating: 4.3,
     favoriteCount: 40,
     reviewCount: 120,
   },

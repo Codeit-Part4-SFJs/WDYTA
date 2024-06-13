@@ -20,7 +20,7 @@ export const getProductList = () => {
  */
 export const getProductListKeyword = (keyword: string) => {
   if (keyword) {
-    fetch(`/products?keyword=${keyword}`);
+    return fetch(`${API_PRODUCT.PRODUCT}?keyword=${keyword}`);
   }
   return fetch(API_PRODUCT.PRODUCT);
 };

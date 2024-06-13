@@ -2,7 +2,7 @@ import { CompareChip, CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Input } from '@/shared/ui/Input';
 import { useEffect, useState, useRef } from 'react';
 import { getProductListKeyword } from '@/shared/@common/apis/product';
-import { PRODUCT_LIST_MOCK } from './mock/PRODUCT_LIST_MOCK';
+// import { PRODUCT_LIST_MOCK } from './mock/PRODUCT_LIST_MOCK';
 
 interface Product {
   updatedAt: string;

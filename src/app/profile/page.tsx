@@ -27,7 +27,6 @@ export default function Profile({ searchParams }: ProfileProps) {
   if (!accessToken) {
     redirect('/');
   }
-
   const queryClient = getQueryClient();
   queryClient.prefetchQuery(profileOptions(Number(userId), accessToken));
   queryClient.prefetchInfiniteQuery(

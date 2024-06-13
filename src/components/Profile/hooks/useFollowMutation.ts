@@ -36,6 +36,7 @@ const useFollowMutation = ({
         (prev: UserInfoData) => ({
           ...prev,
           isFollowing: !isFollowing,
+          followersCount: !isFollowing && prev.followersCount + 1,
         }),
       );
       return { previousFollow };

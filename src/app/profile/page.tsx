@@ -9,6 +9,7 @@ import { Suspense } from 'react';
 import { SkeletonProfileCard } from '@/components/Profile/skeleton/SkeletonProfileCard';
 import { SkeletonProductSection } from '@/components/Profile/skeleton/SkeletonProductSection';
 import { SkeletonActivitySection } from '@/components/Profile/skeleton/SkeletonActivitySection';
+import { redirect } from 'next/navigation';
 import { productOptions, profileOptions } from './queryOptions';
 
 interface ProfileProps {
@@ -22,6 +23,10 @@ export default function Profile({ searchParams }: ProfileProps) {
   const { loginedId, accessToken } = getUserCookies();
   const userId = Number(searchParams.userId) ?? loginedId;
   const currentMenu = searchParams.tab ?? 'reviewedProduct';
+
+  if (!accessToken) {
+    redirect('/');
+  }
 
   const queryClient = getQueryClient();
   queryClient.prefetchQuery(profileOptions(Number(userId), accessToken));

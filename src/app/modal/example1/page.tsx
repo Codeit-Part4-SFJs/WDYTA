@@ -6,7 +6,7 @@ import { Modal } from '@/shared/ui/Modal';
 const ExampleModal = () => {
   return (
     <Modal size="medium" closeIcon>
-      <ReviewModal accessToken="" categoryId={4} name="dkssud" />
+      <ReviewModal accessToken="asdfasdf" categoryId={4} name="dkssud" />
     </Modal>
   );
 };

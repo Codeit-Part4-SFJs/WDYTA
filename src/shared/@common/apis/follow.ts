@@ -6,7 +6,7 @@ interface UserFollowProps {
 /**
  * 유저 팔로우
  */
-export const getUserFollow = (data: UserFollowProps, accessToken: string) => {
+export const postUserFollow = (data: UserFollowProps, accessToken: string) => {
   return fetch(API_FOLLOW.FOLLOW, {
     method: 'POST',
     headers: {

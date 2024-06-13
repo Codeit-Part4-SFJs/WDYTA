@@ -1,15 +1,20 @@
 'use client';
 
 import { FormValues } from '@/shared/@common/types/input';
-import { useState } from 'react';
+import { InputHTMLAttributes, useState } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
-export interface TextBoxInputProps {
+export interface TextBoxInputProps
+  extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegister<FormValues>;
   text: string;
 }
 
-export const TextBoxInput = ({ register, text }: TextBoxInputProps) => {
+export const TextBoxInput = ({
+  register,
+  text,
+  placeholder,
+}: TextBoxInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const focusStyle = isFocused ? 'border-main-blue' : 'border-gray-35';
@@ -19,8 +24,8 @@ export const TextBoxInput = ({ register, text }: TextBoxInputProps) => {
       className={`relative w-[295px] md:w-[510px] lg:w-[540px] h-[160px] mobile:h-[120px] p-5 rounded-lg border border-solid ${focusStyle} bg-black-25`}
     >
       <textarea
-        className="scrollbar-hide w-full h-[66px] md:h-[106px] bg-black-25 text-gray-F1 text-sm lg:text-base font-normal placeholder-gray-6 resize-none focus:outline-none leading-5 lg:leading-[22px]"
-        placeholder="리뷰를 작성해 주세요"
+        className="scrollbar-hide w-full h-[66px] md:h-[106px] bg-black-25 text-gray-F1 text-sm lg:text-base font-normal placeholder-gray-6E resize-none focus:outline-none leading-5 lg:leading-[22px]"
+        placeholder={placeholder}
         {...register('textarea')}
         maxLength={300}
         onFocus={() => setIsFocused(true)}

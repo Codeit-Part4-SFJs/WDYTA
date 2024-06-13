@@ -36,6 +36,10 @@ export const API_OAUTH = Object.freeze({
 
 export const API_PRODUCT = Object.freeze({
   PRODUCT: `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}`,
+  PRODUCT_BY_CATEGORY: (keyword: string, category: number, order: string) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}?keyword=${keyword}&category=${category}&order=${order}`,
+  PRODUCT_BY_SEARCH: (keyword: string, order: string) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}?keyword=${keyword}&order=${order}`,
   BY_ID: (productId: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}/${productId}`,
   REVIEWS: (productId: number, filter: string, pageParam: number) =>
@@ -57,12 +61,12 @@ export const API_USERS = Object.freeze({
   RANKING: `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/ranking`,
   BY_ID: (userId: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}`,
-  PRODUCT: (userId: number) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/created-products`,
-  REVIEW: (userId: number) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/reviewed-products`,
-  FAVORITE: (userId: number) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/favorite-products`,
+  PRODUCT: (userId: number, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/created-products?cursor=${pageParam}`,
+  REVIEW: (userId: number, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/reviewed-products?cursor=${pageParam}`,
+  FAVORITE: (userId: number, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/favorite-products?cursor=${pageParam}`,
   FOLLOWEES: (userId: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/followees`,
   FOLLOWERS: (userId: number) =>

@@ -6,6 +6,7 @@ interface RankingCardProps {
   ranking: AdaptedRankingData;
 }
 
+// TODO: 현준님 프로필 페이지 주소로 이동하는 <Link> 태그로 감싸기
 export const RankingCard = ({ ranking }: RankingCardProps) => {
   return (
     <div className="flex-none w-47 flex items-center gap-[10px] mb-7">

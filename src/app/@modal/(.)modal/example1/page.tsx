@@ -1,3 +1,5 @@
+'use client';
+
 import { ReviewModal } from '@/components/Detail/modal';
 import { Modal } from '@/shared/ui/Modal';
 

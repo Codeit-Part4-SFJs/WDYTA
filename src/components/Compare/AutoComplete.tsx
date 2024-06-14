@@ -2,7 +2,6 @@ import { CompareChip, CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Input } from '@/shared/ui/Input';
 import { useEffect, useState, useRef } from 'react';
 import { getProductListKeyword } from '@/shared/@common/apis/product';
-// import { PRODUCT_LIST_MOCK } from './mock/PRODUCT_LIST_MOCK';
 
 interface Product {
   updatedAt: string;
@@ -46,12 +45,12 @@ export const AutoComplete = ({
   onSelectProduct,
   selectedProduct,
 }: AutoCompleteProps): JSX.Element => {
-  const [keyword, setKeyword] = useState<string>('');
+  const [keyword, setKeyword] = useState('');
   const [keyItems, setKeyItems] = useState<Product[]>([]);
   const [isChip, setIsChip] = useState<string | undefined>(selectedProduct);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [listOpen, setListOpen] = useState<boolean>(false);
-  const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
+  const [loading, setLoading] = useState(false);
+  const [listOpen, setListOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -65,7 +64,6 @@ export const AutoComplete = ({
     try {
       const response = await getProductListKeyword(keyword);
       const products: ProductList = await response.json();
-      // const products = PRODUCT_LIST_MOCK;
       const filteredData = products.list
         .filter((product: Product) => product.name)
         .slice(0, 10);

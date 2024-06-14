@@ -61,8 +61,8 @@ const ComparingButton = ({
     useCompareItems();
   const [isCompare, setIsCompare] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
-  const [firstName, setFirstName] = useState<string>(product1?.name);
-  const [secondName, setSecondName] = useState<string>(product2?.name);
+  const [firstName, setFirstName] = useState(product1?.name);
+  const [secondName, setSecondName] = useState(product2?.name);
 
   // const userId = cookies().get('accessToken');
 

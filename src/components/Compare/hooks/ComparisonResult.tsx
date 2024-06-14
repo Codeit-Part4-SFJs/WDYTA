@@ -16,9 +16,9 @@ export const ComparisonResult = ({
   firstProduct,
   secondProduct,
 }: TableProps) => {
-  const [finalResult, setFinalResult] = useState<string>('');
-  const [winResult, setWinResult] = useState<number>(0);
-  const [resultText, setResultText] = useState<string>('');
+  const [finalResult, setFinalResult] = useState('');
+  const [winResult, setWinResult] = useState(0);
+  const [resultText, setResultText] = useState('');
 
   const handleCompare = (first: number, second: number) => {
     if (first > second) {

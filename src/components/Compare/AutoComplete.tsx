@@ -2,37 +2,7 @@ import { CompareChip, CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Input } from '@/shared/ui/Input';
 import { useEffect, useState, useRef } from 'react';
 import { getProductListKeyword } from '@/shared/@common/apis/product';
-
-interface Product {
-  updatedAt: string;
-  createdAt: string;
-  writerId: number;
-  categoryId: number;
-  favoriteCount: number;
-  reviewCount: number;
-  rating: number;
-  image: string;
-  name: string;
-  id: number;
-}
-
-interface ProductList {
-  list: [
-    {
-      id: number;
-      name: string;
-      image: string;
-      rating: number;
-      reviewCount: number;
-      categoryId: number;
-      createdAt: string;
-      updatedAt: string;
-      writerId: number;
-      favoriteCount: number;
-    },
-  ];
-  nextCursor: number;
-}
+import { AutoCompleteProduct, ProductList } from './types';
 
 interface AutoCompleteProps {
   color?: string;
@@ -46,7 +16,7 @@ export const AutoComplete = ({
   selectedProduct,
 }: AutoCompleteProps): JSX.Element => {
   const [keyword, setKeyword] = useState('');
-  const [keyItems, setKeyItems] = useState<Product[]>([]);
+  const [keyItems, setKeyItems] = useState<AutoCompleteProduct[]>([]);
   const [isChip, setIsChip] = useState<string | undefined>(selectedProduct);
   const [loading, setLoading] = useState(false);
   const [listOpen, setListOpen] = useState(false);
@@ -65,7 +35,7 @@ export const AutoComplete = ({
       const response = await getProductListKeyword(keyword);
       const products: ProductList = await response.json();
       const filteredData = products.list
-        .filter((product: Product) => product.name)
+        .filter((product: AutoCompleteProduct) => product.name)
         .slice(0, 10);
       setKeyItems(filteredData);
     } catch (error) {
@@ -93,7 +63,7 @@ export const AutoComplete = ({
     return () => clearTimeout(debounce);
   }, [keyword]);
 
-  const handleItemClick = (product: Product) => {
+  const handleItemClick = (product: AutoCompleteProduct) => {
     setKeyword(product.name);
     onSelectProduct(product.id);
     setIsChip(product.name);

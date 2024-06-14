@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
+import { TableProductProps } from '../types';
 
 interface TableProps {
-  firstProduct: Product;
-  secondProduct: Product;
-}
-
-interface Product {
-  name: string;
-  rating: number;
-  reviewCount: number;
-  favoriteCount: number;
+  firstProduct: TableProductProps;
+  secondProduct: TableProductProps;
 }
 
 export const ComparisonResult = ({

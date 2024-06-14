@@ -2,6 +2,7 @@ import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { useEffect, useState } from 'react';
 import { ComparisonResult } from './hooks/ComparisonResult';
+import { ProductDetailData } from './types';
 
 interface TableProps {
   selectedSecondProductId: number;
@@ -9,36 +10,12 @@ interface TableProps {
   accessToken: string;
 }
 
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-  rating: number;
-  reviewCount: number;
-  favoriteCount: number;
-  categoryId: number;
-  createdAt: string;
-  updatedAt: string;
-  writerId: number;
-  isFavorite: boolean;
-  category: {
-    id: number;
-    name: string;
-  };
-  categoryMetric: {
-    rating: number;
-    favoriteCount: number;
-    reviewCount: number;
-  };
-}
-
 export const Table = ({
   selectedSecondProductId,
   selectedFirstProductId,
   accessToken,
 }: TableProps) => {
-  const initialProduct: Product = {
+  const initialProduct: ProductDetailData = {
     id: 0,
     name: '',
     description: '',
@@ -63,8 +40,10 @@ export const Table = ({
   };
 
   // 받은 props는 api에서 productId로 사용하면 됨.
-  const [firstProduct, setFirstProduct] = useState<Product>(initialProduct);
-  const [secondProduct, setSecondProduct] = useState<Product>(initialProduct);
+  const [firstProduct, setFirstProduct] =
+    useState<ProductDetailData>(initialProduct);
+  const [secondProduct, setSecondProduct] =
+    useState<ProductDetailData>(initialProduct);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -77,8 +56,8 @@ export const Table = ({
           selectedSecondProductId,
           accessToken,
         );
-        const data1: Product = await response1.json();
-        const data2: Product = await response2.json();
+        const data1: ProductDetailData = await response1.json();
+        const data2: ProductDetailData = await response2.json();
         setFirstProduct(data1);
         setSecondProduct(data2);
       } catch (error) {

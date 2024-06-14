@@ -1,37 +1,14 @@
 import { queryOptions } from '@tanstack/react-query';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { notFound } from 'next/navigation';
+import { ProductDetailData } from '@/components/Compare/types';
 import { compareQueryKeys } from './compareQueryKeyFactories';
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-  rating: number;
-  reviewCount: number;
-  favoriteCount: number;
-  categoryId: number;
-  createdAt: string;
-  updatedAt: string;
-  writerId: number;
-  isFavorite: boolean;
-  category: {
-    id: number;
-    name: string;
-  };
-  categoryMetric: {
-    rating: number;
-    favoriteCount: number;
-    reviewCount: number;
-  };
-}
 
 export const compareFirstOptions = (
   productId1: number,
   accessToken: string,
 ) => {
-  return queryOptions<Product>({
+  return queryOptions<ProductDetailData>({
     queryKey: compareQueryKeys.firstProduct(productId1),
     queryFn: async () => {
       const response = await getDetailProduct(productId1, accessToken);
@@ -51,7 +28,7 @@ export const compareSecondOptions = (
   accessToken: string,
 ) => {
   const productId = productId2 ?? undefined;
-  return queryOptions<Product>({
+  return queryOptions<ProductDetailData>({
     queryKey: compareQueryKeys.secondProduct(productId),
     queryFn: async () => {
       const response = await getDetailProduct(productId, accessToken);
@@ -69,7 +46,7 @@ export const reCompareFirstOptions = (
   productId1: number,
   accessToken: string,
 ) => {
-  return queryOptions<Product>({
+  return queryOptions<ProductDetailData>({
     queryKey: compareQueryKeys.firstProduct(productId1),
     queryFn: async () => {
       const response = await getDetailProduct(productId1, accessToken);
@@ -90,7 +67,7 @@ export const reCompareSecondOptions = (
   accessToken: string,
 ) => {
   const productId = productId2 ?? undefined;
-  return queryOptions<Product>({
+  return queryOptions<ProductDetailData>({
     queryKey: compareQueryKeys.secondProduct(productId),
     queryFn: async () => {
       const response = await getDetailProduct(productId, accessToken);

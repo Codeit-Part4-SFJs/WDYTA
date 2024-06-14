@@ -14,40 +14,13 @@ import {
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { Table } from './Table';
 import { AutoComplete } from './AutoComplete';
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-  rating: number;
-  reviewCount: number;
-  favoriteCount: number;
-  categoryId: number;
-  createdAt: string;
-  updatedAt: string;
-  writerId: number;
-  isFavorite: boolean;
-  category: {
-    id: number;
-    name: string;
-  };
-  categoryMetric: {
-    rating: number;
-    favoriteCount: number;
-    reviewCount: number;
-  };
-}
+import { ComparingButtonProps, ProductDetailData } from './types';
 
 const ComparingButton2 = ({
   productId1,
   productId2,
   accessToken,
-}: {
-  productId1: number;
-  productId2: number;
-  accessToken: string;
-}) => {
+}: ComparingButtonProps) => {
   const { data: product1 } = useQuery(
     reCompareFirstOptions(productId1, accessToken),
   );
@@ -81,7 +54,7 @@ const ComparingButton2 = ({
       const fetchProductDetail = async () => {
         try {
           const response = await getDetailProduct(productId1, accessToken);
-          const productDetail: Product = await response.json();
+          const productDetail: ProductDetailData = await response.json();
           changingFirstItem(productDetail.id);
           setFirstName(productDetail.name);
           console.log('firstItem: ', firstItem);
@@ -98,7 +71,7 @@ const ComparingButton2 = ({
       const fetchProductDetail = async () => {
         try {
           const response = await getDetailProduct(productId2, accessToken);
-          const productDetail: Product = await response.json();
+          const productDetail: ProductDetailData = await response.json();
           changingSecondItem(productDetail.id);
           setSecondName(productDetail.name);
           console.log('secondItem: ', secondItem);

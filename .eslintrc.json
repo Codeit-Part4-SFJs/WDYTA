@@ -7,7 +7,6 @@
   ],
   "parserOptions": { "project": "./tsconfig.json" },
   "rules": {
-    // "ignoreDuringBuilds": true,
     "react/function-component-definition": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],

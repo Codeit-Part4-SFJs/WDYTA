@@ -6,7 +6,7 @@ import { ImageComponent } from '@/shared/ui/Img';
 import useFollowMutation from '@/components/Profile/hooks/useFollowMutation';
 import useUnFollowMutation from '@/components/Profile/hooks/useUnFollowMutation';
 import { PROFILE_DEFAULT_IMAGE } from '@/components/Profile/constants/profileDefaultImage';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { profileOptions } from '@/app/profile/queryOptions';
 
@@ -16,6 +16,7 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
+  const router = useRouter();
   const userId = useSearchParams().get('userId');
   const currentProfileId = Number(userId) || Number(loginedId);
   const isMyProfile = Number(userId) === Number(loginedId) || !userId;
@@ -92,7 +93,11 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
       <div className="flex flex-col gap-[20px] mobile:w-full md:w-full">
         {isMyProfile ? (
           <>
-            <Button kind={ButtonKind.primary} customSize={buttonCustomSize}>
+            <Button
+              onClick={() => router.push('/modal/profileEdit')}
+              kind={ButtonKind.primary}
+              customSize={buttonCustomSize}
+            >
               프로필 편집
             </Button>
             <Button

@@ -43,12 +43,14 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   const followBtnText = isFollowing ? '팔로우 취소' : '팔로우';
 
   const handleClickFollowerCount = () => {
-    router.push(`/modal/userList?userId=${currentProfileId}`, {
+    router.push(`/modal/userFollowerList?userId=${currentProfileId}`, {
       scroll: false,
     });
   };
   const handleClickFollowingCount = () => {
-    router.push('/modal/userList', { scroll: false });
+    router.push(`/modal/userFolloweeList?userId=${currentProfileId}`, {
+      scroll: false,
+    });
   };
   const handleClickFollow = () => {
     followMutation.mutate({ isFollowing });
@@ -97,7 +99,7 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
           <div
             role="none"
             onClick={handleClickFollowingCount}
-            className="lg:text-[20px] md:text-[18px] text-gray-F1"
+            className="lg:text-[20px] md:text-[18px] text-gray-F1 cursor-pointer"
           >
             {followeesCount}
           </div>

@@ -1,11 +1,6 @@
 import { cookies } from 'next/headers';
 
-interface UserCookies {
-  loginedId: number;
-  accessToken: string;
-}
-
-export const getUserCookies = (): UserCookies => {
+export const getUserCookies = () => {
   const userIdCookie = cookies().get('userId');
   const accessTokenCookie = cookies().get('accessToken');
 

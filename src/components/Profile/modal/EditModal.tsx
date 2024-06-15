@@ -15,11 +15,9 @@ const EditModal = () => {
 
   const handleDeleteButton = () => {
     console.log('이미지 인풋 삭제');
-    // TODO 진짜 작동하게 할 예정임
   };
 
   const handleImageUpload = () => {
-    // TODO 진짜 작동하게 할 거임
     setImage('');
   };
   return (

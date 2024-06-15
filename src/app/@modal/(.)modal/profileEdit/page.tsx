@@ -1,10 +1,10 @@
-import UserListModal from '@/components/Profile/modal/UserListModal';
+import EditModal from '@/components/Profile/modal/EditModal';
 import { Modal } from '@/shared/ui/Modal';
 
 const ProfileEdit = () => {
   return (
     <Modal size="large" closeIcon>
-      <UserListModal />
+      <EditModal />
     </Modal>
   );
 };

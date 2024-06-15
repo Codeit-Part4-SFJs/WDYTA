@@ -1,33 +1,51 @@
 'use client';
 
-import { followerOptions, profileOptions } from '@/app/profile/queryOptions';
+import {
+  followeeOptions,
+  followerOptions,
+  profileOptions,
+} from '@/app/profile/queryOptions';
 import { Loading } from '@/shared/ui/Icon';
 import { ImageComponent } from '@/shared/ui/Img';
 import {
   useSuspenseInfiniteQuery,
   useSuspenseQuery,
 } from '@tanstack/react-query';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { getClientCookies } from '@/shared/@common/utils';
+import {
+  FollowDataPage,
+  FolloweeTypes,
+  FollowerTypes,
+} from '@/components/Profile/types/followType';
 import { PROFILE_DEFAULT_IMAGE } from '../constants/profileDefaultImage';
 
-const UserListModal = () => {
+interface UserListModalProps {
+  accessToken: string;
+  loginedId: number;
+}
+const UserListModal = ({ accessToken, loginedId }: UserListModalProps) => {
   const searchParams = useSearchParams();
-  const { accessToken } = getClientCookies();
-  const userId = Number(searchParams.get('userId'));
+  const userId = Number(searchParams.get('userId')) ?? loginedId;
+  const pathname = usePathname();
+  const isFollowerList = pathname === '/modal/userFollowerList';
 
   const {
-    data: followerData,
+    data: followListData,
     fetchNextPage,
     isFetchingNextPage,
-  } = useSuspenseInfiniteQuery(followerOptions(userId));
+  } = useSuspenseInfiniteQuery<FollowDataPage>(
+    isFollowerList
+      ? followerOptions(userId, pathname)
+      : followeeOptions(userId, pathname),
+  );
+
   const { data: userInfoData } = useSuspenseQuery(
     profileOptions(userId, accessToken),
   );
 
-  const hasFollower = followerData.pages[0].list.length;
+  const hasFollow = followListData.pages[0].list.length;
   const { ref: triggerRef, inView } = useInView();
 
   useEffect(() => {
@@ -42,24 +60,27 @@ const UserListModal = () => {
         {`${userInfoData.nickname}님을 팔로우하는 유저`}
       </h1>
       <div className="flex flex-col gap-[25px] overflow-y-scroll lg:max-h-[515px] scrollbar-hide">
-        {hasFollower ? (
+        {hasFollow ? (
           <>
-            {followerData.pages.map((page) => (
-              <ul className="flex flex-col gap-[25px]">
-                {page.list.map((item) => (
-                  <li key={item.id} className="flex items-center gap-[20px]">
-                    <ImageComponent
-                      type="profile"
-                      src={item.follower.image || PROFILE_DEFAULT_IMAGE}
-                      alt={item.follower.nickname}
-                    />
-                    <div>
-                      <h2 className="text-lg text-white">
-                        {item.follower.nickname}
-                      </h2>
-                    </div>
-                  </li>
-                ))}
+            {followListData.pages.map((page) => (
+              <ul key={page.nextCursor} className="flex flex-col gap-[25px]">
+                {page.list.map((item: FolloweeTypes | FollowerTypes) => {
+                  const user = isFollowerList
+                    ? (item as FollowerTypes).follower
+                    : (item as FolloweeTypes).followee;
+                  return (
+                    <li key={item.id} className="flex items-center gap-[20px]">
+                      <ImageComponent
+                        type="profile"
+                        src={user.image || PROFILE_DEFAULT_IMAGE}
+                        alt={user.nickname}
+                      />
+                      <div>
+                        <h2 className="text-lg text-white">{user.nickname}</h2>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             ))}
             <div ref={triggerRef} />

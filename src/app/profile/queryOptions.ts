@@ -1,13 +1,12 @@
 import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query';
 import {
   getMyInfo,
+  getUserFollowees,
   getUserFollowers,
   getUserInfo,
 } from '@/shared/@common/apis';
-import {
-  FollowerDataPage,
-  ProductDataPage,
-} from '@/components/Profile/types/productType';
+import { ProductDataPage } from '@/components/Profile/types/productType';
+import { FollowDataPage } from '@/components/Profile/types/followType';
 import { ProfileKeys } from './queryKeyFactories';
 
 export const productOptions = (
@@ -36,11 +35,26 @@ export const profileOptions = (userId: number, accessToken: string) => {
   });
 };
 
-export const followerOptions = (userId: number) => {
-  return infiniteQueryOptions<FollowerDataPage>({
-    queryKey: ProfileKeys.follower(Number(userId)),
+export const followerOptions = (userId: number, pathname: string) => {
+  return infiniteQueryOptions<FollowDataPage>({
+    queryKey: ProfileKeys.userList(Number(userId), pathname),
     queryFn: async ({ pageParam }) => {
       const response = await getUserFollowers(
+        Number(userId),
+        Number(pageParam),
+      );
+      return response.json();
+    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage.nextCursor,
+  });
+};
+
+export const followeeOptions = (userId: number, pathname: string) => {
+  return infiniteQueryOptions<FollowDataPage>({
+    queryKey: ProfileKeys.userList(Number(userId), pathname),
+    queryFn: async ({ pageParam }) => {
+      const response = await getUserFollowees(
         Number(userId),
         Number(pageParam),
       );

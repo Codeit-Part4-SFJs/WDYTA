@@ -67,8 +67,8 @@ export const API_USERS = Object.freeze({
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/reviewed-products?cursor=${pageParam}`,
   FAVORITE: (userId: number, pageParam: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/favorite-products?cursor=${pageParam}`,
-  FOLLOWEES: (userId: number) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/followees`,
-  FOLLOWERS: (userId: number) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/followers`,
+  FOLLOWEES: (userId: number, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/followees?cursor=${pageParam}`,
+  FOLLOWERS: (userId: number, pageParam: number) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.USER}/${userId}/followers?cursor=${pageParam}`,
 } as const);

@@ -74,13 +74,13 @@ export const getUserFavoriteProducts = (userId: number, pageParam: number) => {
 /**
  * 유저가 팔로우한 유저 조회
  */
-export const getUserFollowees = (userId: number) => {
-  return fetch(API_USERS.FOLLOWEES(userId));
+export const getUserFollowees = (userId: number, pageParam: number) => {
+  return fetch(API_USERS.FOLLOWEES(userId, pageParam));
 };
 
 /**
  * 유저를 팔로우한 유저 조회
  */
-export const getUserFollowers = (userId: number) => {
-  return fetch(API_USERS.FOLLOWERS(userId));
+export const getUserFollowers = (userId: number, pageParam: number) => {
+  return fetch(API_USERS.FOLLOWERS(userId, pageParam));
 };

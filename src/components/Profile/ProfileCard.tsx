@@ -42,6 +42,14 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   const followBtnKind = isFollowing ? ButtonKind.tertiary : ButtonKind.primary;
   const followBtnText = isFollowing ? '팔로우 취소' : '팔로우';
 
+  const handleClickFollowerCount = () => {
+    router.push(`/modal/userList?userId=${currentProfileId}`, {
+      scroll: false,
+    });
+  };
+  const handleClickFollowingCount = () => {
+    router.push('/modal/userList', { scroll: false });
+  };
   const handleClickFollow = () => {
     followMutation.mutate({ isFollowing });
   };
@@ -73,7 +81,11 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
       </div>
       <div className="flex justify-between lg:w-[184px] lg:h-[53px] md:w-[234px] md:h-[48px] mobile:w-[194px] mobile:h-[48px]">
         <div className="flex flex-col items-center">
-          <div className="lg:text-[20px] md:text-[18px] text-gray-F1">
+          <div
+            role="none"
+            onClick={handleClickFollowerCount}
+            className="lg:text-[20px] md:text-[18px] text-gray-F1 cursor-pointer"
+          >
             {followersCount}
           </div>
           <div className="lg:text-[16px] md:text-[14px] text-gray-9F">
@@ -82,7 +94,11 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
         </div>
         <div className="border border-solid border-gray-35" />
         <div className="flex flex-col items-center">
-          <div className="lg:text-[20px] md:text-[18px] text-gray-F1">
+          <div
+            role="none"
+            onClick={handleClickFollowingCount}
+            className="lg:text-[20px] md:text-[18px] text-gray-F1"
+          >
             {followeesCount}
           </div>
           <div className="lg:text-[16px] md:text-[14px] text-gray-9F">
@@ -94,7 +110,9 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
         {isMyProfile ? (
           <>
             <Button
-              onClick={() => router.push('/modal/profileEdit')}
+              onClick={() =>
+                router.push('/modal/profileEdit', { scroll: false })
+              }
               kind={ButtonKind.primary}
               customSize={buttonCustomSize}
             >

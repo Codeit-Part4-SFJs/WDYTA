@@ -45,6 +45,8 @@ export const API_PRODUCT = Object.freeze({
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}?keyword=${keyword}&category=${category}&order=${order}&cursor=${pageParam}`,
   PRODUCT_BY_SEARCH: (keyword: string, order: string, pageParam: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}?keyword=${keyword}&order=${order}&cursor=${pageParam}`,
+  PRODUCT_BY_ORDER: (order: string) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}?order=${order}`,
   BY_ID: (productId: number) =>
     `${process.env.NEXT_PUBLIC_BASE_URL}${API.PRODUCT}/${productId}`,
   REVIEWS: (productId: number, filter: string, pageParam: number) =>

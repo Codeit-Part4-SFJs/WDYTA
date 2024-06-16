@@ -15,6 +15,14 @@ export const getProductList = () => {
 };
 
 /**
+ * 상품목록조회
+ * @param order: 정렬 기준
+ */
+export const getProductListByOrder = (order: string) => {
+  return fetch(API_PRODUCT.PRODUCT_BY_ORDER(order));
+};
+
+/**
  * 홈페이지에서의 상품목록조회
  * @param keyword: 검색어
  * @param category: 카테고리 Id

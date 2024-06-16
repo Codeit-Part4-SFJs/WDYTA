@@ -1,6 +1,6 @@
 import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query';
 import {
-  getProductList,
+  getProductListByOrder,
   getHomeProductList,
 } from '@/shared/@common/apis/product';
 import { getUserRanking } from '@/shared/@common/apis';
@@ -14,16 +14,14 @@ export const hotProductOptions = () => {
   return queryOptions<Product[]>({
     queryKey: homeProductKeys.hotProducts(),
     queryFn: async () => {
-      const response = await getProductList();
+      const response = await getProductListByOrder('reviewCount');
 
       if (!response.ok) {
         notFound();
       }
 
       const hotProductsData = await response.json();
-      return hotProductsData.list
-        .sort((a: Product, b: Product) => b.reviewCount - a.reviewCount)
-        .slice(0, 6);
+      return hotProductsData.list;
     },
   });
 };
@@ -33,16 +31,14 @@ export const ratingDescProductOptions = () => {
   return queryOptions<Product[]>({
     queryKey: homeProductKeys.ratingProducts(),
     queryFn: async () => {
-      const response = await getProductList();
+      const response = await getProductListByOrder('rating');
 
       if (!response.ok) {
         notFound();
       }
 
       const ratingDescProductsData = await response.json();
-      return ratingDescProductsData.list
-        .sort((a: Product, b: Product) => b.rating - a.rating)
-        .slice(0, 6);
+      return ratingDescProductsData.list;
     },
   });
 };

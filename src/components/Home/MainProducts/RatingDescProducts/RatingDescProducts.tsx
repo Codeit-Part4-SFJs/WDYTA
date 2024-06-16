@@ -14,9 +14,9 @@ export const RatingDescProducts = () => {
         별점이 높은 상품
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        {ratingDescProductsData.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {ratingDescProductsData
+          ?.slice(0, 6)
+          .map((product) => <ProductCard key={product.id} product={product} />)}
       </div>
     </section>
   );

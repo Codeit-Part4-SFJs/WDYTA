@@ -1,14 +1,18 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import { useRef } from 'react';
 import DEFAULT_CATEGORIES from '@/shared/ui/Menu/SideMenu/constants/DEFAULT_CATEGORIES';
 import {
   Categories,
+  Category,
   SideMenuProps,
 } from '@/shared/ui/Menu/SideMenu/types/categoryType';
 import { SideMenuTab } from '@/shared/ui/Menu/SideMenu/SideMenuTab';
 import { useSideMenuStore } from '@/stores';
 import { useClose } from '@/shared/@common/hooks';
+import { getCategory } from '@/shared/@common/apis';
+import { notFound } from 'next/navigation';
 
 /**
  * 메인 페이지의 page.tsx에서 API 요청해서 카테고리 데이터 받아오고 page.tsx에서 사용하면됨
@@ -17,10 +21,25 @@ import { useClose } from '@/shared/@common/hooks';
  * @param currentCategoryId params.category를 categoryId로 포멧팅 후 데이터 삽입
  */
 
-// TODO: 카테고리 데이터를 useQuery로 불러올때,
-// 옵션에서 staleTime을 infinity로 설정해서 불러온 데이터를 계속 사용하게 함
-export const SideMenu = ({ categories, currentCategoryId }: SideMenuProps) => {
-  const categoryList: Categories = categories ?? DEFAULT_CATEGORIES;
+export const SideMenu = ({ currentCategoryId }: SideMenuProps) => {
+  // 카테고리 데이터를 useQuery로 불러올때,
+  // 옵션에서 staleTime을 infinity로 설정해서 불러온 데이터를 계속 사용하게 함
+  async function fetchCategories() {
+    const response = await getCategory();
+
+    if (!response.ok) {
+      notFound();
+    }
+    return response.json();
+  }
+
+  const { data: categories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: fetchCategories,
+    staleTime: Infinity,
+  });
+  const categoryList: Categories =
+    (categories as Category[]) ?? DEFAULT_CATEGORIES;
 
   const isOpenSideMenu = useSideMenuStore((state) => state.isOpenSideMenu);
   const setIsOpenSideMenu = useSideMenuStore(

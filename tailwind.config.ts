@@ -1,5 +1,21 @@
 import type { Config } from 'tailwindcss';
 
+const plugin = require('tailwindcss/plugin');
+
+const customBorderPlugin = plugin(function customBorderFunc({
+  addUtilities,
+  theme,
+}: any) {
+  const newUtilities = {
+    '.hover:border-main-blue': {
+      '&:hover': {
+        borderColor: theme('colors.main-blue'),
+      },
+    },
+  };
+  addUtilities(newUtilities, ['responsive', 'hover']);
+});
+
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -64,6 +80,6 @@ const config: Config = {
     },
   },
   // eslint-disable-next-line global-require
-  plugins: [require('tailwind-scrollbar-hide')],
+  plugins: [require('tailwind-scrollbar-hide'), customBorderPlugin],
 };
 export default config;

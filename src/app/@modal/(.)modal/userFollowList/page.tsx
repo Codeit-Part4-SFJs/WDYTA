@@ -2,7 +2,7 @@ import UserListModal from '@/components/Profile/modal/UserListModal';
 import { getUserCookies } from '@/shared/@common/utils/getUserCookies';
 import { Modal } from '@/shared/ui/Modal';
 
-const UserFollowingList = () => {
+const UserFollowList = () => {
   const { loginedId, accessToken } = getUserCookies();
 
   return (
@@ -12,4 +12,4 @@ const UserFollowingList = () => {
   );
 };
 
-export default UserFollowingList;
+export default UserFollowList;

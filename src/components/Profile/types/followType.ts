@@ -1,30 +1,24 @@
-export interface FollowerTypes {
+interface FollowInfo {
+  updatedAt: string;
+  createdAt: string;
+  teamId: string;
+  image: string;
+  description: string;
+  nickname: string;
   id: number;
-  follower: {
-    updatedAt: string;
-    createdAt: string;
-    teamId: string;
-    image: string;
-    description: string;
-    nickname: string;
-    id: number;
-  };
 }
 
-export interface FolloweeTypes {
+export interface Follower {
   id: number;
-  followee: {
-    updatedAt: string;
-    createdAt: string;
-    teamId: string;
-    image: string;
-    description: string;
-    nickname: string;
-    id: number;
-  };
+  follower: FollowInfo;
+}
+
+export interface Followee {
+  id: number;
+  followee: FollowInfo;
 }
 
 export interface FollowDataPage {
-  list: (FollowerTypes | FolloweeTypes)[];
+  list: (Follower | Followee)[];
   nextCursor: number;
 }

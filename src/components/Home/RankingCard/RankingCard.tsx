@@ -12,7 +12,8 @@ export const RankingCard = ({ ranking }: RankingCardProps) => {
     <div className="flex-none w-47 flex items-center gap-[10px] mb-7">
       <ImageComponent
         type="profile"
-        src={ranking.image}
+        // 임시로 설정해둔 기본 프로필 이미지 경로 (추후 변경 예정)
+        src={ranking?.image ?? '/icon/profile.png'}
         alt={ranking.nickname}
         className="w-12 h-12 rounded-full"
       />

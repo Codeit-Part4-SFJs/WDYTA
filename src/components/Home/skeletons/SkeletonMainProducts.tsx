@@ -15,17 +15,6 @@ export const SkeletonMainProducts = () => {
           <SkeletonMainCard />
         </div>
       </section>
-      <section>
-        <SkeletonMainTitle />
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          <SkeletonMainCard />
-          <SkeletonMainCard />
-          <SkeletonMainCard />
-          <SkeletonMainCard />
-          <SkeletonMainCard />
-          <SkeletonMainCard />
-        </div>
-      </section>
     </main>
   );
 };

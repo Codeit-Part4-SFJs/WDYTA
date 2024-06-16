@@ -21,7 +21,7 @@ export const hotProductOptions = () => {
       }
 
       const hotProductsData = await response.json();
-      return hotProductsData
+      return hotProductsData.list
         .sort((a: Product, b: Product) => b.reviewCount - a.reviewCount)
         .slice(0, 6);
     },
@@ -40,7 +40,7 @@ export const ratingDescProductOptions = () => {
       }
 
       const ratingDescProductsData = await response.json();
-      return ratingDescProductsData
+      return ratingDescProductsData.list
         .sort((a: Product, b: Product) => b.rating - a.rating)
         .slice(0, 6);
     },

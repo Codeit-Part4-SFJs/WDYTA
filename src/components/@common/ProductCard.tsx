@@ -25,7 +25,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     // categoryId/productId
     <Link href={`/detail/${id}`}>
-      <div className="flex flex-col items-center justify-center pt-[10px] lg:pb-[20px] md:pb-[15px] mobile:pb-[10px] px-[10px] mobile:w-full lg:max-w-[300px] mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border-gray-35 bg-gray-25">
+      <div className="min-w-40 flex flex-col items-center justify-center pt-[10px] lg:pb-[20px] md:pb-[15px] mobile:pb-[10px] px-[10px] mobile:w-full lg:max-w-[300px] mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border-gray-35 bg-gray-25">
         <ImageComponent type="product" src={image} alt="이미지" />
 
         <div className="w-full flex flex-col gap-[10px] mobile:gap-[5px] lg:px-[20px] md:px-[16.5px] mobile:px-[10px]">
@@ -44,7 +44,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 name="StarIcon"
                 className="w-[12px] h-[12px] md:w-[15px] md:h-[15px] lg:w-[16px] lg:h-[16px] fill-yellow"
               />
-              <p className="leading-none text-gray-9F">{rating}</p>
+              <p className="leading-none text-gray-9F">{Math.ceil(rating)}</p>
             </div>
           </div>
         </div>

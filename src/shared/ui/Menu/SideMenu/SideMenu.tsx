@@ -17,6 +17,8 @@ import { useClose } from '@/shared/@common/hooks';
  * @param currentCategoryId params.category를 categoryId로 포멧팅 후 데이터 삽입
  */
 
+// TODO: 카테고리 데이터를 useQuery로 불러올때,
+// 옵션에서 staleTime을 infinity로 설정해서 불러온 데이터를 계속 사용하게 함
 export const SideMenu = ({ categories, currentCategoryId }: SideMenuProps) => {
   const categoryList: Categories = categories ?? DEFAULT_CATEGORIES;
 

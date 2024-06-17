@@ -61,7 +61,7 @@ const UserListModal = ({ accessToken, loginedId }: UserListModalProps) => {
           ? `${userInfoData.nickname}님을 팔로우하는 유저`
           : `${userInfoData.nickname}님이 팔로우하는 유저`}
       </h1>
-      <div className="flex flex-col overflow-y-scroll h-full scrollbar-hide">
+      <div className="flex flex-col gap-[25px] overflow-y-scroll h-full scrollbar-hide">
         {hasFollow ? (
           <>
             {followListData.pages.map((page) => (

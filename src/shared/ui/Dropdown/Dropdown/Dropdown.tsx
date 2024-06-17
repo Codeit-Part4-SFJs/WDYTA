@@ -11,12 +11,30 @@ export interface DropdownProps {
   options: Option[];
   placeholder?: string;
   onSelect: (value: string) => void;
+  kind: DropdownKind;
 }
+
+export enum DropdownKind {
+  normal = 'normal',
+  modal = 'modal',
+}
+
+export const DropdownStyleByKind = {
+  [DropdownKind.normal]: {
+    div: 'w-[400px] md:w-[360px] mobile:w-[335px]',
+    p: 'text-base',
+  },
+  [DropdownKind.modal]: {
+    div: 'w-[360px] mobile:w-[295px]',
+    p: 'text-sm',
+  },
+};
 
 export const Dropdown = ({
   children,
   options,
   onSelect,
+  kind,
   placeholder = '선택',
 }: PropsWithChildren<DropdownProps>) => {
   const dropDownClickRef = useRef<HTMLDivElement>(null);
@@ -44,13 +62,13 @@ export const Dropdown = ({
 
   return (
     <div
-      className="relative w-[400px] md:w-[360px] mobile:w-[335px]"
+      className={`relative ${DropdownStyleByKind[kind].div}`}
       ref={dropDownClickRef}
     >
       <div
         role="button"
         tabIndex={0}
-        className={`flex cursor-pointer py-[23px] md:py-[17px] mobile:py-[17px] md:h-[60px] mobile:h-[55px] px-5 flex-col items-start gap-[10px] rounded-lg border border-solid border-transparent bg-black-25 ${isToggled ? 'border-linear-gradients-black-25 text-white' : 'border-gray-35 text-gray-6E'}`}
+        className={`flex cursor-pointer py-[23px] md:py-[17px] mobile:py-[17px] md:h-[60px] mobile:h-[55px] px-5 flex-col items-start gap-[10px] rounded-lg border border-solid border-gray-35 bg-black-25 ${isToggled ? 'border-linear-gradients-black-25 text-white' : 'border-gray-35 text-gray-6E'}`}
         onClick={handleToggleDropdown}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -59,18 +77,24 @@ export const Dropdown = ({
         }}
       >
         <div className="flex justify-between items-center self-stretch">
-          <p className="text-base text-gray-6E active:text-white">{children}</p>
+          <p
+            className={`${DropdownStyleByKind[kind].p} text-gray-6E active:text-white`}
+          >
+            {children}
+          </p>
           <button type="button" className=" w-full flex ">
             {selectedOption?.label ?? placeholder}
           </button>
           <Icon
-            name={isToggled ? 'DropDownIcon' : 'DropUpIcon'}
+            name={isToggled ? 'DropUpIcon' : 'DropDownIcon'}
             className="w-6"
           />
         </div>
       </div>
       {isToggled && (
-        <div className="absolute z-20 top-[100%] flex w-[400px] md:w-[360px] mobile:w-[335px] p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25">
+        <div
+          className={`absolute z-20 top-[100%] flex ${DropdownStyleByKind[kind].div} p-[10px] flex-col items-start gap-[5px] rounded-lg border border-solid border-gray-35 bg-black-25`}
+        >
           {options.map((option) => (
             <div
               role="button"

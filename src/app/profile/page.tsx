@@ -15,6 +15,7 @@ interface ProfileProps {
   searchParams: {
     tab: string;
     userId: string;
+    type: string;
   };
 }
 
@@ -22,7 +23,6 @@ export default function Profile({ searchParams }: ProfileProps) {
   const { loginedId, accessToken } = getUserCookies();
   const userId = Number(searchParams.userId) ?? loginedId;
   const currentMenu = searchParams.tab ?? 'reviewedProduct';
-
   const queryClient = getQueryClient();
   queryClient.prefetchQuery(profileOptions(Number(userId), accessToken));
   queryClient.prefetchInfiniteQuery(
@@ -32,6 +32,7 @@ export default function Profile({ searchParams }: ProfileProps) {
       productMenuInfo[currentMenu].apiFunc,
     ),
   );
+
   return (
     <main className="flex justify-center items-start md:flex-col mobile:flex-col md:items-center mobile:items-center md:min-w-[509px] mobile:min-w-[335px] lg:gap-[70px] gap-[60px] py-[52px] lg:px-[20px] md:px-[100px] mobile:px-[21px] ">
       <Suspense fallback={<SkeletonProfileCard />}>

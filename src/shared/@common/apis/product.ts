@@ -15,11 +15,23 @@ export const getProductList = () => {
 };
 
 /**
+ * 키워드를 이용한 상품목록조회
+ * @param keyword: 자동완성을 위한 키워드
+ */
+export const getProductListKeyword = (keyword: string) => {
+  if (keyword) {
+    return fetch(`${API_PRODUCT.PRODUCT}?keyword=${keyword}`);
+  }
+  return fetch(API_PRODUCT.PRODUCT);
+};
+
+/**
  * 홈페이지에서의 상품목록조회
  * @param keyword: 검색어
  * @param category: 카테고리 Id
  * @param order: 정렬 기준
  */
+
 export const getHomeProductList = (
   keyword: string,
   category: number,

@@ -19,7 +19,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <input
         ref={ref}
-        className={`${SIZE_MAP[inputSize]} px-5 py-[23px] rounded-lg border border-solid bg-black-25 text-gray-F1 text-sm lg:text-base placeholder-gray-6E focus:outline-none ${
+        className={`${SIZE_MAP[inputSize]} relative px-5 py-[23px] rounded-lg border border-solid bg-black-25 text-gray-F1 text-sm lg:text-base placeholder-gray-6E focus:outline-none ${
           isError
             ? 'border-red focus:border-red'
             : 'border-gray-35 focus:border-main-blue'

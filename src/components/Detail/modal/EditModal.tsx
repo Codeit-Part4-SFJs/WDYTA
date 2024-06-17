@@ -1,6 +1,6 @@
 import { FormValues } from '@/shared/@common/types/input';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
-import { Dropdown } from '@/shared/ui/Dropdown/Dropdown';
+import { Dropdown, DropdownKind } from '@/shared/ui/Dropdown/Dropdown';
 import { Option } from '@/shared/ui/Dropdown/Sort';
 import { TextBoxInput } from '@/shared/ui/Input/TextBox';
 import { ImageInput } from '@/shared/ui/Input/image';
@@ -46,11 +46,13 @@ export const EditModal = () => {
               options={dropdownOptions}
               onSelect={handleProduct}
               placeholder="상품명 (상품 등록 여부를 확인해 주세요)"
+              kind={DropdownKind.modal}
             />
             <Dropdown
               options={dropdownOptions}
               onSelect={handleProduct}
               placeholder="카테고리 선택"
+              kind={DropdownKind.modal}
             />
           </div>
           <ImageInput

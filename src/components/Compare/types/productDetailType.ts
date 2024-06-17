@@ -67,7 +67,7 @@ export interface AutoCompleteProduct {
 }
 
 export interface ComparingButtonProps {
-  productId1: number;
-  productId2: number;
+  productId1: number | undefined;
+  productId2: number | undefined;
   accessToken: string;
 }

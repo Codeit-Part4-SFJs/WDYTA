@@ -57,6 +57,7 @@ export const ComparisonResult = ({
       setWinResult(secondProductWins);
       setResultText('text-pink');
     } else {
+      setWinResult(0);
       setFinalResult('무승부입니다');
       setResultText('text-white');
     }
@@ -79,11 +80,11 @@ export const ComparisonResult = ({
       <div className="flex flex-col h-[300px] items-center justify-center gap-5 md:max-w-[200px] mobile:max-w-[200px]">
         <p className={`${resultText} lg:text-2xl text-xl`}>
           {finalResult}
-          {winResult !== undefined && (
+          {winResult && (
             <span className="text-white"> 상품이 승리하였습니다!</span>
           )}
         </p>
-        {winResult !== undefined && (
+        {winResult && (
           <p className="text-gray-9F lg:text-base text-xs">
             3가지 항목 중 {winResult}가지 항목에서 우세합니다.
           </p>

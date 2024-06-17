@@ -76,15 +76,15 @@ export const Table = ({
         <ComparisonResult
           firstProduct={{
             name: firstProduct.name,
-            rating: firstProduct.categoryMetric.rating,
-            reviewCount: firstProduct.categoryMetric.reviewCount,
-            favoriteCount: firstProduct.categoryMetric.favoriteCount,
+            rating: firstProduct.rating,
+            reviewCount: firstProduct.reviewCount,
+            favoriteCount: firstProduct.favoriteCount,
           }}
           secondProduct={{
             name: secondProduct.name,
-            rating: secondProduct.categoryMetric.rating,
-            reviewCount: secondProduct.categoryMetric.reviewCount,
-            favoriteCount: secondProduct.categoryMetric.favoriteCount,
+            rating: secondProduct.rating,
+            reviewCount: secondProduct.reviewCount,
+            favoriteCount: secondProduct.favoriteCount,
           }}
         />
         <div className="mt-10">

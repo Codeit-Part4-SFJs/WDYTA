@@ -53,6 +53,7 @@ const ComparingButton = ({
     if (product1) {
       const fetchProductDetail = async () => {
         try {
+          if (!productId1) return;
           const response = await getDetailProduct(productId1, accessToken);
           const productDetail: ProductDetailData = await response.json();
           changingFirstItem(productDetail.id);
@@ -70,6 +71,7 @@ const ComparingButton = ({
     if (product2) {
       const fetchProductDetail = async () => {
         try {
+          if (!productId2) return;
           const response = await getDetailProduct(productId2, accessToken);
           const productDetail: ProductDetailData = await response.json();
           changingSecondItem(productDetail.id);

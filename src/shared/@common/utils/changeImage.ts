@@ -22,3 +22,11 @@ export const handleImageChange = ({
     setPreview('');
   }
 };
+
+interface ImageDeleteProps {
+  setPreview: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const handleDeleteButton = ({ setPreview }: ImageDeleteProps) => {
+  setPreview('');
+};

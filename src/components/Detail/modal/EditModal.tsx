@@ -1,3 +1,5 @@
+'use client';
+
 import { FormValues } from '@/shared/@common/types/input';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { Dropdown } from '@/shared/ui/Dropdown/Dropdown';
@@ -54,9 +56,9 @@ export const EditModal = () => {
             />
           </div>
           <ImageInput
-            image={image}
+            previewImage={image}
             handleDeleteButton={handleDeleteButton}
-            handleImageUpload={handleImageUpload}
+            handleImageChange={handleImageUpload}
           />
         </div>
         <TextBoxInput

@@ -3,8 +3,8 @@ import { InputHTMLAttributes } from 'react';
 
 export interface ImageInputProps extends InputHTMLAttributes<HTMLInputElement> {
   previewImage: string;
-  handleDeleteButton: () => void;
-  handleImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDeleteButton?: () => void;
+  handleImageChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const ImageInput = ({

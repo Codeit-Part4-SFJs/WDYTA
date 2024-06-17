@@ -29,6 +29,7 @@ export const AutoComplete = ({
   };
 
   const updateData = async () => {
+    if (isChip) return;
     setLoading(true);
 
     try {

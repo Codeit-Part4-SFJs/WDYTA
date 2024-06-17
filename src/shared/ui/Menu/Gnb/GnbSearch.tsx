@@ -9,15 +9,26 @@ import {
 } from '@/shared/ui/Menu/Gnb/types/gnbType';
 import { Icon } from '@/shared/ui/Icon';
 import { useClose } from '@/shared/@common/hooks';
+import { useRouter, useParams } from 'next/navigation';
 
 const GnbSearchBar = ({
   isOpenMobileSearchBar,
   handleToggledSearchBar,
 }: GnbSearchBarProps) => {
   const { register, handleSubmit } = useForm<SearchInput>();
+  const router = useRouter();
+  const { category } = useParams();
+
   const onSubmit: SubmitHandler<SearchInput> = (data) => {
-    console.log(data);
-    // TO DO: 검색 기능 추후 추가 요망
+    // TO DO: 검색어 상태 관리 로직 추가
+    const { search } = data;
+    if (!category) {
+      router.replace(`/no_category?keyword=${search}`, {
+        scroll: false,
+      });
+      return;
+    }
+    router.replace(`/${category}?keyword=${search}`);
   };
 
   const searchBarRef = useRef<HTMLDivElement>(null);

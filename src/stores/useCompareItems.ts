@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
+import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 
 interface CompareItemsState {
   firstItem: number;
@@ -12,14 +12,24 @@ interface CompareItemsState {
 
 export const useCompareItems = create<CompareItemsState>()(
   devtools(
-    (set) => ({
-      firstItem: 0,
-      changingFirstItem: (id) => set(() => ({ firstItem: id })),
-      removeFirstItem: () => set(() => ({ firstItem: 0 })),
-      secondItem: 0,
-      changingSecondItem: (id) => set(() => ({ secondItem: id })),
-      removeSecondItem: () => set(() => ({ secondItem: 0 })),
-    }),
+    persist(
+      (set) => ({
+        firstItem: 0,
+        changingFirstItem: (id) => set(() => ({ firstItem: id })),
+        removeFirstItem: () => set(() => ({ firstItem: 0 })),
+        secondItem: 0,
+        changingSecondItem: (id) => set(() => ({ secondItem: id })),
+        removeSecondItem: () => set(() => ({ secondItem: 0 })),
+      }),
+      {
+        name: 'CompareItems',
+        storage: createJSONStorage(() => sessionStorage),
+        partialize: (state) => ({
+          firstItem: state.firstItem,
+          secondItem: state.secondItem,
+        }),
+      },
+    ),
     { name: 'CompareItemsStore' },
   ),
 );

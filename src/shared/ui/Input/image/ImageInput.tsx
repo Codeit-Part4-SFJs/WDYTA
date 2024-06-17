@@ -1,23 +1,24 @@
 import { Icon } from '@/shared/ui/Icon';
+import { InputHTMLAttributes } from 'react';
 
-export interface ImageInputProps {
-  image: string;
+export interface ImageInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  previewImage: string;
   handleDeleteButton: () => void;
-  handleImageUpload: () => void;
+  handleImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const ImageInput = ({
-  image,
+  previewImage,
   handleDeleteButton,
-  handleImageUpload,
+  handleImageChange,
 }: ImageInputProps) => {
   return (
     <div>
-      {image ? (
+      {previewImage ? (
         <div
           className="relative w-[140px] md:w-[135px] lg:w-[160px] h-[140px] md:h-[135px] lg:h-[160px] rounded-lg"
           style={{
-            backgroundImage: `url(${image})`,
+            backgroundImage: `url(${previewImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -35,7 +36,7 @@ export const ImageInput = ({
           <input
             className="absolute inset-0 w-full h-full opacity-0"
             type="file"
-            onChange={handleImageUpload}
+            onChange={handleImageChange}
           />
           <Icon
             name="PhotoIcon"

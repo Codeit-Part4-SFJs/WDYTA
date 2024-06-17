@@ -6,7 +6,7 @@ export default {
   title: 'Input/ImageInput',
   component: ImageInput,
   argTypes: {
-    image: { control: 'text' },
+    previewImage: { control: 'text' },
     handleDeleteButton: { action: 'delete' },
     handleImageUpload: { action: 'upload' },
   },

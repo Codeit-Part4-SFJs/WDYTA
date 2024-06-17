@@ -155,14 +155,11 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
         )}
       </div>
       {showAlert && (
-        <Modal size="xsmall" closeIcon={false}>
+        <Modal size="small" closeIcon={false}>
           <AlertModal
             errorMessage="로그인 후 이용해 주세요."
             buttonText="닫기"
-            handleButtonClick={() => {
-              setShowAlert(false);
-              router.push('/login');
-            }}
+            path="/login"
           />
         </Modal>
       )}

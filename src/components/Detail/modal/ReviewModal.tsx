@@ -1,17 +1,34 @@
+'use client';
+
+import { postImage } from '@/shared/@common/apis';
 import { FormValues } from '@/shared/@common/types/input';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { CategoryChip } from '@/shared/ui/Chip/CategoryChip';
 import { Icon } from '@/shared/ui/Icon';
+import HelperText from '@/shared/ui/Input/HelperText';
 import { TextBoxInput } from '@/shared/ui/Input/TextBox';
 import { ImageInput } from '@/shared/ui/Input/image';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-export const ReviewModal = () => {
-  const { register, watch } = useForm<FormValues>({ mode: 'onChange' });
+interface ReviewModalProps {
+  accessToken: string;
+  categoryId: number;
+  name: string;
+}
+
+export const ReviewModal = ({
+  accessToken,
+  categoryId,
+  name,
+}: ReviewModalProps) => {
+  const { register, watch, handleSubmit } = useForm<FormValues>({
+    mode: 'onChange',
+  });
 
   const [rating, setRating] = useState(0);
-  const [image, setImage] = useState('');
+  const [files, setFiles] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>([]);
 
   const ratingColors = Array(5)
     .fill('fill-gray-6E')
@@ -23,22 +40,56 @@ export const ReviewModal = () => {
 
   const text = watch('textarea', '');
 
-  const handleDeleteButton = () => {
-    console.log('이미지 인풋 삭제');
-    // TODO 진짜 작동하게 할 예정임
+  const handleDeleteButton = (index: number) => {
+    setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
   };
 
-  const handleImageUpload = () => {
-    // TODO 진짜 작동하게 할 거임
-    setImage('');
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const newFiles = Array.from(event.target.files).slice(
+        0,
+        3 - files.length,
+      );
+      setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+
+      const newPreviews = newFiles.map((file) => URL.createObjectURL(file));
+      setPreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
+    }
+  };
+
+  const onSubmit: SubmitHandler<FormValues> = async () => {
+    if (files.length === 0) return;
+
+    for (let i = 0; i < files.length; i += 1) {
+      const formData = new FormData();
+      formData.append('image', files[i]);
+
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        const response = await postImage(accessToken, formData);
+
+        if (response.ok) {
+          // eslint-disable-next-line no-await-in-loop
+          const result = await response.json();
+          console.log('File uploaded successfully:', result);
+        } else {
+          console.error('Error uploading file:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+    }
   };
 
   return (
-    <form className="border border-white rounded-3xl flex flex-col gap-[40px] mobile:gap-5 w-[335px] md:w-[590px] lg:w-[620px] h-[518px] md:h-[632px] lg:h-[698px] pt-[40px] p-5 md:p-[40px] lg:pt-[60px] lg:p-[40px]">
+    <form
+      className="flex flex-col gap-[40px] mobile:gap-5"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex flex-col gap-[10px]">
-        <CategoryChip categoryID={7} />
+        <CategoryChip categoryID={categoryId} />
         <span className="text-gray-F1 text-xl lg:text-2xl font-semibold lg:leading-none">
-          Sony WH-1000XM3
+          {name}
         </span>
       </div>
       <div className="flex flex-col gap-[10px] md:gap-[15px] lg:gap-5">
@@ -60,13 +111,22 @@ export const ReviewModal = () => {
           text={text}
           placeholder="리뷰를 작성해 주세요"
         />
-        <ImageInput
-          image={image}
-          handleDeleteButton={handleDeleteButton}
-          handleImageUpload={handleImageUpload}
-        />
+        <div className="flex gap-[10px] md:gap-[15px] lg:gap-5 overflow-auto scrollbar-hide">
+          {previews.length < 3 && (
+            <ImageInput previewImage="" handleImageChange={handleImageChange} />
+          )}
+          {previews.map((preview, index) => (
+            <ImageInput
+              key={Math.random()}
+              previewImage={preview}
+              handleDeleteButton={() => handleDeleteButton(index)}
+            />
+          ))}
+        </div>
+        <HelperText type="error">에러이다</HelperText>
       </div>
       <Button
+        type="submit"
         kind={ButtonKind.primary}
         customSize="lg:text-lg w-[295px] md:w-[510px] lg:w-[540px] h-[50px] md:h-[55px] lg:h-[65px]"
       >

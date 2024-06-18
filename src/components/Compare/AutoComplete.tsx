@@ -37,7 +37,7 @@ export const AutoComplete = ({
       const products: ProductList = await response.json();
       const filteredData = products.list
         .filter((product: AutoCompleteProduct) => product.name)
-        .slice(0, 10);
+        .slice(0, 5);
       setKeyItems(filteredData);
     } catch (error) {
       console.error('Failed to fetch product list.');
@@ -124,7 +124,7 @@ export const AutoComplete = ({
       </div>
       {keyItems.length > 0 && keyword && listOpen && (
         <div className="mt-2" ref={dropdownRef}>
-          <ul className="flex w-[350px] p-[10px] flex-col items-start gap-[5px] bg-black-25 border border-solid border-gray-35 rounded-lg">
+          <ul className="absolute flex w-[350px] md:w-[240px] mobile:w-[335px] p-[10px] flex-col items-start gap-[5px] bg-black-25 border border-solid border-gray-35 rounded-lg">
             {keyItems.map((product, index) => (
               <button
                 type="button"

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TableProductProps } from '../types';
+import { TableProductProps } from './types';
 
 interface TableProps {
   firstProduct: TableProductProps;
@@ -77,7 +77,7 @@ export const ComparisonResult = ({
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="flex flex-col h-[300px] items-center justify-center gap-5 md:max-w-[200px] mobile:max-w-[200px]">
+      <div className="flex flex-col mt-[150px] mobile:mt-[60px] items-center justify-center gap-5 md:max-w-[200px] mobile:max-w-[200px]">
         <p className={`${resultText} lg:text-2xl text-xl`}>
           {finalResult}
           {winResult > 0 && (

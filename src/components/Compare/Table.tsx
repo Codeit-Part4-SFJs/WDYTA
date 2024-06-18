@@ -1,7 +1,7 @@
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { useEffect, useState } from 'react';
-import { ComparisonResult } from './hooks/ComparisonResult';
+import { ComparisonResult } from './ComparisonResult';
 import { ProductDetailData } from './types';
 
 interface TableProps {

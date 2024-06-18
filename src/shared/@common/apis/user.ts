@@ -1,10 +1,5 @@
+import { MyInfoData } from '@/components/Profile/types/profileTypes';
 import { API_USERS } from './constants/API';
-
-interface PatchMyInfoProps {
-  description: string;
-  nickname: string;
-  image: string;
-}
 
 /**
  * 내 정보 조회
@@ -21,7 +16,7 @@ export const getMyInfo = (accessToken: string) => {
  * 내 정보 수정
  * @param data 내 정보 수정 폼의 데이터
  */
-export const patchMyInfo = (data: PatchMyInfoProps, accessToken: string) => {
+export const patchMyInfo = (data: MyInfoData, accessToken: string) => {
   return fetch(API_USERS.MY_INFO, {
     method: 'PATCH',
     headers: {

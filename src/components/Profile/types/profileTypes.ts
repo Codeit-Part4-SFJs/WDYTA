@@ -16,3 +16,9 @@ export interface UserInfoData {
     name: string;
   };
 }
+
+export interface MyInfoData {
+  description: string;
+  nickname: string;
+  image: string;
+}

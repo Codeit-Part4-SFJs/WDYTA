@@ -12,7 +12,7 @@ import {
 import useProductsQuery from '@/components/Profile/hooks/useProductsQuery';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export const ProductSection = ({ loginedId }: { loginedId: number }) => {
+export const ProductSection = ({ loginedId }: { loginedId: number | null }) => {
   const router = useRouter();
   const userId = useSearchParams().get('userId');
   const currentMenu = useSearchParams().get('tab') ?? 'reviewedProduct';

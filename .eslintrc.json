@@ -21,6 +21,7 @@
     "jsx-a11y/control-has-associated-label": "off",
     "jsx-a11y/no-noninteractive-tabindex": "off",
     "react/require-default-props": "off",
+    "no-else-return": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

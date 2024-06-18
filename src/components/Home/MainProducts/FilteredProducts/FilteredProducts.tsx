@@ -9,6 +9,7 @@ import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { homeProductOptions } from '@/app/[category]/homeQueryOptions';
 import { convertIdToCategory } from '@/shared/@common/utils';
 import { Loading } from '@/shared/ui/Icon';
+import { SideMenuOpenButton } from '@/shared/ui/Menu/SideMenu/SideMenuOpenButton';
 import { HOME_SORT_OPTIONS } from '../../constants/HOME_SORT_OPTIONS';
 import { SkeletonMainCard } from '../../skeletons/SkeletonMainCard';
 import { Product } from '../../types/ProductType';
@@ -62,15 +63,22 @@ export const FilteredProducts = ({
   }, [fetchNextPage, isFetchingNextPage, inView]);
 
   return (
-    <section>
-      <h2 className="text-[24px] text-gray-F1 font-semibold mb-6">
-        필터링된 상품
-      </h2>
-      <Sort
-        defaultValue={currentFilter}
-        options={HOME_SORT_OPTIONS}
-        onSelect={handleSelect}
-      />
+    <section className="mb-20">
+      <div className="mobile:mb-4 md:flex md:items-center md:place-content-between md:mb-6 lg:flex lg:items-center lg:place-content-between lg:mb-6">
+        <h2 className="mobile:mb-6 text-[24px] text-gray-F1 font-semibold">
+          필터링된 상품
+        </h2>
+        <div className="mobile:flex mobile:items-center mobile:place-content-between">
+          <div className="mobile:relative">
+            <SideMenuOpenButton currentCategoryId={category} />
+          </div>
+          <Sort
+            defaultValue={currentFilter}
+            options={HOME_SORT_OPTIONS}
+            onSelect={handleSelect}
+          />
+        </div>
+      </div>
       {hasData ? (
         FilteredProductsData?.pages?.map((page) => (
           <div
@@ -85,10 +93,8 @@ export const FilteredProducts = ({
           </div>
         ))
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          <div className="grid justify-center items-center h-[300px]">
-            <Loading>결과가 없습니다.</Loading>
-          </div>
+        <div className="mobile:min-h-[60vh] md:min-h-[65vh] lg:min-h-[50vh] w-full flex justify-center items-center">
+          <Loading>결과가 없습니다.</Loading>
         </div>
       )}
     </section>

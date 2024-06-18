@@ -7,7 +7,7 @@ import { FilteredProducts } from '@/components/Home/MainProducts/FilteredProduct
 import { SkeletonReviewerRanking } from '@/components/Home/skeletons/SkeletonReviewerRanking';
 import { ReviewerRanking } from '@/components/Home/ReviewerRanking/ReviewerRanking';
 import { convertCategoryToId } from '@/shared/@common/utils';
-import { SideMenu, SideMenuOpenButton } from '@/shared/ui/Menu/SideMenu';
+import { SideMenu } from '@/shared/ui/Menu/SideMenu';
 import { homeProductOptions, rankingOptions } from './homeQueryOptions';
 
 const FilteredHome = ({
@@ -29,12 +29,12 @@ const FilteredHome = ({
   );
 
   return (
-    <div className="min-h-screen grid grid-cols-1 md:grid-cols-5 lg:grid-cols-12 gap-4 lg:ml-auto lg:max-w-[1500px]">
+    <div className="min-h-screen grid grid-cols-1 md:grid-cols-5 lg:grid-cols-12 gap-4 lg:mx-auto lg:max-w-[1450px]">
       <div className="md:col-span-1 lg:col-span-2">
         <SideMenu currentCategoryId={convertCategoryToId(params.category)} />
       </div>
-      <div className="flex flex-col-reverse lg:flex-row md:col-span-4 lg:col-span-10 lg:justify-center mobile:ml-2 md:mr-2 lg:mr-auto">
-        <main className="md:col-span-3 lg:col-span-7 p-4 lg:my-20 lg:mr-12 lg:flex-auto">
+      <div className="flex flex-col-reverse lg:flex-row md:col-span-4 lg:col-span-10 lg:justify-center mobile:ml-2 md:mr-2">
+        <main className="md:col-span-3 lg:col-span-7 p-4 lg:my-14 lg:mr-12 lg:flex-auto">
           <Suspense fallback={<SkeletonMainProducts />}>
             <HydrationBoundary state={dehydrate(queryClient)}>
               <FilteredProducts
@@ -44,11 +44,6 @@ const FilteredHome = ({
               />
             </HydrationBoundary>
           </Suspense>
-          <div>
-            <SideMenuOpenButton
-              currentCategoryId={convertCategoryToId(params.category)}
-            />
-          </div>
         </main>
         <Suspense fallback={<SkeletonReviewerRanking />}>
           <HydrationBoundary state={dehydrate(queryClient)}>

@@ -21,11 +21,11 @@ export default function Home() {
   queryClient.prefetchQuery(rankingOptions());
 
   return (
-    <div className="min-h-screen grid grid-cols-1 md:grid-cols-5 lg:grid-cols-12 gap-4 lg:ml-auto lg:max-w-[1500px]">
+    <div className="min-h-screen grid grid-cols-1 md:grid-cols-5 lg:grid-cols-12 gap-4 lg:mx-auto lg:max-w-[1450px]">
       <div className="md:col-span-1 lg:col-span-2">
         <SideMenu />
       </div>
-      <div className="flex flex-col-reverse lg:flex-row md:col-span-4 lg:col-span-10 lg:justify-center mobile:ml-2 md:mr-2 lg:mr-auto">
+      <div className="flex flex-col-reverse lg:flex-row md:col-span-4 lg:col-span-10 lg:justify-center mobile:ml-2 md:mr-2">
         <main className="md:col-span-3 lg:col-span-7 p-4 lg:my-14 lg:mr-12 lg:flex-auto">
           <Suspense fallback={<SkeletonMainProducts />}>
             <HydrationBoundary state={dehydrate(queryClient)}>

@@ -13,6 +13,7 @@ import { SideMenuOpenButton } from '@/shared/ui/Menu/SideMenu/SideMenuOpenButton
 import { HOME_SORT_OPTIONS } from '../../constants/HOME_SORT_OPTIONS';
 import { SkeletonMainCard } from '../../skeletons/SkeletonMainCard';
 import { Product } from '../../types/ProductType';
+import { FilteredTitle } from './FilteredTitle';
 
 interface FilteredProductsProps {
   currentSearchWord: string;
@@ -63,11 +64,12 @@ export const FilteredProducts = ({
   }, [fetchNextPage, isFetchingNextPage, inView]);
 
   return (
-    <section className="mb-20">
+    <section className="mb-20 mobile:min-h-[70vh] md:min-h-[90vh] w-full">
       <div className="mobile:mb-4 md:flex md:items-center md:place-content-between md:mb-6 lg:flex lg:items-center lg:place-content-between lg:mb-6">
-        <h2 className="mobile:mb-6 text-[24px] text-gray-F1 font-semibold">
-          필터링된 상품
-        </h2>
+        <FilteredTitle
+          currentSearchWord={currentSearchWord}
+          category={category}
+        />
         <div className="mobile:flex mobile:items-center mobile:place-content-between">
           <div className="mobile:relative">
             <SideMenuOpenButton currentCategoryId={category} />

@@ -20,12 +20,12 @@ const GnbSearchBar = ({
   const router = useRouter();
   const { category } = useParams();
   const pathname = usePathname();
+  // 검색어 상태 관리
   const searchTerm = useSearchStore((state) => state.searchTerm);
   const setSearchTerm = useSearchStore((state) => state.setSearchTerm);
   const clearSearchTerm = useSearchStore((state) => state.clearSearchTerm);
 
   const onSubmit: SubmitHandler<SearchInput> = (data) => {
-    // TO DO: 검색어 상태 관리 로직 추가
     const { search } = data;
     setSearchTerm(search);
     if (!category) {
@@ -40,11 +40,13 @@ const GnbSearchBar = ({
   const searchBarRef = useRef<HTMLDivElement>(null);
   useClose(isOpenMobileSearchBar, handleToggledSearchBar, searchBarRef);
 
+  // 페이지 이동 시 검색어 초기화
   useEffect(() => {
     clearSearchTerm();
     setValue('search', '');
   }, [pathname, clearSearchTerm, setValue]);
 
+  // 검색어 입력 시 검색어 상태 업데이트
   useEffect(() => {
     setValue('search', searchTerm);
   }, [searchTerm, setValue]);

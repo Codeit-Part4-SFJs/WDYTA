@@ -5,6 +5,7 @@ import { FormValues } from '@/shared/@common/types/input';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { CategoryChip } from '@/shared/ui/Chip/CategoryChip';
 import { Icon } from '@/shared/ui/Icon';
+import HelperText from '@/shared/ui/Input/HelperText';
 import { TextBoxInput } from '@/shared/ui/Input/TextBox';
 import { ImageInput } from '@/shared/ui/Input/image';
 import { useState } from 'react';
@@ -59,8 +60,7 @@ export const ReviewModal = ({
   const onSubmit: SubmitHandler<FormValues> = async () => {
     if (files.length === 0) return;
 
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < files.length; i++) {
+    for (let i = 0; i < files.length; i += 1) {
       const formData = new FormData();
       formData.append('image', files[i]);
 
@@ -117,13 +117,13 @@ export const ReviewModal = ({
           )}
           {previews.map((preview, index) => (
             <ImageInput
-              // eslint-disable-next-line react/no-array-index-key
-              key={index}
+              key={Math.random()}
               previewImage={preview}
               handleDeleteButton={() => handleDeleteButton(index)}
             />
           ))}
         </div>
+        <HelperText type="error">에러이다</HelperText>
       </div>
       <Button
         type="submit"

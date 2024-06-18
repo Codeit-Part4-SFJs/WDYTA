@@ -17,7 +17,10 @@ export const FilteredTitle = ({
     : `${convertIdToKoreanCategoryName(category)}의 모든 상품`;
 
   // 카테고리와 검색어 둘다 있을 때
-  const bothFilteredTitle = `${convertIdToKoreanCategoryName(category)} 카테고리의 '${currentSearchWord}'로 검색한 상품`;
+  const bothFilteredTitle =
+    currentSearchWord === '_'
+      ? `${convertIdToKoreanCategoryName(category)}의 모든 상품`
+      : `${convertIdToKoreanCategoryName(category)} 카테고리의 '${currentSearchWord}'로 검색한 상품`;
 
   return (
     <h2 className="mobile:mb-6 mobile:text-[20px] md:text-[20px] lg:text-[24px] text-gray-F1 font-semibold">

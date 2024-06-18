@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   GnbSearchBarProps,
@@ -9,19 +9,25 @@ import {
 } from '@/shared/ui/Menu/Gnb/types/gnbType';
 import { Icon } from '@/shared/ui/Icon';
 import { useClose } from '@/shared/@common/hooks';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter, useParams, usePathname } from 'next/navigation';
+import { useSearchStore } from '@/stores/useSearchStore';
 
 const GnbSearchBar = ({
   isOpenMobileSearchBar,
   handleToggledSearchBar,
 }: GnbSearchBarProps) => {
-  const { register, handleSubmit } = useForm<SearchInput>();
+  const { register, handleSubmit, setValue } = useForm<SearchInput>();
   const router = useRouter();
   const { category } = useParams();
+  const pathname = usePathname();
+  const searchTerm = useSearchStore((state) => state.searchTerm);
+  const setSearchTerm = useSearchStore((state) => state.setSearchTerm);
+  const clearSearchTerm = useSearchStore((state) => state.clearSearchTerm);
 
   const onSubmit: SubmitHandler<SearchInput> = (data) => {
     // TO DO: 검색어 상태 관리 로직 추가
     const { search } = data;
+    setSearchTerm(search);
     if (!category) {
       router.replace(`/no_category?keyword=${search}`, {
         scroll: false,
@@ -33,6 +39,15 @@ const GnbSearchBar = ({
 
   const searchBarRef = useRef<HTMLDivElement>(null);
   useClose(isOpenMobileSearchBar, handleToggledSearchBar, searchBarRef);
+
+  useEffect(() => {
+    clearSearchTerm();
+    setValue('search', '');
+  }, [pathname, clearSearchTerm, setValue]);
+
+  useEffect(() => {
+    setValue('search', searchTerm);
+  }, [searchTerm, setValue]);
 
   return (
     <div

@@ -3,10 +3,10 @@ import { getUserCookies } from '@/shared/@common/utils/getUserCookies';
 import { Modal } from '@/shared/ui/Modal';
 
 const ProfileEdit = () => {
-  const { accessToken } = getUserCookies();
+  const { accessToken, loginedId } = getUserCookies();
   return (
     <Modal size="large" closeIcon>
-      <EditModal accessToken={accessToken} />
+      <EditModal accessToken={accessToken} loginedId={loginedId} />
     </Modal>
   );
 };

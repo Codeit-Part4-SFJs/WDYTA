@@ -4,7 +4,10 @@ import { ProfileKeys } from '@/app/profile/queryKeyFactories';
 import { MyInfoData } from '@/components/Profile/types/profileTypes';
 import { patchMyInfo } from '../../../shared/@common/apis/user';
 
-const useProfileEditMutation = (accessToken: string) => {
+const useProfileEditMutation = (
+  accessToken: string,
+  loginedId: number | null,
+) => {
   const queryClient = useQueryClient();
   const router = useRouter();
   return useMutation({
@@ -16,12 +19,13 @@ const useProfileEditMutation = (accessToken: string) => {
       }
       return response.json();
     },
+
     onSuccess: async () => {
       await router.back();
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ProfileKeys.all,
+        queryKey: ProfileKeys.user(loginedId),
       });
     },
   });

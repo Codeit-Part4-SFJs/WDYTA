@@ -2,13 +2,13 @@ import { Icon } from '@/shared/ui/Icon';
 import { ImageComponent } from '@/shared/ui/Img';
 import Link from 'next/link';
 import { ProductTypes } from '@/components/Profile/types/productType';
-import { formatCount } from '@/shared/@common/utils';
+import { convertIdToCategory, formatCount } from '@/shared/@common/utils';
 
 const ProductCard = ({ product }: { product: ProductTypes }) => {
   const { categoryId, id, image, name, reviewCount, rating, favoriteCount } =
     product;
   return (
-    <Link href={`/${categoryId}/${id}`}>
+    <Link href={`/${convertIdToCategory(categoryId)}/${id}`}>
       <div className="flex flex-col items-center justify-start pt-[10px] lg:pb-[20px] md:pb-[15px] mobile:pb-[10px] px-[10px] h-full mobile:w-full lg:max-w-[300px] mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border border-gray-35 bg-gray-25">
         <ImageComponent type="product" src={image} alt="이미지" />
 

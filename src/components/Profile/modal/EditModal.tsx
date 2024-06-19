@@ -8,40 +8,47 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Input } from '@/shared/ui/Input';
 import { FormValues } from '@/shared/@common/types/input';
 import HelperText from '@/shared/ui/Input/HelperText';
+import { useImageMutation } from '@/shared/@common/hooks';
+import { handleDeleteButton, handleImageChange } from '@/shared/@common/utils';
 import useProfileEditMutation from '../hooks/useProfileEditMutation';
 
-const EditModal = ({ accessToken }: { accessToken: string }) => {
+const EditModal = ({
+  accessToken,
+  loginedId,
+}: {
+  accessToken: string;
+  loginedId: number | null;
+}) => {
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitted },
   } = useForm<FormValues>({
     mode: 'onChange',
   });
+
   const text = watch('text', '');
   const nickname = watch('nickname', '');
 
-  const [image, setImage] = useState('');
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const imageMutation = useImageMutation({ accessToken, setErrorMessage });
 
-  const handleDeleteButton = () => {
-    console.log('이미지 인풋 삭제');
-  };
-
-  const handleImageUpload = () => {
-    setImage('');
-  };
-
-  const { mutate, error, isError } = useProfileEditMutation(accessToken);
+  const { mutate, error, isError } = useProfileEditMutation(
+    accessToken,
+    loginedId,
+  );
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const profileData = {
-      description: data.textarea,
-      nickname,
-      image:
-        'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/17/1710468437102/img',
-    };
-    mutate(profileData);
+    if (!file) return;
+
+    imageMutation.mutate(file, {
+      onSuccess: (image) => {
+        mutate({ description: data.textarea, nickname, image: image.url });
+      },
+    });
   };
 
   return (
@@ -52,10 +59,15 @@ const EditModal = ({ accessToken }: { accessToken: string }) => {
       <h1 className="lg:text-[24px] text-[20px] text-white">프로필 편집</h1>
       <div className="flex flex-col lg:gap-[20px] md:gap-[15px] mobile:gap-[10px]">
         <ImageInput
-          image={image}
-          handleDeleteButton={handleDeleteButton}
-          handleImageUpload={handleImageUpload}
+          previewImage={preview}
+          handleDeleteButton={() => handleDeleteButton({ setPreview })}
+          handleImageChange={(event) =>
+            handleImageChange({ event, setFile, setPreview })
+          }
         />
+        {errorMessage && (
+          <HelperText type="error">이미지를 다시 선택해주세요</HelperText>
+        )}
         <Input
           id="nickname"
           inputSize="medium"
@@ -83,6 +95,7 @@ const EditModal = ({ accessToken }: { accessToken: string }) => {
         type="submit"
         kind={ButtonKind.primary}
         customSize="w-[540px] h-[65px] md:w-[510px] md:h-[55px] mobile:w-[295px] mobile:h-[50px] lg:text-[18px]"
+        disabled={isSubmitted}
       >
         저장하기
       </Button>

@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { Modal } from '@/shared/ui/Modal';
 import Link from 'next/link';
 import { AlertModal } from '../@common/modal';
+import { TAB_NAMES_ORIGIN } from './constants/productMenu';
 
 interface ProfileCardProps {
   loginedId: number | null;
@@ -22,7 +23,7 @@ interface ProfileCardProps {
 export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   const router = useRouter();
   const userId = useSearchParams().get('userId');
-  const tab = useSearchParams().get('tab');
+  const tab = useSearchParams().get('tab') ?? TAB_NAMES_ORIGIN.reviewedProduct;
   const currentProfileId = Number(userId) || Number(loginedId);
   const isMyProfile = Number(userId) === Number(loginedId) || !userId;
 

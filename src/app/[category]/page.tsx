@@ -2,7 +2,7 @@ import { getQueryClient } from '@/app/getQueryClient';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { Floating } from '@/shared/ui/Button/Floating';
 import { Suspense } from 'react';
-import { SkeletonMainProducts } from '@/components/Home/skeletons/SkeletonMainProducts';
+import { SkeletonFilteredProducts } from '@/components/Home/skeletons/SkeletonFilteredProducts';
 import { FilteredProducts } from '@/components/Home/MainProducts/FilteredProducts/FilteredProducts';
 import { SkeletonReviewerRanking } from '@/components/Home/skeletons/SkeletonReviewerRanking';
 import { ReviewerRanking } from '@/components/Home/ReviewerRanking/ReviewerRanking';
@@ -35,7 +35,7 @@ const FilteredHome = ({
       </div>
       <div className="flex flex-col-reverse lg:flex-row md:col-span-4 lg:col-span-10 lg:justify-center mobile:ml-2 md:mr-2">
         <main className="md:col-span-3 lg:col-span-7 p-4 lg:my-14 lg:mr-12 lg:flex-auto">
-          <Suspense fallback={<SkeletonMainProducts />}>
+          <Suspense fallback={<SkeletonFilteredProducts />}>
             <HydrationBoundary state={dehydrate(queryClient)}>
               <FilteredProducts
                 currentSearchWord={currentSearchWord}

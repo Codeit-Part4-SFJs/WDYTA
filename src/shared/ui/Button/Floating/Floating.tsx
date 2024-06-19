@@ -1,10 +1,13 @@
 'use client';
 
 import { Icon } from '@/shared/ui/Icon';
+import { useRouter } from 'next/navigation';
 
 export const Floating = () => {
-  const makingAlertNow = () => {
-    alert('Floating이 클릭되었습니다!');
+  const router = useRouter();
+  const openModal = () => {
+    // alert('Floating이 클릭되었습니다!');
+    router.push(`/modal/home/productAdd`);
   };
 
   /*
@@ -19,7 +22,7 @@ export const Floating = () => {
       <Icon
         name="AddIcon"
         className={`w-[40px] text-white `}
-        onClick={makingAlertNow}
+        onClick={openModal}
       />
     </button>
   );

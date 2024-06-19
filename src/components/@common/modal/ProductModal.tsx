@@ -9,7 +9,7 @@ import { Input } from '@/shared/ui/Input';
 import HelperText from '@/shared/ui/Input/HelperText';
 import { TextBoxInput } from '@/shared/ui/Input/TextBox';
 import { ImageInput } from '@/shared/ui/Input/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CATEGORY_DROPDOWN_OPTIONS } from './constants/CATEGORY_DROPDOWN_OPTIONS';
 
@@ -26,6 +26,18 @@ export const ProductModal = ({ accessToken, title }: ProductModalProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [options, setOptions] = useState<{ value: string; label: string }[]>(
+    [],
+  );
+
+  useEffect(() => {
+    const loadOptions = async () => {
+      const fetchedOptions = await CATEGORY_DROPDOWN_OPTIONS();
+      setOptions(fetchedOptions);
+    };
+
+    loadOptions();
+  }, []);
 
   const text = watch('textarea', '');
 
@@ -62,7 +74,7 @@ export const ProductModal = ({ accessToken, title }: ProductModalProps) => {
               placeholder="상품명 (상품 등록 여부를 확인해 주세요)"
             />
             <Dropdown
-              options={CATEGORY_DROPDOWN_OPTIONS}
+              options={options}
               onSelect={handleProduct}
               placeholder="카테고리 선택"
               kind={DropdownKind.modal}

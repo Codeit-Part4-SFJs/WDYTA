@@ -16,13 +16,14 @@ export const getProductList = () => {
 
 /**
 
- * 상품목록조회
+ * (기본) 홈페이지에서 정렬에 따른 상품목록조회
  * @param order: 정렬 기준
  */
 export const getProductListByOrder = (order: string) => {
   return fetch(API_PRODUCT.PRODUCT_BY_ORDER(order));
-}
+};
 
+/**
  * 키워드를 이용한 상품목록조회
  * @param keyword: 자동완성을 위한 키워드
  */
@@ -34,7 +35,7 @@ export const getProductListKeyword = (keyword: string) => {
 };
 
 /**
- * 홈페이지에서의 상품목록조회
+ * (동적) 홈페이지에서의 상품목록조회
  * @param keyword: 검색어
  * @param category: 카테고리 Id
  * @param order: 정렬 기준

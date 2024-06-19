@@ -7,27 +7,30 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { productMenuInfo } from '@/components/Profile/hooks/useProductsQuery';
 import { Suspense } from 'react';
 import { SkeletonProfileCard } from '@/components/Profile/skeleton/SkeletonProfileCard';
-import { SkeletonProductSection } from '@/components/Profile/skeleton/SkeletonProductSection';
-import { SkeletonActivitySection } from '@/components/Profile/skeleton/SkeletonActivitySection';
+import {
+  SkeletonProductSection,
+  SkeletonActivitySection,
+} from '@/components/Profile/skeleton';
+
 import { redirect } from 'next/navigation';
+import { TAB_NAMES_ORIGIN } from '@/components/Profile/constants/productMenu';
 import {
   followerOptions,
   productOptions,
   profileOptions,
 } from './queryOptions';
 
-export interface ProfileProps {
+interface ProfileProps {
   searchParams: {
     tab: string;
     userId: string;
     type: string;
   };
 }
-
 export default function Profile({ searchParams }: ProfileProps) {
   const { loginedId, accessToken } = getUserCookies();
-  const userId = Number(searchParams.userId) ?? loginedId;
-  const currentMenu = searchParams.tab ?? 'reviewedProduct';
+  const userId = searchParams.userId ?? loginedId;
+  const currentMenu = searchParams.tab ?? TAB_NAMES_ORIGIN.reviewedProduct;
   const queryClient = getQueryClient();
   queryClient.prefetchQuery(profileOptions(Number(userId), accessToken));
   queryClient.prefetchQuery(followerOptions(Number(userId), accessToken));

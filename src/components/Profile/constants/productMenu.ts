@@ -1,6 +1,6 @@
 import { Option } from '@/shared/ui/Dropdown/Sort';
 
-const TAB_NAMES_ORIGIN = {
+export const TAB_NAMES_ORIGIN = {
   reviewedProduct: 'reviewedProduct',
   createdProduct: 'createdProduct',
   favoriteProduct: 'favoriteProduct',

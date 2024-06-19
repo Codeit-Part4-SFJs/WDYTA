@@ -53,7 +53,6 @@ export const ProductSection = ({ loginedId }: { loginedId: number | null }) => {
         <MenuDropdown
           options={PRODUCT_TAB_OPTIONS}
           onSelect={(label: string) => {
-            console.log(label);
             handleClickTab(label as ProductMenuType);
           }}
         >
@@ -74,11 +73,9 @@ export const ProductSection = ({ loginedId }: { loginedId: number | null }) => {
         ))}
       </ul>
 
-      <ProductList
-        productData={productData}
-        content={content}
-        triggerRef={triggerRef}
-      />
+      <ProductList productData={productData} content={content} />
+
+      <div ref={triggerRef} />
     </section>
   );
 };

@@ -8,13 +8,8 @@ import {
 interface ProductListProps {
   productData: { pages: ProductDataPage[] };
   content: string;
-  triggerRef: any;
 }
-export const ProductList = ({
-  productData,
-  content,
-  triggerRef,
-}: ProductListProps) => {
+export const ProductList = ({ productData, content }: ProductListProps) => {
   const hasProduct = productData.pages[0].list.length;
   return hasProduct ? (
     productData.pages.map((page) => (
@@ -25,7 +20,6 @@ export const ProductList = ({
         {page.list.map((product: ProductTypes) => (
           <ProductCard key={product?.id} product={product} />
         ))}
-        <div ref={triggerRef} />
       </div>
     ))
   ) : (

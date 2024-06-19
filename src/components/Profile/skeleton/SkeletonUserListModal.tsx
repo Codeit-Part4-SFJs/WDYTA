@@ -11,7 +11,7 @@ const SkeletonUserList = () => {
   );
 };
 
-const SkeletonUserListModal = () => (
+export const SkeletonUserListModal = () => (
   <div className="flex flex-col gap-[40px] lg:h-[520px] md:h-[440px] mobile:h-[440px] w-full">
     <h1 className="lg:text-2xl text-xl text-white bg-slate-700 animate-pulse rounded">
       &nbsp;

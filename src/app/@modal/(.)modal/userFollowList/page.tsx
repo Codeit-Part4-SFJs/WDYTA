@@ -1,5 +1,5 @@
 import UserListModal from '@/components/Profile/modal/UserListModal';
-import SkeletonUserListModal from '@/components/Profile/skeleton/SkeletonUserListModal';
+import { SkeletonUserListModal } from '@/components/Profile/skeleton';
 import { getUserCookies } from '@/shared/@common/utils/getUserCookies';
 import { Modal } from '@/shared/ui/Modal';
 import { Suspense } from 'react';

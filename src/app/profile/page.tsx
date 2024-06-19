@@ -10,9 +10,13 @@ import { SkeletonProfileCard } from '@/components/Profile/skeleton/SkeletonProfi
 import { SkeletonProductSection } from '@/components/Profile/skeleton/SkeletonProductSection';
 import { SkeletonActivitySection } from '@/components/Profile/skeleton/SkeletonActivitySection';
 import { redirect } from 'next/navigation';
-import { productOptions, profileOptions } from './queryOptions';
+import {
+  followerOptions,
+  productOptions,
+  profileOptions,
+} from './queryOptions';
 
-interface ProfileProps {
+export interface ProfileProps {
   searchParams: {
     tab: string;
     userId: string;
@@ -26,6 +30,8 @@ export default function Profile({ searchParams }: ProfileProps) {
   const currentMenu = searchParams.tab ?? 'reviewedProduct';
   const queryClient = getQueryClient();
   queryClient.prefetchQuery(profileOptions(Number(userId), accessToken));
+  queryClient.prefetchQuery(followerOptions(Number(userId), accessToken));
+
   queryClient.prefetchInfiniteQuery(
     productOptions(
       Number(userId),

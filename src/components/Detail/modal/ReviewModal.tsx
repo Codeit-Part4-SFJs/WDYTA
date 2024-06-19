@@ -1,6 +1,6 @@
 'use client';
 
-import { postImage } from '@/shared/@common/apis';
+import { useImageMutation } from '@/shared/@common/hooks';
 import { FormValues } from '@/shared/@common/types/input';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { CategoryChip } from '@/shared/ui/Chip/CategoryChip';
@@ -9,19 +9,16 @@ import HelperText from '@/shared/ui/Input/HelperText';
 import { TextBoxInput } from '@/shared/ui/Input/TextBox';
 import { ImageInput } from '@/shared/ui/Input/image';
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useQueryClient } from '@tanstack/react-query';
+import { useCreateReviewMutation } from '../ProductReviews/hooks/useCreateReviewMutation';
 
 interface ReviewModalProps {
   accessToken: string;
-  categoryId: number;
-  name: string;
 }
 
-export const ReviewModal = ({
-  accessToken,
-  categoryId,
-  name,
-}: ReviewModalProps) => {
+export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
   const { register, watch, handleSubmit } = useForm<FormValues>({
     mode: 'onChange',
   });
@@ -29,6 +26,13 @@ export const ReviewModal = ({
   const [rating, setRating] = useState(0);
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const params = useSearchParams();
+  const productId = parseInt(params.get('product') as string, 10);
+  const categoryId = parseInt(params.get('category') as string, 10);
+  const productName = params.get('name') || '';
+  const currentFilter = params.get('filter') || '';
 
   const ratingColors = Array(5)
     .fill('fill-gray-6E')
@@ -40,8 +44,20 @@ export const ReviewModal = ({
 
   const text = watch('textarea', '');
 
+  const queryClient = useQueryClient();
+
+  const imageMutation = useImageMutation({ accessToken, setErrorMessage });
+  const createReviewMutation = useCreateReviewMutation({
+    accessToken,
+    setErrorMessage,
+    queryClient,
+    productId,
+    currentFilter,
+  });
+
   const handleDeleteButton = (index: number) => {
     setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,24 +76,28 @@ export const ReviewModal = ({
   const onSubmit: SubmitHandler<FormValues> = async () => {
     if (files.length === 0) return;
 
-    for (let i = 0; i < files.length; i += 1) {
-      const formData = new FormData();
-      formData.append('image', files[i]);
+    const promises = files.map((file) => {
+      return new Promise<string>((resolve, reject) => {
+        const formData = new FormData();
+        formData.append('image', file);
 
-      try {
-        // eslint-disable-next-line no-await-in-loop
-        const response = await postImage(accessToken, formData);
+        imageMutation
+          .mutateAsync(file)
+          .then((data) => resolve(data.url))
+          .catch(() => reject(new Error('Image upload failed')));
+      });
+    });
 
-        if (response.ok) {
-          // eslint-disable-next-line no-await-in-loop
-          const result = await response.json();
-          console.log('File uploaded successfully:', result);
-        } else {
-          console.error('Error uploading file:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error uploading file:', error);
-      }
+    try {
+      const urls = await Promise.all(promises);
+      createReviewMutation.mutate({
+        productId,
+        images: urls,
+        content: text,
+        rating,
+      });
+    } catch (error) {
+      setErrorMessage('이미지 업로드 중 오류가 발생했습니다.');
     }
   };
 
@@ -89,13 +109,20 @@ export const ReviewModal = ({
       <div className="flex flex-col gap-[10px]">
         <CategoryChip categoryID={categoryId} />
         <span className="text-gray-F1 text-xl lg:text-2xl font-semibold lg:leading-none">
-          {name}
+          {productName}
         </span>
       </div>
       <div className="flex flex-col gap-[10px] md:gap-[15px] lg:gap-5">
         <div className="flex items-center gap-[15px] lg:gap-5">
           <p className="text-gray-6E text-sm lg:text-base">별점</p>
-          <div className="flex gap-[2px] lg:gap-[5px]">
+          <div
+            className="flex gap-[2px] lg:gap-[5px]"
+            role="slider"
+            tabIndex={0}
+            aria-valuenow={rating}
+            aria-valuemin={1}
+            aria-valuemax={5}
+          >
             {ratingColors.map((color, index) => (
               <Icon
                 key={Math.random()}
@@ -111,7 +138,7 @@ export const ReviewModal = ({
           text={text}
           placeholder="리뷰를 작성해 주세요"
         />
-        <div className="flex gap-[10px] md:gap-[15px] lg:gap-5 overflow-auto scrollbar-hide">
+        <div className="flex mobile:w-[315px] h-full gap-[10px] md:gap-[15px] lg:gap-5 overflow-x-auto scrollbar-hide">
           {previews.length < 3 && (
             <ImageInput previewImage="" handleImageChange={handleImageChange} />
           )}
@@ -123,7 +150,9 @@ export const ReviewModal = ({
             />
           ))}
         </div>
-        <HelperText type="error">에러이다</HelperText>
+        {errorMessage && (
+          <HelperText type="error">이미지를 다시 선택해주세요</HelperText>
+        )}
       </div>
       <Button
         type="submit"

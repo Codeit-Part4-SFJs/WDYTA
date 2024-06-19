@@ -43,6 +43,7 @@ const DetailPage = ({
             userId={userId}
             productId={productId}
             accessToken={accessToken}
+            currentFilter={currentFilter}
           />
         </HydrationBoundary>
       </Suspense>

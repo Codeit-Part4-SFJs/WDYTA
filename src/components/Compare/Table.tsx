@@ -1,4 +1,4 @@
-import { Button, ButtonKind } from '@/shared/ui/Button/Button';
+// import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { useEffect, useState } from 'react';
 import { ComparisonResult } from './ComparisonResult';
@@ -88,12 +88,12 @@ export const Table = ({
           }}
         />
         <div className="mt-10">
-          <Button
+          {/* <Button
             kind={ButtonKind.secondary}
             customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
           >
             이 상품 보러 가기
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

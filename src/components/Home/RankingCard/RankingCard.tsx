@@ -8,6 +8,14 @@ interface RankingCardProps {
 
 // TODO: 현준님 프로필 페이지 주소로 이동하는 <Link> 태그로 감싸기
 export const RankingCard = ({ ranking }: RankingCardProps) => {
+  // 1000 이상의 숫자를 1K+ 형태로 변환하는 함수
+  const formatted1000toK = (count: number) => {
+    if (count < 1000) {
+      return count;
+    }
+    return `${Math.round(count / 1000)}K+`;
+  };
+
   return (
     <div className="flex-none w-47 flex items-center gap-[10px] mb-7">
       <ImageComponent
@@ -25,8 +33,8 @@ export const RankingCard = ({ ranking }: RankingCardProps) => {
           </span>
         </div>
         <div className="flex gap-3 text-[12px] font-light text-gray-6E">
-          <span>팔로워 {ranking.followersCount}</span>
-          <span>리뷰 {ranking.reviewCount}</span>
+          <span>팔로워 {formatted1000toK(ranking.followersCount)}</span>
+          <span>리뷰 {formatted1000toK(ranking.reviewCount)}</span>
         </div>
       </div>
     </div>

@@ -18,6 +18,8 @@ interface ReviewModalProps {
   accessToken: string;
 }
 
+const MAX_SIZE = 5 * 1024 * 1024;
+
 export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
   const { register, watch, handleSubmit } = useForm<FormValues>({
     mode: 'onChange',
@@ -66,15 +68,43 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
         0,
         3 - files.length,
       );
-      setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+      const validFiles = newFiles
+        .filter((file) => {
+          if (file.size > MAX_SIZE) {
+            alert('이미지 파일의 최대 용량은 5MB입니다.');
+            return false;
+          }
+          return true;
+        })
+        .map((file) => {
+          const newFileName = Math.random().toString(36).substring(2, 8);
+          return new File([file], newFileName, { type: file.type });
+        });
 
-      const newPreviews = newFiles.map((file) => URL.createObjectURL(file));
-      setPreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
+      if (validFiles.length > 0) {
+        setFiles((prevFiles) => [...prevFiles, ...validFiles]);
+
+        const newPreviews = validFiles.map((file) => URL.createObjectURL(file));
+        setPreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
+      }
     }
   };
 
   const onSubmit: SubmitHandler<FormValues> = async () => {
-    if (files.length === 0) return;
+    if (rating === 0) {
+      setErrorMessage('별점을 선택해 주세요');
+      return;
+    }
+
+    if (text.trim() === '') {
+      setErrorMessage('리뷰 내용을 작성해 주세요');
+      return;
+    }
+
+    if (files.length === 0) {
+      setErrorMessage('최소한 한 개의 이미지를 업로드해 주세요');
+      return;
+    }
 
     const promises = files.map((file) => {
       return new Promise<string>((resolve, reject) => {
@@ -138,7 +168,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
           text={text}
           placeholder="리뷰를 작성해 주세요"
         />
-        <div className="flex mobile:w-[315px] h-full gap-[10px] md:gap-[15px] lg:gap-5 overflow-x-auto scrollbar-hide">
+        <div className="flex mobile:w-[315px] gap-[10px] md:gap-[15px] lg:gap-5 overflow-x-auto scrollbar-hide">
           {previews.length < 3 && (
             <ImageInput previewImage="" handleImageChange={handleImageChange} />
           )}
@@ -150,9 +180,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
             />
           ))}
         </div>
-        {errorMessage && (
-          <HelperText type="error">이미지를 다시 선택해주세요</HelperText>
-        )}
+        {errorMessage && <HelperText type="error">{errorMessage}</HelperText>}
       </div>
       <Button
         type="submit"

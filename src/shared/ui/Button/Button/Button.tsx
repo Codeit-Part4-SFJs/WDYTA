@@ -19,7 +19,7 @@ export const ButtonStyleByKind = {
   },
   [ButtonKind.secondary]: {
     button:
-      'border border-solid border-main-blue bg-transparent disabled:border-gray-35 disabled:text-gray-6E',
+      'border border-solid bg-transparent disabled:border-gray-35 disabled:text-gray-6E',
     p: 'group-disabled:text-gray-6E text-transparent bg-clip-text bg-main-gradation',
   },
   [ButtonKind.tertiary]: {
@@ -39,7 +39,7 @@ export const Button = ({
   return (
     <button
       type="button"
-      className={`${customSize} ${buttonBase} ${ButtonStyleByKind[kind].button} group `}
+      className={` ${buttonBase} ${ButtonStyleByKind[kind].button} group  ${customSize}`}
       disabled={disabled}
       {...props}
     >
@@ -47,12 +47,3 @@ export const Button = ({
     </button>
   );
 };
-
-/* 사용법 
-크기를 L, M, S로 두고, disabled의 경우에는 boolean 값으로 disabled를 설정하시면 됩니다.
-onClick Prop을 활용하여 다음 동작을 결정하시면 됩니다.
-      <PrimaryButton size="S" disabled={true}>
-        스몰 비활성화
-      </PrimaryButton>
-  와 같이 사용하시면 children props로 값이 전달됩니다. 
-*/

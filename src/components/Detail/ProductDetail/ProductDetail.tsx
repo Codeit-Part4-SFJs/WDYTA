@@ -78,7 +78,7 @@ export const ProductDetail = ({
           </Button>
           <Button
             onClick={handleCompareButtonClick}
-            customSize="flex-1 w-full p-[15px]"
+            customSize="flex-1 w-full p-[15px] border-main-blue"
             kind={ButtonKind.secondary}
           >
             비교하기

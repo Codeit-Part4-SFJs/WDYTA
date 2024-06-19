@@ -127,7 +127,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
         rating,
       });
     } catch (error) {
-      setErrorMessage('이미지 업로드 중 오류가 발생했습니다.');
+      setErrorMessage('이미지 업로드 중 오류가 발생했습니다');
     }
   };
 

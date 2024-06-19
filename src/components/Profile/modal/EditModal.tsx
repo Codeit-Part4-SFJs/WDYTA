@@ -11,19 +11,18 @@ import HelperText from '@/shared/ui/Input/HelperText';
 import { useImageMutation } from '@/shared/@common/hooks';
 import { handleDeleteButton, handleImageChange } from '@/shared/@common/utils';
 import useProfileEditMutation from '../hooks/useProfileEditMutation';
+import { PROFILE_DEFAULT_IMAGE } from '../constants/profileDefaultImage';
 
-const EditModal = ({
-  accessToken,
-  loginedId,
-}: {
+interface EditModalProps {
   accessToken: string;
   loginedId: number | null;
-}) => {
+}
+const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitted },
+    formState: { errors },
   } = useForm<FormValues>({
     mode: 'onChange',
   });
@@ -34,6 +33,7 @@ const EditModal = ({
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false); // 추가된 상태
   const imageMutation = useImageMutation({ accessToken, setErrorMessage });
 
   const { mutate, error, isError } = useProfileEditMutation(
@@ -42,11 +42,31 @@ const EditModal = ({
   );
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    if (!file) return;
+    setIsSubmitting(true);
+
+    if (nickname.trim() === '') {
+      setErrorMessage('변경할 닉네임을 입력해 주세요');
+      return;
+    }
+    if (!file) {
+      mutate(
+        {
+          description: data.textarea,
+          nickname,
+          image: PROFILE_DEFAULT_IMAGE,
+        },
+        { onError: () => setIsSubmitting(false) },
+      );
+      return;
+    }
 
     imageMutation.mutate(file, {
       onSuccess: (image) => {
-        mutate({ description: data.textarea, nickname, image: image.url });
+        mutate({
+          description: data.textarea,
+          nickname,
+          image: image.url,
+        });
       },
     });
   };
@@ -95,7 +115,7 @@ const EditModal = ({
         type="submit"
         kind={ButtonKind.primary}
         customSize="w-[540px] h-[65px] md:w-[510px] md:h-[55px] mobile:w-[295px] mobile:h-[50px] lg:text-[18px]"
-        disabled={isSubmitted}
+        disabled={isSubmitting}
       >
         저장하기
       </Button>

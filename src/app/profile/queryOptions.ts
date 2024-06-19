@@ -38,7 +38,7 @@ export const profileOptions = (userId: number, accessToken: string) => {
 
 export const followerOptions = (userId: number, type: string) => {
   return infiniteQueryOptions<FollowDataPage>({
-    queryKey: ProfileKeys.userList(Number(userId), type),
+    queryKey: ProfileKeys.followList(Number(userId), type),
     queryFn: async ({ pageParam }) => {
       const response = await getUserFollowers(
         Number(userId),
@@ -53,7 +53,7 @@ export const followerOptions = (userId: number, type: string) => {
 
 export const followeeOptions = (userId: number, type: string) => {
   return infiniteQueryOptions<FollowDataPage>({
-    queryKey: ProfileKeys.userList(Number(userId), type),
+    queryKey: ProfileKeys.followList(Number(userId), type),
     queryFn: async ({ pageParam }) => {
       const response = await getUserFollowees(
         Number(userId),

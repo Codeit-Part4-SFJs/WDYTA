@@ -4,19 +4,6 @@ import { ImageComponent } from '@/shared/ui/Img';
 import Link from 'next/link';
 import { ProductTypes } from '@/components/Profile/types/productType';
 
-interface ProductTypes {
-  updatedAt: string;
-  createdAt: string;
-  writerId: number;
-  categoryId: number;
-  favoriteCount: number;
-  reviewCount: number;
-  rating: number;
-  image: string;
-  name: string;
-  id: number;
-}
-
 const ProductCard = ({ product }: { product: ProductTypes }) => {
   const { id, categoryId, image, name, reviewCount, rating, favoriteCount } =
     product;

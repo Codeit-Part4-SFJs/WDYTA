@@ -18,7 +18,7 @@ export const RankingCard = ({ ranking }: RankingCardProps) => {
 
   return (
     // 프로필 페이지 주소로 이동하는 <Link> 태그
-    <Link href={`/profile/${ranking.id}`}>
+    <Link href={`/profile?userId=${ranking.id}`}>
       <div className="flex-none w-47 flex items-center gap-[10px] mb-7">
         <ImageComponent
           type="profile"

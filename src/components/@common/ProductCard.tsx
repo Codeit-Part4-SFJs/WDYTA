@@ -2,8 +2,8 @@ import { convertIdToCategory } from '@/shared/@common/utils';
 import { Icon } from '@/shared/ui/Icon';
 import { ImageComponent } from '@/shared/ui/Img';
 import Link from 'next/link';
+import { ProductTypes } from '@/components/Profile/types/productType';
 
-// 추후 이동
 interface ProductTypes {
   updatedAt: string;
   createdAt: string;
@@ -17,11 +17,7 @@ interface ProductTypes {
   id: number;
 }
 
-interface ProductCardProps {
-  product: ProductTypes;
-}
-
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product }: { product: ProductTypes }) => {
   const { id, categoryId, image, name, reviewCount, rating, favoriteCount } =
     product;
   return (
@@ -46,7 +42,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 className="w-[12px] h-[12px] md:w-[15px] md:h-[15px] lg:w-[16px] lg:h-[16px] fill-yellow"
               />
               <p className="leading-none text-gray-9F">
-                {Math.abs(rating).toFixed(1)}
+                {Math.round(rating * 100) / 100}
               </p>
             </div>
           </div>

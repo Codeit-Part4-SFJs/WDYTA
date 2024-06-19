@@ -5,20 +5,13 @@ import { FormValues } from '@/shared/@common/types/input';
 import { handleDeleteButton, handleImageChange } from '@/shared/@common/utils';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { Dropdown, DropdownKind } from '@/shared/ui/Dropdown/Dropdown';
-import { Option } from '@/shared/ui/Dropdown/Sort';
 import { Input } from '@/shared/ui/Input';
 import HelperText from '@/shared/ui/Input/HelperText';
 import { TextBoxInput } from '@/shared/ui/Input/TextBox';
 import { ImageInput } from '@/shared/ui/Input/image';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
-const dropdownOptions: Option[] = [
-  { value: 'option1', label: '옵션 1' },
-  { value: 'option2', label: '옵션 2' },
-  { value: 'option3', label: '옵션 3' },
-  { value: 'option4', label: '옵션 4' },
-];
+import { CATEGORY_DROPDOWN_OPTIONS } from './constants/CATEGORY_DROPDOWN_OPTIONS';
 
 interface ProductModalProps {
   accessToken: string;
@@ -69,7 +62,7 @@ export const ProductModal = ({ accessToken, title }: ProductModalProps) => {
               placeholder="상품명 (상품 등록 여부를 확인해 주세요)"
             />
             <Dropdown
-              options={dropdownOptions}
+              options={CATEGORY_DROPDOWN_OPTIONS}
               onSelect={handleProduct}
               placeholder="카테고리 선택"
               kind={DropdownKind.modal}

@@ -14,6 +14,7 @@ export const ProductDetail = ({
   userId,
   productId,
   accessToken,
+  currentFilter,
 }: ProductDetailProps) => {
   const { data: productDetailData } = useSuspenseQuery(
     productOptions(productId, accessToken),
@@ -66,6 +67,12 @@ export const ProductDetail = ({
               MY_PRODUCT ? 'flex-1' : 'flex-[2_2_0%]'
             } w-full p-[15px]`}
             kind={ButtonKind.primary}
+            onClick={() => {
+              router.push(
+                `/modal/detail/review?product=${productId}&category=${productDetailData.categoryId}&name=${productDetailData.name}&filter=${currentFilter}`,
+                { scroll: false },
+              );
+            }}
           >
             리뷰 작성하기
           </Button>

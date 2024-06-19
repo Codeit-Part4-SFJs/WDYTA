@@ -1,7 +1,7 @@
 import { API_REVIEWS } from './constants/API';
 
-interface PostReviewProps {
-  productId: 1;
+export interface PostReviewProps {
+  productId: number;
   images: string[];
   content: string;
   rating: number;

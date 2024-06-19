@@ -1,14 +1,28 @@
+import { convertIdToCategory } from '@/shared/@common/utils';
 import { Icon } from '@/shared/ui/Icon';
 import { ImageComponent } from '@/shared/ui/Img';
 import Link from 'next/link';
 import { ProductTypes } from '@/components/Profile/types/productType';
 
+interface ProductTypes {
+  updatedAt: string;
+  createdAt: string;
+  writerId: number;
+  categoryId: number;
+  favoriteCount: number;
+  reviewCount: number;
+  rating: number;
+  image: string;
+  name: string;
+  id: number;
+}
+
 const ProductCard = ({ product }: { product: ProductTypes }) => {
-  const { categoryId, id, image, name, reviewCount, rating, favoriteCount } =
+  const { id, categoryId, image, name, reviewCount, rating, favoriteCount } =
     product;
   return (
-    <Link href={`/${categoryId}/${id}`}>
-      <div className="flex flex-col items-center justify-center pt-[10px] lg:pb-[20px] md:pb-[15px] mobile:pb-[10px] px-[10px] mobile:w-full lg:max-w-[300px] mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border-gray-35 bg-gray-25">
+    <Link href={`/${convertIdToCategory(categoryId)}/${id}`}>
+      <div className="min-w-30 flex flex-col items-center justify-center pt-[10px] lg:pb-[20px] md:pb-[15px] mobile:pb-[10px] px-[10px] mobile:w-full lg:max-w-[300px] mobile:gap-[10px] md:gap-[20px] gap-[25px] rounded-lg border-2 hover:border-main-blue border-gray-35 bg-gray-25">
         <ImageComponent type="product" src={image} alt="이미지" />
 
         <div className="w-full flex flex-col gap-[10px] mobile:gap-[5px] lg:px-[20px] md:px-[16.5px] mobile:px-[10px]">

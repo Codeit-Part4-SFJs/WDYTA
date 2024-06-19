@@ -23,7 +23,7 @@ const getColorByRank = (rank: number): RankingColor => {
 };
 
 export const adaptRanking = (data: Ranking[]): AdaptedRankingData[] => {
-  return data.slice(0, 6).map((item, index) => ({
+  return data?.slice(0, 6).map((item, index) => ({
     id: item.id,
     rank: index + 1,
     nickname: item.nickname,

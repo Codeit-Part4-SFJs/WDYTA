@@ -33,7 +33,7 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false); // 추가된 상태
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const imageMutation = useImageMutation({ accessToken, setErrorMessage });
 
   const { mutate, error, isError } = useProfileEditMutation(

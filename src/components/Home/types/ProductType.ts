@@ -10,3 +10,13 @@ export interface Product {
   writerId: number;
   favoriteCount: number;
 }
+
+export interface ProductsDataPage {
+  list: Product[];
+  nextCursor: number;
+}
+
+export interface ProductsDataAllPages {
+  pages: ProductsDataPage[];
+  pageParams: number[];
+}

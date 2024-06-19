@@ -1,22 +1,30 @@
+'use client';
+
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
+import { useRouter } from 'next/navigation';
 
 interface AlertModalProps {
   errorMessage: string;
   buttonText: string;
-  handleButtonClick: () => void;
+  path: string;
 }
 
 export const AlertModal = ({
   errorMessage,
   buttonText,
-  handleButtonClick,
+  path,
 }: AlertModalProps) => {
+  const router = useRouter();
+
+  const handleButtonClick = () => {
+    router.push(path);
+  };
   return (
-    <div className="mt-[30px] ml-5 relative border border-white rounded-3xl flex flex-col items-center w-[500px] mobile:w-[335px] h-[196px] md:h-[256px] lg:h-[263px] pt-[70px] p-[40px] mobile:pt-[50px] mobile:p-5">
+    <div className="flex flex-col h-[136px] md:h-[156px] lg:h-[163px] justify-between items-center">
       <span className="text-gray-F1 text-base">{errorMessage}</span>
       <Button
         kind={ButtonKind.primary}
-        customSize="absolute bottom-[40px] mobile:bottom-[20px] left-[40px] mobile:left-[20px] lg:text-lg w-[420px] mobile:w-[295px] h-[50px] md:h-[55px] lg:h-[65px]"
+        customSize="lg:text-lg w-[420px] mobile:w-[295px] h-[50px] md:h-[55px] lg:h-[65px]"
         onClick={handleButtonClick}
       >
         {buttonText}

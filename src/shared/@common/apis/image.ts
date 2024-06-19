@@ -8,7 +8,6 @@ export const postImage = (accessToken: string, data: FormData) => {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'multipart/form-data',
     },
     body: data,
   });

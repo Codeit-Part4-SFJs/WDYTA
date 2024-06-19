@@ -11,6 +11,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { profileOptions } from '@/app/profile/queryOptions';
 import { useState } from 'react';
 import { Modal } from '@/shared/ui/Modal';
+import Link from 'next/link';
 import { AlertModal } from '../@common/modal';
 
 interface ProfileCardProps {
@@ -21,6 +22,7 @@ interface ProfileCardProps {
 export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   const router = useRouter();
   const userId = useSearchParams().get('userId');
+  const tab = useSearchParams().get('tab');
   const currentProfileId = Number(userId) || Number(loginedId);
   const isMyProfile = Number(userId) === Number(loginedId) || !userId;
 
@@ -47,22 +49,6 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   const followBtnKind = isFollowing ? ButtonKind.tertiary : ButtonKind.primary;
   const followBtnText = isFollowing ? '팔로우 취소' : '팔로우';
 
-  const handleClickFollowerCount = () => {
-    router.push(
-      `/modal/userFollowList?userId=${currentProfileId}&type=follower`,
-      {
-        scroll: false,
-      },
-    );
-  };
-  const handleClickFolloweeCount = () => {
-    router.push(
-      `/modal/userFollowList?userId=${currentProfileId}&type=followee`,
-      {
-        scroll: false,
-      },
-    );
-  };
   const handleClickFollow = () => {
     if (!accessToken) {
       setShowAlert(true);
@@ -99,26 +85,28 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
       </div>
       <div className="flex justify-between lg:w-[160px] lg:h-[53px] md:w-[234px] md:h-[48px] mobile:w-[194px] mobile:h-[48px]">
         <div className="flex flex-col items-center">
-          <div
-            role="none"
-            onClick={handleClickFollowerCount}
-            className="lg:text-[20px] md:text-[18px] text-gray-F1 cursor-pointer"
+          <Link
+            href={`/modal/userFollowList?userId=${currentProfileId}&tab=${tab}&type=follower`}
+            scroll={false}
           >
-            {followersCount}
-          </div>
+            <div className="lg:text-[20px] md:text-[18px] text-gray-F1 cursor-pointer">
+              {followersCount}
+            </div>
+          </Link>
           <div className="lg:text-[16px] md:text-[14px] text-gray-9F">
             팔로워
           </div>
         </div>
         <div className="border border-solid border-gray-35" />
         <div className="flex flex-col items-center">
-          <div
-            role="none"
-            onClick={handleClickFolloweeCount}
-            className="lg:text-[20px] md:text-[18px] text-gray-F1 cursor-pointer"
+          <Link
+            href={`/modal/userFollowList?userId=${currentProfileId}&tab=${tab}&type=followee`}
+            scroll={false}
           >
-            {followeesCount}
-          </div>
+            <div className="lg:text-[20px] md:text-[18px] text-gray-F1 cursor-pointer">
+              {followeesCount}
+            </div>
+          </Link>
           <div className="lg:text-[16px] md:text-[14px] text-gray-9F">
             팔로잉
           </div>

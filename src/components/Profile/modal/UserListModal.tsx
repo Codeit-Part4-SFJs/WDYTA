@@ -23,7 +23,7 @@ import { PROFILE_DEFAULT_IMAGE } from '../constants/profileDefaultImage';
 
 interface UserListModalProps {
   accessToken: string;
-  loginedId: number;
+  loginedId: number | null;
 }
 const UserListModal = ({ accessToken, loginedId }: UserListModalProps) => {
   const searchParams = useSearchParams();

@@ -36,10 +36,11 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const imageMutation = useImageMutation({ accessToken, setErrorMessage });
 
-  const { mutate, error, isError } = useProfileEditMutation(
-    accessToken,
-    loginedId,
-  );
+  const {
+    mutate: editMutate,
+    error,
+    isError,
+  } = useProfileEditMutation(accessToken, loginedId);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setIsSubmitting(true);
@@ -49,7 +50,7 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
       return;
     }
     if (!file) {
-      mutate(
+      editMutate(
         {
           description: data.textarea,
           nickname,
@@ -62,7 +63,7 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
 
     imageMutation.mutate(file, {
       onSuccess: (image) => {
-        mutate({
+        editMutate({
           description: data.textarea,
           nickname,
           image: image.url,

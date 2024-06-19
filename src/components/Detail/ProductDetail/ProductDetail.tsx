@@ -9,6 +9,7 @@ import { ProductDetailProps } from '@/components/Detail/types';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { productOptions } from '@/app/[category]/[product]/queryOptions';
 import { useRouter } from 'next/navigation';
+import { useCompareItems } from '@/stores/useCompareItems';
 
 export const ProductDetail = ({
   userId,
@@ -24,8 +25,18 @@ export const ProductDetail = ({
 
   const router = useRouter();
 
+  const { firstItem, secondItem } = useCompareItems();
+
   const handleCompareButtonClick = () => {
-    router.push(`/compare/${productId}`);
+    if (!!firstItem && !!secondItem) {
+      router.push(`/modal/compare`);
+    } else if (!!firstItem && !secondItem) {
+      router.push(`/compare?product1=${firstItem}&product2=${productId}`);
+    } else if (!firstItem && !!secondItem) {
+      router.push(`/compare?product1=${productId}&product2=${secondItem}`);
+    } else if (!firstItem && !secondItem) {
+      router.push(`/compare?product1=${productId}`);
+    }
   };
 
   return (

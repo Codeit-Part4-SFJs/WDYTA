@@ -2,7 +2,7 @@ import { CompareModal } from '@/components/@common/modal/CompareModal';
 import { Modal } from '@/shared/ui/Modal';
 import { cookies } from 'next/headers';
 
-const CompareChangeModal = ({
+const CompareProductModal = ({
   searchParams,
 }: {
   searchParams: { productId: number };
@@ -10,10 +10,10 @@ const CompareChangeModal = ({
   const { productId } = searchParams;
   const accessToken = cookies().get('accessToken')?.value ?? '';
   return (
-    <Modal size="large" closeIcon>
+    <Modal size="xsmall" closeIcon={false}>
       <CompareModal productId={productId} accessToken={accessToken} />
     </Modal>
   );
 };
 
-export default CompareChangeModal;
+export default CompareProductModal;

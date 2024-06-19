@@ -39,7 +39,6 @@ export const Table = ({
     },
   };
 
-  // 받은 props는 api에서 productId로 사용하면 됨.
   const [firstProduct, setFirstProduct] =
     useState<ProductDetailData>(initialProduct);
   const [secondProduct, setSecondProduct] =

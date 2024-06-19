@@ -15,7 +15,7 @@ const typeClasses: Record<ImageProps['type'], string> = {
 const sizesConfig: Record<ImageProps['type'], string> = {
   product: '(max-width: 768px) 50vw, (max-width: 1024px) 80vw, 50vw',
   profile: '(max-width: 768px) 36px, (max-width: 1024px) 36px, 33vw',
-  review: '(max-width: 768px) 60px, (max-width: 1024px) 80px, 100px',
+  review: '(max-width: 768px) 60px, (max-width: 1024px) 80px, 33vw',
   detail: '(max-width: 768px) 335px, (max-width: 1024px) 280px, 355px',
 };
 

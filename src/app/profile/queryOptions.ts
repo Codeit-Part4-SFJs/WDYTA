@@ -20,6 +20,7 @@ export const productOptions = (
       const response = await apiFunc(currentProfileId, pageParam);
       return response.json();
     },
+    staleTime: 0,
     initialPageParam: 0,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });

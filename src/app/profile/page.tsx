@@ -14,11 +14,7 @@ import {
 
 import { redirect } from 'next/navigation';
 import { TAB_NAMES_ORIGIN } from '@/components/Profile/constants/productMenu';
-import {
-  followerOptions,
-  productOptions,
-  profileOptions,
-} from './queryOptions';
+import { productOptions, profileOptions } from './queryOptions';
 
 interface ProfileProps {
   searchParams: {
@@ -33,7 +29,6 @@ export default function Profile({ searchParams }: ProfileProps) {
   const currentMenu = searchParams.tab ?? TAB_NAMES_ORIGIN.reviewedProduct;
   const queryClient = getQueryClient();
   queryClient.prefetchQuery(profileOptions(Number(userId), accessToken));
-  queryClient.prefetchQuery(followerOptions(Number(userId), accessToken));
 
   queryClient.prefetchInfiniteQuery(
     productOptions(

@@ -10,7 +10,7 @@ interface ProductListProps {
   content: string;
 }
 export const ProductList = ({ productData, content }: ProductListProps) => {
-  const hasProduct = productData.pages[0].list.length;
+  const hasProduct = productData.pages[0].list.length > 0;
   return hasProduct ? (
     productData.pages.map((page) => (
       <div

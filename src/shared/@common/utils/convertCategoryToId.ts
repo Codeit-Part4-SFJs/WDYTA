@@ -1,4 +1,5 @@
 const CATEGORIES: { [key: string]: number } = {
+  no_category: 0,
   music: 1,
   movie_drama: 2,
   lecture_book: 3,

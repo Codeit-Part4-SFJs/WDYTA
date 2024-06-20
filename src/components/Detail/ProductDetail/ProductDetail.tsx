@@ -29,8 +29,11 @@ export const ProductDetail = ({
   const secondItem = useCompareItems((state) => state.secondItem);
 
   const handleCompareButtonClick = () => {
-    if (firstItem === productId || secondItem === productId) {
-      alert('중복되었습니다');
+    if (
+      Number(firstItem) === Number(productId) ||
+      Number(secondItem) === Number(productId)
+    ) {
+      router.push(`/modal/compare/duplicate`, { scroll: false });
     } else if (!!firstItem && !!secondItem) {
       router.push(`/modal/compare?productId=${productId}`);
     } else if (!!firstItem && !secondItem) {

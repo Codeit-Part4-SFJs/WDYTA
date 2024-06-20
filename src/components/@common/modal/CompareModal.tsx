@@ -4,6 +4,7 @@ import { ProductDetailData } from '@/components/Compare/types';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { useCompareItems } from '@/stores/useCompareItems';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export const CompareModal = ({
@@ -36,6 +37,8 @@ export const CompareModal = ({
       reviewCount: 0,
     },
   };
+
+  const router = useRouter();
   const [selected, setSelected] = useState<string | number>();
   const [firstItemData, setFirstItemData] =
     useState<ProductDetailData>(initialProduct);
@@ -44,15 +47,12 @@ export const CompareModal = ({
   const [productData, setProductData] =
     useState<ProductDetailData>(initialProduct);
 
-  const firstItem =
-    typeof window !== 'undefined'
-      ? Number(sessionStorage.getItem(`CompareItems.state.firstItem`))
-      : 0;
-  const secondItem =
-    typeof window !== 'undefined'
-      ? Number(sessionStorage.getItem(`CompareItems.state.secondItem`))
-      : 0;
-
+  const firstItem = useCompareItems((state) => state.firstItem);
+  const secondItem = useCompareItems((state) => state.secondItem);
+  const changingFirstItem = useCompareItems((state) => state.changingFirstItem);
+  const changingSecondItem = useCompareItems(
+    (state) => state.changingSecondItem,
+  );
   const handleClicked = (button: string | number) => {
     setSelected(button);
   };
@@ -79,11 +79,15 @@ export const CompareModal = ({
   }, []);
 
   const handleChange = () => {
-    alert('클릭되었습니다');
+    if (selected === firstItemData.name) {
+      changingFirstItem(productId);
+    } else if (selected === secondItemData.name) {
+      changingSecondItem(productId);
+    }
+    router.push('/modal/compare/check');
   };
 
   const ButtonSize = `w-[420px] mobile:w-[295px] h-[65px] md:h-[55px] mobile:h-[50px] py-6 md:self-stretch flex-shrink-0 `;
-  const selectedStyle = `border-pink`;
   return (
     <div className="mobile:w-[335px] w-[500px] mobile:h-[336px] md:h-[400px] lg:h-[453px] flex flex-col justify-center items-center ">
       <p className=" text-2xl md:text-xl mobile:text-xl text-white">
@@ -95,14 +99,14 @@ export const CompareModal = ({
       <div className="flex flex-col gap-5 items-start my-10">
         <Button
           kind={ButtonKind.secondary}
-          customSize={`${ButtonSize} border border-solid ${selected === firstItemData.name ? selectedStyle : 'border-gray-35'}`}
+          customSize={`${ButtonSize} border border-solid ${selected === firstItemData.name ? 'border-green' : 'border-gray-35'}`}
           onClick={() => handleClicked(firstItemData.name)}
         >
           {firstItemData.name}
         </Button>
         <Button
           kind={ButtonKind.secondary}
-          customSize={`${ButtonSize} border border-solid ${selected === secondItemData.name ? selectedStyle : 'border-gray-35'}`}
+          customSize={`${ButtonSize} border border-solid ${selected === secondItemData.name ? 'border-pink' : 'border-gray-35'}`}
           onClick={() => handleClicked(secondItemData.name)}
         >
           {secondItemData.name}

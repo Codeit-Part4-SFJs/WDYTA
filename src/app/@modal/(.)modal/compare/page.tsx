@@ -10,7 +10,7 @@ const CompareChangeModal = ({
   const { productId } = searchParams;
   const accessToken = cookies().get('accessToken')?.value ?? '';
   return (
-    <Modal size="large" closeIcon>
+    <Modal size="small" closeIcon>
       <CompareModal productId={productId} accessToken={accessToken} />
     </Modal>
   );

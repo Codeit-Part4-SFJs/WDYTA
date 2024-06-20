@@ -9,10 +9,7 @@ import { PROFILE_DEFAULT_IMAGE } from '@/components/Profile/constants/profileDef
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { profileOptions } from '@/app/profile/queryOptions';
-import { useState } from 'react';
-import { Modal } from '@/shared/ui/Modal';
 import Link from 'next/link';
-import { AlertModal } from '../@common/modal';
 import { TAB_NAMES_ORIGIN } from './constants/productMenu';
 
 interface ProfileCardProps {
@@ -26,8 +23,6 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   const tab = useSearchParams().get('tab') ?? TAB_NAMES_ORIGIN.reviewedProduct;
   const currentProfileId = Number(userId) || Number(loginedId);
   const isMyProfile = Number(userId) === Number(loginedId) || !userId;
-
-  const [showAlert, setShowAlert] = useState(false);
 
   const { data: userInfoData } = useSuspenseQuery(
     profileOptions(currentProfileId, accessToken),
@@ -52,10 +47,9 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
 
   const handleClickFollow = () => {
     if (!accessToken) {
-      setShowAlert(true);
+      router.push(`modal/profile?userId=${currentProfileId}`);
       return;
     }
-
     followMutation.mutate({ isFollowing });
   };
   const handleClickUnFollow = () => {
@@ -143,15 +137,6 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
           </Button>
         )}
       </div>
-      {showAlert && (
-        <Modal size="small" closeIcon={false}>
-          <AlertModal
-            errorMessage="로그인 후 이용해 주세요."
-            buttonText="닫기"
-            path="/login"
-          />
-        </Modal>
-      )}
     </section>
   );
 };

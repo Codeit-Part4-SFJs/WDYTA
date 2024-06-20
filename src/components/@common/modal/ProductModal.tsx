@@ -55,11 +55,6 @@ export const ProductModal = ({ accessToken, title }: ProductModalProps) => {
 
   const imageMutation = useImageMutation({ accessToken, setErrorMessage });
 
-  const addProductMutation = useProductAddMutation({
-    accessToken,
-    setErrorMessage,
-  });
-
   // 카테고리 선택 핸들러
   const handleProductCategory = (productCategory: string) => {
     setCategory(productCategory);
@@ -73,6 +68,13 @@ export const ProductModal = ({ accessToken, title }: ProductModalProps) => {
   // useEffect(() => {
   //   console.log(Number(category)); // 상태가 업데이트된 후에 로그 출력
   // }, [category]);
+
+  // const productCategoryId = Number(category);
+  const addProductMutation = useProductAddMutation({
+    accessToken,
+    setErrorMessage,
+    // productCategoryId,
+  });
 
   // 저장하기 버튼 클릭 시
   const onSubmit: SubmitHandler<FormValues> = (productData) => {
@@ -111,7 +113,6 @@ export const ProductModal = ({ accessToken, title }: ProductModalProps) => {
         <div className="flex mobile:flex-col-reverse gap-[10px] md:gap-[15px] lg:gap-5">
           <div className="flex flex-col gap-[10px] md:gap-[15px] lg:gap-5">
             <Input
-              id="productName"
               inputSize="small"
               type="text"
               placeholder="상품명 (상품 등록 여부를 확인해 주세요)"
@@ -149,9 +150,7 @@ export const ProductModal = ({ accessToken, title }: ProductModalProps) => {
           text={text}
           placeholder="상품 설명을 입력해 주세요"
         />
-        {errorMessage && (
-          <HelperText type="error">이미지를 다시 선택해주세요</HelperText>
-        )}
+        {errorMessage && <HelperText type="error">{errorMessage}</HelperText>}
       </div>
       <Button
         type="submit"

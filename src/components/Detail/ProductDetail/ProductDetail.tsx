@@ -25,11 +25,12 @@ export const ProductDetail = ({
 
   const router = useRouter();
 
-  const { firstItem, secondItem } = useCompareItems();
+  const firstItem = useCompareItems((state) => state.firstItem);
+  const secondItem = useCompareItems((state) => state.secondItem);
 
   const handleCompareButtonClick = () => {
     if (!!firstItem && !!secondItem) {
-      router.push(`/modal/compare`);
+      router.push(`/modal/compare?productId=${productId}`);
     } else if (!!firstItem && !secondItem) {
       router.push(`/compare?product1=${firstItem}&product2=${productId}`);
     } else if (!firstItem && !!secondItem) {

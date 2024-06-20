@@ -9,7 +9,10 @@ export const CheckModal = () => {
   const firstItem = useCompareItems((state) => state.firstItem);
   const secondItem = useCompareItems((state) => state.secondItem);
   const handleClick = () => {
-    router.push(`/compare?product1=${firstItem}&product2=${secondItem}`);
+    router.push(`/compare?product1=${firstItem}&product2=${secondItem}`, {
+      scroll: false,
+    });
+    router.refresh();
   };
   return (
     <div className="w-[500px] mobile:w-[335px] h-[263px] md:h-[256px] mobile:h-[196px] flex-shrink-0">

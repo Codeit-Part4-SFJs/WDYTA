@@ -90,6 +90,7 @@ export const ProductDetail = ({
               onClick={() => {
                 router.push(
                   `/modal/detail/edit?productId=${productId}&productName=${productDetailData.name}&category=${productDetailData.categoryId}&image=${productDetailData.image}`,
+                  { scroll: false },
                 );
               }}
             >

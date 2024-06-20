@@ -53,6 +53,22 @@ jobs:
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
 
+      - name: Cache node moudles
+        uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Disable Next.js Telemetry
+        run: yarn next telemetry disable
+
+      - name: Build project
+        run: yarn build
+
       - name: AWS IAM 사용자 설정
         uses: aws-actions/configure-aws-credentials@v4
         with:

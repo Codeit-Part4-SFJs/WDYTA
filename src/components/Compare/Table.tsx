@@ -1,3 +1,5 @@
+'use client';
+
 // import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { useEffect, useState } from 'react';

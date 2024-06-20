@@ -1,10 +1,12 @@
+'use client';
+
 import { CompareChip, CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Input } from '@/shared/ui/Input';
 import { useEffect, useState, useRef } from 'react';
 import { getProductListKeyword } from '@/shared/@common/apis/product';
 import { AutoCompleteProduct, ProductList } from './types';
 
-interface AutoCompleteProps {
+export interface AutoCompleteProps {
   color?: string;
   onSelectProduct: (id: number) => void;
   selectedProduct?: string;

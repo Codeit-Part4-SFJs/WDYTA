@@ -60,7 +60,6 @@ export const CompareModal = ({
   useEffect(() => {
     const getCompares = async () => {
       try {
-        console.log(firstItem, secondItem, productId);
         const response1 = await getDetailProduct(firstItem, accessToken);
         const response2 = await getDetailProduct(secondItem, accessToken);
         const response3 = await getDetailProduct(productId, accessToken);

@@ -15,7 +15,7 @@ import { Table } from './Table';
 import { AutoComplete } from './AutoComplete';
 import { ComparingButtonProps, ProductDetailData } from './types';
 
-const ComparingButton = ({
+export const ComparingButton = ({
   productId1,
   productId2,
   accessToken,
@@ -135,5 +135,3 @@ const ComparingButton = ({
     </>
   );
 };
-
-export default ComparingButton;

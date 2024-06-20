@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 import { Suspense } from 'react';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { Floating } from '@/shared/ui/Button/Floating';
-import ComparingButton from '@/components/Compare/ComparingButton';
+import { ComparingButton } from '@/components/Compare';
 import { SkeletonCompare } from '@/components/Compare/skeletons/SkeletonCompare';
 import { compareFirstOptions, compareSecondOptions } from './queryOptions';
 import { getQueryClient } from '../getQueryClient';

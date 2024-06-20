@@ -1,0 +1,77 @@
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+import { useRef } from 'react';
+import DEFAULT_CATEGORIES from '@/shared/ui/Menu/SideMenu/constants/DEFAULT_CATEGORIES';
+import {
+  Categories,
+  Category,
+  SideMenuProps,
+} from '@/shared/ui/Menu/SideMenu/types/categoryType';
+import { SideMenuTab } from '@/shared/ui/Menu/SideMenu/SideMenuTab';
+import { useSideMenuStore } from '@/stores';
+import { useClose } from '@/shared/@common/hooks';
+import { getCategory } from '@/shared/@common/apis';
+import { notFound } from 'next/navigation';
+
+/**
+ * 메인 페이지의 page.tsx에서 API 요청해서 카테고리 데이터 받아오고 page.tsx에서 사용하면됨
+ *
+ * @param categories '/categories'로 GET 요청해서 받은 데이터
+ * @param currentCategoryId params.category를 categoryId로 포멧팅 후 데이터 삽입
+ */
+
+export const SideMenu = ({ currentCategoryId }: SideMenuProps) => {
+  // 카테고리 데이터를 useQuery로 불러올때,
+  // 옵션에서 staleTime을 infinity로 설정해서 불러온 데이터를 계속 사용하게 함
+  async function fetchCategories() {
+    const response = await getCategory();
+
+    if (!response.ok) {
+      notFound();
+    }
+    return response.json();
+  }
+
+  const { data: categories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: fetchCategories,
+    staleTime: Infinity,
+  });
+  const categoryList: Categories =
+    (categories as Category[]) ?? DEFAULT_CATEGORIES;
+
+  const isOpenSideMenu = useSideMenuStore((state) => state.isOpenSideMenu);
+  const setIsOpenSideMenu = useSideMenuStore(
+    (state) => state.setIsOpenSideMenu,
+  );
+
+  // SideMenu 영역 지정
+  const sideMenuRef = useRef<HTMLDivElement>(null);
+  // SideMenu 닫힘 버튼 구현 대신 외부영역 및 ESC로 닫는 훅 호출
+  useClose(isOpenSideMenu, setIsOpenSideMenu, sideMenuRef);
+
+  const commonClass = 'py-[25px] px-[10px] h-full bg-black-1C';
+  const openClass = `${commonClass} mobile:absolute mobile:z-10 mobile:w-[180px] md:w-[180px] lg:w-[220px]`;
+  const closeClass = `${commonClass} hidden md:block lg:block md:w-[180px] lg:w-[220px]`;
+
+  return (
+    <div ref={sideMenuRef} className={isOpenSideMenu ? openClass : closeClass}>
+      <div className="p-[20px] not-italic font-normal text-gray-F1 mobile:text-sm md:text-sm lg:text-base">
+        카테고리
+      </div>
+      <ul className="flex flex-col items-start shrink-0 gap-1 bg-black-1C">
+        {categoryList.map((item) => {
+          return (
+            <SideMenuTab
+              key={item.id}
+              category={item.name}
+              categoryId={item.id}
+              currentCategoryId={currentCategoryId}
+            />
+          );
+        })}
+      </ul>
+    </div>
+  );
+};

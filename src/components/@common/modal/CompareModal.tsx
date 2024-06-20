@@ -7,13 +7,12 @@ import { useCompareItems } from '@/stores/useCompareItems';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export const CompareModal = ({
-  productId,
-  accessToken,
-}: {
+interface CompareModalProps {
   productId: number;
   accessToken: string;
-}) => {
+}
+
+export const CompareModal = ({ productId, accessToken }: CompareModalProps) => {
   const initialProduct: ProductDetailData = {
     id: 0,
     name: '',

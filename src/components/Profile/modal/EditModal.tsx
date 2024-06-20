@@ -27,7 +27,7 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
     mode: 'onChange',
   });
 
-  const text = watch('text', '');
+  const text = watch('textarea', '');
   const nickname = watch('nickname', '');
 
   const [file, setFile] = useState<File | null>(null);
@@ -40,24 +40,18 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
     mutate: editMutate,
     error,
     isError,
+    isPending,
   } = useProfileEditMutation(accessToken, loginedId);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    setIsSubmitting(true);
+    setIsSubmitting(!isPending);
 
-    if (nickname.trim() === '') {
-      setErrorMessage('변경할 닉네임을 입력해 주세요');
-      return;
-    }
     if (!file) {
-      editMutate(
-        {
-          description: data.textarea,
-          nickname,
-          image: PROFILE_DEFAULT_IMAGE,
-        },
-        { onError: () => setIsSubmitting(false) },
-      );
+      editMutate({
+        description: data.textarea,
+        nickname,
+        image: PROFILE_DEFAULT_IMAGE,
+      });
       return;
     }
 
@@ -69,6 +63,7 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
           image: image.url,
         });
       },
+      onError: () => setIsSubmitting(false),
     });
   };
 

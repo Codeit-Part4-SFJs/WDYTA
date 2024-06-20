@@ -15,7 +15,7 @@ export const buttonBase =
 export const ButtonStyleByKind = {
   [ButtonKind.primary]: {
     button: 'bg-main-gradation disabled:bg-none disabled:bg-gray-35',
-    p: 'text-white group-disabled:text-gray-6E',
+    p: 'text-[#F1F1F5] group-disabled:text-gray-6E',
   },
   [ButtonKind.secondary]: {
     button:

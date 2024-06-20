@@ -18,7 +18,7 @@ export const Floating = () => {
     >
       <Icon
         name="AddIcon"
-        className={`w-[40px] text-white `}
+        className={`w-[40px] text-[#F1F1F5] `}
         onClick={makingAlertNow}
       />
     </button>

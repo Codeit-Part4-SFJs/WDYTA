@@ -7,7 +7,6 @@ const LoginAlertModal = () => {
       <AlertModal
         errorMessage="로그인 정보를 다시 확인해주세요"
         buttonText="로그인 다시하기"
-        path="/login"
       />
     </Modal>
   );

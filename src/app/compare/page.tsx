@@ -1,10 +1,9 @@
 import { cookies } from 'next/headers';
 import { Suspense } from 'react';
-import { SkeletonProductDetail } from '@/components/Detail/skeletons';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { Floating } from '@/shared/ui/Button/Floating';
 import ComparingButton from '@/components/Compare/ComparingButton';
-// import ComparingButton2 from '@/components/Compare/ComparingButton2';
+import { SkeletonCompare } from '@/components/Compare/skeletons/SkeletonCompare';
 import { compareFirstOptions, compareSecondOptions } from './queryOptions';
 import { getQueryClient } from '../getQueryClient';
 
@@ -15,9 +14,7 @@ const Compare = ({
 }) => {
   const productId1 = searchParams.product1;
   const productId2 = searchParams.product2;
-  console.log('1:', productId1, '2', productId2);
   const accessToken = cookies().get('accessToken')?.value ?? '';
-  // const userId = Number(cookies().get('userId')?.value);
 
   const queryClient = getQueryClient();
 
@@ -27,7 +24,7 @@ const Compare = ({
 
   return (
     <>
-      <Suspense fallback={<SkeletonProductDetail />}>
+      <Suspense fallback={<SkeletonCompare />}>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <ComparingButton
             productId1={productId1}

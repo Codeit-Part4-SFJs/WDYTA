@@ -1,6 +1,6 @@
 import { API_PRODUCT } from './constants/API';
 
-interface ProductProps {
+export interface ProductProps {
   categoryId: number;
   image: string;
   description: string;

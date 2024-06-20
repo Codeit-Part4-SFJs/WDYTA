@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 interface AlertModalProps {
   errorMessage: string;
   buttonText: string;
-  path: string;
+  path?: string | undefined;
 }
 
 export const AlertModal = ({
@@ -17,7 +17,12 @@ export const AlertModal = ({
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push(path);
+    if (!path) {
+      router.back();
+    } else {
+      router.push(path);
+      router.refresh();
+    }
   };
   return (
     <div className="flex flex-col h-[136px] md:h-[156px] lg:h-[163px] justify-between items-center">

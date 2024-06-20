@@ -7,6 +7,7 @@ export interface FormValues {
   passwordConfirmation: string;
   text: string;
   textarea: string;
+  productName: string;
 }
 
 export interface AuthInputProps {

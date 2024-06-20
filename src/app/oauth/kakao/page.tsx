@@ -14,7 +14,7 @@ const Oauth = () => {
   useEffect(() => {
     if (authorizationCode) {
       const loginData = {
-        redirectUri: 'http://localhost:3000/oauth',
+        redirectUri: 'http://localhost:3000/oauth/kakao',
         token: authorizationCode,
       };
       signInMutation.mutate(loginData);

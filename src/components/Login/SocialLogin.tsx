@@ -8,10 +8,9 @@ interface SocialLoginProps {
   handleClick: () => void;
 }
 
-// 구글 API 수정 후 다시 해봐야함!
 const handleGoogleClick = () => {
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-  const redirectUri = 'http://localhost:3000/socialLogin';
+  const redirectUri = 'http://localhost:3000/oauth/google';
   const responseType = 'code';
   const scope = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
@@ -20,7 +19,7 @@ const handleGoogleClick = () => {
 
 const handleKakaoClick = () => {
   const clientId = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
-  const redirectUri = 'http://localhost:3000/oauth';
+  const redirectUri = 'http://localhost:3000/oauth/kakao';
 
   window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
 };

@@ -18,8 +18,8 @@ export const RankingCard = ({ ranking }: RankingCardProps) => {
 
   return (
     // 프로필 페이지 주소로 이동하는 <Link> 태그
-    <Link href={`/profile?userId=${ranking.id}`}>
-      <div className="flex-none w-47 flex items-center gap-[10px] mb-7">
+    <div className="flex-none w-47 flex items-center gap-[10px] mb-7">
+      <Link href={`/profile?userId=${ranking.id}`}>
         <ImageComponent
           type="profile"
           // 임시로 설정해둔 기본 프로필 이미지 경로 (추후 변경 예정)
@@ -27,19 +27,21 @@ export const RankingCard = ({ ranking }: RankingCardProps) => {
           alt={ranking.nickname}
           className="w-12 h-12 rounded-full"
         />
-        <div className="flex flex-col items-start gap-1 lg:gap-2">
-          <div className="flex items-center gap-[5px]">
-            <RankingChip rankNumber={ranking.rank} color={ranking.color} />
-            <span className="text-gray-F1 text-[16px] font-normal text-ellipsis whitespace-nowrap inline-block overflow-hidden text-overflow-ellipsis max-w-[80px]">
+      </Link>
+      <div className="flex flex-col items-start gap-1 lg:gap-2">
+        <div className="flex items-center gap-[5px]">
+          <RankingChip rankNumber={ranking.rank} color={ranking.color} />
+          <span className="text-gray-F1 text-[16px] font-normal text-ellipsis whitespace-nowrap inline-block overflow-hidden text-overflow-ellipsis max-w-[80px]">
+            <Link href={`/profile?userId=${ranking.id}`}>
               {ranking.nickname}
-            </span>
-          </div>
-          <div className="flex gap-3 text-[12px] font-light text-gray-6E">
-            <span>팔로워 {formatted1000toK(ranking.followersCount)}</span>
-            <span>리뷰 {formatted1000toK(ranking.reviewCount)}</span>
-          </div>
+            </Link>
+          </span>
+        </div>
+        <div className="flex gap-3 text-[12px] font-light text-gray-6E">
+          <span>팔로워 {formatted1000toK(ranking.followersCount)}</span>
+          <span>리뷰 {formatted1000toK(ranking.reviewCount)}</span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };

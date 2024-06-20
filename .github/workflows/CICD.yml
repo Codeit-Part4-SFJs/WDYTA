@@ -84,11 +84,6 @@ jobs:
       - name: ECR에 로그인
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Create SSH Key File
-        run: |
-          echo "${{ secrets.EC2_SSH_KEY }}" > key.pem
-          chmod 400 key.pem
-
       - name: 기존 ECR에 업로드된 lastest 태그 이미지 삭제
         uses: appleboy/ssh-action@master
         with:
@@ -168,6 +163,3 @@ jobs:
             sudo docker stop wdyta-ecr || true
             sudo docker rm wdyta-ecr || true
             sudo docker run -d -p 80:80 ${{ secrets.ECR_URI }}
-
-      - name: Clean up
-        run: rm key.pem

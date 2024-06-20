@@ -20,7 +20,6 @@ async function fetchCategories(): Promise<Category[]> {
 export const CATEGORY_DROPDOWN_OPTIONS = async () => {
   const categories = await fetchCategories();
   const categoryList: Category[] = categories ?? DEFAULT_CATEGORIES;
-  console.log(categoryList);
 
   // 카테고리 선택 드롭다운 옵션
   return categoryList.map((category) => ({

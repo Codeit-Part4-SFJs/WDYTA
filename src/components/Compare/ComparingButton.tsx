@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
-import { Loading } from '@/shared/ui/Icon';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import {
   compareFirstOptions,
@@ -16,7 +15,7 @@ import { Table } from './Table';
 import { AutoComplete } from './AutoComplete';
 import { ComparingButtonProps, ProductDetailData } from './types';
 
-const ComparingButton = ({
+export const ComparingButton = ({
   productId1,
   productId2,
   accessToken,
@@ -33,13 +32,12 @@ const ComparingButton = ({
   const { firstItem, changingFirstItem, secondItem, changingSecondItem } =
     useCompareItems();
   const [isCompare, setIsCompare] = useState(false);
-  const [isLoad, setIsLoad] = useState(false);
   const [firstName, setFirstName] = useState(product1?.name);
   const [secondName, setSecondName] = useState(product2?.name);
-
-  // const userId = cookies().get('accessToken');
-
-  // api로 product의 id를 이용해서 product1은 product의 name을 받아와야 하는 것이다.
+  const [tableData, setTableData] = useState<{
+    firstItem: number | null;
+    secondItem: number | null;
+  }>({ firstItem: null, secondItem: null });
 
   const handleSelectFirstProduct = (id: number) => {
     changingFirstItem(id);
@@ -58,7 +56,6 @@ const ComparingButton = ({
           const productDetail: ProductDetailData = await response.json();
           changingFirstItem(productDetail.id);
           setFirstName(productDetail.name);
-          console.log('firstItem: ', firstItem);
         } catch (error) {
           console.error('Failed to fetch product detail:', error);
         }
@@ -76,7 +73,6 @@ const ComparingButton = ({
           const productDetail: ProductDetailData = await response.json();
           changingSecondItem(productDetail.id);
           setSecondName(productDetail.name);
-          console.log('secondItem: ', secondItem);
         } catch (error) {
           console.error('Failed to fetch product detail:', error);
         }
@@ -84,11 +80,6 @@ const ComparingButton = ({
       fetchProductDetail();
     }
   }, [productId2]);
-
-  useEffect(() => {
-    console.log('firstItem: ', firstItem);
-    console.log('secondItem: ', secondItem);
-  }, []);
 
   const handleCompareClick = () => {
     if (!firstItem || !secondItem) {
@@ -99,12 +90,12 @@ const ComparingButton = ({
       scroll: false,
     });
     setIsCompare(true);
-    setIsLoad(true);
+    setTableData({ firstItem, secondItem });
   };
 
   return (
     <>
-      <div className="flex justify-center gap-5 w-full mt-[60px] h-[400px] mobile:flex-col mobile:items-center">
+      <div className="flex justify-center gap-5 w-full mt-[60px] mobile:h-[400px] mobile:flex-col mobile:items-center">
         <div className="flex flex-row gap-5 mobile:flex-col">
           <div className="flex flex-col items-start gap-[10px]">
             <p className="text-base text-white">상품 1</p>
@@ -126,27 +117,21 @@ const ComparingButton = ({
           <Button
             kind={ButtonKind.primary}
             customSize="w-[200px] h-[70px] mt-[34px] w-[200px] md:w-[164px] mobile:w-[288px]"
-            onClick={() => handleCompareClick()}
+            onClick={handleCompareClick}
           >
             비교하기
           </Button>
         </div>
       </div>
-      {isCompare && (
+      {isCompare && tableData.firstItem && tableData.secondItem && (
         <div className="flex flex-col items-center gap-5">
-          <Loading />
-          <p className=" text-xl align-center text-gray-6E">Loading...</p>
+          <Table
+            selectedFirstProductId={tableData.firstItem}
+            selectedSecondProductId={tableData.secondItem}
+            accessToken={accessToken}
+          />
         </div>
-      )}
-      {isLoad && (
-        <Table
-          selectedFirstProductId={firstItem}
-          selectedSecondProductId={secondItem}
-          accessToken={accessToken}
-        />
       )}
     </>
   );
 };
-
-export default ComparingButton;

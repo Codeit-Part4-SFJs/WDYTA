@@ -22,7 +22,12 @@ interface ReviewModalProps {
 const MAX_SIZE = 5 * 1024 * 1024;
 
 export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
-  const { register, watch, handleSubmit } = useForm<FormValues>({
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<FormValues>({
     mode: 'onChange',
   });
 
@@ -30,6 +35,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isPending, setIsPending] = useState(false);
 
   const params = useSearchParams();
   const productId = parseInt(params.get('product') as string, 10);
@@ -57,6 +63,9 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
     productId,
     currentFilter,
   });
+
+  const isDisabled =
+    rating === 0 || !text || files.length === 0 || isSubmitting || isPending;
 
   const handleDeleteButton = (index: number) => {
     setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
@@ -100,20 +109,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = async () => {
-    if (rating === 0) {
-      setErrorMessage('별점을 선택해 주세요');
-      return;
-    }
-
-    if (text.trim() === '') {
-      setErrorMessage('리뷰 내용을 작성해 주세요');
-      return;
-    }
-
-    if (files.length === 0) {
-      setErrorMessage('최소한 한 개의 이미지를 업로드해 주세요');
-      return;
-    }
+    setIsPending(true);
 
     const promises = files.map((file) => {
       return new Promise<string>((resolve, reject) => {
@@ -195,6 +191,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
         type="submit"
         kind={ButtonKind.primary}
         customSize="lg:text-lg w-[295px] md:w-[510px] lg:w-[540px] h-[50px] md:h-[55px] lg:h-[65px]"
+        disabled={isDisabled}
       >
         작성하기
       </Button>

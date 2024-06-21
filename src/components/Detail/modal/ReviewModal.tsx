@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useQueryClient } from '@tanstack/react-query';
+import { ALLOWED_TYPES } from '@/shared/@common/utils/constants/Image';
 import { useCreateReviewMutation } from '../ProductReviews/hooks/useCreateReviewMutation';
 
 interface ReviewModalProps {
@@ -74,6 +75,12 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
             alert('이미지 파일의 최대 용량은 5MB입니다.');
             return false;
           }
+
+          if (!ALLOWED_TYPES.includes(file.type)) {
+            alert('허용된 파일 형식은 .jpg, .jpeg, .png, .webp 입니다.');
+            return false;
+          }
+
           return true;
         })
         .map((file) => {

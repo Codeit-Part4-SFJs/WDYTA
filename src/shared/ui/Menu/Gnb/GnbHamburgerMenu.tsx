@@ -10,6 +10,7 @@ import {
   GnbHamburgerMenuOptionProps,
   GnbHamburgerMenuProps,
 } from '@/shared/ui/Menu/Gnb/types/gnbType';
+import { useCompareItems } from '@/stores/useCompareItems';
 
 const GnbHamburgerMenuOption = ({
   isLoggedIn,
@@ -22,6 +23,18 @@ const GnbHamburgerMenuOption = ({
 
   const linkClass =
     'block w-36 p-4 hover:bg-black-25 focus:bg-black-25 focus:outline-none';
+
+  const firstItem = useCompareItems((state) => state.firstItem);
+  const secondItem = useCompareItems((state) => state.secondItem);
+  const linkHref = () => {
+    if (!!firstItem && !!secondItem) {
+      return `/compare?product1=${firstItem}&product2=${secondItem}`;
+    } else if (!firstItem && !!secondItem) {
+      return `/compare?product2=${secondItem}`;
+    } else if (!!firstItem && !secondItem) {
+      return `/compare?product1=${firstItem}`;
+    } else return `/compare`;
+  };
 
   return (
     <div className="mobile:block md:hidden lg:hidden absolute z-50 top-[50px] left-[20px] w-36 overflow-hidden bg-black-1C rounded-lg border border-solid border-black-25 text-gray-F1 not-italic font-normal leading-normal text-[14px] text-center">
@@ -41,7 +54,7 @@ const GnbHamburgerMenuOption = ({
           <div>
             <Link
               className={`${linkClass} border-b border-solid border-black-25`}
-              href="/compare"
+              href={linkHref()}
             >
               비교하기
             </Link>

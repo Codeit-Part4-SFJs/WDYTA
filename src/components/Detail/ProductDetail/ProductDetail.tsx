@@ -9,6 +9,7 @@ import { ProductDetailProps } from '@/components/Detail/types';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { productOptions } from '@/app/[category]/[product]/queryOptions';
 import { useRouter } from 'next/navigation';
+import { useCompareItems } from '@/stores/useCompareItems';
 
 export const ProductDetail = ({
   userId,
@@ -24,8 +25,24 @@ export const ProductDetail = ({
 
   const router = useRouter();
 
+  const firstItem = useCompareItems((state) => state.firstItem);
+  const secondItem = useCompareItems((state) => state.secondItem);
+
   const handleCompareButtonClick = () => {
-    router.push(`/compare/${productId}`);
+    if (
+      Number(firstItem) === Number(productId) ||
+      Number(secondItem) === Number(productId)
+    ) {
+      router.push(`/modal/compare/duplicate`, { scroll: false });
+    } else if (!!firstItem && !!secondItem) {
+      router.push(`/modal/compare?productId=${productId}`);
+    } else if (!!firstItem && !secondItem) {
+      router.push(`/compare?product1=${firstItem}&product2=${productId}`);
+    } else if (!firstItem && !!secondItem) {
+      router.push(`/compare?product1=${productId}&product2=${secondItem}`);
+    } else if (!firstItem && !secondItem) {
+      router.push(`/compare?product1=${productId}`);
+    }
   };
 
   return (
@@ -78,7 +95,7 @@ export const ProductDetail = ({
           </Button>
           <Button
             onClick={handleCompareButtonClick}
-            customSize="flex-1 w-full p-[15px]"
+            customSize="flex-1 w-full p-[15px] border-main-blue"
             kind={ButtonKind.secondary}
           >
             비교하기
@@ -87,6 +104,12 @@ export const ProductDetail = ({
             <Button
               customSize="flex-1 w-full p-[15px]"
               kind={ButtonKind.tertiary}
+              onClick={() => {
+                router.push(
+                  `/modal/detail/edit?productId=${productId}&productName=${productDetailData.name}&category=${productDetailData.categoryId}&image=${productDetailData.image}`,
+                  { scroll: false },
+                );
+              }}
             >
               편집하기
             </Button>

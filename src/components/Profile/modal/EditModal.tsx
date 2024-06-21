@@ -78,7 +78,7 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
           previewImage={preview}
           handleDeleteButton={() => handleDeleteButton({ setPreview })}
           handleImageChange={(event) =>
-            handleImageChange({ event, setFile, setPreview })
+            handleImageChange({ event, setFile, setPreview, setErrorMessage })
           }
         />
         {errorMessage && (

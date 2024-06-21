@@ -2,7 +2,7 @@
 
 import useSignInMutation from '@/components/Oauth/hooks/useSignInMutation';
 import { Loading } from '@/shared/ui/Icon';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const Oauth = () => {
@@ -11,6 +11,8 @@ const Oauth = () => {
   const [tokenData, setTokenData] = useState('');
 
   const signInMutation = useSignInMutation('google');
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -35,21 +37,18 @@ const Oauth = () => {
 
         if (!response.ok) {
           const errorData = await response.json();
-          console.error('Error response:', errorData);
-          throw new Error(
-            `Failed to fetch token: ${response.status} - ${response.statusText}`,
-          );
+          throw new Error(errorData.message);
         }
 
         const data = await response.json();
         setTokenData(data.access_token);
-      } catch (error) {
-        console.log(error);
+      } catch {
+        router.push('/modal/oauth', { scroll: false });
       }
     };
 
     fetchToken();
-  }, [authorizationCode]);
+  }, [authorizationCode, router]);
 
   useEffect(() => {
     if (tokenData) {
@@ -59,7 +58,7 @@ const Oauth = () => {
       };
       signInMutation.mutate(loginData);
     }
-  }, [tokenData]);
+  }, [signInMutation, tokenData]);
 
   return (
     <div className="absolute inset-0 flex justify-center items-center">

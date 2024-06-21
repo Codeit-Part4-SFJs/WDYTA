@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useImageMutation } from '@/shared/@common/hooks';
 import { FormValues } from '@/shared/@common/types/input';
 import { handleDeleteButton, handleImageChange } from '@/shared/@common/utils';
@@ -9,11 +10,11 @@ import { ProductInput } from '@/shared/ui/Input/product/ProductInput';
 import HelperText from '@/shared/ui/Input/HelperText';
 import { TextBoxInput } from '@/shared/ui/Input/TextBox';
 import { ImageInput } from '@/shared/ui/Input/image';
-import { useState, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useProductAddMutation } from '@/components/Home/hooks/useProductAddMutation';
 import { useQueryClient } from '@tanstack/react-query';
 import { GetCategoryOptions } from '../hooks/GetCategoryOptions';
+import { LoadingSpinner } from './LoadingSpinner';
 
 interface ProductModalProps {
   accessToken: string;
@@ -25,7 +26,7 @@ export const AddModal = ({ accessToken, title }: ProductModalProps) => {
     register,
     watch,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     mode: 'onChange',
   });
@@ -37,6 +38,7 @@ export const AddModal = ({ accessToken, title }: ProductModalProps) => {
     [],
   );
   const [category, setCategory] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   // 카테고리 선택 드롭다운 옵션 API 연동하여 불러오기
   useEffect(() => {
@@ -49,6 +51,7 @@ export const AddModal = ({ accessToken, title }: ProductModalProps) => {
   }, []);
 
   const text = watch('textarea', '');
+  const productNameInput = watch('productName', '');
 
   const queryClient = useQueryClient();
 
@@ -67,70 +70,86 @@ export const AddModal = ({ accessToken, title }: ProductModalProps) => {
     queryClient,
   });
 
+  const isDisabled =
+    !category ||
+    !file ||
+    !productNameInput ||
+    !text ||
+    isSubmitting ||
+    isLoading;
+
   // 저장하기 버튼 클릭 시
   const onSubmit: SubmitHandler<FormValues> = (productData) => {
-    if (!file) return;
-    console.log(productData);
+    setIsLoading(true);
+    if (!file) {
+      setIsLoading(false);
+      return;
+    }
+    // console.log(productData);
 
     imageMutation.mutate(file, {
       onSuccess: (data) => {
-        if (title === '상품 추가') {
-          try {
-            addProductMutation.mutate({
-              categoryId: Number(category),
-              image: data.url,
-              description: text,
-              name: productData.productName,
-            });
-          } catch (error) {
-            console.error('상품 추가에 실패했습니다.');
-          }
+        try {
+          addProductMutation.mutate({
+            categoryId: Number(category),
+            image: data.url,
+            description: text,
+            name: productData.productName,
+          });
+          setIsLoading(false);
+        } catch (error) {
+          setErrorMessage('상품 추가에 실패했습니다.');
+          setIsLoading(false);
         }
       },
     });
   };
 
   return (
-    <form
-      className="flex flex-col gap-[40px] mobile:gap-5"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <span className="text-gray-F1 text-xl lg:text-2xl font-semibold lg:leading-none">
-        {title}
-      </span>
-      <div className="flex flex-col gap-[10px] md:gap-[15px] lg:gap-5">
-        <div className="flex mobile:flex-col-reverse gap-[10px] md:gap-[15px] lg:gap-5">
-          <div className="flex flex-col">
-            <ProductInput register={register} errors={errors} />
-            <Dropdown
-              options={options}
-              onSelect={handleProductCategory}
-              placeholder="카테고리 선택"
-              kind={DropdownKind.modal}
+    <div>
+      {isLoading && <LoadingSpinner />}
+      <form
+        className="flex flex-col gap-[40px] mobile:gap-5"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <span className="text-gray-F1 text-xl lg:text-2xl font-semibold lg:leading-none">
+          {title}
+        </span>
+        <div className="flex flex-col gap-[10px] md:gap-[15px] lg:gap-5">
+          <div className="flex mobile:flex-col-reverse gap-[10px] md:gap-[15px] lg:gap-5">
+            <div className="flex flex-col">
+              <ProductInput register={register} errors={errors} />
+              <Dropdown
+                options={options}
+                onSelect={handleProductCategory}
+                placeholder="카테고리 선택"
+                kind={DropdownKind.modal}
+              />
+            </div>
+            <ImageInput
+              previewImage={preview}
+              handleDeleteButton={() => handleDeleteButton({ setPreview })}
+              handleImageChange={(event) =>
+                handleImageChange({ event, setFile, setPreview })
+              }
             />
           </div>
-          <ImageInput
-            previewImage={preview}
-            handleDeleteButton={() => handleDeleteButton({ setPreview })}
-            handleImageChange={(event) =>
-              handleImageChange({ event, setFile, setPreview })
-            }
+          <TextBoxInput
+            register={register}
+            text={text}
+            placeholder="상품 설명을 입력해 주세요"
           />
+          {errorMessage && <HelperText type="error">{errorMessage}</HelperText>}
         </div>
-        <TextBoxInput
-          register={register}
-          text={text}
-          placeholder="상품 설명을 입력해 주세요"
-        />
-        {errorMessage && <HelperText type="error">{errorMessage}</HelperText>}
-      </div>
-      <Button
-        type="submit"
-        kind={ButtonKind.primary}
-        customSize="lg:text-lg w-[295px] md:w-[510px] lg:w-[540px] h-[50px] md:h-[55px] lg:h-[65px]"
-      >
-        저장하기
-      </Button>
-    </form>
+        <Button
+          type="submit"
+          kind={ButtonKind.primary}
+          customSize="lg:text-lg w-[295px] md:w-[510px] lg:w-[540px] h-[50px] md:h-[55px] lg:h-[65px]"
+          disabled={isDisabled}
+        >
+          저장하기
+        </Button>
+      </form>
+    </div>
   );
 };

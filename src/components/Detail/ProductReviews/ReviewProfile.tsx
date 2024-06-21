@@ -2,6 +2,7 @@ import { Icon } from '@/shared/ui/Icon';
 import { ImageComponent } from '@/shared/ui/Img';
 import Link from 'next/link';
 import { ReviewProfileProps } from '@/components/Detail/types';
+import { PROFILE_DEFAULT_IMAGE } from '@/components/Profile/constants/profileDefaultImage';
 
 const createRatingColors = (rating: number) => {
   const ratingColors = new Array<string>(0);
@@ -27,7 +28,7 @@ export const ReviewProfile = ({ rating, reviewUser }: ReviewProfileProps) => {
     >
       <ImageComponent
         type="profile"
-        src={`${reviewUser.image}`}
+        src={`${reviewUser.image ?? PROFILE_DEFAULT_IMAGE}`}
         alt={`${reviewUser.nickname}의 프로필`}
       />
       <div className="flex flex-col gap-[5px]">

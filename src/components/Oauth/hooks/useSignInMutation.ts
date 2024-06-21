@@ -22,7 +22,9 @@ const useSignInMutation = (provider: string) => {
     },
     onError: (error) => {
       if (error.message === 'Forbidden') {
-        router.push('/modal/oauth/register', { scroll: false });
+        router.push(`/modal/oauth/${provider}`, {
+          scroll: false,
+        });
       } else {
         router.push('/modal/oauth', { scroll: false });
       }

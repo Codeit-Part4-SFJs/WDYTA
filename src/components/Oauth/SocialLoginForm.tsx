@@ -7,17 +7,18 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import useSignUpMutation from './hooks/useSignUpMutation';
 
 interface SocialLoginFormProps {
+  provider: string;
   code: string;
 }
 
-const SocialLoginForm = ({ code }: SocialLoginFormProps) => {
+const SocialLoginForm = ({ provider, code }: SocialLoginFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<FormValues>({ mode: 'onChange' });
 
-  const signUpMutation = useSignUpMutation('kakao');
+  const signUpMutation = useSignUpMutation(provider);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const loginData = {

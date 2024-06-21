@@ -112,6 +112,10 @@ export const ComparisonResult = ({
     router.push(`/${category}/${winner.id}`);
   };
 
+  const handleMoveProductList = () => {
+    router.push(`/`);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col mt-[150px] mobile:mt-[60px] items-center justify-center gap-5 md:max-w-[200px] mobile:max-w-[200px]">
@@ -173,13 +177,21 @@ export const ComparisonResult = ({
         </table>
       </div>
       <div className="mt-10">
-        {winner.id && (
+        {winner.id ? (
           <Button
             kind={ButtonKind.secondary}
-            customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
+            customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[335px]"
             onClick={handleMoveProduct}
           >
             이 상품 보러 가기
+          </Button>
+        ) : (
+          <Button
+            kind={ButtonKind.secondary}
+            customSize="mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[335px]"
+            onClick={handleMoveProductList}
+          >
+            다른 상품 보러 가기
           </Button>
         )}
       </div>

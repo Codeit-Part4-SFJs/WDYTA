@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
 const typeClasses: Record<ImageProps['type'], string> = {
   product: 'w-full aspect-[284/200] rounded-lg overflow-hidden object-cover',
   profile:
-    'mobile:w-[36px] mobile:h-[36px] md:w-[36px] md:w-[36px] lg:w-[42px] lg:h-[42px] rounded-full overflow-hidden',
+    'mobile:w-[36px] mobile:h-[36px] md:w-[36px] md:h-[36px] lg:w-[42px] lg:h-[42px] rounded-full overflow-hidden',
   review:
     'mobile:w-[60px] mobile:h-[60px] md:w-[80px] md:h-[80px] lg:w-[100px] lg:h-[100px]',
   detail:

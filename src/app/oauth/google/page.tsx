@@ -7,8 +7,8 @@ import { Loading } from '@/shared/ui/Icon';
 const Oauth = () => {
   const { hash } = window.location;
   const params = new URLSearchParams(hash.substring(1));
-  const idToken = params.get('id_token');
-  const signInMutation = useSignInMutation('google');
+  const idToken = params.get('id_token') || '';
+  const signInMutation = useSignInMutation('google', idToken);
 
   useEffect(() => {
     if (idToken) {

@@ -104,6 +104,12 @@ export const ProductDetail = ({
             <Button
               customSize="flex-1 w-full p-[15px]"
               kind={ButtonKind.tertiary}
+              onClick={() => {
+                router.push(
+                  `/modal/detail/edit?productId=${productId}&productName=${productDetailData.name}&category=${productDetailData.categoryId}&image=${productDetailData.image}`,
+                  { scroll: false },
+                );
+              }}
             >
               편집하기
             </Button>

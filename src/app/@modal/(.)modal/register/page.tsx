@@ -7,7 +7,6 @@ const RegisterAlertModal = () => {
       <AlertModal
         errorMessage="회원가입을 다시 시도해주세요"
         buttonText="회원가입 다시하기"
-        path="/register"
       />
     </Modal>
   );

@@ -1,8 +1,8 @@
 import { ActivityCard } from '@/components/Profile/ActivitySection/ActivityCard';
-import { ActivityData } from '@/components/Profile/types/userActivityType';
+import { Activity } from '@/components/Profile/types/userActivityType';
 import { getUserCookies } from '@/shared/@common/utils/getUserCookies';
 
-const activityData: ActivityData[] = [
+const activityData: Activity[] = [
   { title: '남긴 별점 평균', icon: 'StarIcon' },
   { title: '남긴 리뷰', icon: 'ReviewIcon' },
   { title: '관심 카테고리' },

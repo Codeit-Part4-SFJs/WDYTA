@@ -1,7 +1,9 @@
-import { Button, ButtonKind } from '@/shared/ui/Button/Button';
+'use client';
+
+// import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { useEffect, useState } from 'react';
-import { ComparisonResult } from './hooks/ComparisonResult';
+import { ComparisonResult } from './ComparisonResult';
 import { ProductDetailData } from './types';
 
 interface TableProps {
@@ -39,7 +41,6 @@ export const Table = ({
     },
   };
 
-  // 받은 props는 api에서 productId로 사용하면 됨.
   const [firstProduct, setFirstProduct] =
     useState<ProductDetailData>(initialProduct);
   const [secondProduct, setSecondProduct] =
@@ -88,12 +89,12 @@ export const Table = ({
           }}
         />
         <div className="mt-10">
-          <Button
+          {/* <Button
             kind={ButtonKind.secondary}
             customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
           >
             이 상품 보러 가기
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

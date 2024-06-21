@@ -1,6 +1,6 @@
 {
   "name": "wdyta",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "private": true,
   "scripts": {
@@ -31,6 +31,7 @@
     "@typescript-eslint/parser": "^7.0.0",
     "add": "^2.0.6",
     "autoprefixer": "^10.4.19",
+    "cookies-next": "^4.2.1",
     "eslint": "^8",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",

@@ -1,17 +1,46 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { TableProductProps } from './types';
+import { Button, ButtonKind } from '@/shared/ui/Button/Button';
+import { useRouter } from 'next/navigation';
+import { convertIdToCategory } from '@/shared/@common/utils';
+import { ProductDetailData } from './types';
 
 interface TableProps {
-  firstProduct: TableProductProps;
-  secondProduct: TableProductProps;
+  firstProduct: ProductDetailData;
+  secondProduct: ProductDetailData;
 }
 
 export const ComparisonResult = ({
   firstProduct,
   secondProduct,
 }: TableProps) => {
+  const initialProduct: ProductDetailData = {
+    id: 0,
+    name: '',
+    description: '',
+    image: '',
+    rating: 0,
+    reviewCount: 0,
+    favoriteCount: 0,
+    categoryId: 0,
+    createdAt: '',
+    updatedAt: '',
+    writerId: 0,
+    isFavorite: false,
+    category: {
+      id: 0,
+      name: '',
+    },
+    categoryMetric: {
+      rating: 0,
+      favoriteCount: 0,
+      reviewCount: 0,
+    },
+  };
+
+  const router = useRouter();
+  const [winner, setWinner] = useState<ProductDetailData>(initialProduct);
   const [finalResult, setFinalResult] = useState('');
   const [winResult, setWinResult] = useState(0);
   const [resultText, setResultText] = useState('');
@@ -51,10 +80,12 @@ export const ComparisonResult = ({
     ).length;
 
     if (firstProductWins > secondProductWins) {
+      setWinner(firstProduct);
       setFinalResult(firstProduct.name);
       setWinResult(firstProductWins);
       setResultText('text-green');
     } else if (secondProductWins > firstProductWins) {
+      setWinner(secondProduct);
       setFinalResult(secondProduct.name);
       setWinResult(secondProductWins);
       setResultText('text-pink');
@@ -76,6 +107,10 @@ export const ComparisonResult = ({
     secondProduct.reviewCount,
     secondProduct.favoriteCount,
   ];
+  const handleMoveProduct = () => {
+    const category = convertIdToCategory(winner.categoryId);
+    router.push(`/${category}/${winner.id}`);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -136,6 +171,17 @@ export const ComparisonResult = ({
             </tr>
           </tbody>
         </table>
+      </div>
+      <div className="mt-10">
+        {winner.id && (
+          <Button
+            kind={ButtonKind.secondary}
+            customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
+            onClick={handleMoveProduct}
+          >
+            이 상품 보러 가기
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -1,15 +1,23 @@
-import Link from 'next/link';
+'use client';
+
+import { Button, ButtonKind } from '@/shared/ui/Button/Button';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function NotFound() {
+  const router = useRouter();
   return (
-    <div>
-      <h2>Not Found</h2>
-      <img
-        src="https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/168/1717699464489/nonono.jpeg"
-        alt="없어요"
-      />
-      <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
+    <div className="fixed inset-0 flex flex-col items-center justify-center gap-10">
+      <Image src="/404.gif" alt="404 페이지" width={750} height={750} />
+      <Button
+        kind={ButtonKind.primary}
+        customSize="lg:text-lg mobile:w-[295px] w-[550px] h-[50px] md:h-[55px] lg:h-[65px]"
+        onClick={() => {
+          router.push('/');
+        }}
+      >
+        홈으로 가기
+      </Button>
     </div>
   );
 }

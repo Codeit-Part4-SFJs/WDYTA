@@ -30,11 +30,11 @@ export const EditModal = ({ accessToken }: EditModalProps) => {
     mode: 'onChange',
   });
   const params = useSearchParams();
-  const productId = parseInt(params.get('productId') as string, 10);
-  const categoryId = params.get('category') || '';
-  const productName = params.get('productName') || '';
-  const image = params.get('image') || '';
-  const currentFilter = params.get('filter') || '';
+  const productId = parseInt(params?.get('productId') as string, 10);
+  const categoryId = params?.get('category') || '';
+  const productName = params?.get('productName') || '';
+  const image = params?.get('image') || '';
+  const currentFilter = params?.get('filter') || '';
 
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState(image);

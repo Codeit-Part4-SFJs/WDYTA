@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 const Oauth = () => {
   const searchParams = useSearchParams();
-  const authorizationCode = searchParams.get('code');
+  const authorizationCode = searchParams?.get('code');
 
   const signInMutation = useSignInMutation('kakao');
 

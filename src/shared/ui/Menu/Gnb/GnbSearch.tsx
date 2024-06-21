@@ -18,7 +18,8 @@ const GnbSearchBar = ({
 }: GnbSearchBarProps) => {
   const { register, handleSubmit, setValue } = useForm<SearchInput>();
   const router = useRouter();
-  const { category } = useParams();
+  const params = useParams<{ category: string }>();
+  const category = params?.category;
   const pathname = usePathname();
   // 검색어 상태 관리
   const searchTerm = useSearchStore((state) => state.searchTerm);

@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 const OauthSignUp = () => {
   const searchParams = useSearchParams();
-  const authorizationCode = searchParams.get('code');
+  const authorizationCode = searchParams?.get('code');
 
   useEffect(() => {
     if (!authorizationCode) {

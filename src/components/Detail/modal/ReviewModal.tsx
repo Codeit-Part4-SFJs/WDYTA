@@ -38,10 +38,10 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
   const [isPending, setIsPending] = useState(false);
 
   const params = useSearchParams();
-  const productId = parseInt(params.get('product') as string, 10);
-  const categoryId = parseInt(params.get('category') as string, 10);
-  const productName = params.get('name') || '';
-  const currentFilter = params.get('filter') || '';
+  const productId = parseInt(params?.get('product') as string, 10);
+  const categoryId = parseInt(params?.get('category') as string, 10);
+  const productName = params?.get('name') || '';
+  const currentFilter = params?.get('filter') || '';
 
   const ratingColors = Array(5)
     .fill('fill-gray-6E')

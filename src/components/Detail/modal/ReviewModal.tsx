@@ -72,12 +72,14 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
       const validFiles = newFiles
         .filter((file) => {
           if (file.size > MAX_SIZE) {
-            alert('이미지 파일의 최대 용량은 5MB입니다.');
+            setErrorMessage('이미지 파일의 최대 용량은 5MB입니다.');
             return false;
           }
 
           if (!ALLOWED_TYPES.includes(file.type)) {
-            alert('허용된 파일 형식은 .jpg, .jpeg, .png, .webp 입니다.');
+            setErrorMessage(
+              '허용된 파일 형식은 .jpg, .jpeg, .png, .webp 입니다.',
+            );
             return false;
           }
 

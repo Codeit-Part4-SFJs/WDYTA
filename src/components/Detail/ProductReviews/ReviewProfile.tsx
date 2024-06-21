@@ -23,7 +23,7 @@ export const ReviewProfile = ({ rating, reviewUser }: ReviewProfileProps) => {
   return (
     <Link
       className="lg:h-[42px] md:h-[36px] mobile:h-[36px] flex items-center gap-[10px]"
-      href={`/profile/${reviewUser.id}`}
+      href={`/profile?userId=${reviewUser.id}`}
     >
       <ImageComponent
         type="profile"

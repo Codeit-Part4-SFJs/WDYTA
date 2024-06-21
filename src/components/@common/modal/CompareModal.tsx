@@ -90,7 +90,7 @@ export const CompareModal = ({ productId, accessToken }: CompareModalProps) => {
 
   const ButtonSize = `w-[420px] mobile:w-[295px] h-[65px] md:h-[55px] mobile:h-[50px] py-6 md:self-stretch flex-shrink-0 `;
   return (
-    <div className="mobile:w-[335px] w-[500px] mobile:h-[336px] md:h-[400px] lg:h-[453px] flex flex-col justify-center ">
+    <div className=" flex flex-col justify-center ">
       <p className=" text-2xl md:text-xl mobile:text-xl text-white">
         지금 보신 {productData.name}
       </p>

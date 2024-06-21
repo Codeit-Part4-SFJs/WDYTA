@@ -15,8 +15,8 @@ export const CheckModal = () => {
     router.refresh();
   };
   return (
-    <div className="w-[500px] mobile:w-[335px] h-[263px] md:h-[256px] mobile:h-[196px] flex-shrink-0">
-      <div className="my-10">
+    <div className="flex flex-col gap-[30px] md:gap-[45px] lg:gap-10">
+      <div>
         <p className="text-white text-2xl md:text-xl mobile:text-xl ">
           비교 상품이 교체되었습니다.
         </p>

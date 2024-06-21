@@ -2,7 +2,6 @@
 
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { ComparisonResult } from './ComparisonResult';
 import { ProductDetailData } from './types';
 
@@ -41,8 +40,6 @@ export const Table = ({
     },
   };
 
-  const router = useRouter();
-
   const [firstProduct, setFirstProduct] =
     useState<ProductDetailData>(initialProduct);
   const [secondProduct, setSecondProduct] =
@@ -75,23 +72,8 @@ export const Table = ({
     <div>
       <div className="flex flex-col items-center justify-center">
         <ComparisonResult
-          firstProduct={{
-            id: firstProduct.id,
-            categoryId: firstProduct.categoryId,
-            name: firstProduct.name,
-            rating: firstProduct.rating,
-            reviewCount: firstProduct.reviewCount,
-            favoriteCount: firstProduct.favoriteCount,
-          }}
-          secondProduct={{
-            id: secondProduct.id,
-            categoryId: secondProduct.categoryId,
-            name: secondProduct.name,
-
-            rating: secondProduct.rating,
-            reviewCount: secondProduct.reviewCount,
-            favoriteCount: secondProduct.favoriteCount,
-          }}
+          firstProduct={firstProduct}
+          secondProduct={secondProduct}
         />
       </div>
     </div>

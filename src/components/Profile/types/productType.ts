@@ -1,4 +1,4 @@
-import { TAB_OPTIONS } from '@/components/Profile/constants/productMenu';
+import { PRODUCT_TAB_OPTIONS } from '@/components/Profile/constants/productMenu';
 
 export interface ProductTypes {
   updatedAt: string;
@@ -16,4 +16,4 @@ export interface ProductDataPage {
   list: ProductTypes[];
   nextCursor: number;
 }
-export type ProductMenuType = (typeof TAB_OPTIONS)[number]['label'];
+export type ProductMenuType = (typeof PRODUCT_TAB_OPTIONS)[number]['label'];

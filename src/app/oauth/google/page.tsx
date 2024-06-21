@@ -21,7 +21,7 @@ const Oauth = () => {
           code: authorizationCode,
           client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
           client_secret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || '',
-          redirect_uri: 'http://localhost:3000/oauth/google',
+          redirect_uri: `${process.env.NEXT_PUBLIC_FE_URL}/oauth/google`,
           grant_type: 'authorization_code',
         });
 
@@ -54,7 +54,7 @@ const Oauth = () => {
   useEffect(() => {
     if (tokenData) {
       const loginData = {
-        redirectUri: 'http://localhost:3000/oauth/google',
+        redirectUri: `${process.env.NEXT_PUBLIC_FE_URL}/oauth/google`,
         token: tokenData,
       };
       signInMutation.mutate(loginData);

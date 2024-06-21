@@ -10,7 +10,7 @@ interface SocialLoginProps {
 
 const handleGoogleClick = () => {
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-  const redirectUri = 'http://localhost:3000/oauth/google';
+  const redirectUri = `${process.env.NEXT_PUBLIC_FE_URL}/oauth/google`;
   const responseType = 'code';
   const scope = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
@@ -19,7 +19,7 @@ const handleGoogleClick = () => {
 
 const handleKakaoClick = () => {
   const clientId = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
-  const redirectUri = 'http://localhost:3000/oauth/kakao';
+  const redirectUri = `${process.env.NEXT_PUBLIC_FE_URL}/oauth/kakao`;
 
   window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
 };

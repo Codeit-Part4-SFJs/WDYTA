@@ -9,7 +9,7 @@ const Oauth = () => {
   const searchParams = useSearchParams();
   const authorizationCode = searchParams.get('code');
 
-  const signInMutation = useSignInMutation('kakao'); // 이거 나중에 변경할거임
+  const signInMutation = useSignInMutation('kakao');
 
   useEffect(() => {
     if (authorizationCode) {

@@ -106,7 +106,7 @@ export const ProductDetail = ({
               kind={ButtonKind.tertiary}
               onClick={() => {
                 router.push(
-                  `/modal/detail/edit?productId=${productId}&productName=${productDetailData.name}&category=${productDetailData.categoryId}&image=${productDetailData.image}`,
+                  `/modal/detail/edit?productId=${productId}&productName=${productDetailData.name}&category=${productDetailData.categoryId}&image=${productDetailData.image}&filter=${currentFilter}`,
                   { scroll: false },
                 );
               }}

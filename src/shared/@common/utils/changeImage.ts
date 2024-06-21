@@ -4,23 +4,25 @@ interface ImageChangeProps {
   event: React.ChangeEvent<HTMLInputElement>;
   setFile: React.Dispatch<React.SetStateAction<File | null>>;
   setPreview: React.Dispatch<React.SetStateAction<string>>;
+  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const handleImageChange = ({
   event,
   setFile,
   setPreview,
+  setErrorMessage,
 }: ImageChangeProps) => {
   const selectedFile = event.target.files?.[0] || null;
 
   if (selectedFile) {
     if (selectedFile && selectedFile.size > MAX_SIZE) {
-      alert('이미지 파일의 최대 용량은 5MB입니다.');
+      setErrorMessage('이미지 파일의 최대 용량은 5MB입니다.');
       return;
     }
 
     if (!ALLOWED_TYPES.includes(selectedFile.type)) {
-      alert('허용된 파일 형식은 .jpg, .jpeg, .png, .webp 입니다.');
+      setErrorMessage('허용된 파일 형식은 .jpg, .jpeg, .png, .webp 입니다.');
       return;
     }
 

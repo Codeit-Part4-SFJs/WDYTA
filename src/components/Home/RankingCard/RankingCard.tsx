@@ -1,6 +1,7 @@
 import { ImageComponent } from '@/shared/ui/Img';
 import { RankingChip } from '@/shared/ui/Chip/RankingChip';
 import { AdaptedRankingData } from '@/shared/@common/utils/adaptRanking';
+import { PROFILE_DEFAULT_IMAGE } from '@/components/Profile/constants/profileDefaultImage';
 import Link from 'next/link';
 
 interface RankingCardProps {
@@ -23,7 +24,7 @@ export const RankingCard = ({ ranking }: RankingCardProps) => {
         <ImageComponent
           type="profile"
           // 임시로 설정해둔 기본 프로필 이미지 경로 (추후 변경 예정)
-          src={ranking?.image ?? '/icon/profile.png'}
+          src={ranking?.image ?? PROFILE_DEFAULT_IMAGE}
           alt={ranking.nickname}
           className="w-12 h-12 rounded-full"
         />

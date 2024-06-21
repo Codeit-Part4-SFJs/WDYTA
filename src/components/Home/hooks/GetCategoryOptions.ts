@@ -17,7 +17,7 @@ async function fetchCategories(): Promise<Category[]> {
   }
 }
 
-export const CATEGORY_DROPDOWN_OPTIONS = async () => {
+export const GetCategoryOptions = async () => {
   const categories = await fetchCategories();
   const categoryList: Category[] = categories ?? DEFAULT_CATEGORIES;
 

@@ -27,8 +27,8 @@ interface UserListModalProps {
 }
 const UserListModal = ({ accessToken, loginedId }: UserListModalProps) => {
   const searchParams = useSearchParams();
-  const userId = Number(searchParams.get('userId')) ?? loginedId;
-  const followType = searchParams.get('type') ?? 'follower';
+  const userId = Number(searchParams?.get('userId')) ?? loginedId;
+  const followType = searchParams?.get('type') ?? 'follower';
   const isFollowerList = followType === 'follower';
 
   const {

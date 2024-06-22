@@ -1,14 +1,15 @@
+import { ReviewEditModal } from '@/components/Detail/modal';
 import { Modal } from '@/shared/ui/Modal';
-import { AddModal } from '@/components/Home/modal/AddModal';
 import { cookies } from 'next/headers';
 
-const ProductAddModal = () => {
+const ProductReviewEditModal = () => {
   const accessToken = cookies().get('accessToken')?.value ?? '';
+
   return (
     <Modal size="medium" closeIcon>
-      <AddModal accessToken={accessToken} title="상품 추가" />
+      <ReviewEditModal accessToken={accessToken} />
     </Modal>
   );
 };
 
-export default ProductAddModal;
+export default ProductReviewEditModal;

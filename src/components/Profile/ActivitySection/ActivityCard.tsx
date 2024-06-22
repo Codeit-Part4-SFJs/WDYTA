@@ -13,7 +13,7 @@ export const ActivityCard = ({
   loginedId,
   accessToken,
 }: ActivityCardProps) => {
-  const userId = useSearchParams().get('userId');
+  const userId = useSearchParams()?.get('userId');
   const currentProfileId = Number(userId) || Number(loginedId);
 
   const { data: currentUserInfo } = useSuspenseQuery(

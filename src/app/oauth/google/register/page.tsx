@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 
 const OauthSignUp = () => {
   const params = useSearchParams();
-  const idToken = params.get('id_token');
+  const idToken = params?.get('id_token');
 
   if (idToken) {
     return (

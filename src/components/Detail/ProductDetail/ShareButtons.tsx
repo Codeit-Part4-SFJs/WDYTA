@@ -19,7 +19,7 @@ interface ShareButtonsProps {
 export const ShareButtons = ({ productName }: ShareButtonsProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const order = searchParams.get('order');
+  const order = searchParams?.get('order');
 
   const url = order
     ? `${process.env.NEXT_PUBLIC_FE_URL}${pathname}?order=${order}`

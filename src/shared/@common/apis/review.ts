@@ -7,12 +7,12 @@ export interface PostReviewProps {
   rating: number;
 }
 
-interface Image {
+export interface Image {
   id?: number;
   source?: string;
 }
 
-interface PatchReviewProps {
+export interface PatchReviewProps {
   images: Image[];
   content: string;
   rating: number;

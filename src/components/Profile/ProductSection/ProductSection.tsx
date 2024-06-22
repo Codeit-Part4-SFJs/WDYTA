@@ -14,8 +14,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 export const ProductSection = ({ loginedId }: { loginedId: number | null }) => {
   const router = useRouter();
-  const userId = useSearchParams().get('userId');
-  const currentMenu = useSearchParams().get('tab') ?? 'reviewedProduct';
+  const userId = useSearchParams()?.get('userId');
+  const currentMenu = useSearchParams()?.get('tab') ?? 'reviewedProduct';
   const currentProfileId = Number(userId) || Number(loginedId);
 
   const [activeMenu, setActiveMenu] = useState('리뷰 남긴 상품');

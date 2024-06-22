@@ -1,4 +1,4 @@
-import LogoIcon from '../../../../public/icon/logo.svg';
+import LogoIcon from '../../../../public/icon/newLogo.svg';
 
 export const Logo = () => {
   return (

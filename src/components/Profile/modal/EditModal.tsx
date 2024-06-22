@@ -40,6 +40,7 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
     mutate: editMutate,
     error,
     isError,
+    reset: resetEditStatus,
     isPending,
   } = useProfileEditMutation(accessToken, loginedId);
 
@@ -94,15 +95,14 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
               value: 10,
               message: '닉네임은 10자 이하로 작성해주세요',
             },
+            onChange: resetEditStatus,
           })}
           isError={!!errors.nickname}
         />
         {errors.nickname && (
           <HelperText type="error">{errors.nickname.message}</HelperText>
         )}
-        {isError && !errors.nickname && (
-          <HelperText type="error">{error.message}</HelperText>
-        )}
+        {isError && <HelperText type="error">{error.message}</HelperText>}
         <TextBoxInput
           register={register}
           text={text}

@@ -14,7 +14,7 @@ import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { ProductCategoryEnum } from '@/shared/ui/Chip/types/categoryChipType';
 import { useSearchParams } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
-import { CATEGORY_DROPDOWN_OPTIONS } from '../../@common/modal/constants/CATEGORY_DROPDOWN_OPTIONS';
+import { GetCategoryOptions } from '@/components/Home/hooks/GetCategoryOptions';
 import { useEditProductMuation } from '../ProductDetail/hooks';
 
 interface EditModalProps {
@@ -60,7 +60,7 @@ export const EditModal = ({ accessToken }: EditModalProps) => {
 
   useEffect(() => {
     const loadOptions = async () => {
-      const fetchedOptions = await CATEGORY_DROPDOWN_OPTIONS();
+      const fetchedOptions = await GetCategoryOptions();
       setOptions(fetchedOptions);
     };
 

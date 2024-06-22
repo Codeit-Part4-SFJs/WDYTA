@@ -23,7 +23,7 @@ const SocialLoginForm = ({ provider, code }: SocialLoginFormProps) => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const loginData = {
       nickname: data.nickname,
-      redirectUri: `${process.env.NEXT_PUBLIC_FE_URL}/oauth/register`,
+      redirectUri: `${process.env.NEXT_PUBLIC_FE_URL}/oauth/${provider}/register`,
       token: code,
     };
 

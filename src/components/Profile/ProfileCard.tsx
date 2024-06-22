@@ -112,7 +112,10 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
           <>
             <Button
               onClick={() =>
-                router.push('/modal/profileEdit', { scroll: false })
+                router.push(
+                  `/modal/profileEdit?userId=${currentProfileId}&tab=${tab}`,
+                  { scroll: false },
+                )
               }
               kind={ButtonKind.primary}
               customSize={buttonCustomSize}

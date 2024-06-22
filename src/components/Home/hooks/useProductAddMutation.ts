@@ -26,7 +26,6 @@ export const useProductAddMutation = ({
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
-      // return response.json();
       const responseData = await response.json();
       // 상품 생성 응답에서 상품 ID를 반환
       return {

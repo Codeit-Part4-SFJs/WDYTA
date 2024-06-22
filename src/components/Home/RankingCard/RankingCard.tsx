@@ -23,7 +23,6 @@ export const RankingCard = ({ ranking }: RankingCardProps) => {
       <Link href={`/profile?userId=${ranking.id}`}>
         <ImageComponent
           type="profile"
-          // 임시로 설정해둔 기본 프로필 이미지 경로 (추후 변경 예정)
           src={ranking?.image ?? PROFILE_DEFAULT_IMAGE}
           alt={ranking.nickname}
           className="w-12 h-12 rounded-full"

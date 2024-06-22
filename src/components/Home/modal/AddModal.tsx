@@ -51,7 +51,7 @@ export const AddModal = ({ accessToken, title }: ProductModalProps) => {
   }, []);
 
   const text = watch('textarea', '');
-  const productNameInput = watch('productName', '');
+  const productNameInput = watch('productName');
 
   const queryClient = useQueryClient();
 
@@ -85,7 +85,6 @@ export const AddModal = ({ accessToken, title }: ProductModalProps) => {
       setIsLoading(false);
       return;
     }
-    // console.log(productData);
 
     imageMutation.mutate(file, {
       onSuccess: (data) => {

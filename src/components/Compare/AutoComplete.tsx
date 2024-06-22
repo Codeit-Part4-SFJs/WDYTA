@@ -112,7 +112,10 @@ export const AutoComplete = ({
             <CompareChip
               productName={isChip}
               color={color ? CompareColor.GREEN : CompareColor.PINK}
-              onDelete={() => setIsChip('')}
+              onDelete={() => {
+                setIsChip('');
+                setKeyword('');
+              }}
             />
           </div>
         ) : (

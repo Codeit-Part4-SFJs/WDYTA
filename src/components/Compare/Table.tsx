@@ -1,6 +1,5 @@
 'use client';
 
-// import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { useEffect, useState } from 'react';
 import { ComparisonResult } from './ComparisonResult';
@@ -69,33 +68,13 @@ export const Table = ({
     fetchProducts();
   }, [selectedFirstProductId, selectedSecondProductId, accessToken]);
 
-  console.log(selectedFirstProductId, selectedSecondProductId);
-
   return (
     <div>
       <div className="flex flex-col items-center justify-center">
         <ComparisonResult
-          firstProduct={{
-            name: firstProduct.name,
-            rating: firstProduct.rating,
-            reviewCount: firstProduct.reviewCount,
-            favoriteCount: firstProduct.favoriteCount,
-          }}
-          secondProduct={{
-            name: secondProduct.name,
-            rating: secondProduct.rating,
-            reviewCount: secondProduct.reviewCount,
-            favoriteCount: secondProduct.favoriteCount,
-          }}
+          firstProduct={firstProduct}
+          secondProduct={secondProduct}
         />
-        <div className="mt-10">
-          {/* <Button
-            kind={ButtonKind.secondary}
-            customSize=" mb-[60px] w-[180px] h-[60px] text-[12px] mobile:w-[120px]"
-          >
-            이 상품 보러 가기
-          </Button> */}
-        </div>
       </div>
     </div>
   );

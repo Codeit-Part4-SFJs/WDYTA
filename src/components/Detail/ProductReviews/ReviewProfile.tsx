@@ -26,11 +26,13 @@ export const ReviewProfile = ({ rating, reviewUser }: ReviewProfileProps) => {
       className="lg:h-[42px] md:h-[36px] mobile:h-[36px] flex items-center gap-[10px]"
       href={`/profile?userId=${reviewUser.id}`}
     >
-      <ImageComponent
-        type="profile"
-        src={`${reviewUser.image ?? PROFILE_DEFAULT_IMAGE}`}
-        alt={`${reviewUser.nickname}의 프로필`}
-      />
+      <div className="shrink-0">
+        <ImageComponent
+          type="profile"
+          src={`${reviewUser.image ?? PROFILE_DEFAULT_IMAGE}`}
+          alt={`${reviewUser.nickname}의 프로필`}
+        />
+      </div>
       <div className="flex flex-col gap-[5px]">
         <div className="text-sm lg:text-base text-gray-F1 not-italic leading-normal font-normal">
           {reviewUser.nickname}

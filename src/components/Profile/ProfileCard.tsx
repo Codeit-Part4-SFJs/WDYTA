@@ -19,8 +19,8 @@ interface ProfileCardProps {
 
 export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
   const router = useRouter();
-  const userId = useSearchParams().get('userId');
-  const tab = useSearchParams().get('tab') ?? TAB_NAMES_ORIGIN.reviewedProduct;
+  const userId = useSearchParams()?.get('userId');
+  const tab = useSearchParams()?.get('tab') ?? TAB_NAMES_ORIGIN.reviewedProduct;
   const currentProfileId = Number(userId) || Number(loginedId);
   const isMyProfile = Number(userId) === Number(loginedId) || !userId;
 

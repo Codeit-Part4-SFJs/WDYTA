@@ -1,21 +1,21 @@
-// import { homeProductKeys } from '@/app/[category]/homeQueryKeyFactories';
+import { homeProductKeys } from '@/app/[category]/homeQueryKeyFactories';
 import { ProductProps, postCreateProduct } from '@/shared/@common/apis/product';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, QueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-// import { convertIdToCategory } from '@/shared/@common/utils';
+import { convertIdToCategory } from '@/shared/@common/utils';
 
 interface ProductAddProps {
   accessToken: string;
   setErrorMessage: (message: string) => void;
-  // productCategoryId: number;
-  // queryClient: QueryClient;
+  productCategoryId: number;
+  queryClient: QueryClient;
 }
 
 export const useProductAddMutation = ({
   accessToken,
   setErrorMessage,
-  // productCategoryId,
-  // queryClient,
+  productCategoryId,
+  queryClient,
 }: ProductAddProps) => {
   const router = useRouter();
 
@@ -26,17 +26,21 @@ export const useProductAddMutation = ({
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
-      return response.json();
+      const responseData = await response.json();
+      // 상품 생성 응답에서 상품 ID를 반환
+      return {
+        productId: responseData.id,
+        categoryPath: convertIdToCategory(productCategoryId),
+      };
     },
-    onSuccess: () => {
-      router.back();
-      // -> 데이터가 바로 반영되지는 않지만 모달이 바로 꺼짐
-      // router.push(`/${convertIdToCategory(productCategoryId)}`);
-      // -> 데이터가 바로 반영되지만 모달이 안 꺼짐
-      //
-      // queryClient.invalidateQueries({
-      //   queryKey: homeProductKeys.all(),
-      // });
+    onSuccess: (data) => {
+      router.push(`/${data.categoryPath}/${data.productId}`);
+      router.refresh();
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: homeProductKeys.all,
+      });
     },
     onError: (error) => {
       setErrorMessage(error.message);

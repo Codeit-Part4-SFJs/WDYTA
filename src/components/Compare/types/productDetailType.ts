@@ -23,6 +23,8 @@ export interface ProductDetailData {
 }
 
 export interface TableProductProps {
+  id: number;
+  categoryId: number;
   name: string;
   rating: number;
   reviewCount: number;

@@ -31,12 +31,17 @@ export const useCreateReviewMutation = ({
     },
     onSuccess: () => {
       router.back();
-      queryClient.invalidateQueries({
-        queryKey: productKeys.reviews(productId, currentFilter),
-      });
     },
     onError: (error) => {
       setErrorMessage(error.message);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: productKeys.reviews(productId, currentFilter),
+      });
+      queryClient.invalidateQueries({
+        queryKey: productKeys.detail(productId),
+      });
     },
   });
 };

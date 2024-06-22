@@ -13,15 +13,16 @@ import { useSearchParams } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useQueryClient } from '@tanstack/react-query';
 import { ALLOWED_TYPES } from '@/shared/@common/utils/constants/Image';
-import { useCreateReviewMutation } from '../ProductReviews/hooks/useCreateReviewMutation';
+import { Image } from '@/shared/@common/apis';
+import { useEditReviewMutation } from '../ProductReviews/hooks';
 
-interface ReviewModalProps {
+interface ReviewEditModalProps {
   accessToken: string;
 }
 
 const MAX_SIZE = 5 * 1024 * 1024;
 
-export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
+export const ReviewEditModal = ({ accessToken }: ReviewEditModalProps) => {
   const {
     register,
     watch,
@@ -31,17 +32,19 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
     mode: 'onChange',
   });
 
-  const [rating, setRating] = useState(0);
+  const params = useSearchParams();
+  const productId = parseInt(params?.get('product') as string, 10) || 0;
+  const prevRating = parseInt(params?.get('rating') as string, 10) || 0;
+  const reviewId = parseInt(params?.get('reviewId') as string, 10) || 0;
+  const categoryId = parseInt(params?.get('category') as string, 10);
+  const productName = params?.get('name') || '';
+  const currentFilter = params?.get('filter') || '';
+
+  const [rating, setRating] = useState(prevRating);
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [isPending, setIsPending] = useState(false);
-
-  const params = useSearchParams();
-  const productId = parseInt(params?.get('product') as string, 10);
-  const categoryId = parseInt(params?.get('category') as string, 10);
-  const productName = params?.get('name') || '';
-  const currentFilter = params?.get('filter') || '';
 
   const ratingColors = Array(5)
     .fill('fill-gray-6E')
@@ -56,12 +59,13 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
   const queryClient = useQueryClient();
 
   const imageMutation = useImageMutation({ accessToken, setErrorMessage });
-  const createReviewMutation = useCreateReviewMutation({
+  const editReviewMutation = useEditReviewMutation({
     accessToken,
     setErrorMessage,
     queryClient,
     productId,
     currentFilter,
+    reviewId,
   });
 
   const isDisabled =
@@ -108,6 +112,15 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
     }
   };
 
+  const convertImageArray = (urls: string[]) => {
+    const newImages: Image[] = [];
+    urls.forEach((url) => {
+      newImages.push({ source: url });
+    });
+
+    return newImages;
+  };
+
   const onSubmit: SubmitHandler<FormValues> = async () => {
     setIsPending(true);
 
@@ -125,9 +138,8 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
 
     try {
       const urls = await Promise.all(promises);
-      createReviewMutation.mutate({
-        productId,
-        images: urls,
+      editReviewMutation.mutate({
+        images: convertImageArray(urls),
         content: text,
         rating,
       });

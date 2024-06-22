@@ -27,6 +27,7 @@ export interface ControlButtonsProps {
   reviewId: number;
   productId: number;
   filter: string | undefined;
+  rating: number;
 }
 
 export interface ReviewLikeButtonProps {

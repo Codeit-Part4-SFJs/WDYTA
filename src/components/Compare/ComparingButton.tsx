@@ -85,6 +85,10 @@ export const ComparingButton = ({
     if (!firstItem || !secondItem) {
       return;
     }
+    if (Number(firstItem) === Number(secondItem)) {
+      router.push(`/modal/compare/duplicateCompare`);
+      return;
+    }
 
     router.replace(`/compare?product1=${firstItem}&product2=${secondItem}`, {
       scroll: false,

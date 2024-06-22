@@ -13,6 +13,7 @@ import { useImageMutation } from '@/shared/@common/hooks';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { ProductCategoryEnum } from '@/shared/ui/Chip/types/categoryChipType';
 import { useSearchParams } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 import { CATEGORY_DROPDOWN_OPTIONS } from '../../@common/modal/constants/CATEGORY_DROPDOWN_OPTIONS';
 import { useEditProductMuation } from '../ProductDetail/hooks';
 
@@ -24,15 +25,16 @@ export const EditModal = ({ accessToken }: EditModalProps) => {
     register,
     watch,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     mode: 'onChange',
   });
   const params = useSearchParams();
-  const productId = parseInt(params.get('productId') as string, 10);
-  const categoryId = params.get('category') || '';
-  const productName = params.get('productName') || '';
-  const image = params.get('image') || '';
+  const productId = parseInt(params?.get('productId') as string, 10);
+  const categoryId = params?.get('category') || '';
+  const productName = params?.get('productName') || '';
+  const image = params?.get('image') || '';
+  const currentFilter = params?.get('filter') || '';
 
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState(image);
@@ -41,14 +43,19 @@ export const EditModal = ({ accessToken }: EditModalProps) => {
     [],
   );
   const [category, setCategory] = useState(categoryId);
+  const [isPending, setIsPending] = useState(false);
 
   const text = watch('textarea', '');
+
+  const queryClient = useQueryClient();
 
   const imageMutation = useImageMutation({ accessToken, setErrorMessage });
   const editProductMutation = useEditProductMuation({
     accessToken,
     setErrorMessage,
     productId,
+    queryClient,
+    currentFilter,
   });
 
   useEffect(() => {
@@ -65,6 +72,7 @@ export const EditModal = ({ accessToken }: EditModalProps) => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = (productData) => {
+    setIsPending(true);
     if (file) {
       imageMutation.mutate(file, {
         onSuccess: (data) => {
@@ -79,7 +87,7 @@ export const EditModal = ({ accessToken }: EditModalProps) => {
     } else {
       editProductMutation.mutate({
         categoryId: Number(category),
-        image: preview, // 기존 이미지를 사용
+        image: preview,
         description: text,
         name: productData.productName,
       });
@@ -128,6 +136,7 @@ export const EditModal = ({ accessToken }: EditModalProps) => {
         type="submit"
         kind={ButtonKind.primary}
         customSize="lg:text-lg w-[295px] md:w-[510px] lg:w-[540px] h-[50px] md:h-[55px] lg:h-[65px]"
+        disabled={!text || isSubmitting || isPending}
       >
         저장하기
       </Button>

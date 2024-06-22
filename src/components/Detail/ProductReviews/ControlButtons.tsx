@@ -1,18 +1,27 @@
 'use client';
 
-import { ControlButtonsProps } from '@/components/Detail/types';
+import {
+  ControlButtonsProps,
+  ProductDetailData,
+} from '@/components/Detail/types';
 import { useQueryClient } from '@tanstack/react-query';
 import { useDeleteReviewMutation } from '@/components/Detail/ProductReviews/hooks';
+import { useRouter } from 'next/navigation';
+import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
 
 export const ControlButtons = ({
   accessToken,
   reviewId,
   productId,
   filter,
+  rating,
 }: ControlButtonsProps) => {
   const currentFilter = filter ?? 'recent';
 
   const queryClient = useQueryClient();
+  const productData = queryClient.getQueryData<ProductDetailData>(
+    productKeys.detail(productId),
+  );
 
   const deleteReviewMutation = useDeleteReviewMutation(
     queryClient,
@@ -26,8 +35,12 @@ export const ControlButtons = ({
     deleteReviewMutation.mutate();
   };
 
+  const router = useRouter();
   const handleEditClick = () => {
-    alert('리뷰 수정 모달 열림');
+    router.push(
+      `/modal/detail/reviewEdit?reviewId=${reviewId}&rating=${rating}&product=${productId}&category=${productData?.categoryId}&name=${productData?.name}&filter=${currentFilter}`,
+      { scroll: false },
+    );
   };
 
   return (

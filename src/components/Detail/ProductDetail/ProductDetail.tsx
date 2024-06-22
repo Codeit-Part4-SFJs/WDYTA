@@ -46,7 +46,7 @@ export const ProductDetail = ({
   };
 
   return (
-    <div className="mobile:mt-[30px] md:mt-[44px] lg:mt-[64px] lg:mb-[20px] flex mobile:flex-col justify-center items-center md:items-start lg:items-start gap-[20px] lg:gap-[40px]">
+    <div className="w-full mobile:mt-[30px] md:mt-[44px] lg:mt-[64px] lg:mb-[20px] flex mobile:flex-col justify-center items-center md:items-start lg:items-start gap-[20px] lg:gap-[40px]">
       <div className="flex justify-center items-center">
         <div className="shrink-0 overflow-hidden rounded-lg mobile:w-[335px] mobile:h-[236px] md:w-[280px] md:h-[197px] lg:w-[355px] lg:h-[250px]">
           <ImageComponent
@@ -56,7 +56,7 @@ export const ProductDetail = ({
           />
         </div>
       </div>
-      <div className="flex flex-col gap-[60px]">
+      <div className="w-full flex flex-col gap-[60px]">
         <div className="flex flex-col gap-[20px] md:gap-[50px] lg:gap-[50px]">
           <div className="flex flex-col gap-[10px]">
             <CategoryChip categoryID={productDetailData.categoryId} />
@@ -106,7 +106,7 @@ export const ProductDetail = ({
               kind={ButtonKind.tertiary}
               onClick={() => {
                 router.push(
-                  `/modal/detail/edit?productId=${productId}&productName=${productDetailData.name}&category=${productDetailData.categoryId}&image=${productDetailData.image}`,
+                  `/modal/detail/edit?productId=${productId}&productName=${productDetailData.name}&category=${productDetailData.categoryId}&image=${productDetailData.image}&filter=${currentFilter}`,
                   { scroll: false },
                 );
               }}

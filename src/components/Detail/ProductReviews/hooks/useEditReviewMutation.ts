@@ -1,28 +1,30 @@
 import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
-import { ProductProps, patchProduct } from '@/shared/@common/apis/product';
+import { PatchReviewProps, patchReview } from '@/shared/@common/apis';
 import { QueryClient, useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-interface EditProductProps {
+interface EditReviewProps {
   accessToken: string;
-  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
-  productId: number;
+  setErrorMessage: (message: string) => void;
   queryClient: QueryClient;
+  productId: number;
   currentFilter: string;
+  reviewId: number;
 }
 
-export const useEditProductMuation = ({
+export const useEditReviewMutation = ({
   accessToken,
   setErrorMessage,
-  productId,
   queryClient,
+  productId,
   currentFilter,
-}: EditProductProps) => {
+  reviewId,
+}: EditReviewProps) => {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: async (data: ProductProps) => {
-      const response = await patchProduct(productId, data, accessToken);
+    mutationFn: async (data: PatchReviewProps) => {
+      const response = await patchReview(reviewId, data, accessToken);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message);

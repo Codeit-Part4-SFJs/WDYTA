@@ -44,7 +44,7 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
   } = useProfileEditMutation(accessToken, loginedId);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    setIsSubmitting(!isPending);
+    setIsSubmitting(isPending);
 
     if (!file) {
       editMutate({
@@ -100,7 +100,9 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
         {errors.nickname && (
           <HelperText type="error">{errors.nickname.message}</HelperText>
         )}
-        {isError && <HelperText type="error">{error.message}</HelperText>}
+        {isError && !errors.nickname && (
+          <HelperText type="error">{error.message}</HelperText>
+        )}
         <TextBoxInput
           register={register}
           text={text}

@@ -130,7 +130,12 @@ export const AddModal = ({ accessToken, title }: ProductModalProps) => {
               previewImage={preview}
               handleDeleteButton={() => handleDeleteButton({ setPreview })}
               handleImageChange={(event) =>
-                handleImageChange({ event, setFile, setPreview })
+                handleImageChange({
+                  event,
+                  setFile,
+                  setPreview,
+                  setErrorMessage,
+                })
               }
             />
           </div>

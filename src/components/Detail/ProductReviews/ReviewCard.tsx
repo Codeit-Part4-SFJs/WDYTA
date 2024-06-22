@@ -38,6 +38,7 @@ export const ReviewCard = ({
                 reviewId={reviewData.id}
                 productId={reviewData.productId}
                 filter={filter}
+                rating={reviewData.rating}
               />
             )}
           </div>

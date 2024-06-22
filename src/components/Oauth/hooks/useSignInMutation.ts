@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import loginAction from '@/components/Login/loginAction';
 import { AuthProps, postSimpleSignIn } from '@/shared/@common/apis';
 
-const useSignInMutation = (provider: string) => {
+const useSignInMutation = (provider: string, idToken?: string | undefined) => {
   const router = useRouter();
   return useMutation({
     mutationFn: async (data: AuthProps) => {
@@ -21,8 +21,12 @@ const useSignInMutation = (provider: string) => {
       router.push('/');
     },
     onError: (error) => {
-      if (error.message === 'Forbidden') {
-        router.push('/modal/oauth/register', { scroll: false });
+      if (provider === 'google') {
+        router.push(`/oauth/google/register?id_token=${idToken}`);
+      } else if (error.message === 'Forbidden') {
+        router.push(`/modal/oauth/${provider}`, {
+          scroll: false,
+        });
       } else {
         router.push('/modal/oauth', { scroll: false });
       }

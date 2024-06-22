@@ -1,10 +1,5 @@
+import { MyInfoData } from '@/components/Profile/types/profileTypes';
 import { API_USERS } from './constants/API';
-
-interface PatchMyInfoProps {
-  description: string;
-  nickname: string;
-  image: string;
-}
 
 /**
  * 내 정보 조회
@@ -21,7 +16,7 @@ export const getMyInfo = (accessToken: string) => {
  * 내 정보 수정
  * @param data 내 정보 수정 폼의 데이터
  */
-export const patchMyInfo = (data: PatchMyInfoProps, accessToken: string) => {
+export const patchMyInfo = (data: MyInfoData, accessToken: string) => {
   return fetch(API_USERS.MY_INFO, {
     method: 'PATCH',
     headers: {
@@ -74,13 +69,13 @@ export const getUserFavoriteProducts = (userId: number, pageParam: number) => {
 /**
  * 유저가 팔로우한 유저 조회
  */
-export const getUserFollowees = (userId: number) => {
-  return fetch(API_USERS.FOLLOWEES(userId));
+export const getUserFollowees = (userId: number, pageParam: number) => {
+  return fetch(API_USERS.FOLLOWEES(userId, pageParam));
 };
 
 /**
  * 유저를 팔로우한 유저 조회
  */
-export const getUserFollowers = (userId: number) => {
-  return fetch(API_USERS.FOLLOWERS(userId));
+export const getUserFollowers = (userId: number, pageParam: number) => {
+  return fetch(API_USERS.FOLLOWERS(userId, pageParam));
 };

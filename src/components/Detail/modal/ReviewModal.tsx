@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useQueryClient } from '@tanstack/react-query';
+import { ALLOWED_TYPES } from '@/shared/@common/utils/constants/Image';
 import { useCreateReviewMutation } from '../ProductReviews/hooks/useCreateReviewMutation';
 
 interface ReviewModalProps {
@@ -21,7 +22,12 @@ interface ReviewModalProps {
 const MAX_SIZE = 5 * 1024 * 1024;
 
 export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
-  const { register, watch, handleSubmit } = useForm<FormValues>({
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<FormValues>({
     mode: 'onChange',
   });
 
@@ -29,12 +35,13 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isPending, setIsPending] = useState(false);
 
   const params = useSearchParams();
-  const productId = parseInt(params.get('product') as string, 10);
-  const categoryId = parseInt(params.get('category') as string, 10);
-  const productName = params.get('name') || '';
-  const currentFilter = params.get('filter') || '';
+  const productId = parseInt(params?.get('product') as string, 10);
+  const categoryId = parseInt(params?.get('category') as string, 10);
+  const productName = params?.get('name') || '';
+  const currentFilter = params?.get('filter') || '';
 
   const ratingColors = Array(5)
     .fill('fill-gray-6E')
@@ -57,6 +64,9 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
     currentFilter,
   });
 
+  const isDisabled =
+    rating === 0 || !text || files.length === 0 || isSubmitting || isPending;
+
   const handleDeleteButton = (index: number) => {
     setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
     setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
@@ -71,9 +81,17 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
       const validFiles = newFiles
         .filter((file) => {
           if (file.size > MAX_SIZE) {
-            alert('이미지 파일의 최대 용량은 5MB입니다.');
+            setErrorMessage('이미지 파일의 최대 용량은 5MB입니다.');
             return false;
           }
+
+          if (!ALLOWED_TYPES.includes(file.type)) {
+            setErrorMessage(
+              '허용된 파일 형식은 .jpg, .jpeg, .png, .webp 입니다.',
+            );
+            return false;
+          }
+
           return true;
         })
         .map((file) => {
@@ -91,20 +109,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = async () => {
-    if (rating === 0) {
-      setErrorMessage('별점을 선택해 주세요');
-      return;
-    }
-
-    if (text.trim() === '') {
-      setErrorMessage('리뷰 내용을 작성해 주세요');
-      return;
-    }
-
-    if (files.length === 0) {
-      setErrorMessage('최소한 한 개의 이미지를 업로드해 주세요');
-      return;
-    }
+    setIsPending(true);
 
     const promises = files.map((file) => {
       return new Promise<string>((resolve, reject) => {
@@ -186,6 +191,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
         type="submit"
         kind={ButtonKind.primary}
         customSize="lg:text-lg w-[295px] md:w-[510px] lg:w-[540px] h-[50px] md:h-[55px] lg:h-[65px]"
+        disabled={isDisabled}
       >
         작성하기
       </Button>

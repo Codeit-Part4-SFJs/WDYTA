@@ -71,7 +71,7 @@ export const ShareIcon = ({ product1, product2 }: ShareIconProps) => {
   };
 
   return (
-    <div className="relative mobile:absolute mobile:right-0 mobile:top-[-34px] flex shrink-0 gap-[10px]">
+    <div className="relative flex shrink-0 gap-[10px]">
       <button
         onClick={handleKakaoClick}
         className="flex justify-center items-center bg-black-25 rounded-md mobile:w-[24px] mobile:h-[24px] md:w-[24px] md:h-[24px] lg:w-[28px] lg:h-[28px]"

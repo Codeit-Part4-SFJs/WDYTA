@@ -1,20 +1,22 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useSignInMutation from '@/components/Oauth/hooks/useSignInMutation';
 import { Loading } from '@/shared/ui/Icon';
 
 const Oauth = () => {
-  const { hash } = window.location;
-  const params = new URLSearchParams(hash.substring(1));
-  const idToken = params.get('id_token') || '';
+  const [idToken, setIdToken] = useState('');
   const signInMutation = useSignInMutation('google', idToken);
 
   useEffect(() => {
-    if (idToken) {
+    const params = new URLSearchParams(window.location.hash.substring(1));
+    const token = params.get('id_token') || '';
+    setIdToken(token);
+
+    if (token) {
       const loginData = {
         redirectUri: `${process.env.NEXT_PUBLIC_FE_URL}/oauth/google`,
-        token: idToken,
+        token,
       };
       signInMutation.mutate(loginData);
     }

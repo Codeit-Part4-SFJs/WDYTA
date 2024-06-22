@@ -11,7 +11,7 @@ const OauthSignUp = () => {
   useEffect(() => {
     if (!authorizationCode) {
       const clientId = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
-      const redirectUri = 'http://localhost:3000/oauth/register';
+      const redirectUri = `${process.env.NEXT_PUBLIC_FE_URL}/oauth/kakao/register`;
 
       window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
     }
@@ -20,7 +20,7 @@ const OauthSignUp = () => {
   if (authorizationCode) {
     return (
       <div className="flex justify-center mt-[228px] md:mt-[376px] lg:mt-[315px]">
-        <SocialLoginForm code={authorizationCode} />
+        <SocialLoginForm provider="kakao" code={authorizationCode} />
       </div>
     );
   }

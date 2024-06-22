@@ -9,12 +9,12 @@ const Oauth = () => {
   const searchParams = useSearchParams();
   const authorizationCode = searchParams.get('code');
 
-  const signInMutation = useSignInMutation('kakao'); // 이거 나중에 변경할거임
+  const signInMutation = useSignInMutation('kakao');
 
   useEffect(() => {
     if (authorizationCode) {
       const loginData = {
-        redirectUri: 'http://localhost:3000/oauth',
+        redirectUri: `${process.env.NEXT_PUBLIC_FE_URL}/oauth/kakao`,
         token: authorizationCode,
       };
       signInMutation.mutate(loginData);

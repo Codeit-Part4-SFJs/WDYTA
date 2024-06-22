@@ -7,7 +7,7 @@ const OauthSignUpAlertModal = () => {
       <AlertModal
         errorMessage="회원이 아닙니다"
         buttonText="회원가입 하기"
-        path="/ouath/register"
+        path="/oauth/kakao/register"
       />
     </Modal>
   );

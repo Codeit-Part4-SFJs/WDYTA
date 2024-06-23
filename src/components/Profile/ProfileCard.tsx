@@ -47,7 +47,7 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
 
   const handleClickFollow = () => {
     if (!accessToken) {
-      router.push(`modal/profile?userId=${currentProfileId}`);
+      router.push(`modal/profile/loginAlert?userId=${currentProfileId}`);
       return;
     }
     followMutation.mutate({ isFollowing });
@@ -81,7 +81,7 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
       <div className="flex justify-between lg:w-[160px] lg:h-[53px] md:w-[234px] md:h-[48px] mobile:w-[194px] mobile:h-[48px]">
         <div className="flex flex-col items-center">
           <Link
-            href={`/modal/userFollowList?userId=${currentProfileId}&tab=${tab}&type=follower`}
+            href={`/modal/profile/userFollowList?userId=${currentProfileId}&tab=${tab}&type=follower`}
             scroll={false}
           >
             <div className="lg:text-[20px] md:text-[18px] text-gray-F1 cursor-pointer">
@@ -95,7 +95,7 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
         <div className="border border-solid border-gray-35" />
         <div className="flex flex-col items-center">
           <Link
-            href={`/modal/userFollowList?userId=${currentProfileId}&tab=${tab}&type=followee`}
+            href={`/modal/profile/userFollowList?userId=${currentProfileId}&tab=${tab}&type=followee`}
             scroll={false}
           >
             <div className="lg:text-[20px] md:text-[18px] text-gray-F1 cursor-pointer">
@@ -113,7 +113,7 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
             <Button
               onClick={() =>
                 router.push(
-                  `/modal/profileEdit?userId=${currentProfileId}&tab=${tab}`,
+                  `/modal/profile/profileEdit?userId=${currentProfileId}&tab=${tab}`,
                   { scroll: false },
                 )
               }

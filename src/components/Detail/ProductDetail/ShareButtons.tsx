@@ -36,7 +36,7 @@ export const ShareButtons = ({ productName }: ShareButtonsProps) => {
         title: 'WDYTA',
         description: `지금 ${productName} 상품을 비교해보세요`,
         imageUrl:
-          'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+          'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/168/1719131911147/123IMG_3465.png',
         link: {
           mobileWebUrl: url,
           webUrl: url,
@@ -44,10 +44,10 @@ export const ShareButtons = ({ productName }: ShareButtonsProps) => {
       },
       buttons: [
         {
-          title: '모든 상품 비교하러 가기',
+          title: '상품 비교하러 가기',
           link: {
-            mobileWebUrl: process.env.NEXT_PUBLIC_FE_URL,
-            webUrl: process.env.NEXT_PUBLIC_FE_URL,
+            mobileWebUrl: url,
+            webUrl: url,
           },
         },
       ],

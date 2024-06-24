@@ -18,7 +18,6 @@ export const compareFirstOptions = (
 
       if (!response.ok) {
         notFound();
-        console.error('1데이터');
       }
 
       return response.json();
@@ -40,7 +39,6 @@ export const compareSecondOptions = (
       const response = await getDetailProduct(productId, accessToken);
       if (!response.ok) {
         notFound();
-        console.error('2데이터');
       }
 
       return response.json();

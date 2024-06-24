@@ -4,7 +4,7 @@ import { ProductDetailData } from '@/components/Compare/types';
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { useCompareItems } from '@/stores/useCompareItems';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 interface CompareModalProps {
@@ -70,7 +70,7 @@ export const CompareModal = ({ productId, accessToken }: CompareModalProps) => {
         setSecondItemData(data2);
         setProductData(data3);
       } catch (error) {
-        console.error('데이터 받아오기 오류');
+        notFound();
       }
     };
     getCompares();

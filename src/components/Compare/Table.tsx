@@ -2,6 +2,7 @@
 
 import { getDetailProduct } from '@/shared/@common/apis/product';
 import { useEffect, useState } from 'react';
+import { notFound } from 'next/navigation';
 import { ComparisonResult } from './ComparisonResult';
 import { ProductDetailData } from './types';
 
@@ -61,7 +62,7 @@ export const Table = ({
         setFirstProduct(data1);
         setSecondProduct(data2);
       } catch (error) {
-        console.error('Failed to fetch product details:', error);
+        notFound();
       }
     };
 

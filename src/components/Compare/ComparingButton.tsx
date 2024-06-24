@@ -1,7 +1,7 @@
 'use client';
 
 import { useCompareItems } from '@/stores/useCompareItems';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { CompareColor } from '@/shared/ui/Chip/CompareChip';
 import { Button, ButtonKind } from '@/shared/ui/Button/Button';
@@ -57,7 +57,7 @@ export const ComparingButton = ({
           changingFirstItem(productDetail.id);
           setFirstName(productDetail.name);
         } catch (error) {
-          console.error('Failed to fetch product detail:', error);
+          notFound();
         }
       };
       fetchProductDetail();
@@ -74,7 +74,7 @@ export const ComparingButton = ({
           changingSecondItem(productDetail.id);
           setSecondName(productDetail.name);
         } catch (error) {
-          console.error('Failed to fetch product detail:', error);
+          notFound();
         }
       };
       fetchProductDetail();

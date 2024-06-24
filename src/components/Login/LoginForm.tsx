@@ -23,6 +23,7 @@ const LoginForm = () => {
 
   return (
     <form
+      autoComplete="off"
       className="flex flex-col gap-10 mobile:gap-[30px]"
       onSubmit={handleSubmit(onSubmit)}
     >

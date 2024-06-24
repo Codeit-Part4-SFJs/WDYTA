@@ -138,6 +138,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
 
   return (
     <form
+      autoComplete="off"
       className="flex flex-col gap-[40px] mobile:gap-5"
       onSubmit={handleSubmit(onSubmit)}
     >

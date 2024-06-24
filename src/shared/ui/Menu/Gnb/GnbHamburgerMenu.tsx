@@ -1,8 +1,7 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Icon } from '@/shared/ui/Icon';
-import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { useClose } from '@/shared/@common/hooks';
 import { logoutAction } from '@/shared/@common/utils';
@@ -14,11 +13,14 @@ import { useCompareItems } from '@/stores/useCompareItems';
 
 const GnbHamburgerMenuOption = ({
   isLoggedIn,
+  handleClose,
 }: GnbHamburgerMenuOptionProps) => {
   const handleSignOut = async () => {
     await logoutAction();
     window.location.reload();
   };
+
+  const router = useRouter();
   const pathname = usePathname();
 
   const linkClass =
@@ -39,46 +41,79 @@ const GnbHamburgerMenuOption = ({
   return (
     <div className="mobile:block md:hidden lg:hidden absolute z-50 top-[50px] left-[20px] w-36 overflow-hidden bg-black-1C rounded-lg border border-solid border-black-25 text-gray-F1 not-italic font-normal leading-normal text-[14px] text-center">
       {pathname === '/login' && (
-        <Link className={linkClass} href="/register">
+        <button
+          onClick={() => {
+            router.push('/register');
+            handleClose();
+          }}
+          className={linkClass}
+          type="button"
+        >
           회원가입
-        </Link>
+        </button>
       )}
       {pathname === '/register' && (
-        <Link className={linkClass} href="/login">
+        <button
+          onClick={() => {
+            router.push('/login');
+            handleClose();
+          }}
+          className={linkClass}
+          type="button"
+        >
           로그인
-        </Link>
+        </button>
       )}
       {pathname !== '/login' &&
         pathname !== '/register' &&
         (isLoggedIn ? (
           <div>
-            <Link
+            <button
+              type="button"
               className={`${linkClass} border-b border-solid border-black-25`}
-              href={linkHref()}
+              onClick={() => {
+                router.push(`${linkHref()}`);
+                handleClose();
+              }}
             >
               비교하기
-            </Link>
-            <Link
+            </button>
+            <button
+              type="button"
               className={`${linkClass} border-b border-solid border-black-25`}
-              href="/profile"
+              onClick={() => {
+                router.push('/profile');
+                handleClose();
+              }}
             >
               내 프로필
-            </Link>
+            </button>
             <button onClick={handleSignOut} className={linkClass} type="button">
               로그아웃
             </button>
           </div>
         ) : (
           <div>
-            <Link
+            <button
+              type="button"
               className={`${linkClass} border-b border-solid border-black-25`}
-              href="/login"
+              onClick={() => {
+                router.push('/login');
+                handleClose();
+              }}
             >
               로그인
-            </Link>
-            <Link className={linkClass} href="/register">
+            </button>
+            <button
+              type="button"
+              className={linkClass}
+              onClick={() => {
+                router.push('/register');
+                handleClose();
+              }}
+            >
               회원가입
-            </Link>
+            </button>
           </div>
         ))}
     </div>
@@ -111,7 +146,10 @@ export const GnbHamburgerMenu = ({ isLoggedIn }: GnbHamburgerMenuProps) => {
         />
       </button>
       {isOpenHamburgerMenu && (
-        <GnbHamburgerMenuOption isLoggedIn={isLoggedIn} />
+        <GnbHamburgerMenuOption
+          isLoggedIn={isLoggedIn}
+          handleClose={handleToggledHamburgerMenu}
+        />
       )}
     </div>
   );

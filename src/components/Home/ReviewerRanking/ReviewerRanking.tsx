@@ -17,7 +17,7 @@ export const ReviewerRanking = () => {
       <h2 className="text-[16px] text-gray-F1 font-normal mb-4 lg:mb-8 md:mt-7 lg:mt-7">
         리뷰어 랭킹
       </h2>
-      <ul className="flex flex-row lg:flex-col gap-5 lg:gap-1 overflow-hidden">
+      <ul className="flex flex-row lg:flex-col gap-5 lg:gap-1 mobile:overflow-x-scroll md:overflow-x-scroll scrollbar-hide">
         {rankingData?.map((ranking) => (
           <RankingCard key={ranking.id} ranking={ranking} />
         ))}

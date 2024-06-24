@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { PropsWithChildren } from 'react';
-import LoadingIcon from '../../../../public/icon/loading.svg';
+import LoadingIcon from '../../../../public/icon/newLoading.svg';
 import { LoadingProps } from './types/iconType';
 
 export const Loading = ({
@@ -12,7 +12,7 @@ export const Loading = ({
     <div className="flex flex-col items-center gap-3">
       <LoadingIcon
         className={twMerge(
-          'mobile:w-[39px] mobile:h-[32px] w-[39px] h-[32px] lg:w-[49px] lg:h-[40px] fill-gray-6E',
+          'mobile:w-[50px] mobile:h-[32px] w-[50px] h-[32px] lg:w-[50px] lg:h-[40px] fill-gray-6E',
           iconClassName,
         )}
       />

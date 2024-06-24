@@ -20,7 +20,6 @@ export const AutoComplete = ({
   const [keyword, setKeyword] = useState('');
   const [keyItems, setKeyItems] = useState<AutoCompleteProduct[]>([]);
   const [isChip, setIsChip] = useState<string | undefined>(selectedProduct);
-  const [loading, setLoading] = useState(false);
   const [listOpen, setListOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
@@ -32,7 +31,6 @@ export const AutoComplete = ({
 
   const updateData = async () => {
     if (isChip) return;
-    setLoading(true);
 
     try {
       const response = await getProductListKeyword(keyword);
@@ -42,10 +40,7 @@ export const AutoComplete = ({
         .slice(0, 5);
       setKeyItems(filteredData);
     } catch (error) {
-      console.error('Failed to fetch product list.');
-      console.log(loading);
-    } finally {
-      setLoading(false);
+      throw new Error('Failed to fetch product list.');
     }
   };
 

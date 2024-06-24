@@ -5,6 +5,7 @@ import { Button, ButtonKind } from '@/shared/ui/Button/Button';
 import { useRouter } from 'next/navigation';
 import { convertIdToCategory } from '@/shared/@common/utils';
 import { ProductDetailData } from './types';
+import { ShareIcon } from './ShareIcon';
 
 interface TableProps {
   firstProduct: ProductDetailData;
@@ -131,7 +132,10 @@ export const ComparisonResult = ({
           </p>
         )}
       </div>
-      <div className="mb-[100px]" />
+      <div className="flex mt-[60px] mb-[10px] w-full justify-end ">
+        <ShareIcon product1={firstProduct} product2={secondProduct} />
+      </div>
+
       <div className="border border-solid border-gray-35 rounded-xl w-[940px] h-[297px] bg-black-25 flex-shrink-0 md:w-[684px] md:h-[308px] md:text-sm mobile:w-[335px] mobile:h-[186px] mobile:text-xs">
         <table className="table-auto w-full h-full text-center">
           <thead className="w-full">

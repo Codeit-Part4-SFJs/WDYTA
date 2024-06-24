@@ -1,7 +1,7 @@
-import LogoIcon from '../../../../public/icon/logo.svg';
+import LogoIcon from '../../../../public/icon/newLogo.svg';
 
 export const Logo = () => {
   return (
-    <LogoIcon className="mobile:w-[112px] mobile:h-[18px] md:w-[138px] md:h-[24px] lg:w-[166px] lg:h-[28px] " />
+    <LogoIcon className="mobile:w-[140px] mobile:h-[30px] md:w-[150px] md:h-[35px] lg:w-[180px] lg:h-[40px] " />
   );
 };

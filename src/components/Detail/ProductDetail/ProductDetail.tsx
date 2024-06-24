@@ -10,6 +10,8 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { productOptions } from '@/app/[category]/[product]/queryOptions';
 import { useRouter } from 'next/navigation';
 import { useCompareItems } from '@/stores/useCompareItems';
+import { convertIdToCategory } from '@/shared/@common/utils';
+import Link from 'next/link';
 
 export const ProductDetail = ({
   userId,
@@ -59,7 +61,11 @@ export const ProductDetail = ({
       <div className="w-full flex flex-col gap-[60px]">
         <div className="flex flex-col gap-[20px] md:gap-[50px] lg:gap-[50px]">
           <div className="flex flex-col gap-[10px]">
-            <CategoryChip categoryID={productDetailData.categoryId} />
+            <Link
+              href={`/${convertIdToCategory(productDetailData.categoryId)}`}
+            >
+              <CategoryChip categoryID={productDetailData.categoryId} />
+            </Link>
             <div className="mobile:relative flex justify-between items-center">
               <div className="flex gap-[15px] mobile:justify-between mobile:w-full">
                 <div className="text-gray-F1 not-italic font-normal mobile:leading-7 md:leading-normal lg:leading-normal text-xl lg:text-2xl">

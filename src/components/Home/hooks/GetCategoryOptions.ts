@@ -7,12 +7,10 @@ async function fetchCategories(): Promise<Category[]> {
     const response = await getCategory();
 
     if (!response.ok) {
-      console.error('카테고리 데이터를 불러오는데 실패했습니다.');
       return DEFAULT_CATEGORIES;
     }
     return await response.json();
   } catch (error) {
-    console.error('카테고리 데이터를 불러오는데 실패했습니다.');
     return DEFAULT_CATEGORIES;
   }
 }
@@ -21,7 +19,6 @@ export const GetCategoryOptions = async () => {
   const categories = await fetchCategories();
   const categoryList: Category[] = categories ?? DEFAULT_CATEGORIES;
 
-  // 카테고리 선택 드롭다운 옵션
   return categoryList.map((category) => ({
     value: String(category.id),
     label: category.name,

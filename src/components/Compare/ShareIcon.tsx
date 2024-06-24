@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { Icon } from '@/shared/ui/Icon';
 import { Toast } from '@/components/@common';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { ProductDetailData } from './types';
 
 declare global {
   // eslint-disable-next-line no-unused-vars
@@ -12,18 +13,15 @@ declare global {
   }
 }
 
-interface ShareButtonsProps {
-  productName: string;
+interface ShareIconProps {
+  product1: ProductDetailData;
+  product2: ProductDetailData;
 }
 
-export const ShareButtons = ({ productName }: ShareButtonsProps) => {
+export const ShareIcon = ({ product1, product2 }: ShareIconProps) => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const order = searchParams?.get('order');
 
-  const url = order
-    ? `${process.env.NEXT_PUBLIC_FE_URL}${pathname}?order=${order}`
-    : `${process.env.NEXT_PUBLIC_FE_URL}${pathname}`;
+  const url = `${process.env.NEXT_PUBLIC_FE_URL}${pathname}?product1=${product1.id}&product2=${product2.id}`;
 
   const handleKakaoClick = () => {
     if (!window.Kakao?.isInitialized()) {
@@ -34,7 +32,7 @@ export const ShareButtons = ({ productName }: ShareButtonsProps) => {
       objectType: 'feed',
       content: {
         title: 'WDYTA',
-        description: `지금 ${productName} 상품을 비교해보세요`,
+        description: `지금 ${product1.name} 상품과 ${product2.name} 상품을 비교해보세요`,
         imageUrl:
           'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Mogazoa/user/168/1719131911147/123IMG_3465.png',
         link: {
@@ -73,7 +71,7 @@ export const ShareButtons = ({ productName }: ShareButtonsProps) => {
   };
 
   return (
-    <div className="relative mobile:absolute mobile:right-0 mobile:top-[-34px] flex shrink-0 gap-[10px]">
+    <div className="relative flex shrink-0 gap-[10px]">
       <button
         onClick={handleKakaoClick}
         className="flex justify-center items-center bg-black-25 rounded-md mobile:w-[24px] mobile:h-[24px] md:w-[24px] md:h-[24px] lg:w-[28px] lg:h-[28px]"

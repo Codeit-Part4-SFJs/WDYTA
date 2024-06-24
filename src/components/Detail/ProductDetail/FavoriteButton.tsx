@@ -23,7 +23,9 @@ export const FavoriteButton = ({
 
   const handleClick = () => {
     if (!accessToken) {
-      router.push('/login');
+      router.push('/modal/common/loginAlert', {
+        scroll: false,
+      });
     }
     favoriteMutation.mutate();
   };

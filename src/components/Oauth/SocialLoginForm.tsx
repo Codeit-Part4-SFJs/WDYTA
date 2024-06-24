@@ -32,6 +32,7 @@ const SocialLoginForm = ({ provider, code }: SocialLoginFormProps) => {
 
   return (
     <form
+      autoComplete="off"
       className="flex flex-col gap-[60px]"
       onSubmit={handleSubmit(onSubmit)}
     >

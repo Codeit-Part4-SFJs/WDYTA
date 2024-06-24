@@ -58,6 +58,7 @@ const GnbSearchBar = ({
       className={`${isOpenMobileSearchBar ? 'block mobile:absolute mobile:z-10 mobile:right-[20px] md:ml-auto lg:ml-auto' : 'mobile:hidden md:block md:ml-auto lg:ml-auto lg:block'}`}
     >
       <form
+        autoComplete="off"
         onSubmit={handleSubmit(onSubmit)}
         className="mobile:w-[291px] md:w-[300px] lg:w-[320px] mobile:h-[48px] md:h-[50px] lg:h-[50px] flex items-center justify-start rounded-[28px] bg-black-25"
       >

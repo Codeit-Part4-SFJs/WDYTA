@@ -8,6 +8,8 @@ import { SkeletonReviewerRanking } from '@/components/Home/skeletons/SkeletonRev
 import { ReviewerRanking } from '@/components/Home/ReviewerRanking/ReviewerRanking';
 import { convertCategoryToId } from '@/shared/@common/utils';
 import { SideMenu } from '@/shared/ui/Menu/SideMenu';
+import { URL_CATEGORIES } from '@/shared/@common/constants';
+import { notFound } from 'next/navigation';
 import { homeProductOptions, rankingOptions } from './homeQueryOptions';
 
 const FilteredHome = ({
@@ -21,6 +23,10 @@ const FilteredHome = ({
   const currentCategoryId = convertCategoryToId(category);
   const currentSearchWord = searchParams.keyword;
   const currentFilter = searchParams.order;
+
+  if (!URL_CATEGORIES.includes(category)) {
+    notFound();
+  }
 
   const queryClient = getQueryClient();
   queryClient.prefetchQuery(rankingOptions());

@@ -7,6 +7,7 @@ import {
 } from '@/shared/@common/apis';
 import { ProductDataPage } from '@/components/Profile/types/productType';
 import { FollowDataPage } from '@/components/Profile/types/followType';
+import { notFound } from 'next/navigation';
 import { ProfileKeys } from './queryKeyFactories';
 
 export const productOptions = (
@@ -18,9 +19,11 @@ export const productOptions = (
     queryKey: ProfileKeys.productCard(currentProfileId, currentMenu),
     queryFn: async ({ pageParam }) => {
       const response = await apiFunc(currentProfileId, pageParam);
+      if (!response.ok) {
+        notFound();
+      }
       return response.json();
     },
-    staleTime: 0,
     initialPageParam: 0,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
@@ -31,6 +34,9 @@ export const profileOptions = (userId: number, accessToken: string) => {
     queryKey: ProfileKeys.user(Number(userId)),
     queryFn: async () => {
       const response = await getUserInfo(Number(userId), accessToken);
+      if (!response.ok) {
+        notFound();
+      }
       return response.json();
     },
   });
@@ -44,6 +50,9 @@ export const followerOptions = (userId: number, type: string) => {
         Number(userId),
         Number(pageParam),
       );
+      if (!response.ok) {
+        notFound();
+      }
       return response.json();
     },
     initialPageParam: 0,

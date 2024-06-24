@@ -40,11 +40,12 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
     mutate: editMutate,
     error,
     isError,
+    reset: resetEditStatus,
     isPending,
   } = useProfileEditMutation(accessToken, loginedId);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    setIsSubmitting(!isPending);
+    setIsSubmitting(isPending);
 
     if (!file) {
       editMutate({
@@ -94,6 +95,7 @@ const EditModal = ({ accessToken, loginedId }: EditModalProps) => {
               value: 10,
               message: '닉네임은 10자 이하로 작성해주세요',
             },
+            onChange: resetEditStatus,
           })}
           isError={!!errors.nickname}
         />

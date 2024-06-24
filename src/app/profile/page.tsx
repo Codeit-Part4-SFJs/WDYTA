@@ -14,6 +14,7 @@ import {
 
 import { redirect } from 'next/navigation';
 import { TAB_NAMES_ORIGIN } from '@/components/Profile/constants/productMenu';
+import { Floating } from '@/shared/ui/Button/Floating';
 import { productOptions, profileOptions } from './queryOptions';
 
 interface ProfileProps {
@@ -58,6 +59,7 @@ export default function Profile({ searchParams }: ProfileProps) {
             <ProductSection loginedId={loginedId} />
           </HydrationBoundary>
         </Suspense>
+        <Floating />
       </div>
     </main>
   );

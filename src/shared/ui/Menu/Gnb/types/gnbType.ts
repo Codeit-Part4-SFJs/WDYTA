@@ -17,6 +17,7 @@ export interface GnbHamburgerMenuProps {
 
 export interface GnbHamburgerMenuOptionProps {
   isLoggedIn: boolean;
+  handleClose: () => void;
 }
 
 export interface GnbUserProps {

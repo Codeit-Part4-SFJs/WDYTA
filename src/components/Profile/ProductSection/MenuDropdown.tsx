@@ -18,7 +18,6 @@ export const MenuDropdown = ({
   };
 
   const handleSelectOption = (option: Option) => {
-    console.log(option.label);
     onSelect(option.label);
     setIsToggled(false);
   };

@@ -29,7 +29,9 @@ export const LikeButton = ({
 
   const handleClick = () => {
     if (!accessToken) {
-      router.push('/login');
+      router.push('/modal/common/loginAlert', {
+        scroll: false,
+      });
     }
     likeMutation.mutate();
   };

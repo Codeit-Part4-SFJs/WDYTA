@@ -39,7 +39,7 @@ export default function Profile({ searchParams }: ProfileProps) {
     ),
   );
   if (!accessToken && !userId) {
-    redirect('/login');
+    redirect('/modal/common/loginAlert');
   }
   return (
     <main className="flex justify-center items-start md:flex-col mobile:flex-col md:items-center mobile:items-center md:min-w-[509px] mobile:min-w-[335px] lg:gap-[70px] gap-[60px] py-[52px] lg:px-[120px] md:px-[30px] mobile:px-[21px] ">

@@ -2,13 +2,19 @@
 
 import { convertIdToCategory } from '@/shared/@common/utils';
 import { SideMenuTabProps } from '@/shared/ui/Menu/SideMenu/types/categoryType';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useSideMenuStore } from '@/stores';
 
 export const SideMenuTab = ({
   category,
   categoryId,
   currentCategoryId,
 }: SideMenuTabProps) => {
+  const router = useRouter();
+  const setIsOpenSideMenu = useSideMenuStore(
+    (state) => state.setIsOpenSideMenu,
+  );
+
   const isClicked = currentCategoryId === categoryId;
 
   const commonClass =
@@ -20,16 +26,27 @@ export const SideMenuTab = ({
   return (
     <div>
       {isClicked ? (
-        <Link className={`${clickedClass}`} href="/">
-          {category}
-        </Link>
-      ) : (
-        <Link
-          className={`${unClickedClass}`}
-          href={`/${convertIdToCategory(categoryId)}`}
+        <button
+          type="button"
+          className={`${clickedClass}`}
+          onClick={() => {
+            router.push('/');
+            setIsOpenSideMenu();
+          }}
         >
           {category}
-        </Link>
+        </button>
+      ) : (
+        <button
+          type="button"
+          className={`${unClickedClass}`}
+          onClick={() => {
+            router.push(`/${convertIdToCategory(categoryId)}`);
+            setIsOpenSideMenu();
+          }}
+        >
+          {category}
+        </button>
       )}
     </div>
   );

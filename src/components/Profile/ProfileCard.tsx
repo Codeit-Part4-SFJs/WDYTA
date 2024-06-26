@@ -47,7 +47,9 @@ export const ProfileCard = ({ loginedId, accessToken }: ProfileCardProps) => {
 
   const handleClickFollow = () => {
     if (!accessToken) {
-      router.push(`modal/profile/loginAlert?userId=${currentProfileId}`);
+      router.push(`/modal/common/loginAlert?userId=${currentProfileId}`, {
+        scroll: false,
+      });
       return;
     }
     followMutation.mutate({ isFollowing });

@@ -15,6 +15,8 @@ import {
 } from '@/components/Detail/skeletons';
 import { ProductStatistics } from '@/components/Detail/ProductStatistics';
 import { ProductReviews } from '@/components/Detail/ProductReviews';
+import { URL_CATEGORIES } from '@/shared/@common/constants';
+import { notFound } from 'next/navigation';
 
 const DetailPage = ({
   params,
@@ -28,6 +30,10 @@ const DetailPage = ({
   const currentFilter = searchParams.order;
   const accessToken = cookies().get('accessToken')?.value ?? '';
   const userId = Number(cookies().get('userId')?.value);
+
+  if (!URL_CATEGORIES.includes(category)) {
+    notFound();
+  }
 
   const queryClient = getQueryClient();
   queryClient.prefetchQuery(productOptions(productId, accessToken));

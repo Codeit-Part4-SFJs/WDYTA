@@ -1,5 +1,9 @@
 ![image](https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/fb2cae2a-760f-4ac3-a213-21b49320452c)
 
+<br>
+<br>
+<br>
+
 # What Do You Think About?
 
 ![BuildTest](https://github.com/Codeit-Part4-SFJs/WDYTA/actions/workflows/BuildTest.yml/badge.svg)![CICD](https://github.com/Codeit-Part4-SFJs/WDYTA/actions/workflows/CICD.yml/badge.svg)![NotificateMerged](https://github.com/Codeit-Part4-SFJs/WDYTA/actions/workflows/NotificateMerged.yml/badge.svg)![NotificatePullRequest](https://github.com/Codeit-Part4-SFJs/WDYTA/actions/workflows/NotificatePullRequest.yml/badge.svg)
@@ -12,7 +16,11 @@
 
 🔗 프로젝트 링크 [WDYTA](https://www.wdyta.store/)
 
-📅 개발 기간 : 24.05.18 ~ 24.06.24
+📅 개발 기간 : 24.05.18 ~ 24.06.24 (6주)
+
+<br>
+<br>
+<br>
 
 # 💁🏻‍♀팀원 소개💁🏻‍♂
 
@@ -20,25 +28,37 @@
 | :------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
 | [<img src="https://avatars.githubusercontent.com/u/121845820?v=4" height="120" width="120"><br>@hyunjun9788](https://github.com/hyunjun9788) | [<img src="https://avatars.githubusercontent.com/u/67824465?v=4" height="120" width="120"><br>@linason-esc](https://github.com/linason-esc) | [<img src="https://avatars.githubusercontent.com/u/129318957?v=4" height="120" width="120"><br>@yeona813](https://github.com/yeona813) | [<img src="https://avatars.githubusercontent.com/u/139374266?v=4" height="120" width="120"><br>@mangang0713](https://github.com/mangang0713) | [<img src="https://avatars.githubusercontent.com/u/155162841?v=4" height="120" width="120"><br>@suMin-97](https://github.com/suMin-97) |
 
+<br>
+<br>
+<br>
+
 # ⚙️ 기술 스택
 
 ![기술스택](https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/701dae56-71dd-4d03-90e8-d94f3c20ff1d)
+
+<br>
+<br>
+<br>
 
 # 📺 화면 구성
 
 <table>
   <tr>
-    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/441da87b-1aa5-4ec4-8bd3-12af07e90541" alt="Image 1" width="250"/></td>
-    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/917f49ff-16dd-4d7d-8b9b-45ae4deff4f9" alt="Image 2" width="250"/></td>
-    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/97f8ab6d-3c7d-4ed3-adf9-b9ec28ca9467" alt="Image 3" width="250"/></td>
+    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/441da87b-1aa5-4ec4-8bd3-12af07e90541" alt="Image 1" width="500"/></td>
+    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/917f49ff-16dd-4d7d-8b9b-45ae4deff4f9" alt="Image 2" width="500"/></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/774700e8-cf6a-45bf-8c8c-701458fa1afe" alt="Image 4" width="250"/></td>
-    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/874b863e-a627-4ffc-a95a-b10f4057e49b" alt="Image 5" width="250"/></td>
-    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/91b9bc35-f4c7-4bbc-810d-2374ed19f59e" alt="Image 6" width="250"/></td>
+      <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/97f8ab6d-3c7d-4ed3-adf9-b9ec28ca9467" alt="Image 3" width="500"/></td>
+       <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/774700e8-cf6a-45bf-8c8c-701458fa1afe" alt="Image 4" width="500"/></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/874b863e-a627-4ffc-a95a-b10f4057e49b" alt="Image 5" width="500"/></td>
+    <td><img src="https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/91b9bc35-f4c7-4bbc-810d-2374ed19f59e" alt="Image 6" width="500"/></td>
   </tr>
 </table>
 
+<br/>
+<br/>
 <br/>
 
 # 📋 역할 분담
@@ -51,7 +71,7 @@
   - 모달 : 팔로워, 팔로잉 유저 목록, 프로필 편집 모달
   - Product, Follow API 초기 세팅
 - 비개발
-  - 화면 구성 이미지 제작
+  - [서비스 소개 이미지 제작](#-화면-구성)
 
 ### 🐰손승현
 
@@ -99,6 +119,10 @@
   - AWS 배포 및 CICD 자동화 구축
 - 비개발
   - 발표 자료 준비
+
+<br/>
+<br/>
+<br/>
 
 # ⚒️ 주요 기능
 
@@ -155,9 +179,15 @@
 > ### 프로필 페이지
 
 - 페이지 무한 스크롤 및 스켈레톤 적용
+- 반응형을 고려한 그리드 레이아웃 구현
+- query params 사용하여 URL에 userId 및 메뉴 이름 저장
+  - 본인 프로필은 userId를 입력하지 않아도 접근 가능
+  - 메뉴 이름 입력하지 않고 접근 시 '리뷰 남긴 상품'으로 기본값 설정
+- query key에 상품 탭 이름을 props로 받아 효율적으로 데이터 갱신
 - URL과 query key를 활용한 메뉴별 상품 리스트 정렬
+- 본인 프로필이 아닌 다른 유저 프로필 경우 팔로우 기능 사용 가능
 - 팔로워, 팔로잉 유저 목록 모달 무한 스크롤 적용
 - 팔로우 버튼 Optimistic Updates 적용
-- 본인 프로필 페이지인 경우 프로필 편집 버튼 표시
+- 본인 프로필 페이지인 경우에만 프로필 편집 기능 사용 가능
   - 프로필 편집 기능으로 닉네임, 프로필 이미지, 소개글 변경 가능
   - 이전 캐시 초기화 및 재요청으로 수정된 프로필이 화면에 바로 반영

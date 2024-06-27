@@ -4,7 +4,6 @@
 
 <br>
 <br>
-<br>
 
 # What Do You Think About?
 

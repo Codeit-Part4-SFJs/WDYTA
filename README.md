@@ -1,3 +1,5 @@
+<br>
+
 ![image](https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/fb2cae2a-760f-4ac3-a213-21b49320452c)
 
 <br>
@@ -20,7 +22,6 @@
 
 <br>
 <br>
-<br>
 
 # 💁🏻‍♀팀원 소개💁🏻‍♂
 
@@ -30,13 +31,11 @@
 
 <br>
 <br>
-<br>
 
 # ⚙️ 기술 스택
 
 ![기술스택](https://github.com/Codeit-Part4-SFJs/WDYTA/assets/129318957/701dae56-71dd-4d03-90e8-d94f3c20ff1d)
 
-<br>
 <br>
 <br>
 
@@ -57,7 +56,6 @@
   </tr>
 </table>
 
-<br/>
 <br/>
 <br/>
 
@@ -120,7 +118,6 @@
 - 비개발
   - 발표 자료 준비
 
-<br/>
 <br/>
 <br/>
 

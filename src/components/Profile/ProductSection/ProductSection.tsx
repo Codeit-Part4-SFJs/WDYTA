@@ -11,7 +11,6 @@ import {
 } from '@/components/Profile/constants/productMenu';
 import useProductsQuery from '@/components/Profile/hooks/useProductsQuery';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useProfileStore } from '@/stores/useProfileStore';
 
 export const ProductSection = ({ loginedId }: { loginedId: number | null }) => {
   const router = useRouter();
@@ -19,15 +18,12 @@ export const ProductSection = ({ loginedId }: { loginedId: number | null }) => {
   const currentMenu = useSearchParams()?.get('tab') ?? 'reviewedProduct';
   const currentProfileId = Number(userId) || Number(loginedId);
 
-  const { setCurrentProfileId } = useProfileStore();
-
   const [activeMenu, setActiveMenu] = useState('리뷰 남긴 상품');
 
   const { productData, fetchNextPage, isFetchingNextPage, content } =
     useProductsQuery(currentProfileId, currentMenu);
 
   const handleClickTab = (tab: ProductMenuType) => {
-    setCurrentProfileId(currentProfileId);
     setActiveMenu(tab);
     const selectedTab = PRODUCT_TAB_OPTIONS.find(
       (option) => option.label === tab,

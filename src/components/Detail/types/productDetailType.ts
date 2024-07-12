@@ -30,6 +30,7 @@ export interface ProductDetailProps {
 }
 
 export interface FavoriteButtonProps {
+  userId: number;
   productId: number;
   accessToken: string;
   isFavorite: boolean;

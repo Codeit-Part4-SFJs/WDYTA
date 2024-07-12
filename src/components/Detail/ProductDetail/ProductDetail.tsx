@@ -75,6 +75,7 @@ export const ProductDetail = ({
                   productId={productId}
                   accessToken={accessToken}
                   isFavorite={productDetailData.isFavorite}
+                  userId={userId}
                 />
               </div>
               <ShareButtons productName={productDetailData.name} />

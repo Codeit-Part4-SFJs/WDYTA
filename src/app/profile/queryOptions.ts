@@ -8,7 +8,7 @@ import {
 import { ProductDataPage } from '@/components/Profile/types/productType';
 import { FollowDataPage } from '@/components/Profile/types/followType';
 import { notFound } from 'next/navigation';
-import { ProfileKeys } from './queryKeyFactories';
+import { profileKeys } from './queryKeyFactories';
 
 export const productOptions = (
   currentProfileId: number,
@@ -16,7 +16,7 @@ export const productOptions = (
   apiFunc: any,
 ) => {
   return infiniteQueryOptions<ProductDataPage>({
-    queryKey: ProfileKeys.productCard(currentProfileId, currentMenu),
+    queryKey: profileKeys.productCard(currentProfileId, currentMenu),
     queryFn: async ({ pageParam }) => {
       const response = await apiFunc(currentProfileId, pageParam);
       if (!response.ok) {
@@ -31,7 +31,7 @@ export const productOptions = (
 
 export const profileOptions = (userId: number, accessToken: string) => {
   return queryOptions({
-    queryKey: ProfileKeys.user(Number(userId)),
+    queryKey: profileKeys.user(Number(userId)),
     queryFn: async () => {
       const response = await getUserInfo(Number(userId), accessToken);
       if (!response.ok) {
@@ -44,7 +44,7 @@ export const profileOptions = (userId: number, accessToken: string) => {
 
 export const followerOptions = (userId: number, type: string) => {
   return infiniteQueryOptions<FollowDataPage>({
-    queryKey: ProfileKeys.followList(Number(userId), type),
+    queryKey: profileKeys.followList(Number(userId), type),
     queryFn: async ({ pageParam }) => {
       const response = await getUserFollowers(
         Number(userId),
@@ -62,7 +62,7 @@ export const followerOptions = (userId: number, type: string) => {
 
 export const followeeOptions = (userId: number, type: string) => {
   return infiniteQueryOptions<FollowDataPage>({
-    queryKey: ProfileKeys.followList(Number(userId), type),
+    queryKey: profileKeys.followList(Number(userId), type),
     queryFn: async ({ pageParam }) => {
       const response = await getUserFollowees(
         Number(userId),
@@ -77,7 +77,7 @@ export const followeeOptions = (userId: number, type: string) => {
 
 export const myProfileOptions = (accessToken: string) => {
   return queryOptions({
-    queryKey: ProfileKeys.all,
+    queryKey: profileKeys.all,
     queryFn: async () => {
       const response = await getMyInfo(accessToken);
       return response.json();

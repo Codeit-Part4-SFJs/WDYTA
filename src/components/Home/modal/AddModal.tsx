@@ -18,10 +18,11 @@ import { LoadingSpinner } from './LoadingSpinner';
 
 interface ProductModalProps {
   accessToken: string;
+  userId: string;
   title: string;
 }
 
-export const AddModal = ({ accessToken, title }: ProductModalProps) => {
+export const AddModal = ({ accessToken, userId, title }: ProductModalProps) => {
   const {
     register,
     watch,
@@ -65,6 +66,7 @@ export const AddModal = ({ accessToken, title }: ProductModalProps) => {
   const productCategoryId = Number(category);
   const addProductMutation = useProductAddMutation({
     accessToken,
+    userId,
     setErrorMessage,
     productCategoryId,
     queryClient,

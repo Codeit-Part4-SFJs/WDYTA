@@ -5,17 +5,15 @@ import {
   postFavoriteProduct,
 } from '@/shared/@common/apis/product';
 import { productKeys } from '@/app/[category]/[product]/queryKeyFactories';
-import { ProfileKeys } from '@/app/profile/queryKeyFactories';
-import { useProfileStore } from '@/stores/useProfileStore';
+import { profileKeys } from '@/app/profile/queryKeyFactories';
 
 export const useFavoriteMutation = (
   queryClient: QueryClient,
   isFavorite: boolean,
   productId: number,
   accessToken: string,
+  userId: number,
 ) => {
-  const userId = useProfileStore((state) => state.currentProfileId);
-
   return useMutation({
     mutationFn: async () => {
       if (isFavorite) {
@@ -52,7 +50,8 @@ export const useFavoriteMutation = (
         queryKey: productKeys.detail(productId),
       });
       queryClient.invalidateQueries({
-        queryKey: ProfileKeys.productCard(Number(userId), 'favoriteProduct'),
+        queryKey: profileKeys.productCard(userId, 'favoriteProduct'),
+        refetchType: 'inactive',
       });
     },
   });

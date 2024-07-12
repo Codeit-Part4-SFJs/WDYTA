@@ -1,6 +1,6 @@
 import { deleteUserFollow } from '@/shared/@common/apis/follow';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ProfileKeys } from '@/app/profile/queryKeyFactories';
+import { profileKeys } from '@/app/profile/queryKeyFactories';
 import { UserInfoData } from '@/components/Profile/types/profileTypes';
 import { FollowMutationProps } from './useFollowMutation';
 
@@ -23,13 +23,13 @@ const useUnFollowMutation = ({
     },
     onMutate: async ({ isFollowing }: { isFollowing: boolean }) => {
       await queryClient.cancelQueries({
-        queryKey: ProfileKeys.user(currentProfileId),
+        queryKey: profileKeys.user(currentProfileId),
       });
       const previousFollow = queryClient.getQueryData<UserInfoData>(
-        ProfileKeys.user(currentProfileId),
+        profileKeys.user(currentProfileId),
       );
       queryClient.setQueryData(
-        ProfileKeys.user(currentProfileId),
+        profileKeys.user(currentProfileId),
         (prev: UserInfoData) => ({
           ...prev,
           isFollowing: !isFollowing,
@@ -40,14 +40,14 @@ const useUnFollowMutation = ({
     },
     onError: (context: { previousFollow?: UserInfoData }) => {
       queryClient.setQueryData(
-        ProfileKeys.user(currentProfileId),
+        profileKeys.user(currentProfileId),
         context.previousFollow,
       );
     },
 
     onSuccess: () =>
       queryClient.invalidateQueries({
-        queryKey: ProfileKeys.user(currentProfileId),
+        queryKey: profileKeys.user(currentProfileId),
       }),
   });
 };

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { ProfileKeys } from '@/app/profile/queryKeyFactories';
+import { profileKeys } from '@/app/profile/queryKeyFactories';
 import { MyInfoData } from '@/components/Profile/types/profileTypes';
 import { patchMyInfo } from '../../../shared/@common/apis/user';
 
@@ -25,7 +25,7 @@ const useProfileEditMutation = (
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ProfileKeys.user(loginedId),
+        queryKey: profileKeys.user(loginedId),
       });
     },
   });

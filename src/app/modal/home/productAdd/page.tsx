@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 
 const ProductAddModal = () => {
   const accessToken = cookies().get('accessToken')?.value ?? '';
+  const userId = cookies().get('userId')?.value ?? '';
 
   if (!accessToken) {
     redirect('/modal/common/loginAlert');
@@ -12,7 +13,7 @@ const ProductAddModal = () => {
 
   return (
     <Modal size="medium" closeIcon>
-      <AddModal accessToken={accessToken} title="상품 추가" />
+      <AddModal accessToken={accessToken} userId={userId} title="상품 추가" />
     </Modal>
   );
 };

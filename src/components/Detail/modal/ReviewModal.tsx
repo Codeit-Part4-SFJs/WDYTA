@@ -17,11 +17,12 @@ import { useCreateReviewMutation } from '../ProductReviews/hooks/useCreateReview
 
 interface ReviewModalProps {
   accessToken: string;
+  userId: string;
 }
 
 const MAX_SIZE = 5 * 1024 * 1024;
 
-export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
+export const ReviewModal = ({ accessToken, userId }: ReviewModalProps) => {
   const {
     register,
     watch,
@@ -57,6 +58,7 @@ export const ReviewModal = ({ accessToken }: ReviewModalProps) => {
 
   const imageMutation = useImageMutation({ accessToken, setErrorMessage });
   const createReviewMutation = useCreateReviewMutation({
+    userId,
     accessToken,
     setErrorMessage,
     queryClient,

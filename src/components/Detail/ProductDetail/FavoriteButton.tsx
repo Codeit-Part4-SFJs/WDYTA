@@ -2,23 +2,25 @@
 
 import { Icon } from '@/shared/ui/Icon';
 import { FavoriteButtonProps } from '@/components/Detail/types';
-import { useQueryClient } from '@tanstack/react-query';
+import { QueryClient, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useFavoriteMutation } from '@/components/Detail/ProductDetail/hooks';
 
 export const FavoriteButton = ({
+  userId,
   isFavorite,
   productId,
   accessToken,
 }: FavoriteButtonProps) => {
   const router = useRouter();
-  const queryClient = useQueryClient();
+  const queryClient: QueryClient = useQueryClient();
 
   const favoriteMutation = useFavoriteMutation(
     queryClient,
     isFavorite,
     productId,
     accessToken,
+    userId,
   );
 
   const handleClick = () => {

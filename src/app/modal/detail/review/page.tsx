@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 
 const ProductReviewModal = () => {
   const accessToken = cookies().get('accessToken')?.value ?? '';
+  const userId = cookies().get('userId')?.value ?? '';
 
   if (!accessToken) {
     redirect('/modal/common/loginAlert');
@@ -12,7 +13,7 @@ const ProductReviewModal = () => {
 
   return (
     <Modal size="medium" closeIcon>
-      <ReviewModal accessToken={accessToken} />
+      <ReviewModal accessToken={accessToken} userId={userId} />
     </Modal>
   );
 };

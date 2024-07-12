@@ -3,11 +3,11 @@ import { ProductProps, postCreateProduct } from '@/shared/@common/apis/product';
 import { useMutation, QueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { convertIdToCategory } from '@/shared/@common/utils';
-import { useProfileStore } from '@/stores/useProfileStore';
-import { ProfileKeys } from '@/app/profile/queryKeyFactories';
+import { profileKeys } from '@/app/profile/queryKeyFactories';
 
 interface ProductAddProps {
   accessToken: string;
+  userId: string;
   setErrorMessage: (message: string) => void;
   productCategoryId: number;
   queryClient: QueryClient;
@@ -15,12 +15,12 @@ interface ProductAddProps {
 
 export const useProductAddMutation = ({
   accessToken,
+  userId,
   setErrorMessage,
   productCategoryId,
   queryClient,
 }: ProductAddProps) => {
   const router = useRouter();
-  const userId = useProfileStore((state) => state.currentProfileId);
 
   return useMutation({
     mutationFn: async (data: ProductProps) => {
@@ -45,7 +45,8 @@ export const useProductAddMutation = ({
         queryKey: homeProductKeys.all,
       });
       queryClient.invalidateQueries({
-        queryKey: ProfileKeys.productCard(Number(userId), 'createdProduct'),
+        queryKey: profileKeys.productCard(Number(userId), 'createdProduct'),
+        refetchType: 'inactive',
       });
     },
     onError: (error) => {

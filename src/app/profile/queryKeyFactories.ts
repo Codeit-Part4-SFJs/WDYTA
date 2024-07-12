@@ -1,8 +1,8 @@
-export const ProfileKeys = {
+export const profileKeys = {
   all: ['user'] as const,
-  user: (userId: number | null) => [...ProfileKeys.all, userId] as const,
+  user: (userId: number | null) => [...profileKeys.all, { userId }] as const,
   followList: (userId: number, type: string) =>
-    [...ProfileKeys.user(userId), { type }] as const,
+    [...profileKeys.user(userId), { type }] as const,
   productCard: (userId: number, tab: string) =>
-    [...ProfileKeys.user(userId), { tab }] as const,
+    [...profileKeys.user(userId), { tab }] as const,
 };

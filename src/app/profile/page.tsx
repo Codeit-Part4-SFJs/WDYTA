@@ -4,7 +4,6 @@ import { ProductSection } from '@/components/Profile/ProductSection';
 import { ProfileCard } from '@/components/Profile/ProfileCard';
 import { getUserCookies } from '@/shared/@common/utils/getUserCookies';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
-import { productMenuInfo } from '@/components/Profile/hooks/useProductsQuery';
 import { Suspense } from 'react';
 import { SkeletonProfileCard } from '@/components/Profile/skeleton/SkeletonProfileCard';
 import {
@@ -15,6 +14,11 @@ import {
 import { redirect } from 'next/navigation';
 import { TAB_NAMES_ORIGIN } from '@/components/Profile/constants/productMenu';
 import { Floating } from '@/shared/ui/Button/Floating';
+import {
+  getUserCreatedProducts,
+  getUserFavoriteProducts,
+  getUserReviewedProducts,
+} from '@/shared/@common/apis';
 import { productOptions, profileOptions } from './queryOptions';
 
 interface ProfileProps {
@@ -24,20 +28,34 @@ interface ProfileProps {
     type: string;
   };
 }
-export default function Profile({ searchParams }: ProfileProps) {
+export default async function Profile({ searchParams }: ProfileProps) {
   const { loginedId, accessToken } = getUserCookies();
   const userId = searchParams.userId ?? loginedId;
-  const currentMenu = searchParams.tab ?? TAB_NAMES_ORIGIN.reviewedProduct;
   const queryClient = getQueryClient();
-  queryClient.prefetchQuery(profileOptions(Number(userId), accessToken));
-
-  queryClient.prefetchInfiniteQuery(
-    productOptions(
-      Number(userId),
-      currentMenu,
-      productMenuInfo[currentMenu].apiFunc,
+  await Promise.all([
+    queryClient.prefetchQuery(profileOptions(Number(userId), accessToken)),
+    queryClient.prefetchInfiniteQuery(
+      productOptions(
+        Number(userId),
+        TAB_NAMES_ORIGIN.createdProduct,
+        getUserCreatedProducts,
+      ),
     ),
-  );
+    queryClient.prefetchInfiniteQuery(
+      productOptions(
+        Number(userId),
+        TAB_NAMES_ORIGIN.favoriteProduct,
+        getUserFavoriteProducts,
+      ),
+    ),
+    queryClient.prefetchInfiniteQuery(
+      productOptions(
+        Number(userId),
+        TAB_NAMES_ORIGIN.reviewedProduct,
+        getUserReviewedProducts,
+      ),
+    ),
+  ]);
   if (!accessToken && !userId) {
     redirect('/modal/common/loginAlert');
   }
